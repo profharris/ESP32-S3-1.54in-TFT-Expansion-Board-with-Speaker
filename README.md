@@ -1,4 +1,4 @@
-# ESP32-S3 1.54in TFT Expansion Board with Speaker (and MIC, and ???)
+# ESP32-S3 1.54in TFT Expansion Board with Speaker<br/>(and MIC, and ???)
 
 *** WORK IN PROGRESS *** &nbsp;—&nbsp; Prof. Michael P. Harris
 
@@ -16,7 +16,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
  4. GOOUUU ESP32-S3-CAM     (DevKitC-1 clone + CAM + SD)  40     ✓  ✓  ✓  2+RGB
  5. ESP32-S3-WROOM CAM   (FREENOVE ESP32-S3-WROOM clone)  40     ✓  ✓  ✓  4+RGB
  6. FREENOVE ESP32-S3-WROOM (CAM)                         40     ✓  ✓  ✓  4+RGB
- 7. FREENOVE ESP32-S3-WROOM Lite                          40     ✓  ✓  ✓  4+RGB
+ 7. FREENOVE ESP32-S3-WROOM Lite (no camera)              40            ✓  4+RGB
 ```
 
 ## NOTES: ##
@@ -25,8 +25,8 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 Header pins _(dual on one side)_ supports **both** Dev Board widths.<br/>
 <br/>
-Almost {...extra pins top and bottom} the same pinout as the<br/>
-ESP32-S3-WROOM (CAM), and ESP32-S3-GOOUUU-CAM.
+Almost _{...extra pins top and bottom}_ the same pinout as the<br/>
+ESP32-S3-WROOM (CAM), &nbsp;and&nbsp; ESP32-S3-GOOUUU-CAM.
 
 ```
 Xtensa® 32-bit   ESP32-S3-DevKitC-1         ESP32-S3-WROOM-1 N16R8
