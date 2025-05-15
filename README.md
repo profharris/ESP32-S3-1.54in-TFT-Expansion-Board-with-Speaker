@@ -24,7 +24,7 @@ NOTES:
 
     (Almost {...extra pins top and bottom} the same pinout as the
     ESP32-S3-WROOM (CAM), and ESP32-S3-GOOUUU-CAM).
-
+```
 Xtensa® 32-bit   ESP32-S3-DevKitC-1         ESP32-S3-WROOM-1 N16R8
 Dual-core LX7      _______________
  16MB Flash       |  ___   _   __¯|         NO CAMERA MODULE
@@ -59,9 +59,9 @@ A13      G14 20|o  _____ O T _____  ø|25 G19 A20 D+        I²C -ALT-
 ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
 26…32 QSPI ƒlash, 33…34 Missing, 35…42 GPIO, 43…44 TX/RX, 45…48 GPIO
     pins_arduino.h ~ ESP32-S3-DevKitC
-
+```
 【2】 MCU 44-pin header pins compatible with:
-
+```
         44-pin ESP32-S3-WROOM-1 Development Boards:
             o ESP-S3-DevKitC-1
             o YD-ESP32-S3
@@ -73,9 +73,9 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             o ESP-S3-WROOM (CAM)
             o FREEVOVE ESP32-S3-WROOM
             o GOOUUU ESP32-S3-CAM
-
+```
  【3】 LCD 1.54in 240×240 color IPS TFT (ST7789T3) header pins:
-
+```
         TFT LCD   ESP32-S3
          8-Pin    Pin       Function/Description
         ———————   ————————  ——————————————————————————
@@ -101,8 +101,9 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
         8. GND    GND       System Ground
         9. A      3V3       BackLight LED Anode (+)
        10. K      GND       BackLight LED Cathode (-)
-
+```
 【4】 22-pin single-row I/O Interface header: (½ the availiable pins)
+```
                          .——Interface Pins absent from I/O header——.
                          | G4 INMP441   Mic   LCD TFT   G37* PSRAM |
     3V3   o  1.          | G5 INMP441   Mic   G42 BLK   G36* PSRAM |
@@ -127,8 +128,9 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
     G14   o 20.
     5V0   o 21.
     GND   o 22.
-
+```
 【5】 Microphone “pass-through” hole & icon on top-side.
+```
         o PDM Mic chip mounted on the bottom-side.
         o (guess) MEMS digital microphone (INMP441)
         o possible configuration:
@@ -137,8 +139,9 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             SD  Data Out            G6
             VCC                     3V3 Vin
             GND Ground Short Connect L/R Left Right Channel
-
+```
 【6】 Large on-board Speaker on top (guess — with amplifier)
+```
         o (guess) I²S interface, possibly I²S MAX98357A Audio
         o possible MAX98357A Amplifier configuration:
             DIN Digital Signal      G7
@@ -151,18 +154,19 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
         o External Speaker interface
             Audio+  Connect to Speaker Positive (usually Red wire)
             Audio-  Connect to Speaker Negative
-
-
+```
 【7】 Additional peripheral chip mounted on the bottom side.
+```
         o (guess) by inspection an I²C BMA423 3-Axis sensor.
         o possible configuration:
             I²C SDA     G8
             I²C SCL     G9
             IRQ         G14
-
+```
 ———————————————————————————————————————————————————————————————————
 
 LCD TFT Display Specifications:
+```
 LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
   ◆          Brand Name: Maithoga
   ◆           Driver IC: ST7789T3
@@ -194,4 +198,4 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
         8. GND  (Ground)
         9. A    (LED Anode)
        10. K    (LED Cathode)
-
+```
