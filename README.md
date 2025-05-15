@@ -1,10 +1,11 @@
 # ESP32-S3 1.54in TFT Expansion Board with Speaker (and MIC, and ???)
+
 *** WORK IN PROGRESS *** &nbsp;—&nbsp; Prof. Michael P. Harris
 
 ## Compatible Development boards:
 
 ESP32-S3 N16R8 Development Board with Speaker and 1.54in TFT Display<br/>
-Expansion Adapter Kit for DIY AI Type-C Wifi Module ESP32-S3<br/>
+&nbsp; &nbsp; &nbsp; Expansion Adapter Kit for DIY AI Type-C Wifi Module ESP32-S3
 
 ```
 ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB LEDs
@@ -21,10 +22,11 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 ## NOTES: ##
 
 ### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin _(40-pin compatible)_ headers ###
-&nbsp; &nbsp; &nbsp; Header pins _(dual on one side)_ supports **both** Dev Board widths.<br/>
+
+Header pins _(dual on one side)_ supports **both** Dev Board widths.<br/>
 <br/>
-&nbsp; &nbsp; &nbsp; Almost {...extra pins top and bottom} the same pinout as the<br/>
-&nbsp; &nbsp; &nbsp; ESP32-S3-WROOM (CAM), and ESP32-S3-GOOUUU-CAM.
+Almost {...extra pins top and bottom} the same pinout as the<br/>
+ESP32-S3-WROOM (CAM), and ESP32-S3-GOOUUU-CAM.
 
 ```
 Xtensa® 32-bit   ESP32-S3-DevKitC-1         ESP32-S3-WROOM-1 N16R8
@@ -44,12 +46,12 @@ A15      G16  9|o ·. ¨¨|¯¯¯¬        o|36 G39               Software
 A16      G17 10|o ¯  ¨¨|   []   PWR ¤|35 G38               SPI -ALT-
 A17      G18 11|o ¯  ¨¨|___-     ¤  o|34 G37 PSRAM         —————————
 I²C SDA  G8  12|o RGB     ¬ ¬       o|33 G36 PSRAM         G42  SCLK
-A2       G3  13|o [¤]48   ¨ ¨       o|32 G35 PSRAM         G41  MOSI
+A2       G3  13|o ‹¤›48   ¨ ¨       o|32 G35 PSRAM         G41  MOSI
 LOG      G46 14|o      ........ ·   o|31 G0  [BOOT]         -1  MISO
 I²C SCL  G9  15|o ¨ ¨  |CP2102| ¨   o|30 G45                G0  RST
 SPI SS   G10 16|o ¨¨   '''''''' ¨   o|29 G48 RGB LED       G45  DC
 SPI MOSI G11 17|o BOOT .......  RST o|28 G47               G47  CS
-SPI SCK  G12 18|o 【Ø】  '''~'''  【Ø】 o|27 G21               G21  BL*
+SPI SCK  G12 18|o ‹•›  '''''''  ‹•› o|27 G21               G21  BL*
 SPI MISO G13 19|o                   ø|26 G20 A19 D-
 A13      G14 20|o  _____ O T _____  ø|25 G19 A20 D+        I²C -ALT-
          5V0 21|o | USB |T T| USB | o|24 GND               —————————
