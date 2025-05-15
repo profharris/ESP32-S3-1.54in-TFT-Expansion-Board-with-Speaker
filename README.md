@@ -19,10 +19,10 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 NOTES:
 
-【1】 Espressif ESP-S3-DevKitC-1 — 44-pin (40-pin compatible) headers
+【1】 Espressif ESP-S3-DevKitC-1 — 44-pin (40-pin compatible) headers<br/>
     Header pins(dual on one side) support **both** Dev Board widths.
 
-    (Almost {...extra pins top and bottom} the same pinout as the
+    (Almost {...extra pins top and bottom} the same pinout as the<br/>
     ESP32-S3-WROOM (CAM), and ESP32-S3-GOOUUU-CAM).
 ```
 Xtensa® 32-bit   ESP32-S3-DevKitC-1         ESP32-S3-WROOM-1 N16R8
@@ -129,7 +129,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
     5V0   o 21.
     GND   o 22.
 ```
-【5】 Microphone “pass-through” hole & icon on top-side.
+【5】 Microphone “pass-through” hole & icon on top-side:
 ```
         o PDM Mic chip mounted on the bottom-side.
         o (guess) MEMS digital microphone (INMP441)
@@ -140,7 +140,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             VCC                     3V3 Vin
             GND Ground Short Connect L/R Left Right Channel
 ```
-【6】 Large on-board Speaker on top (guess — with amplifier)
+【6】 Large on-board Speaker on top: (guess — with amplifier)
 ```
         o (guess) I²S interface, possibly I²S MAX98357A Audio
         o possible MAX98357A Amplifier configuration:
@@ -155,7 +155,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             Audio+  Connect to Speaker Positive (usually Red wire)
             Audio-  Connect to Speaker Negative
 ```
-【7】 Additional peripheral chip mounted on the bottom side.
+【7】 Additional peripheral chip mounted on the bottom side:
 ```
         o (guess) by inspection an I²C BMA423 3-Axis sensor.
         o possible configuration:
