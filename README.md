@@ -18,9 +18,9 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
  7. FREENOVE ESP32-S3-WROOM Lite                          40     ✓  ✓  ✓  4+RGB
 ```
 
-NOTES:
+## NOTES: ##
 
-【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin _(40-pin compatible)_ headers<br/>
+### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin _(40-pin compatible)_ headers ###
 &nbsp; &nbsp; &nbsp; Header pins _(dual on one side)_ supports **both** Dev Board widths.<br/>
 <br/>
 &nbsp; &nbsp; &nbsp; Almost {...extra pins top and bottom} the same pinout as the<br/>
@@ -62,21 +62,21 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
 26…32 QSPI ƒlash, 33…34 Missing, 35…42 GPIO, 43…44 TX/RX, 45…48 GPIO
     pins_arduino.h ~ ESP32-S3-DevKitC
 ```
-【2】 MCU 44-pin header pins compatible with:
+### 【2】 The 44-pin MCU headers are pin-compatible with: ###
 ```
-        44-pin ESP32-S3-WROOM-1 Development Boards:
-            o ESP-S3-DevKitC-1
-            o YD-ESP32-S3
-            o ESP32-S3-WROOM-1 Dev
+        44-pin “ESP32-S3-WROOM-1” Development Boards:
+            o Espressif ESP-S3-DevKitC-1
+            o VCC-GND Studio YD-ESP32-S3 (ESP32-S3-WROOM-1 Dev)
             o WaveShare ESP32-S3-DEV-KIT-N8R8
 
-        40-pin ESP32-S3-WROOM-1 Development Boards
-               (skip top & bottom extra pins)
-            o ESP-S3-WROOM (CAM)
-            o FREEVOVE ESP32-S3-WROOM
+        40-pin “ESP32-S3-WROOM-1” Development Boards
+              (skip top & bottom extra pins)
             o GOOUUU ESP32-S3-CAM
+            o ESP-S3-WROOM (CAM)
+            o FREEVOVE ESP32-S3-WROOM (CAM)
+            o FREEVOVE ESP32-S3-WROOM-Lite
 ```
- 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789T3) header pins:
+### 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789T3) header pins: ###
 ```
         TFT LCD   ESP32-S3
          8-Pin    Pin       Function/Description
@@ -104,7 +104,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
         9. A      3V3       BackLight LED Anode (+)
        10. K      GND       BackLight LED Cathode (-)
 ```
-【4】 22-pin single-row I/O Interface header: (½ the availiable pins)
+### 【4】 22-pin single-row I/O Interface header: (½ the availiable pins) ###
 ```
                          .——Interface Pins absent from I/O header——.
                          | G4 INMP441   Mic   LCD TFT   G37* PSRAM |
@@ -131,7 +131,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
     5V0   o 21.
     GND   o 22.
 ```
-【5】 Microphone “pass-through” hole & icon on top-side:
+### 【5】 Microphone “pass-through” hole & icon on top-side: ###
 ```
         o PDM Mic chip mounted on the bottom-side.
         o (guess) MEMS digital microphone (INMP441)
@@ -142,7 +142,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             VCC                     3V3 Vin
             GND Ground Short Connect L/R Left Right Channel
 ```
-【6】 Large on-board Speaker on top: (guess — with amplifier)
+### 【6】 Large on-board Speaker on top: (guess — with amplifier) ###
 ```
         o (guess) I²S interface, possibly I²S MAX98357A Audio
         o possible MAX98357A Amplifier configuration:
@@ -157,7 +157,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             Audio+  Connect to Speaker Positive (usually Red wire)
             Audio-  Connect to Speaker Negative
 ```
-【7】 Additional peripheral chip mounted on the bottom side:
+### 【7】 Additional peripheral chip mounted on the bottom side: ###
 ```
         o (guess) by inspection an I²C BMA423 3-Axis sensor.
         o possible configuration:
@@ -166,7 +166,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             IRQ         G14
 ```
 ———————————————————————————————————————————————————————————————
-LCD TFT Display Specifications:
+## LCD TFT Display Specifications: ##
 ```
 LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
   ◆          Brand Name: Maithoga
