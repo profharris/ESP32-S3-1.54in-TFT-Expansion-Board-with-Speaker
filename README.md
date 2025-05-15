@@ -1,10 +1,11 @@
 # ESP32-S3 1.54in TFT Expansion Board with Speaker (and MIC, and ???)
-** WORK IN PROGRESS ** — Prof. Michael P. Harris
+*** WORK IN PROGRESS *** &nbsp;—&nbsp; Prof. Michael P. Harris
 
 ## Compatible Development boards:
 
-ESP32-S3 N16R8 Development Board with Speaker and 1.54in TFT Display
-Expansion Adapter Kit for DIY AI Type-C Wifi Module ESP32-S3
+ESP32-S3 N16R8 Development Board with Speaker and 1.54in TFT Display<br/>
+Expansion Adapter Kit for DIY AI Type-C Wifi Module ESP32-S3<br/>
+
 ```
 ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB LEDs
                                                                        LED
@@ -19,11 +20,12 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 NOTES:
 
-【1】 Espressif ESP-S3-DevKitC-1 — 44-pin (40-pin compatible) headers<br/>
-    Header pins(dual on one side) support **both** Dev Board widths.
+【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin _(40-pin compatible)_ headers<br/>
+&nbsp; &nbsp; &nbsp; Header pins _(dual on one side)_ supports **both** Dev Board widths.<br/>
+<br/>
+&nbsp; &nbsp; &nbsp; Almost {...extra pins top and bottom} the same pinout as the<br/>
+&nbsp; &nbsp; &nbsp; ESP32-S3-WROOM (CAM), and ESP32-S3-GOOUUU-CAM.
 
-    (Almost {...extra pins top and bottom} the same pinout as the<br/>
-    ESP32-S3-WROOM (CAM), and ESP32-S3-GOOUUU-CAM).
 ```
 Xtensa® 32-bit   ESP32-S3-DevKitC-1         ESP32-S3-WROOM-1 N16R8
 Dual-core LX7      _______________
@@ -163,8 +165,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             I²C SCL     G9
             IRQ         G14
 ```
-———————————————————————————————————————————————————————————————————
-
+———————————————————————————————————————————————————————————————
 LCD TFT Display Specifications:
 ```
 LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
