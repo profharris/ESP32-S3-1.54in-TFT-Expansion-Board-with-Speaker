@@ -1,25 +1,25 @@
-# ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker
-ESP32-S3 1.54in TFT Expansion Board with Speaker Development Board 
-```
 # ESP32-S3 1.54in TFT Expansion Board with Speaker (and MIC, and ???)
 ** WORK IN PROGRESS ** — Prof. Michael P. Harris
 
+## Compatible Development boards:
+
 ESP32-S3 N16R8 Development Board with Speaker and 1.54in TFT Display
 Expansion Adapter Kit for DIY AI Type-C Wifi Module ESP32-S3
-
+```
 ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB LEDs
                                                                        LED
  1. Espressif ESP32-S3-DevKitC-1 (no camera, no SD card)  44            ✓  1+RGB
+ 2. YD-ESP32-S3 (ESP32-S3-WROOM-1 Dev) (DevKitC-1 clone)  44            ✓  3+RGB
  3. WaveShare ESP32-S3-DEV-KIT-N8R8    (DevKitC-1 clone)  44            ✓  1+RGB
- 2. ESP32-S3-WROOM-1 Dev (YD-ESP32-S3) (DevKitC-1 clone)  44            ✓  3+RGB
- 4. ESP32-S3-GOOUUU-CAM (ESP32-S3-DevKitC-1 clone+CAM+SD) 40     ✓  ✓  ✓  2+RGB
- 5. ESP32-S3-WROOM CAM (FREENOVE ESP32-S3-WROOM clone)    40     ✓  ✓  ✓  4+RGB
- 6. FREENOVE ESP32-S3-WROOM (CAM Module)                  40     ✓  ✓  ✓  4+RGB
-
+ 4. GOOUUU ESP32-S3-CAM     (DevKitC-1 clone + CAM + SD)  40     ✓  ✓  ✓  2+RGB
+ 5. ESP32-S3-WROOM CAM   (FREENOVE ESP32-S3-WROOM clone)  40     ✓  ✓  ✓  4+RGB
+ 6. FREENOVE ESP32-S3-WROOM (CAM)                         40     ✓  ✓  ✓  4+RGB
+ 7. FREENOVE ESP32-S3-WROOM Lite                          40     ✓  ✓  ✓  4+RGB
+```
 
 NOTES:
 
- 1. Espressif ESP-S3-DevKitC-1 — 44-pin (40-pin compatible) headers
+【1】 Espressif ESP-S3-DevKitC-1 — 44-pin (40-pin compatible) headers
     Header pins(dual on one side) support **both** Dev Board widths.
 
     (Almost {...extra pins top and bottom} the same pinout as the
@@ -47,12 +47,12 @@ LOG      G46 14|o      ........ ·   o|31 G0  [BOOT]         -1  MISO
 I²C SCL  G9  15|o ¨ ¨  |CP2102| ¨   o|30 G45                G0  RST
 SPI SS   G10 16|o ¨¨   '''''''' ¨   o|29 G48 RGB LED       G45  DC
 SPI MOSI G11 17|o BOOT .......  RST o|28 G47               G47  CS
-SPI SCK  G12 18|o [Ø]  '''''''  [Ø] o|27 G21               G21  BL*
+SPI SCK  G12 18|o 【Ø】  '''~'''  【Ø】 o|27 G21               G21  BL*
 SPI MISO G13 19|o                   ø|26 G20 A19 D-
-A13      G14 20|o .......T O....... ø|25 G19 A20 D+        I²C -ALT-
+A13      G14 20|o  _____ O T _____  ø|25 G19 A20 D+        I²C -ALT-
          5V0 21|o | USB |T T| USB | o|24 GND               —————————
-         GND 22|o |  C  |L G|  C  | o|23 GND               1. *  GND
-               '——'UART0'———'ESP32'——'                     2. *  3V3
+         GND 22|o |  C  |G L|  C  | o|23 GND               1. *  GND
+               '——'ESP32'———'UART0'——'                     2. *  3V3
                                          G48 RGB_BUILTIN,  3. G1 SDA
                                          LED_BUILTIN       4. G2 SCL
 
@@ -60,7 +60,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
 26…32 QSPI ƒlash, 33…34 Missing, 35…42 GPIO, 43…44 TX/RX, 45…48 GPIO
     pins_arduino.h ~ ESP32-S3-DevKitC
 
- 2. MCU 44-pin header pins compatible with:
+【2】 MCU 44-pin header pins compatible with:
 
         44-pin ESP32-S3-WROOM-1 Development Boards:
             o ESP-S3-DevKitC-1
@@ -74,7 +74,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             o FREEVOVE ESP32-S3-WROOM
             o GOOUUU ESP32-S3-CAM
 
-  3. LCD 1.54in 240×240 color IPS TFT (ST7789T3) header pins:
+ 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789T3) header pins:
 
         TFT LCD   ESP32-S3
          8-Pin    Pin       Function/Description
@@ -102,7 +102,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
         9. A      3V3       BackLight LED Anode (+)
        10. K      GND       BackLight LED Cathode (-)
 
- 4. 22-pin single-row I/O Interface header: (½ the availiable pins)
+【4】 22-pin single-row I/O Interface header: (½ the availiable pins)
                          .——Interface Pins absent from I/O header——.
                          | G4 INMP441   Mic   LCD TFT   G37* PSRAM |
     3V3   o  1.          | G5 INMP441   Mic   G42 BLK   G36* PSRAM |
@@ -128,7 +128,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
     5V0   o 21.
     GND   o 22.
 
- 5. Microphone pass-through hole & icon on top-side.
+【5】 Microphone “pass-through” hole & icon on top-side.
         o PDM Mic chip mounted on the bottom-side.
         o (guess) MEMS digital microphone (INMP441)
         o possible configuration:
@@ -138,7 +138,7 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             VCC                     3V3 Vin
             GND Ground Short Connect L/R Left Right Channel
 
- 6. Large on-board Speaker on top (guess — with amplifier)
+【6】 Large on-board Speaker on top (guess — with amplifier)
         o (guess) I²S interface, possibly I²S MAX98357A Audio
         o possible MAX98357A Amplifier configuration:
             DIN Digital Signal      G7
@@ -148,11 +148,12 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             GND  GND Ground Short Connect
                  GAIN Gain and Channel
 
+        o External Speaker interface
             Audio+  Connect to Speaker Positive (usually Red wire)
             Audio-  Connect to Speaker Negative
 
 
- 7. Additional peripheral chip mounted on the bottom side.
+【7】 Additional peripheral chip mounted on the bottom side.
         o (guess) by inspection an I²C BMA423 3-Axis sensor.
         o possible configuration:
             I²C SDA     G8
@@ -194,4 +195,3 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
         9. A    (LED Anode)
        10. K    (LED Cathode)
 
-```
