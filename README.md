@@ -108,18 +108,18 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
 ```
 ### 【4】 22-pin single-row I/O Interface header: (½ the availiable pins) ###
 ```
-                         .——Interface Pins absent from I/O header——.
-                         | G4 INMP441   Mic   LCD TFT   G37* PSRAM |
-    3V3   o  1.          | G5 INMP441   Mic   G42 BLK   G36* PSRAM |
-    G1    o  2.          | G6 INMP441   Mic   G41 CS    G35* PSRAM |
-    G2    o  3.          |                    G42 BLK              |
-    G39   o  4.          | G7 MAX98357A Amp   G41 CS    G8  I²C SDA|
-    G38   o  5.          |G15 MAX98357A Amp   G40 DC    G9  I²C SCL|
-    G0    o  6.  BOOT    |G16 MAX98357A Amp   G45 RES   G42 BMA423 |
-    G48   o  7.  RGB LED |                    G47 SDA       3-Axis |
-    G20   o  8.  USB_D-  |G38 ???, G39 ???    G21 SCL       IRQ    |
-    G19   o  9.  USB_D+  '—————————————————————————————————————————'
-    G17   o 10.  ---------------------------------------------------
+                            .——Interface Pins absent from I/O header——.
+                            | G4 INMP441   Mic   LCD TFT   G37* PSRAM |
+    3V3   o  1.             | G5 INMP441   Mic   G42 BLK   G36* PSRAM |
+    G1    o  2.             | G6 INMP441   Mic   G41 CS    G35* PSRAM |
+    G2    o  3.             |                    G42 BLK              |
+    G39   o  4.             | G7 MAX98357A Amp   G41 CS    G8  I²C SDA|
+    G38   o  5.             |G15 MAX98357A Amp   G40 DC    G9  I²C SCL|
+    G0    o  6.  BOOT       |G16 MAX98357A Amp   G45 RES   G42 BMA423 |
+    G48   o  7.  RGB LED    |                    G47 SDA       3-Axis |
+    G20   o  8.  USB_D-     |G38 ???, G39 ???    G21 SCL       IRQ    |
+    G19   o  9.  USB_D+     '—————————————————————————————————————————'
+    G17   o 10.  ------------------------------------------------------
     G18   o 11.             {Pins  10..22 I/O header}
     G8    o 12.  I²C SDA    {match 10..22 MCU header}
     G11   o 17.  SPI MOSI
@@ -151,11 +151,11 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             DIN Digital Signal      G7
             BCLK Bit Clock          G15
             LRC Left Right Clock    G16
-            VCC                     3V3 Vin
+            VCC                     3V3
             GND  GND Ground Short Connect
                  GAIN Gain and Channel
 
-        o External Speaker interface
+        o External Speaker interface: (+ -)
             Audio+  Connect to Speaker Positive (usually Red wire)
             Audio-  Connect to Speaker Negative
 ```
