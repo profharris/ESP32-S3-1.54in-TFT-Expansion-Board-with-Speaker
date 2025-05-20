@@ -147,26 +147,26 @@ ST7789V2 Driver.
 
 ```
                             .——Interface Pins absent from I/O header——.
-                            | G4 INMP441   Mic   LCD TFT   G37* PSRAM |
-    3V3   o  1.             | G5 INMP441   Mic   G42 BLK   G36* PSRAM |
-    G1    o  2.             | G6 INMP441   Mic   G41 CS    G35* PSRAM |
-    G2    o  3.             |                    G42 BLK              |
-    G39   o  4.             | G7 MAX98357A Amp   G41 CS    G8  I²C SDA|
-    G38   o  5.             |G15 MAX98357A Amp   G40 DC    G9  I²C SCL|
-    G0    o  6.  BOOT       |G16 MAX98357A Amp   G45 RES   G42 BMA423 |
-    G48   o  7.  RGB LED    |                    G47 SDA       3-Axis |
-    G20   o  8.  USB_D-     |G38 ???, G39 ???    G21 SCL       IRQ    |
-    G19   o  9.  USB_D+     '—————————————————————————————————————————'
+                            | G4 INMP441   Mic   LCD TFT   G43  TX›   |
+    3V3   o  1.             | G5 INMP441   Mic   ———————   G44  RX‹   |
+    G1    o  2.             | G6 INMP441   Mic   G42 BLK              |
+    G2    o  3.             |                    G41 CS    G37* PSRAM |
+    G39   o  4.             | G7 MAX98357A Amp   G40 RS/DC G36* PSRAM |
+    G38   o  5.             |G15 MAX98357A Amp   G45 RST   G35* PSRAM |
+    G0    o  6.  [BOOT]     |G16 MAX98357A Amp   G47 SDA              |
+    G48   o  7.  RGB LED    |                    G21 SCL              |
+    G20   o  8.  USB_D-     '—————————————————————————————————————————'
+    G19   o  9.  USB_D+             {Pins  10..22 I/O header}
     G17   o 10.  ------------------------------------------------------
-    G18   o 11.             {Pins  10..22 I/O header}
-    G8    o 12.  I²C SDA    {match 10..22 MCU header}
-    G11   o 17.  SPI MOSI
-    G12   o 18.  SPI SCK
-    G13   o 19.  SPI MISO
+    G18   o 11.                     {match 10..22 MCU header}
+    G8    o 12.  I²C SDA          
     G3    o 13.
     G46   o 14.
     G9    o 15.  I²C SCL
     G10   o 16.  SPI SS
+    G11   o 17.  SPI MOSI
+    G12   o 18.  SPI SCK
+    G13   o 19.  SPI MISO
     G14   o 20.
     5V0   o 21.
     GND   o 22.
