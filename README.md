@@ -172,6 +172,8 @@ ST7789V2 Driver.
 ```
 
 ### 【5】 Microphone “pass-through” hole & icon on top-side:
+![MEMS digital microphone (INMP441)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/INMP441%20I%C2%B2S%20Mic.jpg)
+
 ```
         o PDM Mic chip mounted on the bottom-side.
         o (_guess_) MEMS digital microphone (INMP441)
@@ -184,6 +186,8 @@ ST7789V2 Driver.
 ```
 
 ### 【6】 Large on-board Speaker on top: (_guess_ — with amplifier)
+![MAX98357A I²S Audio Amplifier](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20Amp.jpg)
+
 ```
         o (_guess_) I²S interface, possibly I²S MAX98357A Audio
         o possible MAX98357A Amplifier configuration:
