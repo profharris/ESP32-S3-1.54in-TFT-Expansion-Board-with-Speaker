@@ -1,6 +1,6 @@
 # ESP32-S3 1.54in TFT Expansion Board with Speaker<br/>(and MIC, and ???)
 
-*** WORK IN PROGRESS *** &nbsp;—&nbsp; Prof. Michael P. Harris
+***WORK IN PROGRESS*** &nbsp;—&nbsp; Prof. Michael P. Harris
 
 ESP32-S3 1.54in TFT Expansion Board with Speaker
 ![ESP32-S3 1.54in TFT Expansion Board with Speaker](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker.jpg)
