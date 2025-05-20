@@ -207,7 +207,7 @@ ST7789V2 Driver.
             Audio-  Connect to Speaker Negative
 ```
 <hr>
-
+<!---
 ### 【7】 Additional peripheral chip mounted on the bottom side:
 ```
         o (_guess_) by inspection an I²C BMA423 3-Axis sensor.
@@ -216,7 +216,7 @@ ST7789V2 Driver.
             I²C SCL     G9
             IRQ         G14
 ```
-<hr>
+<hr> -->
 
 ———————————————————————————————————————————————————
 ## LCD TFT Display Specifications:
