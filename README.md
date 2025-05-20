@@ -108,8 +108,8 @@ display on the back of the Expansion Adapter. The TFT Display is a:
 1.54in TFT LCD Module, IPS color 240×240, 10Pin Plug-in strip,
 ST7789V2 Driver.
 
-![LCD 1.54in 240×240 color IPS TFT (ST7789T3)](https://github.com/profharris/GOOUUU-Tech-ESP32-S3-CAM-Expansion-Board/blob/main/images/GOOOUUU%20Tech%20ESP32-S3-CAM%20Expansion%20Board-1.jpg)
-![ESP32-S3 1.54in TFT Expansion Board with Speaker-2](https://github.com/profharris/GOOUUU-Tech-ESP32-S3-CAM-Expansion-Board/blob/main/images/GOOOUUU%20Tech%20ESP32-S3-CAM%20Expansion%20Board-1.jpg)
+![LCD 1.54in 240×240 color IPS TFT (ST7789T3)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/LCD%201.54in%20240%C3%97240%20color%20IPS%20TFT%2010-pin%20(ST7789T3).jpg)<br/>
+![ESP32-S3 1.54in TFT Expansion Board with Speaker-2](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-2.jpg)
 
 ```
         TFT LCD   ESP32-S3
