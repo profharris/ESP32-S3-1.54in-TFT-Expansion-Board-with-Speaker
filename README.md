@@ -77,11 +77,12 @@ A13      G14 20|o  _____ O T _____  ø|25 G19 A20 D+        I²C -ALT-
                '——'ESP32'———'UART0'——'                     2. *  3V3
                                          G48 RGB_BUILTIN,  3. G1 SDA
                                          LED_BUILTIN       4. G2 SCL
-
-ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
-26…32 QSPI ƒlash, 33…34 Missing, 35…42 GPIO, 43…44 TX/RX, 45…48 GPIO
-    pins_arduino.h ~ ESP32-S3-DevKitC
 ```
+### ESP32-S3 Pins:
+0…18 GPIO,&nbsp; 19…20 D+/D-,&nbsp; 21 GPIO,&nbsp; 
+22…25 Do Not Exist,&nbsp; 26…32 QSPI ƒlash,&nbsp; 33…34 Missing,&nbsp; 
+35…42 GPIO,&nbsp; 43…44 TX/RX,&nbsp; 45…48 GPIO<br/>
+&nbsp; &nbsp; _pins_arduino.h_ ***~*** **ESP32-S3-DevKitC-1**
 <hr>
 
 ### 【2】 The 44-pin MCU headers are pin-compatible with:
