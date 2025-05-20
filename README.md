@@ -2,6 +2,10 @@
 
 *** WORK IN PROGRESS *** &nbsp;—&nbsp; Prof. Michael P. Harris
 
+ESP32-S3 1.54in TFT Expansion Board with Speaker
+![ESP32-S3 1.54in TFT Expansion Board with Speaker](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker.jpg)
+
+
 ## Compatible Development boards:
 
 ESP32-S3 N16R8 Development Board with Speaker and 1.54in TFT Display<br/>
@@ -17,19 +21,33 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
  5. ESP32-S3-WROOM CAM   (FREENOVE ESP32-S3-WROOM clone)  40     ✓  ✓  ✓  4+RGB
  6. FREENOVE ESP32-S3-WROOM (CAM)                         40     ✓  ✓  ✓  4+RGB
  7. FREENOVE ESP32-S3-WROOM Lite (no camera)              40            ✓  4+RGB
+ 8. WeAct Studio ESP32-S3-A/B Core Board                  44            ✓  1+RGB
 ```
+[1. Espressif ESP32-S3-DevKitC-1](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/1.%20ESP32-S3-DevKitC-1.jpg)
+[2. YD-ESP32-S3 (ESP32-S3-WROOM-1 Dev)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/2.%20YD-ESP32-S3%20(ESP32-S3-DevKitC-1%20clone).jpg)
+[3. WaveShare ESP32-S3-DEV-KIT-N8R8](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WaveShare%20ESP32-S3-DEV-Kit-N8R8.jpg)
+[4. GOOUUU ESP32-S3-CAM](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/4.%20GOOUUU%20ESP32-S3-CAM.jpg)
+[5. ESP32-S3-WROOM CAM](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/5.%20ESP32-S3-WROOM%20(CAM%20Module).jpg)
+[6. FREENOVE ESP32-S3-WROOM](https://github.com/profharris/GOOUUU-Tech-ESP32-S3-CAM-Expansion-Board/blob/main/images/GOOOUUU%20Tech%20ESP32-S3-CAM%20Expansion%20Board-1.jpg)
+[7. FREENOVE ESP32-S3-WROOM Lite](https://github.com/profharris/GOOUUU-Tech-ESP32-S3-CAM-Expansion-Board/blob/main/images/GOOOUUU%20Tech%20ESP32-S3-CAM%20Expansion%20Board-1.jpg)
+[8. WeAct Studio ESP32-S3-A/B Core Board](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/8.%20WeAct%20Studio%20ESP32-S3-AB.jpg)
+
 
 ## NOTES: ##
+<hr>
 
-### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin _(40-pin compatible)_ headers ###
+### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin _(40-pin compatible)_ header pins
 
 Header pins _(dual on one side)_ supports **both** Dev Board widths.<br/>
 <br/>
 Almost _{...extra pins top and bottom}_ the same pinout as the<br/>
 ESP32-S3-WROOM (CAM), &nbsp;and&nbsp; ESP32-S3-GOOUUU-CAM.
 
+![ESP32-S3 1.54in TFT Expansion Board with Speaker - header pins](https://github.com/profharris/GOOUUU-Tech-ESP32-S3-CAM-Expansion-Board/blob/main/images/GOOOUUU%20Tech%20ESP32-S3-CAM%20Expansion%20Board-1.jpg)
+
 ```
 Xtensa® 32-bit   ESP32-S3-DevKitC-1         ESP32-S3-WROOM-1 N16R8
+Dual-core LX7         (44-pins)
 Dual-core LX7      _______________
  16MB Flash       |  ___   _   __¯|         NO CAMERA MODULE
   8MB PSRAM       | | | |_| |_|   |         NO SD-CARD
@@ -43,7 +61,7 @@ A5       G6   6|o:| WiFi ß  |QRCD||:o|39 G42               G12 SCK
 A6       G7   7|o:| °   F©  |____||:o|38 G41               G13 MISO
 A14      G15  8|o:'———————————————':o|37 G40
 A15      G16  9|o ·. ¨¨|¯¯¯¬        o|36 G39               Software
-A16      G17 10|o ¯  ¨¨|   []   PWR ¤|35 G38               SPI -ALT-
+A16      G17 10|o ¯  ¨¨|LDO[]   PWR ¤|35 G38               SPI -ALT-
 A17      G18 11|o ¯  ¨¨|___-     ¤  o|34 G37 PSRAM         —————————
 I²C SDA  G8  12|o RGB     ¬ ¬       o|33 G36 PSRAM         G42  SCLK
 A2       G3  13|o ‹¤›48   ¨ ¨       o|32 G35 PSRAM         G41  MOSI
@@ -64,7 +82,9 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
 26…32 QSPI ƒlash, 33…34 Missing, 35…42 GPIO, 43…44 TX/RX, 45…48 GPIO
     pins_arduino.h ~ ESP32-S3-DevKitC
 ```
-### 【2】 The 44-pin MCU headers are pin-compatible with: ###
+<hr>
+
+### 【2】 The 44-pin MCU headers are pin-compatible with:
 ```
         44-pin “ESP32-S3-WROOM-1” Development Boards:
             o Espressif ESP-S3-DevKitC-1
@@ -78,20 +98,20 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             o FREEVOVE ESP32-S3-WROOM (CAM)
             o FREEVOVE ESP32-S3-WROOM-Lite
 ```
-### 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789T3) header pins: ###
-```
-        TFT LCD   ESP32-S3
-         8-Pin    Pin       Function/Description
-        ———————   ————————  ——————————————————————————
-        1. GND    GND       System Ground
-        2. VCC    3V3       Positive Power (3.3V)
-        3. SCL    G21       SPI Clock
-        4. SDA    G47       SPI Data (MOSI)
-        5. RES    G45       TFT Reset
-        6. DC     G40       Data/Command Select
-        7. CS     G41       SPI Chip Select
-        8. BLK    G42       BackLight Control
+<hr>
 
+### 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789T3)
+
+The TFT Display was identified by (1) "1.54 Inch TFT Display" in the
+title and (2) the picture of the _10-pin ribbon connection_ for the
+display on the back of the Expansion Adapter. The TFT Display is a:
+1.54in TFT LCD Module, IPS color 240×240, 10Pin Plug-in strip,
+ST7789V2 Driver.
+
+![LCD 1.54in 240×240 color IPS TFT (ST7789T3)](https://github.com/profharris/GOOUUU-Tech-ESP32-S3-CAM-Expansion-Board/blob/main/images/GOOOUUU%20Tech%20ESP32-S3-CAM%20Expansion%20Board-1.jpg)
+![ESP32-S3 1.54in TFT Expansion Board with Speaker-2](https://github.com/profharris/GOOUUU-Tech-ESP32-S3-CAM-Expansion-Board/blob/main/images/GOOOUUU%20Tech%20ESP32-S3-CAM%20Expansion%20Board-1.jpg)
+
+```
         TFT LCD   ESP32-S3
         10-Pin    Pin       Function/Description
         ———————   ————————  ——————————————————————————
@@ -105,8 +125,25 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
         8. GND    GND       System Ground
         9. A      3V3       BackLight LED Anode (+)
        10. K      GND       BackLight LED Cathode (-)
+
+        TFT LCD   ESP32-S3
+         8-Pin    Pin       Function/Description
+        ———————   ————————  ——————————————————————————
+        1. GND    GND       System Ground
+        2. VCC    3V3       Positive Power (3.3V)
+        3. SCL    G21       SPI Clock
+        4. SDA    G47       SPI Data (MOSI)
+        5. RES    G45       TFT Reset
+        6. DC     G40       Data/Command Select
+        7. CS     G41       SPI Chip Select
+        8. BLK    G42       BackLight Control
 ```
-### 【4】 22-pin single-row I/O Interface header: (½ the availiable pins) ###
+<hr>
+
+![ESP32-S3 1.54in TFT Expansion Board with Speaker-5.1](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-5.1.jpg)
+
+### 【4】 22-pin single-row I/O Interface header: (½ the availiable pins)
+
 ```
                             .——Interface Pins absent from I/O header——.
                             | G4 INMP441   Mic   LCD TFT   G37* PSRAM |
@@ -133,10 +170,11 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
     5V0   o 21.
     GND   o 22.
 ```
-### 【5】 Microphone “pass-through” hole & icon on top-side: ###
+
+### 【5】 Microphone “pass-through” hole & icon on top-side:
 ```
         o PDM Mic chip mounted on the bottom-side.
-        o (guess) MEMS digital microphone (INMP441)
+        o (_guess_) MEMS digital microphone (INMP441)
         o possible configuration:
             WS  Data Select         G4
             SCK Data Clock          G5
@@ -144,9 +182,10 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             VCC                     3V3 Vin
             GND Ground Short Connect L/R Left Right Channel
 ```
-### 【6】 Large on-board Speaker on top: (guess — with amplifier) ###
+
+### 【6】 Large on-board Speaker on top: (_guess_ — with amplifier)
 ```
-        o (guess) I²S interface, possibly I²S MAX98357A Audio
+        o (_guess_) I²S interface, possibly I²S MAX98357A Audio
         o possible MAX98357A Amplifier configuration:
             DIN Digital Signal      G7
             BCLK Bit Clock          G15
@@ -155,20 +194,24 @@ ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,
             GND  GND Ground Short Connect
                  GAIN Gain and Channel
 
-        o External Speaker interface: (+ -)
+        o External Speaker interface: (+ —)
             Audio+  Connect to Speaker Positive (usually Red wire)
             Audio-  Connect to Speaker Negative
 ```
-### 【7】 Additional peripheral chip mounted on the bottom side: ###
+<hr>
+
+### 【7】 Additional peripheral chip mounted on the bottom side:
 ```
-        o (guess) by inspection an I²C BMA423 3-Axis sensor.
+        o (_guess_) by inspection an I²C BMA423 3-Axis sensor.
         o possible configuration:
             I²C SDA     G8
             I²C SCL     G9
             IRQ         G14
 ```
+<hr>
+
 ———————————————————————————————————————————————————————————————
-## LCD TFT Display Specifications: ##
+## LCD TFT Display Specifications:
 ```
 LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
   ◆          Brand Name: Maithoga
@@ -199,6 +242,7 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
         6. RST  (Reset)
         7. VDD  (3V3)
         8. GND  (Ground)
-        9. A    (LED Anode)
-       10. K    (LED Cathode)
+        9. A    (BackLight LED Anode   +)
+       10. K    (BackLight LED Cathode —)
 ```
+<hr>
