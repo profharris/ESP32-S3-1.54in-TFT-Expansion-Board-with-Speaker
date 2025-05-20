@@ -177,26 +177,29 @@ ST7789V2 Driver.
 ```
         o PDM Mic chip mounted on the bottom-side.
         o (_guess_) MEMS digital microphone (INMP441)
-        o possible configuration:
+        o 6-Pins: possible configuration:
+            L/R Left/Right Channel  Short Connect to GND
             WS  Data Select         G4
             SCK Data Clock          G5
             SD  Data Out            G6
-            VCC                     3V3 Vin
-            GND Ground Short Connect L/R Left Right Channel
+            VDD                     3V3
+            GND                     Ground
 ```
 
 ### 【6】 Large on-board Speaker on top: (_guess_ — with amplifier)
 ![MAX98357A I²S Audio Amplifier](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20Amp.jpg)
 
 ```
-        o (_guess_) I²S interface, possibly I²S MAX98357A Audio
-        o possible MAX98357A Amplifier configuration:
-            DIN Digital Signal      G7
-            BCLK Bit Clock          G15
+        o (_guess_) I²S interface, possibly I²S 3W MAX98357A Audio Amp
+        o 7-Pins: possible MAX98357A Amplifier configuration:
             LRC Left Right Clock    G16
-            VCC                     3V3
-            GND  GND Ground Short Connect
-                 GAIN Gain and Channel
+            BCLK Bit Clock          G15
+            DIN Digital Signal      G7
+            GAIN                    Short Connect to GND
+            SD (Channel)            Short Connect to GND
+            GND                     Ground
+            Vin                     3V3
+
 
         o External Speaker interface: (+ —)
             Audio+  Connect to Speaker Positive (usually Red wire)
@@ -214,7 +217,7 @@ ST7789V2 Driver.
 ```
 <hr>
 
-———————————————————————————————————————————————————————————————
+———————————————————————————————————————————————————
 ## LCD TFT Display Specifications:
 ```
 LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
