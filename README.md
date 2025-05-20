@@ -1,4 +1,4 @@
-# ESP32-S3 1.54in TFT Expansion Board with Speaker<br/>(and MIC, and ???)
+# ESP32-S3 1.54in TFT Expansion Board with Speaker<br/>(and Microphone, and Sound Amplifier)
 
 ***WORK IN PROGRESS*** &nbsp;—&nbsp; Prof. Michael P. Harris
 
@@ -38,7 +38,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 ### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin _(40-pin compatible)_ header pins
 
-Header pins _(dual on one side)_ supports **both** Dev Board widths.<br/>
+Header pins _(dual on one side)_ supports **both** Dev Board widths...<br/>
 <br/>
 Almost _{...extra pins top and bottom}_ the same pinout as the<br/>
 ESP32-S3-WROOM (CAM), &nbsp;and&nbsp; ESP32-S3-GOOUUU-CAM.
@@ -79,8 +79,8 @@ A13      G14 20|o  _____ O T _____  ø|25 G19 A20 D+        I²C -ALT-
                                          LED_BUILTIN       4. G2 SCL
 ```
 ### ESP32-S3 Pins:
-0…18 GPIO,&nbsp; 19…20 D+/D-,&nbsp; 21 GPIO,&nbsp; 
-22…25 Do Not Exist,&nbsp; 26…32 QSPI ƒlash,&nbsp; 33…34 Missing,&nbsp; 
+0…18 GPIO,&nbsp; 19…20 D+/D-,&nbsp; 21 GPIO,&nbsp;
+22…25 Do Not Exist,&nbsp; 26…32 QSPI ƒlash,&nbsp; 33…34 Missing,&nbsp;
 35…42 GPIO,&nbsp; 43…44 TX/RX,&nbsp; 45…48 GPIO<br/>
 &nbsp; &nbsp; _pins_arduino.h_ ***~*** **ESP32-S3-DevKitC-1**
 <hr>
@@ -141,7 +141,7 @@ ST7789V2 Driver.
 ```
 <hr>
 
-![ESP32-S3 1.54in TFT Expansion Board with Speaker-5.1](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-5.1.jpg)
+![ESP32-S3 1.54in TFT Expansion Board with Speaker-5.2](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-5.2.jpg)
 
 ### 【4】 22-pin single-row I/O Interface header: (½ the availiable pins)
 
