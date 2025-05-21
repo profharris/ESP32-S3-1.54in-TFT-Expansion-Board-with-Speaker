@@ -43,7 +43,7 @@ Header pins _(dual on one side)_ supports **both** ESP32-S3 Development Board wi
 Almost _{...extra pins top and bottom}_ the same pinout as the<br/>
 ESP32-S3-WROOM (CAM), &nbsp;and&nbsp; ESP32-S3-GOOUUU-CAM.
 
-![ESP32-S3 1.54in TFT Expansion Board with Speaker - header pins](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-1.jpg)
+![ESP32-S3 1.54in TFT Expansion Board with Speaker - header pins](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-1.1.jpg)
 
 ```
 Xtensa® 32-bit   ESP32-S3-DevKitC-1         ESP32-S3-WROOM-1 N16R8
@@ -159,7 +159,7 @@ ST7789V2 Driver.
     G19   o  9.  USB_D+             {Pins  10..22 I/O header}
     G17   o 10.  ------------------------------------------------------
     G18   o 11.                     {match 10..22 MCU header}
-    G8    o 12.  I²C SDA          
+    G8    o 12.  I²C SDA
     G3    o 13.
     G46   o 14.
     G9    o 15.  I²C SCL
