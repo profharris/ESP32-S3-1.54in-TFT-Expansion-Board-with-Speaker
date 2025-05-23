@@ -1,6 +1,6 @@
 // GFX_ST7789_colorGraphicsDemo.ino     (a dozen graphics demos)
-// ESP32S2 Dev Module
-// LCD 2.0in 320×240 color SPI IPS OLED 7-Pin (ST7789V)
+// ESP32-S3 1.54in TFT Expansion Board with Speaker
+// LCD 1.54in 240×240 color IPS TFT (ST7789V)
 
 /* This demo works with several “pin-compliant” Ðevelopment boards:
  *  1.  ESP32-S3-DevKitC-1          (ESP32S3 Dev Module — no camera)
@@ -10,48 +10,47 @@
  *  5.  ESP32-S3-WROOM-1-N16R8      (ESP32S3 Dev Module — no camera)
  */
 
-/*  TFT LCD 2.0in 320×240 color SPI IPS OLED (ST7789V)     [WIRING]
+/*  TFT LCD 1.54in 240×240 color SPI IPS (ST7789V)     [WIRING]
  *
- *  GMTO20-02-7P 2.0TFTSPI          Pin ESP32-S3 CAM
- *  Pins: 7. GND  GND               21. GND                1. Brown
- *        6. VCC  3V3                1. 3V3                2. Red
- *        5. SCL  SPI SCLK          36. GPIO42  TFT_SCLK   3. Orange
- *        4. SDA  SPI MOSI          35. GPIO41  TFT_MOSI   4. Yellow
- *        3. RST  Reset             28. GPIO0   TFT_RST    5. Green
- *        2. DC   Data/Command      27. GPIO45  TFT_DC     6. Blue
- *        1. CS   Chip Select       25. GPIO47  TFT_CS     7. Violet
- *          (BL)  BackLight         24. GPIO21  TFT_BL     8. Grey
+ *  GMTO20-02-7P 2.0TFTSPI       Pin ESP32-S3-WROOM-1
+ *  Pins: GND  GND               GND                    1. Brown
+ *        VCC  3V3               3V3                    2. Red
+ *        BLK  BackLight         GPIO42  TFT_BL         3. Orange
+ *        CS   Chip Select       GPIO41  TFT_CS         4. Yellow
+ *        DC   Data/Command      GPIO40  TFT_DC         5. Green
+ *        RST  Reset             GPIO45  TFT_RST        6. Blue
+ *        SDA  SPI Data (MOSI)   GPIO47  TFT_MOSI       7. Violet
+ *        SCL  SPI Clock         GPIO21  TFT_SCLK       8. Grey
  *
  *       -1 MISO (N/C)
  */
 
 /*******************************************************************
-ESP32-S3-CAM
+GOOUUU ESP32-S3-CAM
 (Same pinout as ESP32-S3-WROOM (CAM Module), & ESP32-S3-DevKitC-1)
 
 Xtensa® 32-bit              ESP32-S3-CAM      ESP32-S3-WROOM-1 N16R8
 dual-core LX7              _______________
-240MHz                    |  ___   _   __¯|
-                          | | | | | | |   |      IO##~   SD-Card
+                          |  ___   _   __¯|      IO##~   SD-Card
     DVP Camera IO##_      | | | |_| |_|   |      IO##*   PSRAM
                        .——| | |           |——.                      TFT
             ——> 3V3   1|•:|————————————/:@|:•|40 IO43 TX›[U0TXD LED]
 [RESET    ]      EN   2|•:|  .··. .    '——|:•|39 IO44 RX‹[U0RXD LED]
 [CAM_SIOD ]SDA  IO4_  3|•:|  WiFi ß       |:o|38 IO1  I²C[ADC0  SDA]
 [CAM_SIOC ]SCL  IO5_  4|•:|  ˜¨¨˜ °       |:o|37 IO2  I²C[ADC1  SCL]
-[CAM_VSYNC]     IO6_  5|•:|ESP32-S3-N16R8 |:o|36 IO42    [     SCLK]<——
-[CAM_HREF ]     IO7_  6|•:|               |:o|35 IO41    [     MOSI]<——
-[CAM_XCLK ]    IO15_  7|•:|  ŒÆ     F©    |:•|34 IO40~   [SD_DATA •]
+[CAM_VSYNC]     IO6_  5|•:|ESP32-S3-N16R8 |:o|36 IO42    [       BL]<——
+[CAM_HREF ]     IO7_  6|•:|               |:o|35 IO41    [       CS]<——
+[CAM_XCLK ]    IO15_  7|•:|  ŒÆ     F©    |:•|34 IO40~   [       DC]<——
 [CAM_Y9   ]D7  IO16_  8|•:'———————————————':•|33 IO39~   [SD_CLK  •]
 [CAM_Y8   ]D6  IO17_  9|• ._______________. •|32 IO38~   [SD_CMD  •]
 [CAM_Y7   ]D5  IO18_ 10|• | ::::::::::::: | •|31 IO37*   [PSRAM   •]
 [CAM_Y4   ]D2   IO8_ 11|• |    Camera     | •|30 IO36*   [PSRAM   •]
-[  Switch ]     IO3  12|o ¯¯:::::::::::::¯¯ •|29 IO35*   [PSRAM   •]
-[  Shutter]    IO46  13|o   ESP32-S3-CAM    o|28 IO0     [BOOT  RST]<——
-[CAM_Y3   ]D1   IO9_ 14|•   ¬ ¬  PWR¤ ¤ [¤] o|27 IO45    [       DC]<——
+[         ]     IO3  12|o ¯¯:::::::::::::¯¯ •|29 IO35*   [PSRAM   •]
+[         ]    IO46  13|o   ESP32-S3-CAM    o|28 IO0     [BOOT     ]
+[CAM_Y3   ]D1   IO9_ 14|•   ¬ ¬  PWR¤ ¤ [¤] o|27 IO45    [      RST]<——
 [CAM_Y5   ]D3  IO10_ 15|•   ¨ ¨.......TX 48 ¤|26 IO48 RGB[WS2812   ]
-[CAM_Y2   ]D0  IO11_ 16|• RST |CH304G | BOOTo|25 IO47    [       CS]<——
-[CAM_Y6   ]D4  IO12_ 17|• [Ø]  '''''''  [Ø] o|24 IO21    [       BL]<——
+[CAM_Y2   ]D0  IO11_ 16|• RST |CH304G | BOOTo|25 IO47    [     MOSI]<——
+[CAM_Y6   ]D4  IO12_ 17|• [Ø]  '''''''  [Ø] o|24 IO21    [      SCL]<——
 [CAM_PCLK ]    IO13_ 18|• .......O T....... ø|23 IO20 D- [ADC2_C9  ]   —————————
 [ADC3     ]    IO14  19|o | USB |T T| USB | ø|22 IO19 D+ [ADC2_C8  ]   I²C QWIIC
                 5V0  20|• |  C  |G L|  C  | •|21 GND                <  —————————
@@ -88,36 +87,6 @@ When you have Tools > USB CDC On Boot > Enabled
     "USB":
  ******************************************************************/
 
-/*******************************************************************
-  This library for several Adafruit displays based on ST77* drivers.
-
-  This example works with the 1.14" TFT breakout
-    ----> https://www.adafruit.com/product/4383
-  The 1.3" TFT breakout
-    ----> https://www.adafruit.com/product/4313
-  The 1.47" TFT breakout
-    ----> https://www.adafruit.com/product/5393
-  The 1.54" TFT breakout
-    ----> https://www.adafruit.com/product/3787
-  The 1.69" TFT breakout
-    ----> https://www.adafruit.com/product/5206
-  The 1.9" TFT breakout
-    ----> https://www.adafruit.com/product/5394
-  The 2.0" TFT breakout
-    ----> https://www.adafruit.com/product/4311
-
-  Check out the links above for our tutorials and wiring diagrams.
-  These displays use SPI to communicate, 4 or 5 pins are required
-  to interface (RST is optional).
-
-  Adafruit invests time and resources providing this open source
-  code, please support Adafruit and open-source hardware by
-  purchasing products from Adafruit!
-
-  Written by Limor Fried/Ladyada for Adafruit Industries.
-  MIT license, all text above must be included in any redistribution
- ******************************************************************/
-
 #include <Adafruit_GFX.h>    // Core GFX Graphics library
 #include <Adafruit_ST7789.h> // Hardware-specific library for ST7789
 #include <SPI.h>
@@ -134,19 +103,19 @@ When you have Tools > USB CDC On Boot > Enabled
 #define ST77XX_ORANGE   0xFC00
 */
 
-// Define the 320×240 ST7789V TFT LCD display size (Landscape)
-#define TFT_WIDTH   320     // TFT LCD Width  in pixels
+// Define the 240×240 ST7789V TFT LCD display size
+#define TFT_WIDTH   240     // TFT LCD Width  in pixels
 #define TFT_HEIGHT  240     // TFT LCD Height in pixels
 
 // OPTION 2: Lets you interface the display using ANY 2 or 3 Pins,
 // tradeoff being that performance is not as fast as hardware SPI.
 // SPI Pins declared for the TFT display (right-side ESP32-S3-WROOM)
-#define TFT_SCLK     42     // SPI Clock out (SCL)
-#define TFT_MOSI     41     // SPI Data out  (SDA)
-#define TFT_RST       0     // Or set to -1 and connect to RESET pin
-#define TFT_DC       45     // SPI Data/Command
-#define TFT_CS       47     // SPI Chip Select
-//#define TFT_BL     21     // BackLight
+#define TFT_SCLK     21     // SPI Clock out (SCL)
+#define TFT_DC       40     // SPI Data/Command
+#define TFT_CS       41     // SPI Chip Select
+#define TFT_BL       42     // BackLight
+#define TFT_RST      45     // Or set to -1 and connect to RESET pin
+#define TFT_MOSI     47     // SPI Data out  (SDA)
 
 Adafruit_ST7789 tft=Adafruit_ST7789(TFT_CS, TFT_DC, TFT_MOSI,
                                     TFT_SCLK, TFT_RST);
@@ -156,6 +125,7 @@ float pi = 3.1415926;
 void setup(void) {
   Serial.begin(115200);             // Serial Monitor
   while(!Serial);                   // wait for Serial Port to open
+  
   rgbLedWrite(RGB_BUILTIN, 0,0,0);  // Make sure RGB NeoPixel is Off
 
   tft.init(TFT_HEIGHT, TFT_WIDTH);  // Init ST7789V 320×240 TFT OLED
