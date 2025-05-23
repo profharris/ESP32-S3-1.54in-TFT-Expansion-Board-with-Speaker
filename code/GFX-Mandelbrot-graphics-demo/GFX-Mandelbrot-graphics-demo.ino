@@ -1,33 +1,39 @@
 /* GFX-Mandelbrot-graphics-demo.ino
- * 240×320 ILI9341 LCD with Touch Test Program
+ * ESP32-S3 1.54in TFT Expansion Board with Speaker
  *
- * Exercise the 240×320 ILI9341 TFT LCD with touch
+ * Exercise the 240×240 ST7789 TFT LCD
  * Based loosely on an Adafruit Mandelbrot example
  */
- 
-#include "SPI.h"                    // Arduino standard SPI library
-#include "Adafruit_GFX.h"           // Adafruit GFX Graphics library
-#include "Adafruit_ILI9341.h"       // Adafruit ILI9341 TFT library
-#include "XPT2046_Touchscreen.h"    // XPT2046 Touch Screen library
 
-#define TFT_MISO    -1              // 240×240 ILI9341 LCD pins
-#define TFT_SCK      3              //      "
-#define TFT_CS      14              //      "
-#define TOUCH_CS     1              //      "
-#define TFT_MOSI    45              //      "
-#define TFT_DC      47              //      "
-#define TFT_RST     21              //      "
+#include <Adafruit_GFX.h>    // Adafruit GFX Core graphics library
+#include <Adafruit_ST7789.h> // Hardware-specific library for ST7789
+#include <SPI.h>             // SPI library
+//#include "XPT2046_Touchscreen.h"    // XPT2046 Touch Screen library
 
-Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC);
-XPT2046_Touchscreen ts(TOUCH_CS);
+// SPI Pinout
+#define TFT_MISO     -1      // 1.54in 240×240 ST7789 LCD pins
+#define TFT_BL       42      // BLK BackLight       ESP32-S3-WROOM-1
+#define TFT_CS       41      // CS  Chip Select       "Right-Side"
+#define TFT_DC       40      // RS  Data/Command      "Availiable"
+#define TFT_RST      45      // RES Reset                 "Pins"
+#define TFT_MOSI     47      // SDA SPI Data
+#define TFT_SCK      21      // SCL SPI Clock
+//#define TOUCH_CS    1      //     
+
+#define TFT_WIDTH   240
+#define TFT_HEIGHT  240
+
+// Adafruit software SPI GFX Constructor for object ‘tft’
+Adafruit_ST7789 tft = Adafruit_ST7789(TFT_CS,TFT_DC,TFT_MOSI,TFT_SCLK,TFT_RST);
+//XPT2046_Touchscreen ts(TOUCH_CS);
 
 const int16_t
   bits        =  12,    // Fractional resolution
-  pixelWidth  = 320,    // TFT dimensions
+  pixelWidth  = 240,    // TFT dimensions
   pixelHeight = 240,    //      "
   iterations  =  30;    //  Fractal iteration limit or 'dwell'
 float
-  centerReal  = -0.6,   // Image center point in complex plane
+  centerReal  = -0.5,   // Image center point in complex plane
   centerImag  =  0.0,
   rangeReal   =  3.0,   // Image coverage in complex plane
   rangeImag   =  3.0;
@@ -38,14 +44,15 @@ boolean istouched = false;
 void setup() {
   Serial.begin(115200);          // Initialize Serial communication
   while(!Serial);                // Wait for the Serial port to open
-
-  Serial.println("Mandelbrot ~ Tap screen to increase zoom");
+  
+  Serial.println("GFX Mandelbrot demo");
+  //Serial.println("Tap screen to increase zoom");
 
   tft.begin();                   // Init TFT LCD screen
   tft.setRotation(1);            // TFT LCD Landscape orientation
-  tft.fillScreen(ILI9341_BLACK); // Clear the screen
-  ts.begin();                    // Init Touch Screen controller
-  ts.setRotation(3);             // Match Touch Screen orientation
+  tft.fillScreen(ST77XX_BLACK);  // Clear the screen
+//  ts.begin();                    // Init Touch Screen controller
+//  ts.setRotation(3);             // Match Touch Screen orientation
 }
 
 void loop() {
@@ -84,23 +91,25 @@ void loop() {
   Serial.print(elapsedTime/1000.0); Serial.println(" secs");
 
   tft.setCursor(2,10);
-  tft.setTextColor(ILI9341_RED);
+  tft.setTextColor(ST77XX_RED);
   tft.setTextSize(2);
   tft.print("Pass Complete: ");
   tft.println(rangeReal);
 
   while(istouched == false) { // When drawing complete, wait for Touch
-    istouched = ts.touched();
+    //istouched = ts.touched();
+    delay(2000);
+    istouched = true;
   }
   if(istouched) {
-    tft.fillScreen(ILI9341_BLACK); // Blank screen
-    TS_Point p = ts.getPoint();    // Send Touch info to Serial Monitor
-    Serial.print("Pressure = ");
-    Serial.print(p.z);
-    Serial.print(", x = ");
-    Serial.print(p.x);
-    Serial.print(", y = ");
-    Serial.println(p.y);
+    tft.fillScreen(ST77XX_BLACK); // Blank screen
+    //TS_Point p = ts.getPoint();   // Send Touch info to Serial Monitor
+    //Serial.print("Pressure = ");
+    //Serial.print(p.z);
+    //Serial.print(", x = ");
+    //Serial.print(p.x);
+    //Serial.print(", y = ");
+    //Serial.println(p.y);
     rangeReal *= 0.90;              // Zoom in each iteration
     rangeImag *= 0.90;
     istouched = false;              // Reset Touch flag
