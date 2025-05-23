@@ -210,12 +210,12 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
 ```
 <hr>
 
-### 【5】 INMP441 Microphone “pass-through” hole & icon on top-side:
+### 【5】 INMP441 I²S Microphone “pass-through” hole & icon on top-side:
 ![MEMS digital microphone (INMP441)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/INMP441%20I%C2%B2S%20Mic.jpg)
 
 ```
-        o PDM Mic chip mounted on the bottom-side.
-        o (_guess_) MEMS digital microphone (INMP441)
+        o PDM I²S Mic chip mounted on the bottom-side.
+        o (_guess_) I²S MEMS digital microphone (INMP441)
         o 6-Pins: possible configuration:
             L/R Left/Right Channel  Short Connect to GND
             WS  Data Select         G4
@@ -228,7 +228,7 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
 
 ### INMP441 I²S Mic introduction:
 
-The INMP441 is a high performance, low power, digital output,
+The I²S INMP441 is a high performance, low power, digital output,
 “omnidirectional” MEMS microphone with ‘bottom port’. The complete
 INMP441 solution consists of a MEMS sensor, signal conditioning,
 analog to digital converter, anti-aliasing filter, power management
@@ -238,8 +238,8 @@ The I²S interface allows the INMP441 to be directly connected to
 digital processors such as DSPs and microcontrollers without the
 need for an audio codec for use in the system.
 
-The INMP441 has a high “signal-to-noise ratio” and is an excellent
-choice for near field applications. The INMP441 has a flat wideband
+The I²S INMP441 has a high “signal-to-noise ratio” and is an excellent
+choice for near field applications. The I²S INMP441 has a flat wideband
 frequency response that results in high definition of natural sound.
 
 ### INMP441 I²S Mic Features:
@@ -263,9 +263,7 @@ frequency response that results in high definition of natural sound.
 >   channel of the I²S frame.  When set to HIGH, the microphone
 >   outputs signals on the Right channel of the I²S frame.
 
-This product provides tutorials for using ESP32 modules with I²S functionality:
-
-### Connect to your INMP441:
+### Connect to your I²S INMP441:
 ```
     INMP441     ESP32-S3        ESP32-S2
     ———————     ————————        ————————
@@ -317,12 +315,12 @@ it depends on many factors.
 _to be continued..._
 <hr>
 
-### 【6】 Large on-board Speaker on top:<br/> _(with MAX98357A amplifier on bottom)_
+### 【6】 Large on-board Speaker on top:<br/> _(with an I²S MAX98357A audio amplifier on bottom)_
 ![MAX98357A I²S Audio Amplifier](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I%C2%B2S%20Amp.jpg)
 
 ```
         o (_guess_) I²S interface, possibly I²S 3W MAX98357A Audio Amp
-        o 7-Pins: possible MAX98357A Amplifier configuration:
+        o 7-Pins: possible I²S MAX98357A Amplifier configuration:
             LRC Left Right Clock    G16
             BCLK Bit Clock          G15
             DIN Digital Signal      G7
@@ -344,7 +342,7 @@ _to be continued..._
 2. PSRR: 77 decibels, typical @1 KHZ
 3. Sampling rate of I²S ranges from 8kHz to 96kHz
 4. You don't need MCLK
-5. Five pin optional gain: 3db, 6db, 9db, 12db, 15db
+5. Five pin optional Gain: 3db, 6db, 9db, 12db, 15db
 6. Excellent click and pop suppression
 7. Hot shutdown protection
 
@@ -361,7 +359,7 @@ Channel Selection)_ are used.&nbsp; Usually, for Audio devices,&nbsp; there is a
 ***DAC chip*** that takes I²S and converts it into an Analog signal that can
 drive the speakers or headset.
 
-The MAX98357A is small ‘mono’ amplifier that is surprisingly powerful. It
+The I²S MAX98357A is small ‘mono’ amplifier that is surprisingly powerful. It
 is capable of delivering ‘3.2 Watts’ of power to a ‘4 Ohm’ impedance
 speaker _(5 volts power 10%THD)_.&nbsp; Inside the microchip is a ‘D-level’
 controller capable of operating between 2.7V and 5.5Vdc.&nbsp; Because the
@@ -376,7 +374,7 @@ square-wave, Pulse-Width Modulation’,&nbsp; which is then “averaged out”
 by the speaker coil &nbsp;- no high frequencies are heard.&nbsp;
 
 ***What all of this means that you can’t connect the output to another amplifier,&nbsp;
-the MAX98357A should drive the speakers directly.***
+the I²S MAX98357A should drive the speakers directly.***
 
 There is a ‘Gain’ pin that can be manipulated to change the gain.&nbsp;
 By default,&nbsp; the amplifier will give you a gain of ‘9 dB’.&nbsp;
