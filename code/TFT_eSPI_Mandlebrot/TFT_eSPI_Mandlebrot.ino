@@ -22,7 +22,7 @@ void setup() {
   while(!Serial);                // wait for the Serial port to open
 
   //randomSeed(analogRead(A0));
-  Serial.println("TFT_eSPI Mandlebrot");
+  Serial.println("TFT_eSPI Mandlebrot demo");
   tft.init();                                   // Setup the LCD
   tft.setRotation(3);                           // Landscape
 }
