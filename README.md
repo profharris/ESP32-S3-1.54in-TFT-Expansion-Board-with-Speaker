@@ -142,6 +142,41 @@ ST7789V2 Driver.
         7. CS     G41       SPI Chip Select
         8. BLK    G42       BackLight Control
 ```
+
+## 1.54in 240×240 color LCD Display Specifications:
+```
+LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
+  ◆          Brand Name: Maithoga
+  ◆           Driver IC: ST7789T3
+  ◆                Size: 1.54in color
+  ◆    Number of Pixels: 240(RGB)×240
+  ◆  Driver IC RAM Size: 240×16×240
+  ◆      Display Colors: 262K
+  ◆      Interface Pins: 10-Pin
+  ◆      Data Interface: SPI interface
+  ◆           Backlight: White LED Parallel
+  ◆      Polarizer Mode: Normally Black, Transmissive
+  ◆   Viewing Direction: ALL O’clock
+  ◆      Contrast Ratio: 300
+  ◆           Luminance: 180 cd/m2
+  ◆       Input Voltage: 3V
+  ◆          Dimensions: 31.52×33.72×1.96mm
+  ◆         Active Area: 27.72×27.72mm
+  ◆      Operating Temp: -20° ~ 70°
+  ◆ Storage Temperature: -30° ~ 80°
+
+  ◆ Display 10-pin SPI Interface:
+        1. GND  (Ground)
+        2. RS   (Data/Command)
+        3. CS   (Chip Select)
+        4. SCL  (SPI SCK)
+        5. SDA  (SPI MOSI)
+        6. RST  (Reset)
+        7. VDD  (3V3)
+        8. GND  (Ground)
+        9. A    (BackLight LED Anode   +)
+       10. K    (BackLight LED Cathode —)
+```
 <hr>
 
 ### 【4】 22-pin single-row I/O Interface header: (½ the availiable pins)
@@ -340,7 +375,7 @@ to the output, rather than grounded.&nbsp; The output is a ‘~300kHz
 square-wave, Pulse-Width Modulation’,&nbsp; which is then “averaged out”
 by the speaker coil &nbsp;- no high frequencies are heard.&nbsp;
 
-***What all of this means that you can’t connect the output to another amplifier,&nbsp; 
+***What all of this means that you can’t connect the output to another amplifier,&nbsp;
 the MAX98357A should drive the speakers directly.***
 
 There is a ‘Gain’ pin that can be manipulated to change the gain.&nbsp;
@@ -364,40 +399,3 @@ By adding a resistor,&nbsp; you can change it to output just to the Left or Righ
             IRQ         G14
 ```
 <hr> -->
-
-———————————————————————————————————————————————————
-## LCD TFT Display Specifications:
-```
-LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
-  ◆          Brand Name: Maithoga
-  ◆           Driver IC: ST7789T3
-  ◆                Size: 1.54in color
-  ◆    Number of Pixels: 240(RGB)×240
-  ◆  Driver IC RAM Size: 240×16×240
-  ◆      Display Colors: 262K
-  ◆      Interface Pins: 10-Pin
-  ◆      Data Interface: SPI interface
-  ◆           Backlight: White LED Parallel
-  ◆      Polarizer Mode: Normally Black, Transmissive
-  ◆   Viewing Direction: ALL O’clock
-  ◆      Contrast Ratio: 300
-  ◆           Luminance: 180 cd/m2
-  ◆       Input Voltage: 3V
-  ◆          Dimensions: 31.52×33.72×1.96mm
-  ◆         Active Area: 27.72×27.72mm
-  ◆      Operating Temp: -20° ~ 70°
-  ◆ Storage Temperature: -30° ~ 80°
-
-  ◆ Display 10-pin SPI Interface:
-        1. GND  (Ground)
-        2. RS   (Data/Command)
-        3. CS   (Chip Select)
-        4. SCL  (SPI SCK)
-        5. SDA  (SPI MOSI)
-        6. RST  (Reset)
-        7. VDD  (3V3)
-        8. GND  (Ground)
-        9. A    (BackLight LED Anode   +)
-       10. K    (BackLight LED Cathode —)
-```
-<hr>
