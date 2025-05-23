@@ -24,8 +24,8 @@ Channel Selection)_ are used.&nbsp; Usually, for Audio devices,&nbsp; there is a
 ***DAC chip*** that takes I²S and converts it into an Analog signal that can
 drive the speakers or headset.
 
-The MAX98357A is small ‘mono’ amplifier that is surprisingly powerful,
-- capable of delivering ‘3.2 Watts’ of power to a ‘4 Ohm’ impedance
+The MAX98357A is small ‘mono’ amplifier that is surprisingly powerful. It
+is capable of delivering ‘3.2 Watts’ of power to a ‘4 Ohm’ impedance
 speaker _(5 volts power 10%THD)_.&nbsp; Inside the microchip is a ‘D-level’
 controller capable of operating between 2.7V and 5.5Vdc.&nbsp; Because the
 AMP is class D,&nbsp; it is highly efficient and perfect for portable
