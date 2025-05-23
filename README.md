@@ -1,4 +1,4 @@
-# ESP32-S3 1.54in TFT Expansion Board with Speaker<br/>(and Microphone, and Audio Amplifier)
+# ESP32-S3 1.54in TFT Expansion Board with Speaker<br/>_(and Microphone, and Audio Amplifier)_
 
 ***WORK IN PROGRESS*** &nbsp;—&nbsp; Prof. Michael P. Harris
 
@@ -20,7 +20,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
  4. GOOUUU ESP32-S3-CAM     (DevKitC-1 clone + CAM + SD)  40     ✓  ✓  ✓  2+RGB
  5. ESP32-S3-WROOM CAM   (FREENOVE ESP32-S3-WROOM clone)  40     ✓  ✓  ✓  4+RGB
  6. FREENOVE ESP32-S3-WROOM (CAM)                         40     ✓  ✓  ✓  4+RGB
- 7. FREENOVE ESP32-S3-WROOM Lite (no camera)              40            ✓  4+RGB
+ 7. FREENOVE ESP32-S3-WROOM-Lite (no camera)              40            ✓  4+RGB
  8. WeAct Studio ESP32-S3-A/B Core Board                  44            ✓  1+RGB
 ```
 [1. Espressif ESP32-S3-DevKitC-1](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/1.%20ESP32-S3-DevKitC-1.jpg)<br/>
@@ -28,8 +28,8 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 [3. WaveShare ESP32-S3-DEV-KIT-N8R8](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WaveShare%20ESP32-S3-DEV-Kit-N8R8.jpg)<br/>
 [4. GOOUUU ESP32-S3-CAM](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/4.%20GOOUUU%20ESP32-S3-CAM.jpg)<br/>
 [5. ESP32-S3-WROOM CAM](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/5.%20ESP32-S3-WROOM%20(CAM%20Module).jpg)<br/>
-[6. FREENOVE ESP32-S3-WROOM](https://github.com/profharris/GOOUUU-Tech-ESP32-S3-CAM-Expansion-Board/blob/main/images/GOOOUUU%20Tech%20ESP32-S3-CAM%20Expansion%20Board-1.jpg)<br/>
-[7. FREENOVE ESP32-S3-WROOM Lite](https://github.com/profharris/GOOUUU-Tech-ESP32-S3-CAM-Expansion-Board/blob/main/images/GOOOUUU%20Tech%20ESP32-S3-CAM%20Expansion%20Board-1.jpg)<br/>
+[6. FREENOVE ESP32-S3-WROOM CAM](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/6.%20FREENOVE%20ESP32-S3-WROOM%20(CAM).jpg)<br/>
+[7. FREENOVE ESP32-S3-WROOM-Lite](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/7.%20FREENOVE%20ESP32-S3-WROOM-Lite.jpg)<br/>
 [8. WeAct Studio ESP32-S3-A/B Core Board](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/8.%20WeAct%20Studio%20ESP32-S3-AB.jpg)
 
 
@@ -78,7 +78,7 @@ A13      G14 20|o  _____ O T _____  ø|25 G19 A20 D+        I²C -ALT-
                                          G48 RGB_BUILTIN,  3. G1 SDA
                                          LED_BUILTIN       4. G2 SCL
 ```
-### ESP32-S3 Pins:
+### ESP32-S3 Pins Summary:
 0…18 GPIO,&nbsp; 19…20 D+/D-,&nbsp; 21 GPIO,&nbsp;
 22…25 Do Not Exist,&nbsp; 26…32 QSPI ƒlash,&nbsp; 33…34 Missing,&nbsp;
 35…42 GPIO,&nbsp; 43…44 TX/RX,&nbsp; 45…48 GPIO<br/>
@@ -91,6 +91,7 @@ A13      G14 20|o  _____ O T _____  ø|25 G19 A20 D+        I²C -ALT-
             o Espressif ESP-S3-DevKitC-1
             o VCC-GND Studio YD-ESP32-S3 (ESP32-S3-WROOM-1 Dev)
             o WaveShare ESP32-S3-DEV-KIT-N8R8
+            o WeAct Studio ESP32-S3-A/B Core
 
         40-pin “ESP32-S3-WROOM-1” Development Boards
               (skip top & bottom extra pins)
