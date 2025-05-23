@@ -1,4 +1,3 @@
-
 # MAX98357A I²S Amp
 
 ## Product specifications:
