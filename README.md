@@ -188,7 +188,7 @@ ST7789V2 Driver.
             GND                     Ground
 ```
 
-### 【6】 Large on-board Speaker on top: (_guess_ — with amplifier)
+### 【6】 Large on-board Speaker on top: _(with amplifier on bottom)_
 ![MAX98357A I²S Audio Amplifier](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20Amp.jpg)
 
 ```
