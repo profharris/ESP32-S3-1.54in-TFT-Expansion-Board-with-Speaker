@@ -1,4 +1,4 @@
-# ESP32-S3 1.54in TFT Expansion Board with Speaker<br/>(and Microphone, and Sound Amplifier)
+# ESP32-S3 1.54in TFT Expansion Board with Speaker<br/>(and Microphone, and Audio Amplifier)
 
 ***WORK IN PROGRESS*** &nbsp;—&nbsp; Prof. Michael P. Harris
 
@@ -100,6 +100,7 @@ A13      G14 20|o  _____ O T _____  ø|25 G19 A20 D+        I²C -ALT-
             o FREEVOVE ESP32-S3-WROOM-Lite
 ```
 <hr>
+![ESP32-S3 1.54in TFT Expansion Board with Speaker-5.2](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-5.2.jpg)
 
 ### 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789T3)
 
@@ -141,9 +142,8 @@ ST7789V2 Driver.
 ```
 <hr>
 
-![ESP32-S3 1.54in TFT Expansion Board with Speaker-5.2](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-5.2.jpg)
-
 ### 【4】 22-pin single-row I/O Interface header: (½ the availiable pins)
+![ESP32-S3 1.54in TFT Expansion Board with Speaker-4.1](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-4.1.jpg)
 
 ```
                             .——Interface Pins absent from I/O header——.
