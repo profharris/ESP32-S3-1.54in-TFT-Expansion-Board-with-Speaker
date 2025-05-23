@@ -1,4 +1,4 @@
-// GFX_ST7789_colorGraphicsDemo.ino     (a dozen graphics demos)
+// GFX_ST7789_colorGraphicsDemo.ino (a dozen GFX graphics demos)
 // ESP32-S3 1.54in TFT Expansion Board with Speaker
 // LCD 1.54in 240×240 color IPS TFT (ST7789V)
 
@@ -12,7 +12,7 @@
 
 /*  TFT LCD 1.54in 240×240 color SPI IPS (ST7789V)     [WIRING]
  *
- *  GMTO20-02-7P 2.0TFTSPI       Pin ESP32-S3-WROOM-1
+ *  TFT LCD                      Pins ESP32-S3-WROOM-1
  *  Pins: GND  GND               GND                    1. Brown
  *        VCC  3V3               3V3                    2. Red
  *        BLK  BackLight         GPIO42  TFT_BL         3. Orange
