@@ -34,6 +34,41 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 
 ## NOTES: ##
+
+### Quick Wiring Guide:
+
+1. Wiring between ESP32-S3 Development Board and 1.54" Display
+
+| ESP32-S3 Dev Board | SPI 1.54" 240×240 TFT |
+|-------------------:|-----------------------|
+|     GPIO21         | SCL  SPI Clock        |
+|     GPIO47         | SDA  SPI Data (MOSI)  |
+|     GPIO45         | RES  TFT Reset        |
+|     GPIO40         | DC   TFT Data/Command |
+|     GPIO41         | CS   TFT Chip Select  |
+|     GPIO42         | BL   BackLight        |
+
+2. Wiring between ESP32-S3 Development Board and I²S Microphone:
+
+| ESP32-S3 Dev Board | I²S INMP441 Mic       |
+|-------------------:|-----------------------|
+|     GPIO4          | WS   Data Select      |
+|     GPIO5          | SCK  Data Clock       |
+|     GPIO6          | SD   Data Output      |
+|     GND (LOW=Left) | L/R  (Left/Right)     |
+
+3. Wiring between ESP32-S3 Development Board and I²S Amplifier
+
+| ESP32-S3 Dev Board | I²S MAX98357A Amp     |
+|-------------------:|-----------------------|
+|     GPIO7          | DIN  Digital Signal   |
+|     GPIO15         | BCLK Bit Clock        |
+|     GPIO16         | LRC  Left Right Clock |
+|     GND (LOW=Left) | SD   Channel Select   |
+|     GND            | GAIN                  |
+|                    |                       |
+|     Audio +        | Speaker Positive      |
+|     Audio -        | Speaker Negative      |
 <hr>
 
 ### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin _(40-pin compatible)_ header pins
@@ -133,14 +168,14 @@ ST7789V2 Driver.
         TFT LCD   ESP32-S3
          8-Pin    Pin       Function/Description
         ———————   ————————  ——————————————————————————
-        1. GND    GND       System Ground
-        2. VCC    3V3       Positive Power (3.3V)
-        3. SCL    G21       SPI Clock
-        4. SDA    G47       SPI Data (MOSI)
-        5. RES    G45       TFT Reset
-        6. DC     G40       Data/Command Select
-        7. CS     G41       SPI Chip Select
         8. BLK    G42       BackLight Control
+        7. CS     G41       SPI Chip Select
+        6. RS/DC  G40       Data/Command Select
+        5. RES    G45       TFT Reset
+        4. SDA    G47       SPI Data (MOSI)
+        3. SCL    G21       SPI Clock (SCK)
+        2. VDD    3V3       Positive Power (3.3V)
+        1. GND    GND       System Ground
 ```
 
 ## 1.54in 240×240 color LCD Display Specifications:
@@ -164,18 +199,6 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
   ◆         Active Area: 27.72×27.72mm
   ◆      Operating Temp: -20° ~ 70°
   ◆ Storage Temperature: -30° ~ 80°
-
-  ◆ Display 10-pin SPI Interface:
-        1. GND  (Ground)
-        2. RS   (Data/Command)
-        3. CS   (Chip Select)
-        4. SCL  (SPI SCK)
-        5. SDA  (SPI MOSI)
-        6. RST  (Reset)
-        7. VDD  (3V3)
-        8. GND  (Ground)
-        9. A    (BackLight LED Anode   +)
-       10. K    (BackLight LED Cathode —)
 ```
 <hr>
 
