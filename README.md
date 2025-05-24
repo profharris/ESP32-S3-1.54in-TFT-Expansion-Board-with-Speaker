@@ -37,7 +37,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 ### Quick Wiring Guide:
 
-1. Wiring between ESP32-S3 Development Board and 1.54" Display
+1. Wiring between ESP32-S3 Development Board and ST7789 1.54" Display
 
 | ESP32-S3 Dev Board | SPI 1.54" 240×240 TFT |
 |-------------------:|-----------------------|
@@ -48,7 +48,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     GPIO41         | CS   TFT Chip Select  |
 |     GPIO42         | BL   BackLight        |
 
-2. Wiring between ESP32-S3 Development Board and I²S Microphone:
+2. Wiring between ESP32-S3 Development Board and I²S INMP441 Microphone:
 
 | ESP32-S3 Dev Board | I²S INMP441 Mic       |
 |-------------------:|-----------------------|
@@ -57,7 +57,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     GPIO6          | SD   Data Output      |
 |     GND (LOW=Left) | L/R  (Left/Right)     |
 
-3. Wiring between ESP32-S3 Development Board and I²S Amplifier
+3. Wiring between ESP32-S3 Development Board and I²S MAX98357A Amplifier
 
 | ESP32-S3 Dev Board | I²S MAX98357A Amp     |
 |-------------------:|-----------------------|
