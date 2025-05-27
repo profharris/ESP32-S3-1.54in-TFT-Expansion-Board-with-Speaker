@@ -128,7 +128,7 @@ void setup(void) {
   
   rgbLedWrite(RGB_BUILTIN, 0,0,0);  // Make sure RGB NeoPixel is Off
 
-  tft.init(TFT_HEIGHT, TFT_WIDTH);  // Init ST7789V 320×240 TFT OLED
+  tft.init(TFT_HEIGHT, TFT_WIDTH);  // Init ST7789V 240×240 TFT OLED
   tft.fillScreen(ST77XX_BLACK);     // clear the screen
   Serial.println(F("\n...ST7789V Screen Initialized"));
 
