@@ -6,7 +6,7 @@ ESP32-S3 1.54in TFT Expansion Board with Speaker
 ![ESP32-S3 1.54in TFT Expansion Board with Speaker](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker.jpg)
 
 
-## Compatible Development boards:
+## Compatible Development boards:&nbsp; &nbsp; _(8 and counting...)_
 
 ESP32-S3 N16R8 Development Board with Speaker and 1.54in TFT Display<br/>
 &nbsp; &nbsp; &nbsp; Expansion Adapter Kit for DIY AI Type-C Wifi Module ESP32-S3
@@ -37,38 +37,38 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 ### Quick Wiring Guide:
 
-1. Wiring between ESP32-S3 Development Board and ST7789 1.54" Display
+1. Wiring between ESP32-S3-WROOM-1 Development Board and the ST7789 1.54" 240×240 Display:
 
-| ESP32-S3 Dev Board | SPI 1.54" 240×240 TFT |
-|-------------------:|-----------------------|
-|     GPIO21         | SCL  SPI Clock        |
-|     GPIO47         | SDA  SPI Data (MOSI)  |
-|     GPIO45         | RES  TFT Reset        |
-|     GPIO40         | DC   TFT Data/Command |
-|     GPIO41         | CS   TFT Chip Select  |
-|     GPIO42         | BL   BackLight        |
+| ESP32-S3 Dev Board | SPI 1.54" 240×240 TFT  |
+|-------------------:|------------------------|
+|     GPIO21         | SCL  SPI Clock  (SCLK) |
+|     GPIO47         | SDA  SPI Data   (MOSI) |
+|     GPIO45         | RES  TFT Reset   (RST) |
+|     GPIO40         | DC   Data/Command (DC) |
+|     GPIO41         | CS   Chip Select  (CS) |
+|     GPIO42         | BL   BackLight    (BL) |
 
-2. Wiring between ESP32-S3 Development Board and I²S INMP441 Microphone:
+2. Wiring between ESP32-S3-WROOM-1 Development Board and the I²S INMP441 Microphone:
 
-| ESP32-S3 Dev Board | I²S INMP441 Mic       |
-|-------------------:|-----------------------|
-|     GPIO4          | WS   Data Select      |
-|     GPIO5          | SCK  Data Clock       |
-|     GPIO6          | SD   Data Output      |
-|     GND (LOW=Left) | L/R  (Left/Right)     |
+| ESP32-S3 Dev Board | I²S INMP441 Mic        |
+|-------------------:|------------------------|
+|     GPIO4          | WS   Data Select       |
+|     GPIO5          | SCK  Data Clock        |
+|     GPIO6          | SD   Data Output       |
+|     GND (LOW=Left) | L/R  (Left/Right)      |
 
-3. Wiring between ESP32-S3 Development Board and I²S MAX98357A Amplifier
+3. Wiring between ESP32-S3-WROOM-1 Development Board and the I²S MAX98357A Amplifier:
 
-| ESP32-S3 Dev Board | I²S MAX98357A Amp     |
-|-------------------:|-----------------------|
-|     GPIO7          | DIN  Digital Signal   |
-|     GPIO15         | BCLK Bit Clock        |
-|     GPIO16         | LRC  Left Right Clock |
-|     GND (LOW=Left) | SD   Channel Select   |
-|     GND            | GAIN                  |
-|                    |                       |
-|     Audio +        | Speaker Positive      |
-|     Audio -        | Speaker Negative      |
+| ESP32-S3 Dev Board | I²S MAX98357A Amp      |
+|-------------------:|------------------------|
+|     GPIO7          | DIN   Digital Signal   |
+|     GPIO15         | BCLK  Bit Clock        |
+|     GPIO16         | LRC   Left Right Clock |
+|     GND (LOW=Left) | SD    Channel Select   |
+|     GND (9dB Gain) | GAIN                   |
+|                    |                        |
+|     Audio +        | Speaker Positive  (+)  |
+|     Audio -        | Speaker Negative  (-)  |
 <hr>
 
 ### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin _(40-pin compatible)_ header pins
@@ -104,7 +104,7 @@ LOG         G46 14|o      ........ ·   o|31 G0  [BOOT]        G41  CS
 I²C SCL     G9  15|o ¨ ¨  |CP2102| ¨   o|30 G45     (RST)     G40  DC
 SPI SS      G10 16|o ¨¨   '''''''' ¨   ¤|29 G48 RGB LED       G45  RST
 SPI MOSI    G11 17|o BOOT .......  RST o|28 G47     (MOSI)    G47  MOSI
-SPI SCK     G12 18|o ‹•›  '''''''  ‹•› o|27 G21     (SCK)     G21  SCK
+SPI SCK     G12 18|o ‹•›  '''''''  ‹•› o|27 G21     (SCLK)    G21  SCK
 SPI MISO    G13 19|o                   ø|26 G20 A19 D-
 A13         G14 20|o  _____ O T _____  ø|25 G19 A20 D+        I²C -ALT-
             5V0 21|o | USB |T T| USB | o|24 GND               —————————
@@ -120,7 +120,7 @@ A13         G14 20|o  _____ O T _____  ø|25 G19 A20 D+        I²C -ALT-
 &nbsp; &nbsp; _pins_arduino.h_ ***~*** **ESP32-S3-DevKitC-1**
 <hr>
 
-### 【2】 The 44-pin MCU headers are pin-compatible with:
+### 【2】 The 44-pin _(40-pin compatible)_ MCU headers are pin-compatible with:
 ```
         44-pin “ESP32-S3-WROOM-1” Development Boards:
             o Espressif ESP-S3-DevKitC-1
@@ -217,15 +217,15 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
     G38   o  5.                 |G15 MAX98357A I²S Amp   G45 RST   G35* PSRAM |
     G0    o  6.  [BOOT]         |G16 MAX98357A I²S Amp   G47 SDA              |
     G48   o  7.  RGB LED        |                        G21 SCL              |
-    G20   o  8.  USB_D-         '—————————————————————————————————————————————'
-    G19   o  9.  USB_D+                 {Pins  10..22 I/O header}
+    G20   o  8.  USB D-         '—————————————————————————————————————————————'
+    G19   o  9.  USB D+                 {Pins  10..22 I/O header}
     G17   o 10.  --------------------------------------------------------------
     G18   o 11.                         {match 10..22 MCU header}
     G8    o 12.  I²C SDA
-    G3    o 13.
-    G46   o 14.
+    G3    o 13.      ‘JTAG’
+    G46   o 14.      ‘LOG’
     G9    o 15.  I²C SCL
-    G10   o 16.  SPI SS
+    G10   o 16.  SPI SS/CS
     G11   o 17.  SPI MOSI
     G12   o 18.  SPI SCK
     G13   o 19.  SPI MISO
@@ -288,7 +288,7 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
 >   channel of the I²S frame.  When set to HIGH, the microphone
 >   outputs signals on the Right channel of the I²S frame.
 
-### Connect to your I²S INMP441:
+### Connect to your I²S INMP441 Microphone:
 ```
     INMP441     ESP32-S3        ESP32-S2
     ———————     ————————        ————————
@@ -341,7 +341,7 @@ that depends on many factors.
 _to be continued..._
 <hr>
 
-### 【6】 Large on-board cavity Speaker on top:<br/> _(with an I²S MAX98357A audio amplifier on bottom)_
+### 【6】 Large on-board cavity Speaker on top:<br/> _(with an I²S MAX98357A Audio Amplifier on bottom)_
 ![MAX98357A I²S Audio Amplifier](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I%C2%B2S%20Amp.jpg)
 
 ```
@@ -360,7 +360,7 @@ _to be continued..._
             Audio+  Connect to Speaker Positive (usually Red wire)
             Audio-  Connect to Speaker Negative
 ```
-## MAX98357A I²S Amp
+## MAX98357A I²S Audio Amplifier
 
 ### MAX98357A I²S Amp specifications:
 
@@ -403,11 +403,11 @@ by the speaker coil &nbsp;- no high frequencies are heard.&nbsp;
 the I²S MAX98357A should drive the speakers directly.***
 
 There is a _‘Gain’_ pin that can be manipulated to change the signal gain.&nbsp;
-By default,&nbsp; the amplifier will give you a gain of ‘9 dB’.&nbsp;
+By default,&nbsp; the amplifier will give you a Gain of _‘9 dB’_.&nbsp;
 Gain pins can be set to 3db, 6db, 9db, 12db, or 15db by directly
 connecting a pull-up resistor or pull-down resistor or wiring.
 
-The _‘Shutdown/Mode’_ pins can be used to put the chip in the “shutdown state”
+The _‘Shutdown/Mode’_ pins can be used to put the chip in the “shutdown state”&nbsp;
 or to set which I²S audio channel is connected to the speaker through the pipeline.&nbsp;
 By default,&nbsp; the amplifier will output a _(L+R) /2_ stereo mix to _mono_ output.&nbsp;
 By adding a resistor,&nbsp; you can change it to output just to the Left or Right.
