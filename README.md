@@ -78,7 +78,7 @@ Header pins _(dual on one side)_ supports **both** ESP32-S3 Development Board wi
 Almost _{...extra pins top and bottom}_ the same pinout as the<br/>
 ESP32-S3-WROOM (CAM), &nbsp;and&nbsp; ESP32-S3-GOOUUU-CAM.
 
-![ESP32-S3 1.54in TFT Expansion Board with Speaker - header pins](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-1.1.jpg)
+![ESP32-S3 1.54in TFT Expansion Board with Speaker - header pins](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-1.2.jpg)
 
 ```
 Xtensa® 32-bit      ESP32-S3-DevKitC-1        ESP32-S3-WROOM-1 N16R8
