@@ -1,6 +1,6 @@
 /* MAX98357-I2S-Amp-SD-Music-Player.ino
  *
- * ESP32-S3 microSD_Card I²S Music Player:
+ * Simple ESP32-S3 microSD_Card I²S Music Player:
  *  Play MP3 files from a microSD_Card
  *  Uses a MAX98357 I²S Amplifier
  *  Uses the ESP32-audioI2S Library:
