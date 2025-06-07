@@ -54,7 +54,7 @@
 #define SPI_MISO      13            // SPI Data Out (SDO)
 
                                     // MAX98357 I²S Amp pins
-#define I2S_DOUT       7            // MAX98357 I²S Amp pins (DIN)
+#define I2S_DOUT       7            // MAX98357 I²S Amp (DIN)
 #define I2S_BCLK      15            //      "
 #define I2S_LRC       16            //      "
 
