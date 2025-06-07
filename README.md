@@ -3,7 +3,7 @@
 ***A WORK IN PROGRESS*** &nbsp;—&nbsp; Prof. Michael P. Harris
 
 ESP32-S3 1.54in TFT Expansion Board with Speaker
-![ESP32-S3 1.54in TFT Expansion Board with Speaker](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker.jpg)
+![ESP32-S3 1.54in TFT Expansion Board with Speaker](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-1.jpg)
 
 
 ## Compatible Development boards:&nbsp; &nbsp; _(8 and counting...)_
@@ -341,10 +341,10 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
     the “Audio Waveforms” on the Serial Plotter.
 
     Testing the INMP441 I²S Microphone:
-    
-    Hook everything up, load the sketch and open the Serial Plotter. 
+
+    Hook everything up, load the sketch and open the Serial Plotter.
     You should see a representation of the sound (Audio Waveforms)
-    that the INMP441 Microphone is getting. You can adjust the 
+    that the INMP441 Microphone is getting. You can adjust the
     “sensitivity” by altering the ‘rangeLimit’ variable in the Loop.
 
 ----------------------------------------------------------------- */
