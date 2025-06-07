@@ -464,7 +464,7 @@ that depends on many factors.
 _to be continued..._
 <hr>
 
-### 【6】 Large on-board cavity Speaker on top:<br/> _(with an I²S MAX98357A Audio Amplifier on bottom)_
+### 【6】 Large on-board cavity Speaker on top:<br/> _(with an I²S MAX98357A Audio Amplifier on the bottom)_
 ![MAX98357A I²S Audio Amplifier](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I%C2%B2S%20Amp.jpg)
 
 ```
@@ -473,8 +473,8 @@ _to be continued..._
             LRC Left Right Clock    | G16
             BCLK Bit Clock          | G15
             DIN Digital Signal In   | G7
-            GAIN                    | Connect to GND _(9 dB gain)_
-            SD (L/R Channel Select) | Connect to GND _(select Left)_
+            GAIN                    | Connect to GND (9 dB Gain)
+            SD (L/R Channel Select) | Connect to GND (select Left)
             GND                     | Ground
             Vin                     | 3V3
 
@@ -568,8 +568,9 @@ By adding a resistor,&nbsp; you can change it to output just to the Left or Righ
  * 6. GND                       --> GND
  * 7. VIN  (Power)              --> 3V3
  *
- * 
- *
+ * External Speaker interface: (+ —)
+ * Audio+  Connect to Speaker Positive (usually Red wire)
+ * Audio-  Connect to Speaker Negative
  *
  * microSD Card                     ESP32-S3-WROOM-1
  * 1. 3V3  (Power)              --> 3V3
