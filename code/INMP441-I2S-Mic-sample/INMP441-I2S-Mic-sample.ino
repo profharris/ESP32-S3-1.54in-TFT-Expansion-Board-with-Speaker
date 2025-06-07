@@ -1,5 +1,5 @@
 /* INMP441-I2S-Mic-sample.ino
- * Requires INMP441 I²S microphone
+ * Requires an INMP441 I²S Microphone
  *
  * 1. Sample the sound from an INMP441 I²S Microphone.
  * 2. Display the “Audio Waveforms” on the Arduino IDE Serial Plotter.
@@ -29,6 +29,13 @@
  8. We then read data from the INMP441 Microphone and place it in
     our data buffer. If the data is good, we read it out and display
     the “Audio Waveforms” on the Serial Plotter.
+
+    Testing the INMP441 I²S Microphone:
+    
+    Hook everything up, load the sketch and open the Serial Plotter. 
+    You should see a representation of the sound (Audio Waveforms)
+    that the INMP441 Microphone is getting. You can adjust the 
+    “sensitivity” by altering the ‘rangeLimit’ variable in the Loop.
 
 ----------------------------------------------------------------- */
 #include <driver/i2s.h>                 // Include the I²S driver
@@ -82,8 +89,8 @@ void setup() {
 }
 
 void loop() {
-  // False print statements to "lock range" on Serial Plotter display
-  // Change the ‘rangeLimit’ value to adjust "sensitivity".
+  // False print statements to “lock range” on Serial Plotter display
+  // Change the ‘rangeLimit’ value to adjust “sensitivity”.
   int rangeLimit = 3000;
   Serial.print(rangeLimit * -1);
   Serial.print(" ");
