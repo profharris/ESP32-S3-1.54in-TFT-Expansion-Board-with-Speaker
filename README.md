@@ -41,36 +41,55 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 1. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ST7789 1.54" 240×240 Display:
 
-| ESP32-S3 Dev Board | SPI 1.54" 240×240 TFT  |
-|-------------------:|------------------------|
-|     GPIO21         | SCL  SPI Clock  (SCLK) |
-|     GPIO47         | SDA  SPI Data   (MOSI) |
-|     GPIO45         | RES  TFT Reset   (RST) |
-|     GPIO40         | DC   Data/Command (DC) |
-|     GPIO41         | CS   Chip Select  (CS) |
-|     GPIO42         | BL   BackLight    (BL) |
+| ESP32-S3 Dev Board | SPI 1.54" 240×240 TFT    |
+|-------------------:|--------------------------|
+|     GND            | 1. GND                   |
+|     3V3            | 2. VDD (Power)           |
+|     GPIO21         | 3. SCL SPI Clock  (SCLK) |
+|     GPIO47         | 4. SDA SPI Data   (MOSI) |
+|     GPIO45         | 5. RES TFT Reset   (RST) |
+|     GPIO40         | 6. RS  Data/Command (DC) |
+|     GPIO41         | 7. CS  Chip Select  (CS) |
+|     GPIO42         | 8. BLK BackLight    (BL) |
 
 2. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; I²S INMP441 Microphone:
 
-| ESP32-S3 Dev Board | I²S INMP441 Mic        |
-|-------------------:|------------------------|
-|     GPIO4          | WS   Data Select       |
-|     GPIO5          | SCK  Data Clock        |
-|     GPIO6          | SD   Data Output       |
-|     GND (LOW=Left) | L/R  (Left/Right)      |
+| ESP32-S3 Dev Board  | I²S INMP441 Mic           |
+|--------------------:|---------------------------|
+|     GND  (LOW=Left) | 1. L/R Left/Right Channel |
+|     GPIO4           | 2. WS  Data Select        |
+|     GPIO5           | 3. SCK Data Clock         |
+|     GPIO6           | 4. SD  Data Out           |
+|     3V3             | 5. VDD (Power)            |
+|     GND             | 6. GND                    |
 
 3. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; I²S MAX98357A Amplifier:
 
-| ESP32-S3 Dev Board | I²S MAX98357A Amp      |
+| ESP32-S3 Dev Board | I²S MAX98357A Amp pins     |
+|-------------------:|----------------------------|
+|     GPIO16         | 1. LRC  Left Right Clock   |
+|     GPIO15         | 2. BCLK Bit Clock          |
+|     GPIO7          | 3. DIN  Digital Signal In  |
+|     GND (9dB Gain) | 4. GAIN                    |
+|     GND (LOW=Left) | 5. SD (L/R Channel Select) |
+|     GND            | 6. GND                     |
+|     3V3            | 7. VIN                     |
+|                    |                            |
+|     Audio +        | Speaker Positive  (+)      |
+|     Audio -        | Speaker Negative  (-)      |
+
+4. _(Optional)_ Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; SPI microSD_Card:
+
+| ESP32-S3 Dev Board | SPI microSD_Card pins  |
 |-------------------:|------------------------|
-|     GPIO7          | DIN   Digital Signal   |
-|     GPIO15         | BCLK  Bit Clock        |
-|     GPIO16         | LRC   Left Right Clock |
-|     GND (LOW=Left) | SD    Channel Select   |
-|     GND (9dB Gain) | GAIN                   |
-|                    |                        |
-|     Audio +        | Speaker Positive  (+)  |
-|     Audio -        | Speaker Negative  (-)  |
+|     3V3            | 1. 3V3  (Power)        |
+|     GPIO10         | 2. CS   (Chip Select)  |
+|     GPIO11         | 3. MOSI (SPI SDI)      |
+|     GPIO12         | 4. CLK  (SPI Clock)    |
+|     GPIO13         | 5. MISO (SPI SDO)      |
+|     GND            | 6. GND                 |
+
+**NOTE:**&nbsp; Micro SD Card (less than 2G), Micro SDHC Card (less than 32G)
 <hr>
 
 ### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin &nbsp;_(40-pin compatible)_&nbsp; header pins
@@ -83,37 +102,38 @@ ESP32-S3-WROOM (CAM), &nbsp;and&nbsp; ESP32-S3-GOOUUU-CAM.
 ![ESP32-S3 1.54in TFT Expansion Board with Speaker - header pins](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-1.2.jpg)
 
 ```
-Xtensa® 32-bit      ESP32-S3-DevKitC-1        ESP32-S3-WROOM-1 N16R8
-Dual-core LX7            (44-pins)
-Dual-core LX7         _______________
- 16MB Flash          |  ___   _   __¯|         NO CAMERA MODULE
-  8MB PSRAM          | | | |_| |_|   |         NO SD-CARD
- 512K SRAM        .——| | |           |——.
-            3V3  1|o:|               |:•|44 GND               Hardware
-            3V3  2|o:|ESP32S3-WROOM-1|:•|43 G43 TX›           SPI2 HSPI
-[RST]       ENT  3|o:|               |:•|42 G44 RX‹           —————————
-A3   (WS)   G4   4|o:| Œ Æ   N16R8   |:o|41 G1  A0            G10 SS
-A4   (SCK)  G5   5|o:| .··. .   ____ |:o|40 G2  A1            G11 MOSI
-A5   (SD)   G6   6|o:| WiFi ß  |QRCD||:o|39 G42     (BL)      G12 SCK
-A6   (DIN)  G7   7|o:| °   F©  |____||:o|38 G41     (CS)      G13 MISO
-A14  (BCLK) G15  8|o:'———————————————':o|37 G40     (DC)
-A15  (LRC)  G16  9|o ·. ¨¨|¯¯¯¬        o|36 G39               Software
-A16         G17 10|o ¯  ¨¨|LDO[]   PWR o|35 G38               SPI -ALT-
-A17         G18 11|o ¯  ¨¨|___-     ¤  o|34 G37 PSRAM         —————————
-I²C SDA     G8  12|o RGB     ¬ ¬       o|33 G36 PSRAM          -1  MISO
-A2          G3  13|o ‹¤›IO48 ¨ ¨       o|32 G35 PSRAM         G42  BL
-LOG         G46 14|o      ........ ·   o|31 G0  [BOOT]        G41  CS
-I²C SCL     G9  15|o ¨ ¨  |CP2102| ¨   o|30 G45     (RST)     G40  DC
-SPI SS/CS   G10 16|o ¨¨   '''''''' ¨   ¤|29 G48 RGB LED       G45  RST
-SPI MOSI    G11 17|o BOOT .......  RST o|28 G47     (MOSI)    G47  MOSI
-SPI SCK     G12 18|o ‹•›  '''''''  ‹•› o|27 G21     (SCLK)    G21  SCK
-SPI MISO    G13 19|o                   ø|26 G20 A19 D-
-A13         G14 20|o  _____ O T _____  ø|25 G19 A20 D+        I²C -ALT-
-            5V0 21|o | USB |T T| USB | o|24 GND               —————————
-            GND 22|o |  C  |G L|  C  | o|23 GND               1. *  GND
-                  '——'ESP32'———'UART0'——'                     2. *  3V3
-                                            G48 RGB_BUILTIN,  3. G1 SDA
-                                            LED_BUILTIN       4. G2 SCL
+               ESP32-S3 1.54in TFT Expansion Board with Speaker
+Xtensa® 32-bit         ESP32-S3-DevKitC-1     ESP32-S3-WROOM-1 N16R8
+Dual-core LX7               (44-pins)
+Dual-core LX7            _______________
+ 16MB Flash             |  ___   _   __¯|         NO CAMERA MODULE
+  8MB PSRAM             | | | |_| |_|   |         NO SD-CARD
+ 512K SRAM           .——| | |           |——.
+               3V3  1|o:|   Espressif   |:•|44 GND                Hardware
+               3V3  2|o:|ESP32S3-WROOM-1|:•|43 G43 TX›            SPI2 HSPI
+[RST]          ENT  3|o:|               |:•|42 G44 RX‹            —————————
+A3  (Mic WS)   G4   4|o:| Œ Æ   N16R8   |:o|41 G1  A0             G10 SS/CS
+A4  (Mic SCK)  G5   5|o:| .··. .   ____ |:o|40 G2  A1             G11 MOSI
+A5  (Mic SD)   G6   6|o:| WiFi ß  |QRCD||:o|39 G42     (TFT BL)   G12 SCK
+A6  (Amp DIN)  G7   7|o:| °   F©  |____||:o|38 G41     (TFT CS)   G13 MISO
+A14 (Amp BCLK) G15  8|o:'———————————————':o|37 G40     (TFT DC)
+A15 (Amp LRC)  G16  9|o ·. ¨¨|¯¯¯¬        o|36 G39                Software
+A16            G17 10|o ¯  ¨¨|LDO[]   PWR o|35 G38                SPI -ALT-
+A17            G18 11|o ¯  ¨¨|___-     ¤  o|34 G37 PSRAM          —————————
+I²C SDA        G8  12|o RGB     ¬ ¬       o|33 G36 PSRAM           -1  MISO
+A2             G3  13|o ‹¤›IO48 ¨ ¨       o|32 G35 PSRAM          G42  BL
+LOG            G46 14|o      ........ ·   o|31 G0  [BOOT]         G41  CS
+I²C SCL        G9  15|o ¨ ¨  |CP2102| ¨   o|30 G45     (TFT RST)  G40  DC
+SPI SS/CS      G10 16|o ¨¨   '''''''' ¨   ¤|29 G48 RGB LED        G45  RST
+SPI MOSI       G11 17|o BOOT .......  RST o|28 G47    (TFT MOSI)  G47  MOSI
+SPI SCK        G12 18|o ‹•›  '''''''  ‹•› o|27 G21    (TFT SCLK)  G21  SCK
+SPI MISO       G13 19|o                   ø|26 G20 A19 USB_D-
+A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D+     I²C -ALT-
+               5V0 21|o | USB |T T| USB | o|24 GND                —————————
+               GND 22|o |  C  |G L|  C  | o|23 GND                1. *  GND
+                     '——'ESP32'———'UART0'——'                      2. *  3V3
+                                               G48 RGB_BUILTIN,   3. G1 SDA
+                                               LED_BUILTIN        4. G2 SCL
 ```
 ### ESP32-S3 Pins Summary:
 0…18 GPIO,&nbsp; 19…20 D+/D-,&nbsp; 21 GPIO,&nbsp;
