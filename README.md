@@ -104,17 +104,14 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 >**NOTE²:**&nbsp; There are hundreds of STEMMA/Qwiic I²C sensors availiable.
 
- 6. _(Optional)_ Wiring between ESP32-S3-WROOM-1 Development Board and Buttons:
+ 6. _(Optional)_ Wiring between ESP32-S3-WROOM-1 Development Board and Buttons:<br/>
     _(Most ESP32-S3 Dev Boards have two Button on-board, **RESET** and **BOOT**)_
 
 | ESP32-S3 Dev Board | Buttons                                       |
 |-------------------:|-----------------------------------------------|
-|     GPIO0          | **BOOT Button**. Can also be used as a<br/>   |
-|                    | “Wake/Interrupt” button. (connected to GND)   |
-|     GPIO39         | **Volume Up**. (shorts to GND), Short press<br/>|
-|                    | increases volume, Long press for max volume.  |
-|     GPIO40         | **Volume Dn**. (shorts to GND), Short press<br/>|
-|                    | reduces volume, Long press mutes.             |
+|     GPIO0          | **BOOT Button**. Can also be used as a<br/>“Wake/Interrupt” button. (connected to GND) |
+|     GPIO39         | **Volume Up**. (shorts to GND), Short press<br/>Increases volume, Long press for Max volume. |
+|     GPIO40         | **Volume Dn**. (shorts to GND), Short press<br/>Reduces volume, Long press Mutes.            |
 
 >**NOTE³:**&nbsp; The [WeAct Studio ESP32-S3-A/B Core](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WeAct%20Studio%20ESP32-S3-AB%20Core%20(44-pins).jpg)
 > Dev Board already has a third button which is attached to GPIO45.
