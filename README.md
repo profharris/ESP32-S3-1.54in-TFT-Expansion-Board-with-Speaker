@@ -1,6 +1,6 @@
 # ESP32-S3 1.54in TFT Expansion Board with Speaker <br/>_(and Microphone, & Audio Amplifier)_
 
-***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/08/2025*<br/>
+***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/07/2025*<br/>
 [GitHub Pages](https://pages.github.com/)
 
 ESP32-S3 1.54in TFT Expansion Board with Speaker
@@ -114,10 +114,10 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     GPIO40         | **Volume Dn**. (shorts to GND), Short press<br/>Reduces volume, Long press Mutes.            |
 
 >**NOTE³:**&nbsp; The [WeAct Studio ESP32-S3-A/B Core](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WeAct%20Studio%20ESP32-S3-AB%20Core%20(44-pins).jpg)
-> Dev Board already has a third button which is attached to GPIO45.
+> Dev Board already has a third button attached to GPIO45.
 <hr><br/>
 
-## 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin &nbsp;_(40-pin compatible)_&nbsp; header pins
+### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin &nbsp;_(40-pin compatible)_&nbsp; header pins
 
 Header pins _(dual on one side)_ supports **both** ESP32-S3 Development Board widths…<br/>
 <br/>
@@ -160,14 +160,14 @@ A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D+     I²C -ALT-
                                                G48 RGB_BUILTIN,   3. G1 SDA
                                                LED_BUILTIN        4. G2 SCL
 ```
-### ESP32-S3 Pins Summary:
+#### ESP32-S3 Pins Summary:
 0…18 GPIO,&nbsp; 19…20 D+/D-,&nbsp; 21 GPIO,&nbsp;
 22…25 Do Not Exist,&nbsp; 26…32 QSPI ƒlash,&nbsp; 33…34 Missing,&nbsp;
 35…42 GPIO,&nbsp; 43…44 TX/RX,&nbsp; 45…48 GPIO<br/>
 &nbsp; &nbsp; _pins_arduino.h_ ***~*** **ESP32-S3-DevKitC-1**
 <hr><br/>
 
-## 【2】 The 44-pin &nbsp;_(40-pin compatible)_&nbsp; MCU headers are pin-compatible with:
+### 【2】 The 44-pin &nbsp;_(40-pin compatible)_&nbsp; MCU headers are pin-compatible with:
 ```
         44-pin “ESP32-S3-WROOM-1” Development Boards:
             o Espressif ESP-S3-DevKitC-1
@@ -186,7 +186,7 @@ A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D+     I²C -ALT-
 
 ![ESP32-S3 1.54in TFT Expansion Board with Speaker-5.2](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-5.2.jpg)
 
-## 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789T3)
+### 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789T3)
 
 The TFT Display was identified by:&nbsp; (1) “1.54 Inch TFT Display” in the
 title and &nbsp;(2) the picture of the _10-pin ribbon connection_ for the
@@ -227,7 +227,7 @@ Configuration:
         1. GND    GND       System Ground
 ```
 
-### 1.54in 240×240 color LCD Display Specifications:
+#### 1.54in 240×240 color LCD Display Specifications:
 ```
 LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
   ◆          Brand Name: Maithoga
@@ -251,9 +251,10 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
 ```
 <hr><br/>
 
-## 【4】 22-pin single-row I/O Interface header: &nbsp;_(½ the availiable pins)_
-![ESP32-S3 1.54in TFT Expansion Board with Speaker-4.1](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-4.1.jpg)
+### 【4】 22-pin single-row I/O Interface header: &nbsp;_(½ the availiable pins)_
 
+![ESP32-S3 1.54in TFT Expansion Board with Speaker-4.1](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-4.1.jpg)
+<br/>
 ```
                                 .——Interface Pins absent from the I/O header——.
                                 | G4 INMP441   I²S Mic   LCD TFT   G43  TX›   |
@@ -282,7 +283,8 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
 ```
 <hr><br/>
 
-## 【5】 INMP441 &nbsp;I²S Microphone:&nbsp; “pass-through” hole & icon on the top-side:
+### 【5】 INMP441 &nbsp;I²S Microphone:&nbsp; “pass-through” hole & icon on the top-side:
+
 ![MEMS digital microphone (INMP441)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/INMP441%20I%C2%B2S%20Mic.jpg)
 
 ```
@@ -349,7 +351,7 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
 ```
 <hr>
 
-### INMP441 I²S Microphone sample program:
+## INMP441 I²S Microphone sample program:
 
 #### INMP441-I2S-Mic-sample.ino
 ```C++
@@ -511,7 +513,7 @@ that depends on many factors.
 _to be continued..._
 <hr><br/>
 
-## 【6】 Large on-board cavity Speaker on top:<br/> _(with an I²S MAX98357A Audio Amplifier on the bottom)_
+### 【6】 Large on-board cavity Speaker on top:<br/> _(with an I²S MAX98357A Audio Amplifier on the bottom)_
 
 ![MAX98357A I²S Audio Amplifier](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I%C2%B2S%20Amp.jpg)
 
@@ -584,7 +586,7 @@ By default,&nbsp; the amplifier will output a _(L+R) /2_ stereo mix to _mono_ ou
 By adding a resistor,&nbsp; you can change it to output just to the Left or Right.
 <hr>
 
-### MAX98357A I²S Amp sample program:
+## MAX98357A I²S Amp sample program:
 
 #### MAX98357-I2S-Amp-SD-Music-Player.ino
 ```C++
