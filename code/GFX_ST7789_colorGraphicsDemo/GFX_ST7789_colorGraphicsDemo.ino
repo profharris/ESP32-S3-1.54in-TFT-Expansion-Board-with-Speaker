@@ -1,6 +1,7 @@
 // GFX_ST7789_colorGraphicsDemo.ino (a dozen GFX graphics demos)
 // ESP32-S3 1.54in TFT Expansion Board with Speaker
 // LCD 1.54in 240×240 color IPS TFT (ST7789V)
+// Prof. Michael P. Harris
 
 /* This demo works with several “pin-compliant” Ðevelopment boards:
  *  1. Espressif ESP32-S3-DevKitC-1 (no camera, no SD card)
