@@ -185,6 +185,7 @@ A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D+     I²C -ALT-
 <hr><br/>
 
 ![ESP32-S3 1.54in TFT Expansion Board with Speaker-5.2](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-5.2.jpg)
+<br/>
 
 ### 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789T3)
 
@@ -353,7 +354,7 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
 
 ## INMP441 I²S Microphone sample program:
 
-#### INMP441-I2S-Mic-sample.ino
+[INMP441-I2S-Mic-sample.ino](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/INMP441-I2S-Mic-sample/INMP441-I2S-Mic-sample.ino)
 ```C++
 /* INMP441-I2S-Mic-sample.ino
  * Requires an INMP441 I²S Microphone
@@ -588,7 +589,7 @@ By adding a resistor,&nbsp; you can change it to output just to the Left or Righ
 
 ## MAX98357A I²S Amp sample program:
 
-#### MAX98357-I2S-Amp-SD-Music-Player.ino
+[MAX98357-I2S-Amp-SD-Music-Player.ino](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-SD-Music-Player/MAX98357-I2S-Amp-SD-Music-Player.ino)
 ```C++
 /* MAX98357-I2S-Amp-SD-Music-Player.ino
  *
