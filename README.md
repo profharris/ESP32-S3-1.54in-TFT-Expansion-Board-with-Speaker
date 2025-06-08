@@ -1,6 +1,6 @@
 # ESP32-S3 1.54in TFT Expansion Board with Speaker <br/>_(and Microphone, & Audio Amplifier)_
 
-***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/07/2025*<br/>
+***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/08/2025*<br/>
 [GitHub Pages](https://pages.github.com/)
 
 ESP32-S3 1.54in TFT Expansion Board with Speaker
@@ -79,7 +79,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     Audio +        | Speaker Positive  (+)      |
 |     Audio -        | Speaker Negative  (-)      |
 
- 4. _(Optional)_ Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; SPI microSD_Card:
+ 4. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; SPI microSD_Card:
 
 | ESP32-S3 Dev Board | SPI microSD_Card pins  |
 |-------------------:|------------------------|
@@ -92,7 +92,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 >**NOTE¹:**&nbsp; Micro SD Card (less than 2G), Micro SDHC Card (less than 32G).
 
- 5. _(Optional)_ Wiring between ESP32-S3-WROOM-1 Development Board and I²C OLED Display:<br/>
+ 5. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and I²C OLED Display:<br/>
     (STEMMA/Qwiic I²C interface)
 
 | ESP32-S3 Dev Board | I²C 0.96" 128×64 OLED  | Qwiic Wire Color |
@@ -104,7 +104,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 >**NOTE²:**&nbsp; There are hundreds of STEMMA/Qwiic I²C sensors availiable.
 
- 6. _(Optional)_ Wiring between ESP32-S3-WROOM-1 Development Board and Buttons:<br/>
+ 6. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and Buttons:<br/>
     _(Most ESP32-S3 Dev Boards have two Button on-board, **RESET** and **BOOT**)_
 
 | ESP32-S3 Dev Board | Buttons                                       |
@@ -115,9 +115,9 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 >**NOTE³:**&nbsp; The [WeAct Studio ESP32-S3-A/B Core](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WeAct%20Studio%20ESP32-S3-AB%20Core%20(44-pins).jpg)
 > Dev Board already has a third button which is attached to GPIO45.
-<hr>
+<hr><br/>
 
-### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin &nbsp;_(40-pin compatible)_&nbsp; header pins
+## 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin &nbsp;_(40-pin compatible)_&nbsp; header pins
 
 Header pins _(dual on one side)_ supports **both** ESP32-S3 Development Board widths…<br/>
 <br/>
@@ -165,9 +165,9 @@ A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D+     I²C -ALT-
 22…25 Do Not Exist,&nbsp; 26…32 QSPI ƒlash,&nbsp; 33…34 Missing,&nbsp;
 35…42 GPIO,&nbsp; 43…44 TX/RX,&nbsp; 45…48 GPIO<br/>
 &nbsp; &nbsp; _pins_arduino.h_ ***~*** **ESP32-S3-DevKitC-1**
-<hr>
+<hr><br/>
 
-### 【2】 The 44-pin &nbsp;_(40-pin compatible)_&nbsp; MCU headers are pin-compatible with:
+## 【2】 The 44-pin &nbsp;_(40-pin compatible)_&nbsp; MCU headers are pin-compatible with:
 ```
         44-pin “ESP32-S3-WROOM-1” Development Boards:
             o Espressif ESP-S3-DevKitC-1
@@ -182,11 +182,11 @@ A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D+     I²C -ALT-
             o FREEVOVE ESP32-S3-WROOM (CAM)
             o FREEVOVE ESP32-S3-WROOM-Lite
 ```
-<hr>
+<hr><br/>
 
 ![ESP32-S3 1.54in TFT Expansion Board with Speaker-5.2](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-5.2.jpg)
 
-### 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789T3)
+## 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789T3)
 
 The TFT Display was identified by:&nbsp; (1) “1.54 Inch TFT Display” in the
 title and &nbsp;(2) the picture of the _10-pin ribbon connection_ for the
@@ -227,7 +227,7 @@ Configuration:
         1. GND    GND       System Ground
 ```
 
-## 1.54in 240×240 color LCD Display Specifications:
+### 1.54in 240×240 color LCD Display Specifications:
 ```
 LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
   ◆          Brand Name: Maithoga
@@ -249,9 +249,9 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
   ◆      Operating Temp: -20° ~ 70°
   ◆ Storage Temperature: -30° ~ 80°
 ```
-<hr>
+<hr><br/>
 
-### 【4】 22-pin single-row I/O Interface header: &nbsp;_(½ the availiable pins)_
+## 【4】 22-pin single-row I/O Interface header: &nbsp;_(½ the availiable pins)_
 ![ESP32-S3 1.54in TFT Expansion Board with Speaker-4.1](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-4.1.jpg)
 
 ```
@@ -280,9 +280,9 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
     5V0   o 21.
     GND   o 22.
 ```
-<hr>
+<hr><br/>
 
-### 【5】 INMP441 &nbsp;I²S Microphone:&nbsp; “pass-through” hole & icon on the top-side:
+## 【5】 INMP441 &nbsp;I²S Microphone:&nbsp; “pass-through” hole & icon on the top-side:
 ![MEMS digital microphone (INMP441)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/INMP441%20I%C2%B2S%20Mic.jpg)
 
 ```
@@ -297,7 +297,7 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
             GND                    | Ground
 ```
 
-## INMP441 &nbsp;I²S MEMS PDM Digital Microphone
+### INMP441 &nbsp;I²S MEMS PDM Digital Microphone
 
 ### INMP441 I²S Microphone Introduction:
 
@@ -509,9 +509,10 @@ that depends on many factors.
     current technology can be difficult to deal with.
 
 _to be continued..._
-<hr>
+<hr><br/>
 
-### 【6】 Large on-board cavity Speaker on top:<br/> _(with an I²S MAX98357A Audio Amplifier on the bottom)_
+## 【6】 Large on-board cavity Speaker on top:<br/> _(with an I²S MAX98357A Audio Amplifier on the bottom)_
+
 ![MAX98357A I²S Audio Amplifier](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I%C2%B2S%20Amp.jpg)
 
 ```
@@ -530,7 +531,7 @@ _to be continued..._
             Audio+  Connect to Speaker Positive (usually Red wire)
             Audio-  Connect to Speaker Negative
 ```
-## MAX98357A I²S Audio Amplifier
+### MAX98357A I²S Audio Amplifier
 
 ### MAX98357A I²S Amp specifications:
 
@@ -673,6 +674,7 @@ void loop() {
   audio.loop();
 }
 ```
+<hr><br/>
 
 <!---
 ### 【7】 Additional peripheral chip mounted on the bottom side:
