@@ -40,22 +40,22 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 ### Quick Wiring Guide:
 
-1. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ST7789 1.54" 240×240 Display:
+ 1. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ST7789 1.54" 240×240 Display:
 
-| ESP32-S3 Dev Board | SPI 1.54" 240×240 TFT    |
-|-------------------:|--------------------------|
-|     GND            | 1. GND                   |
-|     3V3            | 2. VDD (Power)           |
-|     GPIO21         | 3. SCL SPI Clock  (SCLK) |
-|     GPIO47         | 4. SDA SPI Data   (MOSI) |
-|     GPIO45         | 5. RES TFT Reset   (RST) |
-|     GPIO40         | 6. RS  Data/Command (DC) |
-|     GPIO41         | 7. CS  Chip Select  (CS) |
-|     GPIO42         | 8. BLK BackLight    (BL) |
+| ESP32-S3 Dev Board | SPI 1.54" 240×240 TFT pins |
+|-------------------:|----------------------------|
+|     GND            | 1. GND                     |
+|     3V3            | 2. VDD (Power)             |
+|     GPIO21         | 3. SCL SPI Clock    (SCLK) |
+|     GPIO47         | 4. SDA SPI Data     (MOSI) |
+|     GPIO45         | 5. RES TFT Reset     (RST) |
+|     GPIO40         | 6. RS  Data/Command   (DC) |
+|     GPIO41         | 7. CS  Chip Select    (CS) |
+|     GPIO42         | 8. BLK BackLight      (BL) |
 
-2. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; I²S INMP441 Microphone:
+ 2. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; I²S INMP441 Microphone:
 
-| ESP32-S3 Dev Board  | I²S INMP441 Mic           |
+| ESP32-S3 Dev Board  | I²S INMP441 Mic pins      |
 |--------------------:|---------------------------|
 |     GND  (LOW=Left) | 1. L/R Left/Right Channel |
 |     GPIO4           | 2. WS  Data Select        |
@@ -64,7 +64,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     3V3             | 5. VDD (Power)            |
 |     GND             | 6. GND                    |
 
-3. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; I²S MAX98357A Amplifier:
+ 3. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; I²S MAX98357A Amplifier:
 
 | ESP32-S3 Dev Board | I²S MAX98357A Amp pins     |
 |-------------------:|----------------------------|
@@ -79,7 +79,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     Audio +        | Speaker Positive  (+)      |
 |     Audio -        | Speaker Negative  (-)      |
 
-4. _(Optional)_ Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; SPI microSD_Card:
+ 4. _(Optional)_ Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; SPI microSD_Card:
 
 | ESP32-S3 Dev Board | SPI microSD_Card pins  |
 |-------------------:|------------------------|
@@ -90,7 +90,34 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     GPIO13         | 5. MISO (SPI SDO)      |
 |     GND            | 6. GND                 |
 
-**NOTE:**&nbsp; Micro SD Card (less than 2G), Micro SDHC Card (less than 32G)
+>**NOTE¹:**&nbsp; Micro SD Card (less than 2G), Micro SDHC Card (less than 32G).
+
+ 5. _(Optional)_ Wiring between ESP32-S3-WROOM-1 Development Board and I²C OLED Display:<br/>
+    (STEMMA/Qwiic I²C interface)
+
+| ESP32-S3 Dev Board | I²C 0.96" 128×64 OLED  | Qwiic Wire Color |
+|-------------------:|------------------------|------------------|
+|     GND            | 1. GND                 | Black            |
+|     3V3            | 2. VDD (Power)         | Red              |
+|     GPIO8          | 4. SDA I²C Data  (SDA) | Blue             |
+|     GPIO9          | 3. SCL I²C Clock (SCL) | Yellow           |
+
+>**NOTE²:**&nbsp; There are hundreds of STEMMA/Qwiic I²C sensors availiable.
+
+ 6. _(Optional)_ Wiring between ESP32-S3-WROOM-1 Development Board and Buttons:
+    _(Most ESP32-S3 Dev Boards have two Button on-board, **RESET** and **BOOT**)_
+
+| ESP32-S3 Dev Board | Buttons                                       |
+|-------------------:|-----------------------------------------------|
+|     GPIO0          | **BOOT Button**. Can also be used as a<br/>   |
+|                    | “Wake/Interrupt” button. (connected to GND)   |
+|     GPIO39         | **Volume Up**. (shorts to GND), Short press<br/>|
+|                    | increases volume, Long press for max volume.  |
+|     GPIO40         | **Volume Dn**. (shorts to GND), Short press<br/>|
+|                    | reduces volume, Long press mutes.             |
+
+>**NOTE³:**&nbsp; The [WeAct Studio ESP32-S3-A/B Core](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WeAct%20Studio%20ESP32-S3-AB%20Core%20(44-pins).jpg)
+> Dev Board already has a third button which is attached to GPIO45.
 <hr>
 
 ### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin &nbsp;_(40-pin compatible)_&nbsp; header pins
