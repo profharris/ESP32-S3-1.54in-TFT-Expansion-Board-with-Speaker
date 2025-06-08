@@ -510,3 +510,61 @@ Serial Monitor:
 18:25:20.405 -> Done.
 18:25:20.405 -> 
 ----------------------------------------------------------------- */
+
+/*******************************************************************
+Adafruit_GFX Graphics library -=- Quick Function Summary:
+Parameters are assumed to be ‘int16_t’ unless otherwise specified.
+
+Default Argument List:
+    x,y         primary screen coordinates
+    x1,y1       secondary screen coordinates
+    x2,y2       tertiary screen coordinates
+    w,h         Width and Height (also used for Length)
+    r           circle or rounded entity radius
+    color, bg   16-bit 565Color color for fgColor or bgColor
+    ch          unsigned char ch (ASCII character)
+    s           uint8_t pixel ratio multiplier, e.g. 2 = 2:1
+
+Adafruit_GFX(w, h);                 // Constructor
+// Assumes setRotation() is 0.
+
+width(void), height(void)           // return w,h -current rotation
+
+setCursor(x,y)                      // coords need not be visable
+getCursorX(void);
+getCursorY(void);
+
+setRotation(r);                     // 0-3 Cardinal 0°,90°,180°,270°
+getRotation(void);                  // 0-3 Cardinal 0°,90°,180°,270°
+
+invertDisplay(bool i);              // True or False
+
+setFont(const GFXfont *f = NULL)
+
+setTextSize(s);                     // ratio multiplier to default
+setTextWrap(bool w)                 // True or False
+
+drawPixel(x,y, color);
+getPixel(x,y);
+
+drawChar(x,y, ch, color[, bg][, size]);
+drawLine(x,y, x1,y1, color);
+drawFastVLine(x,y, h, color);
+drawFastHLine(x,y, w, color);
+drawRect(x,y, w,h, color);
+drawRoundRect(x,y, w,h, r, color);
+drawCircle(x,y, r, color);
+drawTriangle(x,y, x1,y1, x2,y2, color);
+
+fillScreen(color);
+fillRect(x,y, w,h, color);
+fillRoundRect(x,y, w,h, r, color);
+fillCircle(x,y, r, color);
+fillTriangle(x,y, x1,y1, x2,y2, color);
+
+drawBitmap(x,y, uint8_t [*]bitmap[], w,h, color[, bg]);
+drawRGBBitmap((x,y, uint8_t [*]bitmap[], w,h);
+
+byteSwap(void);
+*******************************************************************/
+
