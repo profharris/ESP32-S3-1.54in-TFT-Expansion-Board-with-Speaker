@@ -3,6 +3,14 @@
 ***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/07/2025*<br/>
 [GitHub Pages](https://pages.github.com/)
 
+> Xiao Zhi AI Chatbot compatible!&nbsp;
+> https://docs.keyestudio.com/projects/ESP32S3_LCD154/en/latest/LCD154/LCD154.html <br/>
+> Ask anything, get answers on the go! This project can be a portable,
+> low-power AI assistant that works in real-time using just a single
+> ESP32-S3, a mic, and a speaker. It can listens to your voice, processes
+> your questions through Google’s Gemini AI API, and responds with an
+> answer via tech-to-speech.
+
 ESP32-S3 1.54in TFT Expansion Board with Speaker
 ![ESP32-S3 1.54in TFT Expansion Board with Speaker](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-1.jpg)
 
@@ -42,16 +50,16 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
  1. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***ST7789 1.54” 240×240 Display:***
 
--  | ESP32-S3 Dev Board | ST7789 1.54” 240×240 TFT   |
--  |-------------------:|----------------------------|
--  |     GND            | 1. GND                     |
--  |     3V3            | 2. VDD (Power)             |
--  |     GPIO21         | 3. SCL SPI Clock    (SCLK) |
--  |     GPIO47         | 4. SDA SPI Data     (MOSI) |
--  |     GPIO45         | 5. RES TFT Reset     (RST) |
--  |     GPIO40         | 6. RS  Data/Command   (DC) |
--  |     GPIO41         | 7. CS  Chip Select    (CS) |
--  |     GPIO42         | 8. BLK BackLight      (BL) |
+ | ESP32-S3 Dev Board | ST7789 1.54” 240×240 TFT   |
+ |-------------------:|----------------------------|
+ |     GND            | 1. GND                     |
+ |     3V3            | 2. VDD (Power)             |
+ |     GPIO21         | 3. SCL SPI Clock    (SCLK) |
+ |     GPIO47         | 4. SDA SPI Data     (MOSI) |
+ |     GPIO45         | 5. RES TFT Reset     (RST) |
+ |     GPIO40         | 6. RS  Data/Command   (DC) |
+ |     GPIO41         | 7. CS  Chip Select    (CS) |
+ |     GPIO42         | 8. BLK BackLight      (BL) |
 
  2. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S INMP441 Microphone:***
 
@@ -64,13 +72,13 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     3V3             | 5. VDD (Power)            |
 |     GND             | 6. GND                    |
 
- 3. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S MAX98357A Amplifier:***
+ 3. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S MAX98357A Amplifier/Speaker:***
 
 | ESP32-S3 Dev Board | I²S MAX98357A Amplifier/Speaker |
 |-------------------:|---------------------------------|
-|     GPIO16         | 1. LRC  Left Right Clock        |
+|     GPIO7          | 1. DIN  Digital Signal In       |
 |     GPIO15         | 2. BCLK Bit Clock               |
-|     GPIO7          | 3. DIN  Digital Signal In       |
+|     GPIO16         | 3. LRC  Left Right Clock        |
 |     GND (9dB Gain) | 4. GAIN (Signal Amp)            |
 |     GND (LOW=Left) | 5. SD (L/R Channel Select)      |
 |     GND            | 6. GND                          |
@@ -151,14 +159,14 @@ LOG            G46 14|o      ........ ·   o|31 G0  [BOOT]         G41  CS
 I²C SCL        G9  15|o ¨ ¨  |CP2102| ¨   o|30 G45     (TFT RST)  G40  DC
 SPI SS/CS      G10 16|o ¨¨   '''''''' ¨   ¤|29 G48 RGB LED        G45  RST
 SPI MOSI       G11 17|o BOOT .......  RST o|28 G47    (TFT MOSI)  G47  MOSI
-SPI SCK        G12 18|o ‹•›  '''''''  ‹•› o|27 G21    (TFT SCLK)  G21  SCK
+SPI SCK        G12 18|o ‹•›  '''''''  ‹•› o|27 G21    (TFT SCLK)  G21  SCLK
 SPI MISO       G13 19|o                   ø|26 G20 A19 USB_D-
 A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D+     I²C -ALT-
                5V0 21|o | USB |T T| USB | o|24 GND                —————————
                GND 22|o |  C  |G L|  C  | o|23 GND                1. *  GND
                      '——'ESP32'———'UART0'——'                      2. *  3V3
-                                               G48 RGB_BUILTIN,   3. G1 SDA
-                                               LED_BUILTIN        4. G2 SCL
+  INMP441 I²S Mic                              G48 RGB_BUILTIN,   3. G1 SDA
+MAX98357A I²S Audio Amp                            LED_BUILTIN    4. G2 SCL
 ```
 #### ESP32-S3 Pins Summary:
 0…18 GPIO,&nbsp; 19…20 D+/D-,&nbsp; 21 GPIO,&nbsp;
@@ -276,7 +284,7 @@ LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program at the end.
     G3    o 13.      ‘JTAG’
     G46   o 14.      ‘LOG’
     G9    o 15.  I²C SCL
-    G10   o 16.  SPI SS/CS      optional (SPI microSD_Card)
+    G10   o 16.  SPI SS/CS      optional (SPI microSD_Card Reader)
     G11   o 17.  SPI MOSI           "           "
     G12   o 18.  SPI SCK            "           "
     G13   o 19.  SPI MISO           "           "
@@ -290,21 +298,39 @@ LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program at the end.
 
 ![MEMS digital microphone (INMP441)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/INMP441%20I%C2%B2S%20Mic.jpg)
 
-### INMP441 &nbsp;I²S MEMS PDM Digital Microphone
+### INMP441 &nbsp;I²S MEMS PDM Digital Microphone &nbsp; ***verified***
 
-```
-        o I²S Mic chip mounted on the bottom-side of the Expansion Board.
-        o (_guess_) I²S MEMS PDM Digital Microphone ( **INMP441** )
-        o 6-Pins:   Possible configuration:
-            L/R Left/Right Channel | Connect to GND (Left)
-            WS  Data Select        | G4
-            SCK Data Clock         | G5
-            SD  Data Out           | G6
-            VDD                    | 3V3
-            GND                    | Ground
-```
+ 1. I²S Mic chip mounted on the bottom-side of the Expansion Board.
+ 2. I²S MEMS PDM Digital Microphone ( **INMP441** )
+ 3. 6-Pin configuration:
+ 
+| ESP32-S3 Dev Board  | I²S INMP441 Microphone    |
+|--------------------:|---------------------------|
+|     GND  (LOW=Left) | 1. L/R Left/Right Channel |
+|     GPIO4           | 2. WS  Data Select        |
+|     GPIO5           | 3. SCK Data Clock         |
+|     GPIO6           | 4. SD  Data Out           |
+|     3V3             | 5. VDD (Power)            |
+|     GND             | 6. GND                    |
+<br/>
+
+### INMP441 I²S Mic Interface definition:
+
+1. L/R:&nbsp; Left/Right Channel selection.
+>   When set to LOW, the microphone outputs a signal on the Left
+>   channel of the I²S frame.  When set to HIGH, the microphone
+>   outputs signals on the Right channel of the I²S frame.
+2.  WS:&nbsp; Serial data Word Selection for the I²S interface.
+3. SCK:&nbsp; Serial data Clock for the I²S interface.
+4.  SD: &nbsp; Serial Data output of the I²S interface.
+5. VDD:&nbsp; Input Power, 1.8V to 3.3V.
+6. GND:&nbsp; Power Ground
 
 ### INMP441 I²S Microphone Introduction:
+ 
+***I²S*** is a protocol for transferring Digital Audio.&nbsp; The audio quality
+can range from telephone-grade to ultra-high fidelity,&nbsp; and you can have
+one or two channels.
 
 The I²S **INMP441** is a high performance, low power, digital output,&nbsp;
 _“omnidirectional”_ **MEMS microphone** with a _‘bottom port’_.&nbsp; The complete
@@ -328,74 +354,80 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
 4. Stable Frequency Response from 60 Hz to 15 kHz
 5. Low power consumption, low current consumption: 1.4 mA
 6. High PSR (Power Supply Rejection): -75 dBFS
-
-### INMP441 I²S Mic Interface definition:
-
-1. GND:&nbsp; Power Ground
-2. VDD:&nbsp; Input Power, 1.8V to 3.3V.
-3.  SD: &nbsp; Serial Data output of the I²S interface.
-4. SCK:&nbsp; Serial data Clock for the I²S interface.
-5.  WS:&nbsp; Serial data Word Selection for the I²S interface.
-6. L/R:&nbsp; Left/Right Channel selection.
->   When set to LOW, the microphone outputs a signal on the Left
->   channel of the I²S frame.  When set to HIGH, the microphone
->   outputs signals on the Right channel of the I²S frame.
-
-### Connect to your INMP441 I²S Microphone:
-```
-    INMP441     ESP32-S3        ESP32-S2
-    ———————     ————————        ————————
-      SCK        GPIO4           GPIO14
-      SD         GPIO5           GPIO32
-      WS         GPIO6           GPIO15
-      L/R        GND (Left)      GND (Left)
-      GND        GND             GND
-      VDD        3V3             3V3
-```
-<hr>
+<hr><br/>
 
 ## INMP441 I²S Microphone sample program:
 
-**Download:**&nbsp; [INMP441-I2S-Mic-sample.ino](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/INMP441-I2S-Mic-sample/INMP441-I2S-Mic-sample.ino)
+**Download:**&nbsp; [INMP441-I2S-Mic-sample.ino (Visual “Audio Waveforms”)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/INMP441-I2S-Mic-sample/INMP441-I2S-Mic-sample.ino)
 ```C++
-/* INMP441-I2S-Mic-sample.ino
+/* INMP441-I2S-Mic-sample.ino           (Visual “Audio Waveforms”)
  * Requires an INMP441 I²S Microphone
+ * ESP32-S3 1.54in TFT Expansion Board with Speaker
  *
- * 1. Sample the sound from an INMP441 I²S Microphone.
- * 2. Display the “Audio Waveforms” on the Arduino IDE Serial Plotter.
+ * 1. Sample the sound from an INMP441 I²S Microphone, then
+ * 2. Show the “Audio Waveforms” on the Arduino IDE Serial Plotter.
  *
+ * Sound with ESP32 – I²S Protocol
  * https://dronebotworkshop.com/esp32-i2s/
  */
 
+/*******************************************************************
+Type-C USB Data cable plugged into Left-side ESP32-S3 USB-OTG port.
+                                   ¯¯¯¯¯¯¯¯¯          ¯¯¯¯¯¯¯
+Arduino IDE > Tools                                  [CONFIGURATION]
+                   Board: "ESP32S3 Dev Module"
+         USB CDC On Boot: "Enabled"  **Cable plugged into Left USB**
+           CPU Frequency: "240MHz (WiFi)"                 ¯¯¯¯
+         USB DFU On Boot: "Disabled"
+              Flash Mode: "QIO 80MHz"
+              Flash Size: "16MB 128Mb"  【or】
+              Flash Size: "8MB 64Mb"    ...check your board!
+USB Firmware MSC On Boot: "Disabled"
+        Partition Scheme: "16M Flash (2MB APP/12.5MB FATFS)"  【or】
+        Partition Scheme: "8MB with spiffs (3MB APP/1.5MB SPIFFS)"
+                   PSRAM: "OPI PSRAM"
+             Upload Mode: "UART0/Hardware CDC"
+            Upload Speed: "115200"
+                USB Mode: "Hardware CDC and JTAG"
+*******************************************************************/
+
 /* -----------------------------------------------------------------
- 1. We start by including the ESP32 I²S driver.
+ 1. We start this sketch by including the ESP32 I²S driver.
  2. We then define the connections to our INMP441 I²S Microphone. If
     you wish you can rewire the microphone & change the code here.
- 3. The ESP32-S3 has two internal I²S processors. We will be using
-    the first one, “I²S Port 0”. We also define the length of our
-    input data buffer.
+ 3. The ESP32 has two internal I²S processors. We will be using the
+    first one, “I²S Port 0”. We also define the length of our input
+    data buffer.
  4. Next, we have a function called “I2S_install()”, which sets up
     the I²S port parameters.
  5. A second function, “I2S_setPin()”, sets the physical connection
     to the I²S device, which in our case is our INMP441 Microphone.
- 6. In setup(), we set up our Serial connection, as we will be using
-    the ‘Serial Plotter’ to display our “Audio Waveforms”.  We then
-    call our two functions to set up the I²S port, and then start it
-    with a third ‘built-in’ function, “i2s_start()”.
+ 6. In setup(), we set up our Serial connection, as we will also be
+    using the ‘Serial Plotter’ to display our “Audio Waveforms”. We
+    then call our two functions to set up the I²S port, and then
+    start it with a third ‘built-in’ function, “i2s_start()”.
  7. Our loop() starts with a “false” Print statement, this just
     causes two constants to be printed to steady the reading on the
-    ‘Serial Plotter’, which otherwise will dynamically change its’
+    ‘Serial Plotter’, which otherwise might dynamically change its’
     Y-axis scale.
- 8. We then read data from the ‘INMP441 Microphone’ and place it in
+ 8. We then read data from the INMP441 Microphone and place it in
     our data buffer. If the data is good, we read it out and display
-    the “Audio Waveforms” on the Serial Plotter.
+    the raw data in the Serial Monitor and the “Audio Waveforms” on
+    the Serial Plotter.
 
-    TESTING the INMP441 I²S Microphone:
+    Testing the INMP441 I²S Microphone:   (Visual “Audio Waveforms”)
 
-    Hook everything up, load the sketch and open the Serial Plotter.
-    You should see a representation of the sound (Audio Waveforms)
-    that the INMP441 Microphone is getting. You can adjust the
-    “sensitivity” by altering the ‘rangeLimit’ variable in the Loop.
+    Hook everything up and load the sketch. 0pen the Serial Monitor
+    AND the Serial Plotter. --Have a little fun, sing your favorite
+    little song into the INMP441 Mic. The INMP441 is very sinsitive,
+    you don’t have to sing very loud. Try sound at varing distances,
+    or even try to be as quiet as possible & watch the Audio pickup.
+
+    You should see a representation of the sounds (Audio Waveforms)
+    in the Serial Plotter window, and the digital data output in the
+    Serial Monitor, that the INMP441 Microphone is picking up. You
+    can adjust the “sensitivity” by altering the ‘rangeLimit’
+    variable at the top of loop().
 
 ----------------------------------------------------------------- */
 #include <driver/i2s.h>                 // Include the I²S driver
@@ -404,12 +436,12 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
 #define I2S_SCK    5
 #define I2S_SD     6
 
-#define I2S_PORT I2S_NUM_0              // Select I²S Processor 0
+#define I2S_PORT I2S_NUM_0              // Use I²S Processor 0
 
-#define bufferLen 64                    // Input buffer Length
+#define bufferLen 64                    // Input buffer length
 int16_t sBuffer[bufferLen];             // I²S Serial Input buffer
 
-void I2S_install() {                    // I²S Processor config:
+void I2S_install() {                    // I²S Processor config
   const i2s_config_t I2S_config = {
     .mode = i2s_mode_t(I2S_MODE_MASTER | I2S_MODE_RX),
     .sample_rate          = 44100,
@@ -442,22 +474,22 @@ void setup() {
   Serial.println(" ");
   delay(1000);
 
-  I2S_install();                        // Initialize the INMP441 I²S Mic
+  I2S_install();                        // Set up INMP441 I²S Mic
   I2S_setPin();
   i2s_start(I2S_PORT);
   delay(500);
 }
 
 void loop() {
-  // False print statements to “lock the range” on the Serial Plotter.
-  // Change the ‘rangeLimit’ value to adjust “sensitivity”.
+  // False print statements will “lock the range” on Serial Plotter.
+  // Change this ‘rangeLimit’ value to adjust the “sensitivity”.
   int rangeLimit = 3000;
   Serial.print(rangeLimit * -1);
   Serial.print(" ");
   Serial.print(rangeLimit);
   Serial.print(" ");
 
-  // Get I²S Data and place in the Data buffer.
+  // Get the I²S Data and place it in the Data buffer.
   size_t bytesIn   = 0;
   esp_err_t result = i2s_read(I2S_PORT, &sBuffer, bufferLen,
                               &bytesIn, portMAX_DELAY);
@@ -469,11 +501,28 @@ void loop() {
       for(int16_t i=0; i < samplesRead; ++i) {
         mean += (sBuffer[i]);
       }
-      mean /= samplesRead;              // Average the Data reading.
-      Serial.println(mean);             // Print the “Audio Waveforms”
-    }                                   //   to the Serial Plotter.
-  }
-}
+      mean /= samplesRead;             // Average the Data reading.
+      Serial.println(mean);            // Print the raw data to the
+    }                                  // Serial Monitor, and show
+  }                                    // the “Audio Waveforms” in
+}                                      // the Serial Plotter window.
+
+/* -----------------------------------------------------------------
+Serial Monitor:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+12:21:21.301 -> -3000 3000 16.00
+12:21:21.301 -> -3000 3000 -2.87
+12:21:21.301 -> -3000 3000 23.12
+12:21:21.301 -> -3000 3000 -3.50
+12:21:21.301 -> -3000 3000 -0.37
+12:21:21.301 -> -3000 3000 15.63
+12:21:21.301 -> -3000 3000 -9.88
+12:21:21.301 -> -3000 3000 5.12
+12:21:21.301 -> -3000 3000 16.25
+12:21:21.301 -> -3000 3000 -19.37 ...
+
+Watch the visual “Audio Waveforms” in the Serial Plotter window.
+----------------------------------------------------------------- */
 ```
 <br/><br/>
 
@@ -522,7 +571,7 @@ _to be continued..._
 
 ![MAX98357A I²S Audio Amplifier](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I%C2%B2S%20Amp.jpg)
 
-### MAX98357A I²S Audio Amplifier
+### MAX98357A I²S Audio Amplifier/Speaker
 
 ```
         o (_guess_) I²S interface, possibly I²S 3W ( **MAX98357A** ) Audio Amp
@@ -544,6 +593,19 @@ _to be continued..._
 
 ### MAX98357A I²S Audio Amp specifications:
 
+**I²S** _(not to be confused with **I²C**)_, is the digital Sound Protocol used
+to deliver Audio data on a circuit board.&nbsp; Many high-end chips and processors
+manage all Audio in a digital _I²S_ format.&nbsp; Then, in order to input or output
+data,&nbsp; 3 or 4 pins _(Data Input, Data Output, Bit Clock, and Left/Right
+Channel Selection)_ are used.&nbsp; Usually, for Audio devices,&nbsp; there is a
+***DAC chip*** that takes I²S and converts it into an Analog signal that can
+drive the speakers or headset.
+
+The ***MAX98357A I²S Audio Amplifier*** takes standard I²S digital audio input and
+not only decodes it into an ‘Analog signal’,&nbsp; but also amplifies it directly
+to a speaker.&nbsp; Perfect for adding compact amplified sound.&nbsp; It takes 2
+sources &nbsp;_(I²SDAC and AMP)_&nbsp; and combines them into one.
+
  1. Output Power:&nbsp; 4Ω speakers 3.2W, 10% THD _(Total Harmonic Distortion)_;<br/>
     8Ω speakers 1.8W, 10% THD _(Total Harmonic Distortion)_, with a 5V power supply
  2. PSRR _(Power Supply Rejection Ratio)_:&nbsp; 77 decibels, typical @1 KHZ
@@ -552,19 +614,6 @@ _to be continued..._
  5. You don’t need a MCLK _(Master Clock signal)_ timing signal
  6. Excellent _click and pop_ suppression
  7. Hot shutdown protection
-
-The ***MAX98357A I²S Audio Amplifier*** takes standard I²S digital audio input and
-not only decodes it into an ‘Analog signal’,&nbsp; but also amplifies it directly
-to a speaker.&nbsp; Perfect for adding compact amplified sound.&nbsp; It takes 2
-sources &nbsp;_(I²SDAC and AMP)_&nbsp; and combines them into one.
-
-**I²S** _(not to be confused with **I²C**)_, in the digital Sound Protocol used
-to deliver Audio data on a circuit board.&nbsp; Many high-end chips and processors
-manage all Audio in a digital _I²S_ format.&nbsp; Then, in order to input or output
-data,&nbsp; 3 or 4 pins _(Data Input, Data Output, Bit Clock, and Left/Right
-Channel Selection)_ are used.&nbsp; Usually, for Audio devices,&nbsp; there is a
-***DAC chip*** that takes I²S and converts it into an Analog signal that can
-drive the speakers or headset.
 
 The **I²S MAX98357A** is small ‘mono’ Audio Amplifier that is surprisingly powerful.&nbsp;
 It is capable of delivering ‘3.2 Watts’ of power to a ‘4 Ohm’ impedance speaker
@@ -582,46 +631,58 @@ by the speaker coil &nbsp;- no high frequencies are heard.&nbsp;
 ***What all of this means that you can not connect the output to another Audio Amplifier,&nbsp;
 the I²S MAX98357A should drive the speakers directly.***
 
-There is a audio amplifier _‘Gain’_ pin that can be manipulated to change the signal
-gain.&nbsp; By default,&nbsp; the amplifier will give you a Gain of _‘9 dB’_.&nbsp;
-Gain pins can be set to 3db, 6db, 9db, 12db, or 15db by directly
-connecting a pull-up resistor or pull-down resistor or wiring.
+The I²S **MAX98357A** Audio Amplifier has a _‘Gain’_ pin that can be manipulated
+to change the signal amp gain.&nbsp; By default,&nbsp; the amplifier will give
+you a Gain of _‘9 dB’_.&nbsp; Gain pins can be set to 3db, 6db, 9db, 12db, or
+15db by directly connecting a pull-up resistor or pull-down resistor or wiring.
 
-The _‘Shutdown/Mode’_ pins can be used to put the chip in the “shutdown state”&nbsp;
-or to set which I²S audio channel is connected to the speaker through the pipeline.&nbsp;
-By default,&nbsp; the amplifier will output a _(L+R) /2_ stereo mix to _mono_ output.&nbsp;
+_‘Shutdown/Mode’_ pins of the I²S **MAX98357A** Audio Amplifiercan be used to
+put the chip in a “shutdown state”&nbsp; or to set which I²S Audio channel is
+connected to the speaker through the pipeline.&nbsp; By default,&nbsp; the
+Audio Amplifier will output a _(L+R) /2_ stereo mix to _mono_ output.&nbsp;
 By adding a resistor,&nbsp; you can change it to output just to the Left or Right.
 <hr><br/>
 
 ## MAX98357A I²S Audio Amp/Speaker sample program:
 
-**Download:**&nbsp; [MAX98357-I2S-Amp-SD-Music-Player.ino](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-SD-Music-Player/MAX98357-I2S-Amp-SD-Music-Player.ino)
+**Download:**&nbsp; [MAX98357-I2S-Amp-SD-Music-Player.ino  (I²S Music Player)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-SD-Music-Player/MAX98357-I2S-Amp-SD-Music-Player.ino)
 ```C++
-/* MAX98357-I2S-Amp-SD-Music-Player.ino
+/* MAX98357-I2S-Amp-SD-Music-Player.ino     (I²S Music Player)
+ * Requires a MAX98357 I²S Audio Amplifier/Speaker
+ * ESP32-S3 1.54in TFT Expansion Board with Speaker
  *
- * Simple ESP32-S3 microSD_Card I²S Music Player:
+ * The MAX98357A (3 Watt Audio Amplifier with DAC), connectes three
+ * lines (DOUT, BLCK, LRC) to the I²S bus. The I²S output frequency
+ * is always 48kHz regardless of the input source, so Bluetooth
+ * devices can also be connected without any problems. To get stereo
+ * two MAX98357A are necessary. Using “AudioI2S” you can play MP3s,
+ * Icy-streams, GoogleTTS, OpenAIspeech, and more.
+ *
+ * This sketch is a simple ESP32-S3 microSD_Card I²S Music Player:
+ *
  *  Play your MP3 files from a microSD_Card
  *      1. Micro SD Card   (less than 2G)
  *      2. Micro SDHC Card (less than 32G)
- *  Uses a MAX98357A I²S Audio Amplifier
+ *  Uses a MAX98357 I²S Amplifier
  *  Uses the ESP32-audioI2S Library:
  *      https://github.com/schreibfaul1/ESP32-audioI2S
  *
- * Using the MAX9835A I²S Audio Amplifier:
+ * Using the MAX98357 I²S Audio Amplifier and Speaker:
+ *
  *   The sound source will be an MP3 file that is stored on a
  *   microSD_Card.  This is an extremely basic MP3 player, for
  *   practical use you would need to make a system for navigating
  *   the microSD_Card to play more than one selection.  This sketch
- *   is just to illustrate how to use the MAX98357A I²S Amplifier,
- *   as well as a library that makes working with I²S Audio
- *   applications a bit easier.
+ *   is just to illustrate how to use the MAX98357 I²S Audio Amplifier,
+ *   as well as a library that makes working with I²S Audio apps a
+ *   bit easier.
  *
  * Wiring:
  *
- * MAX98357A I²S Audio Amp          ESP32-S3-WROOM-1
- * 1. LRC  (Left Right Clock)   --> GPIO16
+ * MAX98357 I²S Amp                 ESP32-S3-WROOM-1
+ * 1. DIN  (Digital Signal In)  --> GPIO7
  * 2. BCLK (Bit Clock)          --> GPIO15
- * 3. DIN  (Digital Signal In)  --> GPIO7
+ * 3. LRC  (Left Right Clock)   --> GPIO16
  * 4. GAIN                      --> Connect to GND (9 dB gain)
  * 5. SD   (L/R Channel Select) --> Connect to GND (select Left)
  * 6. GND                       --> GND
@@ -639,21 +700,42 @@ By adding a resistor,&nbsp; you can change it to output just to the Left or Righ
  * 5. MISO (SPI SDO)            --> GPIO13
  * 6. GND                       --> GND
  *
+ * Sound with ESP32 – I²S Protocol
  * https://dronebotworkshop.com/esp32-i2s/
  */
 
+/*******************************************************************
+Type-C USB Data cable plugged into Left-side ESP32-S3 USB-OTG port.
+                                   ¯¯¯¯¯¯¯¯¯          ¯¯¯¯¯¯¯
+Arduino IDE > Tools                                  [CONFIGURATION]
+                   Board: "ESP32S3 Dev Module"
+         USB CDC On Boot: "Enabled"  **Cable plugged into Left USB**
+           CPU Frequency: "240MHz (WiFi)"                 ¯¯¯¯
+         USB DFU On Boot: "Disabled"
+              Flash Mode: "QIO 80MHz"
+              Flash Size: "16MB 128Mb"  【or】
+              Flash Size: "8MB 64Mb"    ...check your board!
+USB Firmware MSC On Boot: "Disabled"
+        Partition Scheme: "16M Flash (2MB APP/12.5MB FATFS)"  【or】
+        Partition Scheme: "8MB with spiffs (3MB APP/1.5MB SPIFFS)"
+                   PSRAM: "OPI PSRAM"
+             Upload Mode: "UART0/Hardware CDC"
+            Upload Speed: "115200"
+                USB Mode: "Hardware CDC and JTAG"
+*******************************************************************/
+
 #include "Arduino.h"                // Include required libraries
-#include "Audio.h"
-#include "SD.h"
+#include "Audio.h"                  // ESP32-audioI2S library
+#include "SD.h"                     // SD_Card and µSD_Card library
 #include "FS.h"
-                                    // microSD_Card Pins:
+                                    // microSD_Card pins
 #define SD_CS         10            // microSD_Card Chip Select
 #define SPI_MOSI      11            // SPI Data In  (SDI)
 #define SPI_SCK       12            // SPI Clock    (CLK)
 #define SPI_MISO      13            // SPI Data Out (SDO)
 
-                                    // MAX98357A I²S Audio Amp Pins:
-#define I2S_DOUT       7            // MAX98357A I²S Audio Amp (DIN)
+                                    // MAX98357 I²S Amp pins
+#define I2S_DOUT       7            // MAX98357 I²S Amp pins (DIN)
 #define I2S_BCLK      15            //      "
 #define I2S_LRC       16            //      "
 
@@ -675,7 +757,7 @@ void setup() {
 
   // Setup the MAX98357 I²S Amplifier & Volume control
   audio.setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT);
-  audio.setVolume(5);               // Set Volume
+  audio.setVolume(5);                   // Set Volume
 
   // Open your .mp3 music file from the microSD_Card
   audio.connecttoFS(SD,"/MYMUSIC.mp3"); // Change to name of chosen
@@ -689,7 +771,7 @@ void loop() {
 
 ## LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program:
 
-**Download:**&nbsp; [GFX_ST7789_colorGraphicsDemo.ino](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/GFX_ST7789_colorGraphicsDemo/GFX_ST7789_colorGraphicsDemo.ino)
+**Download:**&nbsp; [GFX_ST7789_colorGraphicsDemo.ino  (a dozen GFX graphics demos)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/GFX_ST7789_colorGraphicsDemo/GFX_ST7789_colorGraphicsDemo.ino)
 ```C++
 // GFX_ST7789_colorGraphicsDemo.ino  (a dozen GFX graphics demos)
 //
