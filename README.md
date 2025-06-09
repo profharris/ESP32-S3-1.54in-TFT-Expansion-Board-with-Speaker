@@ -567,28 +567,28 @@ that depends on many factors.
 _to be continued..._
 <hr><br/>
 
-### 【6】 Large _on-board_ cavity Speaker on top:<br/> &nbsp; &nbsp; &nbsp; &nbsp; _(with an I²S MAX98357A Audio Amplifier on the bottom)_
+### 【6】 Large _on-board_ cavity Speaker on top:<br/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _(with an I²S MAX98357A Audio Amplifier on the bottom)_
 
 ![MAX98357A I²S Audio Amplifier/Speaker](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I%C2%B2S%20Amp.jpg)
 
 ### MAX98357A I²S Audio Amplifier/Speaker
 
 
- 1. I²S 3W Audio Amp ( **MAX98357A** )
- 2. 7-Pin \+ 2, I²S MAX98357A Audio Amplifier/Speaker configuration:
+ 1. &nbsp;I²S 3W Audio Amp ( **MAX98357A** )
+ 2. &nbsp;7-Pin \+ 2, I²S MAX98357A Audio Amplifier/Speaker configuration:
 
 | ESP32-S3 Dev Board | I²S MAX98357A Amplifier/Speaker |
 |-------------------:|---------------------------------|
-|     GPIO7          | 1. DIN  Digital Signal In       |
-|     GPIO15         | 2. BCLK Bit Clock               |
-|     GPIO16         | 3. LRC  Left Right Clock        |
-|     GND (9dB Gain) | 4. GAIN (Signal Amp)            |
-|     GND (LOW=Left) | 5. SD (L/R Channel Select)      |
+|     GPIO7          | 1. DIN  &nbsp;Digital Signal In       |
+|     GPIO15         | 2. BCLK &nbsp;Bit Clock               |
+|     GPIO16         | 3. LRC  &nbsp;Left Right Clock        |
+|     GND &nbsp;(9dB Gain) | 4. GAIN &nbsp;(Signal Amp)            |
+|     VDD &nbsp;(0Ω=Left)  | 5. SD &nbsp;&nbsp;(L/R Channel Select) |
 |     GND            | 6. GND                          |
 |     3V3            | 7. VIN                          |
 |                    |                                 |
-|     Audio +        | Speaker Positive  (+)           |
-|     Audio -        | Speaker Negative  (-)           |
+|     Audio +        | Speaker Positive  &nbsp;(+)           |
+|     Audio -        | Speaker Negative  &nbsp;(-)           |
 
 ### MAX98357A I²S Audio Amp specifications:
 
@@ -683,7 +683,7 @@ By adding a resistor,&nbsp; you can change it to output just to the Left or Righ
  * 2. BCLK (Bit Clock)          --> GPIO15
  * 3. LRC  (Left Right Clock)   --> GPIO16
  * 4. GAIN                      --> Connect to GND (9 dB gain)
- * 5. SD   (L/R Channel Select) --> Connect to GND (select Left)
+ * 5. SD   (L/R Channel Select) --> Connect to VIN (0Ω = Left)
  * 6. GND                       --> GND
  * 7. VIN  (Power)              --> 3V3
  *
