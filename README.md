@@ -303,7 +303,7 @@ LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program at the end.
  1. I²S Mic chip mounted on the bottom-side of the Expansion Board.
  2. I²S MEMS PDM Digital Microphone ( **INMP441** )
  3. 6-Pin configuration:
- 
+
 | ESP32-S3 Dev Board  | I²S INMP441 Microphone    |
 |--------------------:|---------------------------|
 |     GND  (LOW=Left) | 1. L/R Left/Right Channel |
@@ -322,12 +322,12 @@ LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program at the end.
 >   outputs signals on the Right channel of the I²S frame.
 2.  WS:&nbsp; Serial data Word Selection for the I²S interface.
 3. SCK:&nbsp; Serial data Clock for the I²S interface.
-4.  SD: &nbsp; Serial Data output of the I²S interface.
+4.  SD:&nbsp; &nbsp; Serial Data output of the I²S interface.
 5. VDD:&nbsp; Input Power, 1.8V to 3.3V.
 6. GND:&nbsp; Power Ground
 
 ### INMP441 I²S Microphone Introduction:
- 
+
 ***I²S*** is a protocol for transferring Digital Audio.&nbsp; The audio quality
 can range from telephone-grade to ultra-high fidelity,&nbsp; and you can have
 one or two channels.
@@ -573,23 +573,22 @@ _to be continued..._
 
 ### MAX98357A I²S Audio Amplifier/Speaker
 
-```
-        o (_guess_) I²S interface, possibly I²S 3W ( **MAX98357A** ) Audio Amp
-        o 7-Pins:&nbsp; possible I²S MAX98357A Amplifier configuration:
 
-            1. LRC Left Right Clock     | G16
-            2. BCLK Bit Clock           | G15
-            3. DIN Digital Signal In    | G7
-            4. GAIN                     | Connect to GND (9 dB Gain)
-            5. SD (L/R Channel Select)  | Connect to GND (select Left)
-            6. GND                      | Ground
-            7. Vin                      | 3V3
+ 1. I²S 3W Audio Amp ( **MAX98357A** )
+ 2. 7-Pin I²S MAX98357A Audio Amplifier configuration:
 
-
-        o External Speaker interface: (+ —)
-            Audio+  Connect to Speaker Positive (usually Red wire)
-            Audio-  Connect to Speaker Negative
-```
+| ESP32-S3 Dev Board | I²S MAX98357A Amplifier/Speaker |
+|-------------------:|---------------------------------|
+|     GPIO7          | 1. DIN  Digital Signal In       |
+|     GPIO15         | 2. BCLK Bit Clock               |
+|     GPIO16         | 3. LRC  Left Right Clock        |
+|     GND (9dB Gain) | 4. GAIN (Signal Amp)            |
+|     GND (LOW=Left) | 5. SD (L/R Channel Select)      |
+|     GND            | 6. GND                          |
+|     3V3            | 7. VIN                          |
+|                    |                                 |
+|     Audio +        | Speaker Positive  (+)           |
+|     Audio -        | Speaker Negative  (-)           |
 
 ### MAX98357A I²S Audio Amp specifications:
 
