@@ -1,6 +1,6 @@
 # ESP32-S3 1.54in TFT Expansion Board with Speaker <br/>_(and Microphone, & Audio Amplifier)_
 
-***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/08/2025*<br/>
+***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/07/2025*<br/>
 [GitHub Pages](https://pages.github.com/)
 
 ESP32-S3 1.54in TFT Expansion Board with Speaker
@@ -111,7 +111,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |-------------------:|-----------------------------------------------|
 |     GPIO0          | **BOOT Button**. Can also be used as a<br/>“Wake/Interrupt” button. (connected to GND) |
 |     GPIO39         | **Volume Up**. (shorts to GND), Short press<br/>Increases volume, Long press for Max volume. |
-|     GPIO40         | **Volume Dn**. (shorts to GND), Short press<br/>Reduces volume, Long press Mutes.            |
+|     GPIO38         | **Volume Dn**. (shorts to GND), Short press<br/>Reduces volume, Long press Mutes.            |
 
 >**NOTE³:**&nbsp; The [WeAct Studio ESP32-S3-A/B Core](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WeAct%20Studio%20ESP32-S3-AB%20Core%20(44-pins).jpg)
 > Dev Board already has a third button attached to GPIO45.
