@@ -60,6 +60,8 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
  |     GPIO40         | 6. RS  Data/Command   (DC) |
  |     GPIO41         | 7. CS  Chip Select    (CS) |
  |     GPIO42         | 8. BLK BackLight      (BL) |
+ 
+ ![LCD 1.54in 240RGB×240 IPS TFT (ST7789) Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/LCD%201.54in%20240RGB×240%20IPS%20TFT%20(ST7789)%20Wiring%20Diagram.png)
 
  2. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S INMP441 Microphone:***
 
