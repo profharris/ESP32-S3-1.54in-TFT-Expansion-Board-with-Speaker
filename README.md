@@ -1,7 +1,7 @@
 # ESP32-S3 1.54in TFT Expansion Board with Speaker <br/>_(and Microphone, & Audio Amplifier)_
 
-***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/09/2025*<br/>
-[GitHub Pages](https://pages.github.com/)
+***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/07/2025*<br/>
+[GitHub Pages](https://pages.github.com/)<br/>
 
 > ***AI Chatbot*** compatible!&nbsp;
 > https://docs.keyestudio.com/projects/ESP32S3_LCD154/en/latest/LCD154/LCD154.html <br/>
@@ -303,7 +303,7 @@ LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program at the end.
  1. I²S Mic chip mounted on the bottom-side of the Expansion Board.
  2. I²S MEMS PDM Digital Microphone ( **INMP441** )
  3. 6-Pin configuration:
-
+ 
 | ESP32-S3 Dev Board  | I²S INMP441 Microphone    |
 |--------------------:|---------------------------|
 |     GND  (LOW=Left) | 1. L/R Left/Right Channel |
@@ -327,7 +327,7 @@ LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program at the end.
 6. GND:&nbsp; Power Ground
 
 ### INMP441 I²S Microphone Introduction:
-
+ 
 ***I²S*** is a protocol for transferring Digital Audio.&nbsp; The audio quality
 can range from telephone-grade to ultra-high fidelity,&nbsp; and you can have
 one or two channels.
@@ -524,7 +524,7 @@ Serial Monitor:
 Watch the visual “Audio Waveforms” in the Serial Plotter window.
 ----------------------------------------------------------------- */
 ```
-<br/><br/>
+<br/>
 
 ### What is the difference between an “**Omnidirectional**” microphone and a “**Unidirectional**” microphone?
 
@@ -569,13 +569,13 @@ _to be continued..._
 
 ### 【6】 Large _on-board_ cavity Speaker on top:<br/> &nbsp; &nbsp; &nbsp; &nbsp; _(with an I²S MAX98357A Audio Amplifier on the bottom)_
 
-![MAX98357A I²S Audio Amplifier](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I%C2%B2S%20Amp.jpg)
+![MAX98357A I²S Audio Amplifier/Speaker](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I%C2%B2S%20Amp.jpg)
 
 ### MAX98357A I²S Audio Amplifier/Speaker
 
 
  1. I²S 3W Audio Amp ( **MAX98357A** )
- 2. 7-Pin I²S MAX98357A Audio Amplifier configuration:
+ 2. 7-Pin \+ 2, I²S MAX98357A Audio Amplifier/Speaker configuration:
 
 | ESP32-S3 Dev Board | I²S MAX98357A Amplifier/Speaker |
 |-------------------:|---------------------------------|
