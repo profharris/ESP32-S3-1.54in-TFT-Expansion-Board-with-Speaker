@@ -40,9 +40,9 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 ### Quick Wiring Guide:
 
- 1. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ST7789 1.54" 240×240 Display:
+ 1. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***ST7789 1.54” 240×240 Display:***
 
-| ESP32-S3 Dev Board | SPI 1.54" 240×240 TFT pins |
+| ESP32-S3 Dev Board | ST7789 1.54” 240×240 TFT   |  &nbsp; _(tested & verified!)_
 |-------------------:|----------------------------|
 |     GND            | 1. GND                     |
 |     3V3            | 2. VDD (Power)             |
@@ -53,9 +53,9 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     GPIO41         | 7. CS  Chip Select    (CS) |
 |     GPIO42         | 8. BLK BackLight      (BL) |
 
- 2. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; I²S INMP441 Microphone:
+ 2. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S INMP441 Microphone:***
 
-| ESP32-S3 Dev Board  | I²S INMP441 Mic pins      |
+| ESP32-S3 Dev Board  | I²S INMP441 Microphone    |
 |--------------------:|---------------------------|
 |     GND  (LOW=Left) | 1. L/R Left/Right Channel |
 |     GPIO4           | 2. WS  Data Select        |
@@ -64,22 +64,22 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     3V3             | 5. VDD (Power)            |
 |     GND             | 6. GND                    |
 
- 3. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; I²S MAX98357A Amplifier:
+ 3. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S MAX98357A Amplifier:***
 
-| ESP32-S3 Dev Board | I²S MAX98357A Amp pins     |
-|-------------------:|----------------------------|
-|     GPIO16         | 1. LRC  Left Right Clock   |
-|     GPIO15         | 2. BCLK Bit Clock          |
-|     GPIO7          | 3. DIN  Digital Signal In  |
-|     GND (9dB Gain) | 4. GAIN                    |
-|     GND (LOW=Left) | 5. SD (L/R Channel Select) |
-|     GND            | 6. GND                     |
-|     3V3            | 7. VIN                     |
-|                    |                            |
-|     Audio +        | Speaker Positive  (+)      |
-|     Audio -        | Speaker Negative  (-)      |
+| ESP32-S3 Dev Board | I²S MAX98357A Amplifier/Speaker |
+|-------------------:|---------------------------------|
+|     GPIO16         | 1. LRC  Left Right Clock        |
+|     GPIO15         | 2. BCLK Bit Clock               |
+|     GPIO7          | 3. DIN  Digital Signal In       |
+|     GND (9dB Gain) | 4. GAIN (Signal Amp)            |
+|     GND (LOW=Left) | 5. SD (L/R Channel Select)      |
+|     GND            | 6. GND                          |
+|     3V3            | 7. VIN                          |
+|                    |                                 |
+|     Audio +        | Speaker Positive  (+)           |
+|     Audio -        | Speaker Negative  (-)           |
 
- 4. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; SPI microSD_Card:
+ 4. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***SPI microSD_Card:***
 
 | ESP32-S3 Dev Board | SPI microSD_Card pins  |
 |-------------------:|------------------------|
@@ -92,7 +92,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 >**NOTE¹:**&nbsp; Micro SD Card (less than 2G), Micro SDHC Card (less than 32G).
 
- 5. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and I²C OLED Display:<br/>
+ 5. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and an I²C interface & OLED Display:<br/>
     (STEMMA/Qwiic I²C interface)
 
 | ESP32-S3 Dev Board | I²C 0.96" 128×64 OLED  | Qwiic Wire Color |
@@ -104,7 +104,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 >**NOTE²:**&nbsp; There are hundreds of STEMMA/Qwiic I²C sensors availiable.
 
- 6. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and Buttons:<br/>
+ 6. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and additional Buttons:<br/>
     _(Most ESP32-S3 Dev Boards have two Button on-board, **RESET** and **BOOT**)_
 
 | ESP32-S3 Dev Board | Buttons                                       |
@@ -114,15 +114,15 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     GPIO38         | **Volume Dn**. (shorts to GND), Short press<br/>Reduces volume, Long press Mutes.            |
 
 >**NOTE³:**&nbsp; The [WeAct Studio ESP32-S3-A/B Core](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WeAct%20Studio%20ESP32-S3-AB%20Core%20(44-pins).jpg)
-> Dev Board already has a third button attached to GPIO45.
+> Dev Board already has a third button, attached to GPIO45 _(TFT Reset)_.
 <hr><br/>
 
-### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin &nbsp;_(40-pin compatible)_&nbsp; header pins
+### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin &nbsp;_(40-pin compatible)_&nbsp; ***Header pins***
 
 Header pins _(dual on one side)_ supports **both** ESP32-S3 Development Board widths…<br/>
 <br/>
 Almost _{...extra pins top and bottom}_ the same pinout as the<br/>
-ESP32-S3-WROOM (CAM), &nbsp;and&nbsp; ESP32-S3-GOOUUU-CAM.
+ESP32-S3-WROOM (CAM), &nbsp;and&nbsp; ESP32-S3-GOOUUU-CAM, etc.
 
 ![ESP32-S3 1.54in TFT Expansion Board with Speaker - header pins](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-1.2.jpg)
 
@@ -189,10 +189,10 @@ A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D+     I²C -ALT-
 
 ### 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789V) ***verified***
 
-The TFT Display was identified by:&nbsp; (1) “1.54 TFT Display” in the
+The TFT Display is identified by:&nbsp; (1) “1.54 TFT Display” in the
 title and &nbsp;(2) the picture of the _10-pin ribbon connection_ for the
-display on the back of the Expansion Adapter.&nbsp; The TFT Display appears
-to be:&nbsp; a 1.54in LCD Module,&nbsp; IPS color 240×240 TFT,&nbsp;
+display on the back of the Expansion Adapter.&nbsp; The TFT Display is
+a:&nbsp; 1.54in LCD Module,&nbsp; IPS color 240×240 TFT,&nbsp;
 with a 10Pin plug-in strip,&nbsp; and ST7789V2 Driver.
 
 ![LCD 1.54in 240×240 color IPS TFT (ST7789T3)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/LCD%201.54in%20240%C3%97240%20color%20IPS%20TFT%2010-pin%20(ST7789T3).jpg)<br/>
@@ -205,34 +205,34 @@ Configuration:
         10-Pin    Pin       Function/Description
         ———————   ————————  ——————————————————————————
         1. GND    GND       System Ground   (GND)
-        2. RS     G40       Data/Command    (DC)
-        3. CS     G41       SPI Chip Select (CS)
-        4. SCL    G21       SPI Clock       (SCK)
-        5. SDA    G47       SPI Data        (MOSI)
-        6. RST    G45       TFT Reset       (RST)
+        2. RS/DC  GPIO40    Data/Command    (DC)
+        3. CS     GPIO41    TFT Chip Select (CS)
+        4. SCL    GPIO21    SPI Clock       (SCK)
+        5. SDA    GPIO47    SPI Data        (MOSI)
+        6. RST    GPIO45    TFT Reset       (RST)
         7. VDD    3V3       Positive Power  (3.3V)
         8. GND    GND       System Ground   (GND)
         9. A      3V3       BackLight LED Anode   (+)
-       10. K      G42       BackLight LED Cathode (-) (BL)
+       10. K      GPIO42    BackLight LED Cathode (-) (BL)
 
         TFT LCD   ESP32-S3
          8-Pin    Pin       Function/Description
         ———————   ————————  ——————————————————————————
-        8. BLK    G42       BackLight Control
-        7. CS     G41       SPI Chip Select
-        6. RS/DC  G40       Data/Command Select
-        5. RES    G45       TFT Reset
-        4. SDA    G47       SPI Data (MOSI)
-        3. SCL    G21       SPI Clock (SCK)
-        2. VDD    3V3       Positive Power (3.3V)
-        1. GND    GND       System Ground
+        1. GND    GND       System Ground   (GND)
+        2. VDD    3V3       Positive Power  (3.3V)
+        3. SCL    GPIO21    SPI Clock       (SCK)
+        4. SDA    GPIO47    SPI Data        (MOSI)
+        5. RES    GPIO45    TFT Reset       (RST)
+        6. RS/DC  GPIO40    Data/Command    (DC)
+        7. CS     GPIO41    TFT Chip Select (CS)
+        8. BLK    GPIO42    BackLight       (BL)
 ```
 
 #### 1.54in 240×240 color LCD Display Specifications:
 ```
-LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
+LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789V2)
   ◆          Brand Name: Maithoga
-  ◆           Driver IC: ST7789T3
+  ◆           Driver IC: ST7789V2
   ◆                Size: 1.54in color
   ◆    Number of Pixels: 240(RGB)×240
   ◆  Driver IC RAM Size: 240×16×240 (16-Bit RGB565 Color)
@@ -262,8 +262,8 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
     3V3   o  1.                 | G5 INMP441   I²S Mic   ———————   G44  RX‹   |
     G1    o  2.                 | G6 INMP441   I²S Mic   G42 BLK              |
     G2    o  3.                 |                        G41 CS    G37* PSRAM |
-    G39   o  4.                 | G7 MAX98357A I²S Amp   G40 RS/DC G36* PSRAM |
-    G38   o  5.                 |G15 MAX98357A I²S Amp   G45 RST   G35* PSRAM |
+    G39   o  4.  (Volume ▲)     | G7 MAX98357A I²S Amp   G40 RS/DC G36* PSRAM |
+    G38   o  5.  (Volume ▼)     |G15 MAX98357A I²S Amp   G45 RST   G35* PSRAM |
     G0    o  6.  [BOOT]         |G16 MAX98357A I²S Amp   G47 SDA              |
     G48   o  7.  RGB LED        |                        G21 SCL              |
     G20   o  8.  USB D-         '—————————————————————————————————————————————'
@@ -274,10 +274,10 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789T3)
     G3    o 13.      ‘JTAG’
     G46   o 14.      ‘LOG’
     G9    o 15.  I²C SCL
-    G10   o 16.  SPI SS/CS
-    G11   o 17.  SPI MOSI
-    G12   o 18.  SPI SCK
-    G13   o 19.  SPI MISO
+    G10   o 16.  SPI SS/CS      optional (SPI microSD_Card)
+    G11   o 17.  SPI MOSI           "           "
+    G12   o 18.  SPI SCK            "           "
+    G13   o 19.  SPI MISO           "           "
     G14   o 20.
     5V0   o 21.
     GND   o 22.
