@@ -42,16 +42,16 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
  1. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***ST7789 1.54” 240×240 Display:***
 
- &ensp;&nbsp; | ESP32-S3 Dev Board | ST7789 1.54” 240×240 TFT   |
- &ensp;&nbsp; |-------------------:|----------------------------|
- &ensp;&nbsp; |     GND            | 1. GND                     |
- &ensp;&nbsp; |     3V3            | 2. VDD (Power)             |
- &ensp;&nbsp; |     GPIO21         | 3. SCL SPI Clock    (SCLK) |
- &ensp;&nbsp; |     GPIO47         | 4. SDA SPI Data     (MOSI) |
- &ensp;&nbsp; |     GPIO45         | 5. RES TFT Reset     (RST) |
- &ensp;&nbsp; |     GPIO40         | 6. RS  Data/Command   (DC) |
- &ensp;&nbsp; |     GPIO41         | 7. CS  Chip Select    (CS) |
- &ensp;&nbsp; |     GPIO42         | 8. BLK BackLight      (BL) |
+ &nbsp; | ESP32-S3 Dev Board | ST7789 1.54” 240×240 TFT   |
+ &nbsp; |-------------------:|----------------------------|
+ &nbsp; |     GND            | 1. GND                     |
+ &nbsp; |     3V3            | 2. VDD (Power)             |
+ &nbsp; |     GPIO21         | 3. SCL SPI Clock    (SCLK) |
+ &nbsp; |     GPIO47         | 4. SDA SPI Data     (MOSI) |
+ &nbsp; |     GPIO45         | 5. RES TFT Reset     (RST) |
+ &nbsp; |     GPIO40         | 6. RS  Data/Command   (DC) |
+ &nbsp; |     GPIO41         | 7. CS  Chip Select    (CS) |
+ &nbsp; |     GPIO42         | 8. BLK BackLight      (BL) |
 
  2. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S INMP441 Microphone:***
 
