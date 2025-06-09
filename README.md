@@ -185,9 +185,9 @@ A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D+     I²C -ALT-
 <hr><br/>
 
 ![ESP32-S3 1.54in TFT Expansion Board with Speaker-5.2](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-5.2.jpg)
-<br/>
+<br/><br/>
 
-### 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789V) ***verified***
+### 【3】 LCD 1.54in 240×240 color IPS TFT (ST7789V2) &nbsp; ***verified***
 
 The TFT Display is identified by:&nbsp; (1) “1.54 TFT Display” in the
 title and &nbsp;(2) the picture of the _10-pin ribbon connection_ for the
@@ -195,7 +195,7 @@ display on the back of the Expansion Adapter.&nbsp; The TFT Display is
 a:&nbsp; 1.54in LCD Module,&nbsp; IPS color 240×240 TFT,&nbsp;
 with a 10Pin plug-in strip,&nbsp; and ST7789V2 Driver.
 
-![LCD 1.54in 240×240 color IPS TFT (ST7789T3)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/LCD%201.54in%20240%C3%97240%20color%20IPS%20TFT%2010-pin%20(ST7789T3).jpg)<br/>
+![LCD 1.54in 240×240 color IPS TFT (ST7789V2)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/LCD%201.54in%20240%C3%97240%20color%20IPS%20TFT%2010-pin%20(ST7789T3).jpg)<br/>
 ![ESP32-S3 1.54in TFT Expansion Board with Speaker-2.1](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-2.1.jpg)
 
 ```
@@ -228,7 +228,7 @@ Configuration:
         8. BLK    GPIO42    BackLight       (BL)
 ```
 
-#### 1.54in 240×240 color LCD Display Specifications:
+#### LCD 1.54in 240×240 color Display Specifications:
 ```
 LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789V2)
   ◆          Brand Name: Maithoga
@@ -250,6 +250,8 @@ LCD 1.54in 240×240 color IPS TFT 10-pin (ST7789V2)
   ◆      Operating Temp: -20° ~ 70°
   ◆ Storage Temperature: -30° ~ 80°
 ```
+
+LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program at the end.
 <hr><br/>
 
 ### 【4】 22-pin single-row I/O Interface header: &nbsp;_(½ the availiable pins)_
@@ -331,7 +333,7 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
 
 1. GND:&nbsp; Power Ground
 2. VDD:&nbsp; Input Power, 1.8V to 3.3V.
-3.  SD:&nbsp; Serial Data output of the I²S interface.
+3.  SD: &nbsp; Serial Data output of the I²S interface.
 4. SCK:&nbsp; Serial data Clock for the I²S interface.
 5.  WS:&nbsp; Serial data Word Selection for the I²S interface.
 6. L/R:&nbsp; Left/Right Channel selection.
@@ -354,7 +356,7 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
 
 ## INMP441 I²S Microphone sample program:
 
-[INMP441-I2S-Mic-sample.ino](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/INMP441-I2S-Mic-sample/INMP441-I2S-Mic-sample.ino)
+**Download:**&nbsp; [INMP441-I2S-Mic-sample.ino](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/INMP441-I2S-Mic-sample/INMP441-I2S-Mic-sample.ino)
 ```C++
 /* INMP441-I2S-Mic-sample.ino
  * Requires an INMP441 I²S Microphone
@@ -369,9 +371,9 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
  1. We start by including the ESP32 I²S driver.
  2. We then define the connections to our INMP441 I²S Microphone. If
     you wish you can rewire the microphone & change the code here.
- 3. The ESP32 has two internal I²S processors. We will be using the
-    first one, “I²S Port 0”. We also define the length of our input
-    data buffer.
+ 3. The ESP32-S3 has two internal I²S processors. We will be using
+    the first one, “I²S Port 0”. We also define the length of our
+    input data buffer.
  4. Next, we have a function called “I2S_install()”, which sets up
     the I²S port parameters.
  5. A second function, “I2S_setPin()”, sets the physical connection
@@ -384,11 +386,11 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
     causes two constants to be printed to steady the reading on the
     ‘Serial Plotter’, which otherwise will dynamically change its’
     Y-axis scale.
- 8. We then read data from the INMP441 Microphone and place it in
+ 8. We then read data from the ‘INMP441 Microphone’ and place it in
     our data buffer. If the data is good, we read it out and display
     the “Audio Waveforms” on the Serial Plotter.
 
-    Testing the INMP441 I²S Microphone:
+    TESTING the INMP441 I²S Microphone:
 
     Hook everything up, load the sketch and open the Serial Plotter.
     You should see a representation of the sound (Audio Waveforms)
@@ -402,12 +404,12 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
 #define I2S_SCK    5
 #define I2S_SD     6
 
-#define I2S_PORT I2S_NUM_0              // Use I²S Processor 0
+#define I2S_PORT I2S_NUM_0              // Select I²S Processor 0
 
-#define bufferLen 64                    // Input buffer length
+#define bufferLen 64                    // Input buffer Length
 int16_t sBuffer[bufferLen];             // I²S Serial Input buffer
 
-void I2S_install() {                    // I²S Processor config
+void I2S_install() {                    // I²S Processor config:
   const i2s_config_t I2S_config = {
     .mode = i2s_mode_t(I2S_MODE_MASTER | I2S_MODE_RX),
     .sample_rate          = 44100,
@@ -435,19 +437,19 @@ void I2S_setPin() {                     // Set I²S pin configuration
 }
 
 void setup() {
-  Serial.begin(115200);                 // Initialize Serial Monitor
+  Serial.begin(115200);                 // Initialize the Serial Monitor
   while(!Serial);                       // Wait for Serial Port to open
   Serial.println(" ");
   delay(1000);
 
-  I2S_install();                        // Set up INMP441 I²S Mic
+  I2S_install();                        // Initialize the INMP441 I²S Mic
   I2S_setPin();
   i2s_start(I2S_PORT);
   delay(500);
 }
 
 void loop() {
-  // False print statements to “lock range” on Serial Plotter display
+  // False print statements to “lock the range” on the Serial Plotter.
   // Change the ‘rangeLimit’ value to adjust “sensitivity”.
   int rangeLimit = 3000;
   Serial.print(rangeLimit * -1);
@@ -457,7 +459,8 @@ void loop() {
 
   // Get I²S Data and place in the Data buffer.
   size_t bytesIn   = 0;
-  esp_err_t result = i2s_read(I2S_PORT, &sBuffer, bufferLen, &bytesIn, portMAX_DELAY);
+  esp_err_t result = i2s_read(I2S_PORT, &sBuffer, bufferLen,
+                              &bytesIn, portMAX_DELAY);
 
   if(result == ESP_OK) {
     int16_t samplesRead = bytesIn / 8;
@@ -472,6 +475,7 @@ void loop() {
   }
 }
 ```
+<br/><br/>
 
 ### What is the difference between an “**Omnidirectional**” microphone and a “**Unidirectional**” microphone?
 
@@ -514,40 +518,42 @@ that depends on many factors.
 _to be continued..._
 <hr><br/>
 
-### 【6】 Large on-board cavity Speaker on top:<br/> _(with an I²S MAX98357A Audio Amplifier on the bottom)_
+### 【6】 Large _on-board_ cavity Speaker on top:<br/> &nbsp; &nbsp; _(with an I²S MAX98357A Audio Amplifier on the bottom)_
 
 ![MAX98357A I²S Audio Amplifier](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I%C2%B2S%20Amp.jpg)
+
+### MAX98357A I²S Audio Amplifier
 
 ```
         o (_guess_) I²S interface, possibly I²S 3W ( **MAX98357A** ) Audio Amp
         o 7-Pins:&nbsp; possible I²S MAX98357A Amplifier configuration:
-            LRC Left Right Clock    | G16
-            BCLK Bit Clock          | G15
-            DIN Digital Signal In   | G7
-            GAIN                    | Connect to GND (9 dB Gain)
-            SD (L/R Channel Select) | Connect to GND (select Left)
-            GND                     | Ground
-            Vin                     | 3V3
+
+            1. LRC Left Right Clock     | G16
+            2. BCLK Bit Clock           | G15
+            3. DIN Digital Signal In    | G7
+            4. GAIN                     | Connect to GND (9 dB Gain)
+            5. SD (L/R Channel Select)  | Connect to GND (select Left)
+            6. GND                      | Ground
+            7. Vin                      | 3V3
 
 
         o External Speaker interface: (+ —)
             Audio+  Connect to Speaker Positive (usually Red wire)
             Audio-  Connect to Speaker Negative
 ```
-### MAX98357A I²S Audio Amplifier
 
-### MAX98357A I²S Amp specifications:
+### MAX98357A I²S Audio Amp specifications:
 
  1. Output Power:&nbsp; 4Ω speakers 3.2W, 10% THD _(Total Harmonic Distortion)_;<br/>
     8Ω speakers 1.8W, 10% THD _(Total Harmonic Distortion)_, with a 5V power supply
  2. PSRR _(Power Supply Rejection Ratio)_:&nbsp; 77 decibels, typical @1 KHZ
  3. I²S Sampling Rate:&nbsp; 8kHz to 96kHz
- 4. Five pin optional “Gain”: 3db, 6db, 9db, 12db, 15db
+ 4. Five pin optional Audio “Gain”: 3db, 6db, 9db, 12db, 15db
  5. You don’t need a MCLK _(Master Clock signal)_ timing signal
  6. Excellent _click and pop_ suppression
  7. Hot shutdown protection
 
-The ***MAX98357A I²S Amplifier*** takes standard I²S digital audio input and
+The ***MAX98357A I²S Audio Amplifier*** takes standard I²S digital audio input and
 not only decodes it into an ‘Analog signal’,&nbsp; but also amplifies it directly
 to a speaker.&nbsp; Perfect for adding compact amplified sound.&nbsp; It takes 2
 sources &nbsp;_(I²SDAC and AMP)_&nbsp; and combines them into one.
@@ -560,7 +566,7 @@ Channel Selection)_ are used.&nbsp; Usually, for Audio devices,&nbsp; there is a
 ***DAC chip*** that takes I²S and converts it into an Analog signal that can
 drive the speakers or headset.
 
-The **I²S MAX98357A** is small ‘mono’ amplifier that is surprisingly powerful.&nbsp;
+The **I²S MAX98357A** is small ‘mono’ Audio Amplifier that is surprisingly powerful.&nbsp;
 It is capable of delivering ‘3.2 Watts’ of power to a ‘4 Ohm’ impedance speaker
 _(5 volts power, 10%THD)_.&nbsp; Inside the microchip is a ‘D-level’ controller
 capable of operating between 2.7V and 5.5Vdc.&nbsp; Because the AMP is _class D_,&nbsp;
@@ -573,11 +579,11 @@ to the output,&nbsp; rather than grounded.&nbsp; The output is a _‘~300kHz
 square-wave, Pulse-Width Modulation’_,&nbsp; which is then “averaged out”
 by the speaker coil &nbsp;- no high frequencies are heard.&nbsp;
 
-***What all of this means that you can not connect the output to another amplifier,&nbsp;
+***What all of this means that you can not connect the output to another Audio Amplifier,&nbsp;
 the I²S MAX98357A should drive the speakers directly.***
 
-There is a _‘Gain’_ pin that can be manipulated to change the signal gain.&nbsp;
-By default,&nbsp; the amplifier will give you a Gain of _‘9 dB’_.&nbsp;
+There is a audio amplifier _‘Gain’_ pin that can be manipulated to change the signal
+gain.&nbsp; By default,&nbsp; the amplifier will give you a Gain of _‘9 dB’_.&nbsp;
 Gain pins can be set to 3db, 6db, 9db, 12db, or 15db by directly
 connecting a pull-up resistor or pull-down resistor or wiring.
 
@@ -587,30 +593,32 @@ By default,&nbsp; the amplifier will output a _(L+R) /2_ stereo mix to _mono_ ou
 By adding a resistor,&nbsp; you can change it to output just to the Left or Right.
 <hr><br/>
 
-## ST7789V 1.54" 240×240 Display sample program:
+## MAX98357A I²S Audio Amp/Speaker sample program:
 
-[GFX_ST7789_colorGraphicsDemo.ino](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/GFX_ST7789_colorGraphicsDemo/GFX_ST7789_colorGraphicsDemo.ino)
+**Download:**&nbsp; [MAX98357-I2S-Amp-SD-Music-Player.ino](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-SD-Music-Player/MAX98357-I2S-Amp-SD-Music-Player.ino)
 ```C++
 /* MAX98357-I2S-Amp-SD-Music-Player.ino
  *
- * ESP32-S3 microSD_Card I²S Music Player:
- *  Play MP3 files from a microSD_Card
- *  Uses a MAX98357 I²S Amplifier
+ * Simple ESP32-S3 microSD_Card I²S Music Player:
+ *  Play your MP3 files from a microSD_Card
+ *      1. Micro SD Card   (less than 2G)
+ *      2. Micro SDHC Card (less than 32G)
+ *  Uses a MAX98357A I²S Audio Amplifier
  *  Uses the ESP32-audioI2S Library:
  *      https://github.com/schreibfaul1/ESP32-audioI2S
  *
- * Using the MAX98357 I²S Amplifier:
+ * Using the MAX9835A I²S Audio Amplifier:
  *   The sound source will be an MP3 file that is stored on a
  *   microSD_Card.  This is an extremely basic MP3 player, for
  *   practical use you would need to make a system for navigating
  *   the microSD_Card to play more than one selection.  This sketch
- *   is just to illustrate how to use the MAX98357 I²S Amplifier,
- *   as well as a library that makes working with I²S audio
+ *   is just to illustrate how to use the MAX98357A I²S Amplifier,
+ *   as well as a library that makes working with I²S Audio
  *   applications a bit easier.
  *
  * Wiring:
  *
- * MAX98357 I²S Amp                 ESP32-S3-WROOM-1
+ * MAX98357A I²S Audio Amp          ESP32-S3-WROOM-1
  * 1. LRC  (Left Right Clock)   --> GPIO16
  * 2. BCLK (Bit Clock)          --> GPIO15
  * 3. DIN  (Digital Signal In)  --> GPIO7
@@ -638,14 +646,14 @@ By adding a resistor,&nbsp; you can change it to output just to the Left or Righ
 #include "Audio.h"
 #include "SD.h"
 #include "FS.h"
-                                    // microSD_Card pins
+                                    // microSD_Card Pins:
 #define SD_CS         10            // microSD_Card Chip Select
-#define SPI_MOSI      11            // SPI Data In  (DI)
+#define SPI_MOSI      11            // SPI Data In  (SDI)
 #define SPI_SCK       12            // SPI Clock    (CLK)
-#define SPI_MISO      13            // SPI Data Out (DO)
+#define SPI_MISO      13            // SPI Data Out (SDO)
 
-                                    // MAX98357 I²S Amp pins
-#define I2S_DOUT       7            // MAX98357 I²S Amp (DIN)
+                                    // MAX98357A I²S Audio Amp Pins:
+#define I2S_DOUT       7            // MAX98357A I²S Audio Amp (DIN)
 #define I2S_BCLK      15            //      "
 #define I2S_LRC       16            //      "
 
@@ -660,16 +668,16 @@ void setup() {
 
   SPI.begin(SPI_SCK, SPI_MISO, SPI_MOSI); // Initialize the SPI bus
 
-  if(!SD.begin(SD_CS)) {                // Start the microSD_Card
+  if(!SD.begin(SD_CS)) {            // Start the microSD_Card
     Serial.println("Error accessing microSD_Card!");
     while(true);
   }
 
-  // Setup MAX98357 I²S Amplifier & Volume control
+  // Setup the MAX98357 I²S Amplifier & Volume control
   audio.setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT);
-  audio.setVolume(5);                   // Set the Volume
+  audio.setVolume(5);               // Set Volume
 
-  // Open .mp3 music file on microSD_Card
+  // Open your .mp3 music file from the microSD_Card
   audio.connecttoFS(SD,"/MYMUSIC.mp3"); // Change to name of chosen
 }                                       // .mp3 file on microSD_Card
 
@@ -679,13 +687,14 @@ void loop() {
 ```
 <hr><br/>
 
-## MAX98357A I²S Amp sample program:
+## LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program:
 
-[MAX98357-I2S-Amp-SD-Music-Player.ino](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-SD-Music-Player/MAX98357-I2S-Amp-SD-Music-Player.ino)
+**Download:**&nbsp; [GFX_ST7789_colorGraphicsDemo.ino](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/GFX_ST7789_colorGraphicsDemo/GFX_ST7789_colorGraphicsDemo.ino)
 ```C++
-// GFX_ST7789_colorGraphicsDemo.ino (a dozen GFX graphics demos)
+// GFX_ST7789_colorGraphicsDemo.ino  (a dozen GFX graphics demos)
+//
 // ESP32-S3 1.54in TFT Expansion Board with Speaker
-// LCD 1.54in 240×240 color IPS TFT (ST7789V)
+// LCD 1.54in 240×240 color IPS TFT (ST7789V2)
 // Prof. Michael P. Harris
 
 /* This demo works with several “pin-compliant” Ðevelopment boards:
@@ -699,7 +708,7 @@ void loop() {
  *  8. FREENOVE ESP32-S3-WROOM-Lite (no camera)
  */
 
-/*  TFT LCD 1.54in 240×240 color SPI IPS (ST7789V)     [WIRING]
+/*  TFT LCD 1.54in 240×240 color SPI IPS (ST7789V2)     [WIRING]
  *
  *  Pins: TFT LCD             Pins: ESP32-S3-WROOM-1
  *  1. GND  GND               GND
@@ -714,7 +723,7 @@ void loop() {
  *     -1   SPI MISO (N/C)
  */
 
-/*******************************************************************
+/**************************************************************************
                ESP32-S3 1.54in TFT Expansion Board with Speaker
 Xtensa® 32-bit         ESP32-S3-DevKitC-1     ESP32-S3-WROOM-1 N16R8
 Dual-core LX7               (44-pins)
@@ -739,16 +748,16 @@ LOG            G46 14|o      ........ ·   o|31 G0  [BOOT]         G41  CS
 I²C SCL        G9  15|o ¨ ¨  |CP2102| ¨   o|30 G45     (TFT RST)  G40  DC
 SPI SS/CS      G10 16|o ¨¨   '''''''' ¨   ¤|29 G48 RGB LED        G45  RST
 SPI MOSI       G11 17|o BOOT .......  RST o|28 G47    (TFT MOSI)  G47  MOSI
-SPI SCK        G12 18|o ‹•›  '''''''  ‹•› o|27 G21    (TFT SCLK)  G21  SCK
+SPI SCK        G12 18|o ‹•›  '''''''  ‹•› o|27 G21    (TFT SCLK)  G21  SCLK
 SPI MISO       G13 19|o                   ø|26 G20 A19 USB_D-
 A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D+     I²C -ALT-
                5V0 21|o | USB |T T| USB | o|24 GND                —————————
                GND 22|o |  C  |G L|  C  | o|23 GND                1. *  GND
                      '——'ESP32'———'UART0'——'                      2. *  3V3
-                                               G48 RGB_BUILTIN,   3. G1 SDA
-                                               LED_BUILTIN        4. G2 SCL
+  INMP441 I²S Mic                              G48 RGB_BUILTIN,   3. G1 SDA
+MAX98357A I²S Audio Amp                            LED_BUILTIN    4. G2 SCL
 
-*******************************************************************/
+**************************************************************************/
 
 /*******************************************************************
 Arduino IDE > Tools                                  [CONFIGURATION]
@@ -776,11 +785,11 @@ When you have Tools > USB CDC On Boot > Enabled
     socket labeled "USB-OTG":
  ******************************************************************/
 
-#include <Adafruit_GFX.h>    // Core GFX Graphics library
-#include <Adafruit_ST7789.h> // Hardware-specific library for ST7789
+#include <Adafruit_GFX.h>    // Adafruit Core GFX Graphics library
+#include <Adafruit_ST7789.h> // Hardware specific library for ST7789
 #include <SPI.h>
 
-/* Some ready-made 16-bit ('565') color settings:
+/* Some ready-made 16-bit ('565') Color settings:
 #define ST77XX_BLACK    0x0000
 #define ST77XX_WHITE    0xFFFF
 #define ST77XX_RED      0xF800
@@ -792,11 +801,11 @@ When you have Tools > USB CDC On Boot > Enabled
 #define ST77XX_ORANGE   0xFC00
 */
 
-// Define the 240×240 ST7789V TFT LCD display size
+// Define the 240×240 ST7789V2 TFT LCD display size
 #define TFT_WIDTH   240     // TFT LCD Width  in pixels
 #define TFT_HEIGHT  240     // TFT LCD Height in pixels
 
-// OPTION 2: Lets you interface the display using ANY 2 or 3 Pins,
+// OPTION 2: Lets you interface your display using ANY 2 or 3 Pins,
 // tradeoff being that performance is not as fast as hardware SPI.
 // SPI Pins declared for the TFT display (Right-side ESP32-S3-WROOM)
 #define TFT_BL       42     // BackLight
@@ -812,14 +821,14 @@ Adafruit_ST7789 tft=Adafruit_ST7789(TFT_CS, TFT_DC, TFT_MOSI,
 float pi = 3.1415926;
 
 void setup(void) {
-  Serial.begin(115200);             // Serial Monitor
+  Serial.begin(115200);             // Initialize Serial Monitor
   while(!Serial);                   // Wait for Serial Port to open
 
   rgbLedWrite(RGB_BUILTIN, 0,0,0);  // Make sure RGB NeoPixel is Off
 
-  tft.init(TFT_HEIGHT, TFT_WIDTH);  // Init ST7789V 320×240 TFT OLED
+  tft.init(TFT_HEIGHT, TFT_WIDTH);  // Init ST7789V2 240×320 TFT LCD
   tft.fillScreen(ST77XX_BLACK);     // clear the screen
-  Serial.println(F("\n...ST7789V Screen Initialized"));
+  Serial.println(F("\n...ST7789V2 Screen Initialized"));
 
   // SPI speed defaults to SPI_DEFAULT_FREQ defined in the library,
   // you can override it here. Note that the speed allowable depends
@@ -827,7 +836,7 @@ void setup(void) {
   // end up with a Black/Blank screen some times, or all the time.
   // tft.setSPISpeed(40000000);
 
-  tft.setRotation(3);               // Rotation(0..3) 0°, 90°, 180°, 270°
+  tft.setRotation(3);               // Rotation(0..3) 0°,90°,180°,270°
   Serial.println(F("Hello! a dozen ST7789 GFX color Graphics Demos:"));
 
   uint16_t time = millis();
@@ -836,7 +845,7 @@ void setup(void) {
   delay(1000);
 
 
-  // Demo 1. two large blocks of text in two sizes
+  // Demo 1. Two large blocks of text in two sizes
   tft.setTextSize(1);               // TextSize (1..3) 1=5×8 pixels
   tft.fillScreen(ST77XX_BLACK);     // clear the screen
   testDrawText("Lorem ipsum dolor sit amet, consectetur adipiscing "
@@ -870,7 +879,7 @@ void setup(void) {
                 ST77XX_CYAN, ST77XX_MAGENTA, ST77XX_YELLOW,
                 ST77XX_ORANGE); delay(1000);
 
-  // Demo 4. Draw optimized Lines
+  // Demo 4. Draw Optimized Lines
   testFastLines(ST77XX_RED, ST77XX_BLUE); delay(1000);
 
   // Demo 5. Draw Rectangles
@@ -902,12 +911,11 @@ void setup(void) {
   Serial.print(F("  End time: ")); Serial.println(time, DEC);
 
   tft.setTextSize(2);
-  tft.println(" ");
   tft.setTextColor(ST77XX_WHITE);
-  tft.println("This Sketch has been");
+  tft.println("\nThis Sketch has been");
   tft.println("running for:\n");
   tft.setTextColor(ST77XX_MAGENTA);
-  tft.print(millis()/1000);
+  tft.print(millis() / 1000);
   tft.setTextColor(ST77XX_WHITE);
   tft.print(" seconds.\n"); delay(1500);
 
@@ -1031,13 +1039,13 @@ void testTriangles() {
     x-=4;
     y+=4;
     z-=4;
-    color += 200;                   // color change
+    color += 255;                   // change color
   }
 }
 
 void testRoundRects() {
   tft.fillScreen(ST77XX_BLACK);     // clear the screen
-  uint16_t color = 100;
+  uint16_t color = 127;
   int i;
   int t;
   for(t=0; t <= 4; t+=1) {
@@ -1051,9 +1059,9 @@ void testRoundRects() {
       y+=3;
       w-=4;
       h-=6;
-      color+=1100;
+      color+=1024;
     }
-    color+=100;
+    color+=128;
   }
 }
 
@@ -1110,9 +1118,8 @@ void tftPrintTest() {
   tft.println("\n Want Pi?");
   delay(1500);
   tft.setTextSize(1);
-  tft.println(" ");
   tft.print(8675309, HEX);      // print 8,675,309 out in HEX!
-  tft.println(" Printing in HEX!");
+  tft.println("\n Printing in HEX!");
   tft.println(" ");
 }
 
@@ -1173,3 +1180,4 @@ drawRGBBitmap((x,y, uint8_t [*]bitmap[], w,h);
 byteSwap(void);
 *******************************************************************/
 ```
+<hr>
