@@ -1,6 +1,15 @@
-/* MAX98357-I2S-Amp-SD-Music-Player.ino
+/* MAX98357-I2S-Amp-SD-Music-Player.ino     (I²S Music Player)
+ * Requires a MAX98357 I²S Audio Amplifier/Speaker
+ * ESP32-S3 1.54in TFT Expansion Board with Speaker
  *
- * Simple ESP32-S3 microSD_Card I²S Music Player:
+ * The MAX98357A (3 Watt Audio Amplifier with DAC), connectes three 
+ * lines (DOUT, BLCK, LRC) to the I²S bus. The I²S output frequency 
+ * is always 48kHz regardless of the input source, so Bluetooth 
+ * devices can also be connected without any problems. To get stereo 
+ * two MAX98357A are necessary. Using “AudioI2S” you can play MP3s,
+ * Icy-streams, GoogleTTS, OpenAIspeech, and more.
+ *
+ * This sketch is a simple ESP32-S3 microSD_Card I²S Music Player:
  *  Play your MP3 files from a microSD_Card
  *      1. Micro SD Card   (less than 2G)
  *      2. Micro SDHC Card (less than 32G)
@@ -40,6 +49,7 @@
  * 5. MISO (SPI SDO)            --> GPIO13
  * 6. GND                       --> GND
  *
+ * Sound with ESP32 – I²S Protocol 
  * https://dronebotworkshop.com/esp32-i2s/
  */
 
@@ -54,7 +64,7 @@
 #define SPI_MISO      13            // SPI Data Out (SDO)
 
                                     // MAX98357 I²S Amp pins
-#define I2S_DOUT       7            // MAX98357 I²S Amp (DIN)
+#define I2S_DOUT       7            // MAX98357 I²S Amp pins (DIN)
 #define I2S_BCLK      15            //      "
 #define I2S_LRC       16            //      "
 
