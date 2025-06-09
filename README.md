@@ -42,16 +42,16 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
  1. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***ST7789 1.54” 240×240 Display:***
 
-| ESP32-S3 Dev Board | ST7789 1.54” 240×240 TFT   |
-|-------------------:|----------------------------|
-|     GND            | 1. GND                     |
-|     3V3            | 2. VDD (Power)             |
-|     GPIO21         | 3. SCL SPI Clock    (SCLK) |
-|     GPIO47         | 4. SDA SPI Data     (MOSI) |
-|     GPIO45         | 5. RES TFT Reset     (RST) |
-|     GPIO40         | 6. RS  Data/Command   (DC) |
-|     GPIO41         | 7. CS  Chip Select    (CS) |
-|     GPIO42         | 8. BLK BackLight      (BL) |
+: | ESP32-S3 Dev Board | ST7789 1.54” 240×240 TFT   |
+: |-------------------:|----------------------------|
+: |     GND            | 1. GND                     |
+: |     3V3            | 2. VDD (Power)             |
+: |     GPIO21         | 3. SCL SPI Clock    (SCLK) |
+: |     GPIO47         | 4. SDA SPI Data     (MOSI) |
+: |     GPIO45         | 5. RES TFT Reset     (RST) |
+: |     GPIO40         | 6. RS  Data/Command   (DC) |
+: |     GPIO41         | 7. CS  Chip Select    (CS) |
+: |     GPIO42         | 8. BLK BackLight      (BL) |
 
  2. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S INMP441 Microphone:***
 
@@ -105,7 +105,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 >**NOTE²:**&nbsp; There are hundreds of STEMMA/Qwiic I²C sensors availiable.
 
  6. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and additional Buttons:<br/>
-    _(Most ESP32-S3 Dev Boards have two Button on-board, **RESET** and **BOOT**)_
+    _(Most ESP32-S3 Dev Boards have two Button on-board,&nbsp; **RESET** and **BOOT**)_
 
 | ESP32-S3 Dev Board | Buttons                                       |
 |-------------------:|-----------------------------------------------|
@@ -119,7 +119,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 ### 【1】 Espressif ESP-S3-DevKitC-1 — &nbsp;44-pin &nbsp;_(40-pin compatible)_&nbsp; ***Header pins***
 
-Header pins _(dual on one side)_ supports **both** ESP32-S3 Development Board widths…<br/>
+Header pins _(dual on one side)_&nbsp; supports **both** ESP32-S3 Development Board widths…<br/>
 <br/>
 Almost _{...extra pins top and bottom}_ the same pinout as the<br/>
 ESP32-S3-WROOM (CAM), &nbsp;and&nbsp; ESP32-S3-GOOUUU-CAM, etc.
@@ -290,6 +290,8 @@ LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program at the end.
 
 ![MEMS digital microphone (INMP441)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/INMP441%20I%C2%B2S%20Mic.jpg)
 
+### INMP441 &nbsp;I²S MEMS PDM Digital Microphone
+
 ```
         o I²S Mic chip mounted on the bottom-side of the Expansion Board.
         o (_guess_) I²S MEMS PDM Digital Microphone ( **INMP441** )
@@ -301,8 +303,6 @@ LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program at the end.
             VDD                    | 3V3
             GND                    | Ground
 ```
-
-### INMP441 &nbsp;I²S MEMS PDM Digital Microphone
 
 ### INMP441 I²S Microphone Introduction:
 
@@ -518,7 +518,7 @@ that depends on many factors.
 _to be continued..._
 <hr><br/>
 
-### 【6】 Large _on-board_ cavity Speaker on top:<br/> &nbsp; &nbsp; _(with an I²S MAX98357A Audio Amplifier on the bottom)_
+### 【6】 Large _on-board_ cavity Speaker on top:<br/> &nbsp; &nbsp; &nbsp; &nbsp; _(with an I²S MAX98357A Audio Amplifier on the bottom)_
 
 ![MAX98357A I²S Audio Amplifier](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I%C2%B2S%20Amp.jpg)
 
