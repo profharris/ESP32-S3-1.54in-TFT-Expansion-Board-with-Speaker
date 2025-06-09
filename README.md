@@ -3,7 +3,7 @@
 ***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/07/2025*<br/>
 [GitHub Pages](https://pages.github.com/)
 
-> Xiao Zhi AI Chatbot compatible!&nbsp;
+> ***AI Chatbot*** compatible!&nbsp;
 > https://docs.keyestudio.com/projects/ESP32S3_LCD154/en/latest/LCD154/LCD154.html <br/>
 > Ask anything, get answers on the go! This project can be a portable,
 > low-power AI assistant that works in real-time using just a single
