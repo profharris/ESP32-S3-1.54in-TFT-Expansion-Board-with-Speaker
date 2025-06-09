@@ -41,7 +41,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 ### Quick Wiring Guide:
 
  1. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***ST7789 1.54” 240×240 Display:***
-
+&nbsp;
 : | ESP32-S3 Dev Board | ST7789 1.54” 240×240 TFT   |
 : |-------------------:|----------------------------|
 : |     GND            | 1. GND                     |
