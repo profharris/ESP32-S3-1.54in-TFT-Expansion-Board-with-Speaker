@@ -1,6 +1,6 @@
 # ESP32-S3 1.54in TFT Expansion Board with Speaker <br/>_(and Microphone, & Audio Amplifier)_
 
-***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/07/2025*<br/>
+***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/09/2025*<br/>
 [GitHub Pages](https://pages.github.com/)
 
 > ***AI Chatbot*** compatible!&nbsp;
