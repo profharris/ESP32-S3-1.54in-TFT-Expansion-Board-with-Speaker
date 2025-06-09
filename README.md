@@ -72,6 +72,9 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     3V3             | 5. VDD (Power)            |
 |     GND             | 6. GND                    |
 
+
+![INMP441 I²S MEMS Mic Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/NMP441%20I²S%20MEMS%20Mic%20Wiring%20Diagram.png)
+
  3. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S MAX98357A Amplifier/Speaker:***
 
 | ESP32-S3 Dev Board | I²S MAX98357A Amplifier/Speaker |
@@ -305,7 +308,7 @@ LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program at the end.
  1. I²S Mic chip mounted on the bottom-side of the Expansion Board.
  2. I²S MEMS PDM Digital Microphone ( **INMP441** )
  3. 6-Pin configuration:
- 
+
 | ESP32-S3 Dev Board  | I²S INMP441 Microphone    |
 |--------------------:|---------------------------|
 |     GND  (LOW=Left) | 1. L/R Left/Right Channel |
@@ -329,7 +332,7 @@ LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program at the end.
 6. GND:&nbsp; Power Ground
 
 ### INMP441 I²S Microphone Introduction:
- 
+
 ***I²S*** is a protocol for transferring Digital Audio.&nbsp; The audio quality
 can range from telephone-grade to ultra-high fidelity,&nbsp; and you can have
 one or two channels.
