@@ -76,16 +76,18 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 | ESP32-S3 Dev Board | I²S MAX98357A Amplifier/Speaker |
 |-------------------:|---------------------------------|
-|     GPIO7          | 1. DIN  Digital Signal In       |
-|     GPIO15         | 2. BCLK Bit Clock               |
-|     GPIO16         | 3. LRC  Left Right Clock        |
-|     GND (9dB Gain) | 4. GAIN (Signal Amp)            |
-|     GND (LOW=Left) | 5. SD (L/R Channel Select)      |
-|     GND            | 6. GND                          |
-|     3V3            | 7. VIN                          |
+|    3V3             | 1. VIN                          |
+|    GND             | 2. GND                          |
+|    VIN (0Ω = Left) | 3. SD (L/R Channel Select)      |
+|    GND (9dB Gain)  | 4. GAIN (Signal Amp)            |
+|    GPIO7           | 5. DIN  Digital Signal In       |
+|    GPIO15          | 6. BCLK Bit Clock               |
+|    GPIO16          | 7. LRC  Left Right Clock        |
 |                    |                                 |
-|     Audio +        | Speaker Positive  (+)           |
-|     Audio -        | Speaker Negative  (-)           |
+|    Audio +         | Speaker Positive  (+)           |
+|    Audio -         | Speaker Negative  (-)           |
+
+![MAX98357A I²S Amp Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I²S%20Amp%20Wiring%20Diagram.png)
 
  4. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***SPI microSD_Card:***
 
