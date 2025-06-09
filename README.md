@@ -368,7 +368,7 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
 
 ## INMP441 I²S Microphone sample program:
 
-**Download:**&nbsp; [INMP441-I2S-Mic-sample.ino (Visual “Audio Waveforms”)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/INMP441-I2S-Mic-sample/INMP441-I2S-Mic-sample.ino)
+**Download:**&nbsp; [INMP441-I2S-Mic-sample.ino &nbsp; (Visual “Audio Waveforms”)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/INMP441-I2S-Mic-sample/INMP441-I2S-Mic-sample.ino)
 ```C++
 /* INMP441-I2S-Mic-sample.ino           (Visual “Audio Waveforms”)
  * Requires an INMP441 I²S Microphone
@@ -585,7 +585,7 @@ _to be continued..._
 
 
  1. &nbsp;I²S 3W Audio Amp ( **MAX98357A** )
- 2. &nbsp;7-Pin \+ 2, I²S MAX98357A Audio Amplifier/Speaker configuration:
+ 2. &nbsp;7-Pin \+ 2,&nbsp; I²S MAX98357A Audio Amplifier/Speaker configuration:
 
 | ESP32-S3 Dev Board | I²S MAX98357A Amplifier/Speaker |
 |-------------------:|---------------------------------|
@@ -654,7 +654,7 @@ By adding a resistor,&nbsp; you can change it to output just to the Left or Righ
 
 ## MAX98357A I²S Audio Amp/Speaker sample program:
 
-**Download:**&nbsp; [MAX98357-I2S-Amp-SD-Music-Player.ino  (I²S Music Player)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-SD-Music-Player/MAX98357-I2S-Amp-SD-Music-Player.ino)
+**Download:**&nbsp; [MAX98357-I2S-Amp-SD-Music-Player.ino &nbsp; (I²S Music Player)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-SD-Music-Player/MAX98357-I2S-Amp-SD-Music-Player.ino)
 ```C++
 /* MAX98357-I2S-Amp-SD-Music-Player.ino     (I²S Music Player)
  * Requires a MAX98357 I²S Audio Amplifier/Speaker
@@ -780,7 +780,7 @@ void loop() {
 
 ## LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program:
 
-**Download:**&nbsp; [GFX_ST7789_colorGraphicsDemo.ino  (a dozen GFX graphics demos)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/GFX_ST7789_colorGraphicsDemo/GFX_ST7789_colorGraphicsDemo.ino)
+**Download:**&nbsp; [GFX_ST7789_colorGraphicsDemo.ino &nbsp; (a dozen GFX graphics demos)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/GFX_ST7789_colorGraphicsDemo/GFX_ST7789_colorGraphicsDemo.ino)
 ```C++
 // GFX_ST7789_colorGraphicsDemo.ino  (a dozen GFX graphics demos)
 //
