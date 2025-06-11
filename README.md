@@ -131,7 +131,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 > **NOTE³:**&nbsp; The [WeAct Studio ESP32-S3-A/B Core](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WeAct%20Studio%20ESP32-S3-AB%20Core%20(44-pins).jpg)
 > Dev Board already has a third button, attached to GPIO45 _(TFT Reset)_.
-
+>
 > [Expansion Board with Speaker - Buttons Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%20Expansion%20Board%20with%20Speaker%20Buttons%20Wiring%20Diagram.png)
 <hr><br/>
 
@@ -583,6 +583,10 @@ _to be continued..._
 
 ### MAX98357A I²S Audio Amplifier/Speaker
 
+The **MAX98357A** is a digital Audio Amplifier that uses the I²S interface to receive
+audio data.&nbsp; It can be used in various applications,&nbsp; such as speakers,&nbsp;
+walkie-talkies,&nbsp; and voice recognition devices.&nbsp; The **MAX98357A** can also be
+used to play music files directly from an SD_card.
 
  1. &nbsp;I²S 3W Audio Amp ( **MAX98357A** )
  2. &nbsp;7-Pin \+ 2,&nbsp; I²S MAX98357A Audio Amplifier/Speaker configuration:
@@ -606,50 +610,66 @@ _to be continued..._
 to deliver Audio data on a circuit board.&nbsp; Many high-end chips and processors
 manage all Audio in a digital _I²S_ format.&nbsp; Then, in order to input or output
 data,&nbsp; 3 or 4 pins _(Data Input, Data Output, Bit Clock, and Left/Right
-Channel Selection)_ are used.&nbsp; Usually, for Audio devices,&nbsp; there is a
-***DAC chip*** that takes I²S and converts it into an Analog signal that can
-drive the speakers or headset.
+Channel Selection)_ are used.&nbsp; Usually, for Audio devices,&nbsp; there is
+a built-in ***DAC chip*** that takes I²S and converts it into an Analog signal
+that can directly drive the speaker or headset.
 
 The ***MAX98357A I²S Audio Amplifier*** takes standard I²S digital audio input and
 not only decodes it into an ‘Analog signal’,&nbsp; but also amplifies it directly
 to a speaker.&nbsp; Perfect for adding compact amplified sound.&nbsp; It takes 2
 sources &nbsp;_(I²SDAC and AMP)_&nbsp; and combines them into one.
 
- 1. Output Power:&nbsp; 4Ω speakers 3.2W, 10% THD _(Total Harmonic Distortion)_;<br/>
+ 1. **Class D Amplifier:**&nbsp; The **MAX98357A** is a Class D amplifier,&nbsp;
+    which means it’s efficient and suitable for battery-powered projects.
+ 2. **Output Power:**&nbsp; 4Ω speakers 3.2W, 10% THD _(Total Harmonic Distortion)_;<br/>
     8Ω speakers 1.8W, 10% THD _(Total Harmonic Distortion)_, with a 5V power supply
- 2. PSRR _(Power Supply Rejection Ratio)_:&nbsp; 77 decibels, typical @1 KHZ
- 3. I²S Sampling Rate:&nbsp; 8kHz to 96kHz
- 4. Five pin optional Audio “Gain”: 3db, 6db, 9db, 12db, 15db
- 5. You don’t need a MCLK _(Master Clock signal)_ timing signal
- 6. Excellent _click and pop_ suppression
- 7. Hot shutdown protection
+ 3. **I²S Sampling Rate:**&nbsp; 8kHz to 96kHz
+ 4. **PSRR _(Power Supply Rejection Ratio)_:**&nbsp; 77 decibels, typical @1 KHZ
+ 5. **Audio Amp “Gain”:** five pin settable options;&nbsp; 3dB, 6dB, 9dB, 12dB, and 15dB.
+ 6. You don’t need a **MCLK _(Master Clock)_** timing signal.
+ 7. Excellent **_click and pop_ suppression**.
+ 8. Automatic built-in thermal **Hot shutdown**.
 
-The **I²S MAX98357A** is small ‘mono’ Audio Amplifier that is surprisingly powerful.&nbsp;
-It is capable of delivering ‘3.2 Watts’ of power to a ‘4 Ohm’ impedance speaker
-_(5 volts power, 10%THD)_.&nbsp; Inside the microchip is a ‘D-level’ controller
-capable of operating between 2.7V and 5.5Vdc.&nbsp; Because the AMP is _class D_,&nbsp;
-it is highly efficient and perfect for portable and battery-powered projects.&nbsp;
+The **I²S MAX98357A** is an inexpensive, small, ‘mono’ Audio Amplifier that is
+surprisingly powerful.&nbsp; It is capable of delivering **‘3.2 Watts’** of power
+to a _‘4 Ohm impedance’_ speaker at 5 volts power _(10% THD)_.&nbsp; Inside the
+microchip is a ‘D-level’ Amplifier,&nbsp; capable of operating between 2.7V and
+5.5Vdc.&nbsp; Because the Amp is _class D_,&nbsp; it is highly efficient and
+perfect for portable and battery-powered projects.&nbsp;
 It has built-in _thermal protection_ and _overcurrent protection_.
 
-The audio input is **I²S standard** and can use 3.3V or 5V logic data.&nbsp;
-The outputs are “bridged” &nbsp;- this means that they are directly connected
-to the output,&nbsp; rather than grounded.&nbsp; The output is a _‘~300kHz
-square-wave, Pulse-Width Modulation’_,&nbsp; which is then “averaged out”
+The Audio input is **I²S standard**,&nbsp; and it can use 3.3V or 5V logic data.&nbsp;
+The outputs are _“bridged”_&nbsp; -this means that they are directly connected
+to the output,&nbsp; rather than grounded.&nbsp; The Audio output is a _‘Pulse-Width
+Modulation,&nbsp; ~300kHz square-wave’_,&nbsp; which is then “averaged out”
 by the speaker coil &nbsp;- no high frequencies are heard.&nbsp;
 
 ***What all of this means that you can not connect the output to another Audio Amplifier,&nbsp;
-the I²S MAX98357A should drive the speakers directly.***
+the I²S MAX98357A should drive the Speakers directly.***
 
-The I²S **MAX98357A** Audio Amplifier has a _‘Gain’_ pin that can be manipulated
-to change the signal amp gain.&nbsp; By default,&nbsp; the amplifier will give
-you a Gain of _‘9 dB’_.&nbsp; Gain pins can be set to 3db, 6db, 9db, 12db, or
-15db by directly connecting a pull-up resistor or pull-down resistor or wiring.
+The I²S **MAX98357A** Audio Amplifier has a signal _‘Gain’_ pin that can be
+manipulated to change the signal amp gain.&nbsp; By default,&nbsp; the
+**MAX98357A** Audio Amplifier will give you a Gain of ****‘9dB’***.&nbsp;
+The _‘Gain’_ pin can be confifured for&nbsp; 3dB, 6dB, 9dB, 12dB, or 15dB
+by directly connecting a _pull-up resistor_ or _pull-down resistor_
+or other wiring.
 
-_‘Shutdown/Mode’_ pins of the I²S **MAX98357A** Audio Amplifiercan be used to
-put the chip in a “shutdown state”&nbsp; or to set which I²S Audio channel is
-connected to the speaker through the pipeline.&nbsp; By default,&nbsp; the
-Audio Amplifier will output a _(L+R) /2_ stereo mix to _mono_ output.&nbsp;
-By adding a resistor,&nbsp; you can change it to output just to the Left or Right.
+   | MAX98357A Amp Gain | Gain pin configuration/wiring       |
+   |-------------------:|-------------------------------------|
+   |      3 dB          | Connect to VIN via a 100kΩ resistor |
+   |      6 dB          | Connect to VIN                      |
+   |      9 dB          | Unconnected (floating)              |
+   |     12 dB          | Directly connect to GND             |
+   |     15 dB          | Connect to GND via a 100kΩ resistor |
+
+_‘Shutdown/Mode’_ pins of the I²S **MAX98357A** Audio Amplifier can be used to
+put the chip in a “shutdown state”&nbsp; _-or_ to set which I²S Audio channel
+is connected to the speaker through the pipeline.&nbsp; By default,&nbsp; the
+Audio Amplifier will output a _(L+R)/2_ stereo mix to _mono_ output.&nbsp;
+By adding a resistor,&nbsp; you can change it to output just to the Left or
+Right.&nbsp; By adding a second inexpensive, I²S **MAX98357A** Audio Amplifier,&nbsp;
+set one to _Left_,&nbsp; set the other to _Right_,&nbsp; you can get true
+stereo sound.
 <hr><br/>
 
 ## MAX98357A I²S Audio Amp/Speaker sample program:
@@ -657,38 +677,39 @@ By adding a resistor,&nbsp; you can change it to output just to the Left or Righ
 **Download:**&nbsp; [MAX98357-I2S-Amp-SD-Music-Player.ino &nbsp; (I²S Music Player)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-SD-Music-Player/MAX98357-I2S-Amp-SD-Music-Player.ino)
 ```C++
 /* MAX98357-I2S-Amp-SD-Music-Player.ino     (I²S Music Player)
- * Requires a MAX98357 I²S Audio Amplifier/Speaker
+ * Requires a MAX98357A I²S Audio Amplifier/Speaker.
  * ESP32-S3 1.54in TFT Expansion Board with Speaker
  *
  * The MAX98357A (3 Watt Audio Amplifier with DAC), connectes three
- * lines (DOUT, BLCK, LRC) to the I²S bus. The I²S output frequency
+ * lines (DOUT, BLCK, and LRC) to the I²S bus. The I²S output frequency
  * is always 48kHz regardless of the input source, so Bluetooth
- * devices can also be connected without any problems. To get stereo
+ * devices can also be connected without any problems. To get stereo,
  * two MAX98357A are necessary. Using “AudioI2S” you can play MP3s,
  * Icy-streams, GoogleTTS, OpenAIspeech, and more.
  *
  * This sketch is a simple ESP32-S3 microSD_Card I²S Music Player:
  *
- *  Play your MP3 files from a microSD_Card
- *      1. Micro SD Card   (less than 2G)
- *      2. Micro SDHC Card (less than 32G)
- *  Uses a MAX98357 I²S Amplifier
+ *  Play your MP3 files directly from one of two types of microSD_Cards:
+ *      1. Micro SD_Card   (size up to 2GB)
+ *      2. Micro SDHC_Card (size up to 32G)
+ *
+ *  Uses a MAX98357A I²S Amplifier.
  *  Uses the ESP32-audioI2S Library:
  *      https://github.com/schreibfaul1/ESP32-audioI2S
  *
- * Using the MAX98357 I²S Audio Amplifier and Speaker:
+ * Using the MAX98357A I²S Audio Amplifier and Speaker:
  *
- *   The sound source will be an MP3 file that is stored on a
+ *   The sound source will be an .mp3 file that is stored on your
  *   microSD_Card.  This is an extremely basic MP3 player, for
- *   practical use you would need to make a system for navigating
- *   the microSD_Card to play more than one selection.  This sketch
- *   is just to illustrate how to use the MAX98357 I²S Audio Amplifier,
+ *   practical use you would need to code a system for navigating
+ *   the microSD_Card, to play more than one selection.  This sketch
+ *   is just to illustrate how to use the MAX98357A I²S Audio Amplifier,
  *   as well as a library that makes working with I²S Audio apps a
  *   bit easier.
  *
- * Wiring:
+ * Project Wiring:
  *
- * MAX98357 I²S Amp                 ESP32-S3-WROOM-1
+ * MAX98357A I²S Amp                ESP32-S3-WROOM-1
  * 1. DIN  (Digital Signal In)  --> GPIO7
  * 2. BCLK (Bit Clock)          --> GPIO15
  * 3. LRC  (Left Right Clock)   --> GPIO16
@@ -698,7 +719,7 @@ By adding a resistor,&nbsp; you can change it to output just to the Left or Righ
  * 7. VIN  (Power)              --> 3V3
  *
  * External Speaker interface: (+ —)
- * Audio+  Connect to Speaker Positive (usually Red wire)
+ * Audio+  Connect to Speaker Positive (usually a Red wire)
  * Audio-  Connect to Speaker Negative
  *
  * microSD Card                     ESP32-S3-WROOM-1
@@ -714,8 +735,8 @@ By adding a resistor,&nbsp; you can change it to output just to the Left or Righ
  */
 
 /*******************************************************************
-Type-C USB Data cable plugged into Left-side ESP32-S3 USB-OTG port.
-                                   ¯¯¯¯¯¯¯¯¯          ¯¯¯¯¯¯¯
+Type-C USB Data cable. Plug into the Left-side ESP32-S3 USB-OTG port
+                                     ¯¯¯¯¯¯¯¯¯          ¯¯¯¯¯¯¯
 Arduino IDE > Tools                                  [CONFIGURATION]
                    Board: "ESP32S3 Dev Module"
          USB CDC On Boot: "Enabled"  **Cable plugged into Left USB**
