@@ -75,9 +75,9 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     3V3             | 5. VDD (Power)            |
 |     GND             | 6. GND                    |
 
-The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:
-&nbsp; nbsp; &nbsp; &nbsp;LEFT – connect L/R to GND.
-&nbsp; nbsp; &nbsp; RIGHT – connect L/R to VDD.
+The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
+   > LEFT – connect L/R to GND.
+   > RIGHT – connect L/R to VDD.
 
 > [INMP441 I²S MEMS Mic Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/INMP441%20I%C2%B2S%20MEMS%20Mic%20Wiring%20Diagram.png)
 
