@@ -75,6 +75,9 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     3V3             | 5. VDD (Power)            |
 |     GND             | 6. GND                    |
 
+The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:
+&nbsp; nbsp; &nbsp; &nbsp;LEFT – connect L/R to GND.
+&nbsp; nbsp; &nbsp; RIGHT – connect L/R to VDD.
 
 > [INMP441 I²S MEMS Mic Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/INMP441%20I%C2%B2S%20MEMS%20Mic%20Wiring%20Diagram.png)
 
@@ -85,7 +88,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |    3V3             | 1. VIN                          |
 |    GND             | 2. GND                          |
 |    VIN (0Ω = Left) | 3. SD (L/R Channel Select)      |
-|    GND (9dB Gain)  | 4. GAIN (Signal Amp)            |
+|    GND (12dB Gain) | 4. GAIN (Signal Amp)            |
 |    GPIO7           | 5. DIN  Digital Signal In       |
 |    GPIO15          | 6. BCLK Bit Clock               |
 |    GPIO16          | 7. LRC  Left Right Clock        |
@@ -130,7 +133,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     GPIO38         | **Volume Dn**. (shorts to GND), Short press<br/>Reduces volume, Long press Mutes.            |
 
 > **NOTE³:**&nbsp; The [WeAct Studio ESP32-S3-A/B Core](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WeAct%20Studio%20ESP32-S3-AB%20Core%20(44-pins).jpg)
-> Dev Board already has a third button, attached to GPIO45 _(TFT Reset)_.
+> Dev Board already has a third button, at GPIO45 _(TFT Reset)_.
 >
 > [Expansion Board with Speaker - Buttons Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%20Expansion%20Board%20with%20Speaker%20Buttons%20Wiring%20Diagram.png)
 <hr><br/>
@@ -583,8 +586,15 @@ _to be continued..._
 
 ### MAX98357A I²S Audio Amplifier/Speaker
 
-The **MAX98357A** is a digital Audio Amplifier that uses the I²S interface to receive
-audio data.&nbsp; It can be used in various applications,&nbsp; such as speakers,&nbsp;
+So, there’s no DAC on the ESP32-S3.&nbsp; You would think this would be a bit of a downer
+if you want to get Audio out and use an Audio Amplifier like the **MAX98357A**.
+
+But it’s actually surprisingly easy to output ***Pulse Density Modulated*** Audio using
+‘Sigma Delta Modulation’ on the ESP32-S3 and the **MAX98357A** Audio Amplifier
+recovers the Audio signal by low pass filtering it with an RC filter.
+
+The **MAX98357A** is a digital Audio Amplifier that also uses the **I²S** interface to receive
+Audio data.&nbsp; It can be used in various applications,&nbsp; such as speakers,&nbsp;
 walkie-talkies,&nbsp; and voice recognition devices.&nbsp; The **MAX98357A** can also be
 used to play music files directly from an SD_card.
 
@@ -596,8 +606,8 @@ used to play music files directly from an SD_card.
 |     GPIO7          | 1. DIN  &nbsp;Digital Signal In       |
 |     GPIO15         | 2. BCLK &nbsp;Bit Clock               |
 |     GPIO16         | 3. LRC  &nbsp;Left Right Clock        |
-|     GND &nbsp;(9dB Gain) | 4. GAIN &nbsp;(Signal Amp)            |
-|     VDD &nbsp;(0Ω=Left)  | 5. SD &nbsp;&nbsp;(L/R Channel Select) |
+|     GND &nbsp;(12dB Gain) | 4. GAIN &nbsp;(Signal Amp)            |
+|     VDD &nbsp;(0Ω=Left)   | 5. SD &nbsp;&nbsp;(L/R Channel Select) |
 |     GND            | 6. GND                          |
 |     3V3            | 7. VIN                          |
 |                    |                                 |
@@ -639,16 +649,16 @@ perfect for portable and battery-powered projects.&nbsp;
 It has built-in _thermal protection_ and _overcurrent protection_.
 
 The Audio input is **I²S standard**,&nbsp; and it can use 3.3V or 5V logic data.&nbsp;
-The outputs are _“bridged”_&nbsp; -this means that they are directly connected
-to the output,&nbsp; rather than grounded.&nbsp; The Audio output is a _‘Pulse-Width
-Modulation,&nbsp; ~300kHz square-wave’_,&nbsp; which is then “averaged out”
-by the speaker coil &nbsp;- no high frequencies are heard.&nbsp;
+The outputs are _“bridged”_ &nbsp;-this means that they are directly connected
+to the output (Speaker),&nbsp; rather than grounded.&nbsp; The Audio output is a
+_‘Pulse-Width Modulation,&nbsp; ~300kHz square-wave’_,&nbsp; which is then
+“averaged out” by the speaker coil &nbsp-no high frequency distortion is heard.&nbsp;
 
 ***What all of this means that you can not connect the output to another Audio Amplifier,&nbsp;
 the I²S MAX98357A should drive the Speakers directly.***
 
 The I²S **MAX98357A** Audio Amplifier has a signal _‘Gain’_ pin that can be
-manipulated to change the signal amp gain.&nbsp; By default,&nbsp; the
+manipulated to change the signal Amp Gain.&nbsp; By default,&nbsp; the
 **MAX98357A** Audio Amplifier will give you a Gain of ****‘9dB’***.&nbsp;
 The _‘Gain’_ pin can be confifured for&nbsp; 3dB, 6dB, 9dB, 12dB, or 15dB
 by directly connecting a _pull-up resistor_ or _pull-down resistor_
@@ -662,17 +672,189 @@ or other wiring.
    |     12 dB          | Directly connect to GND             |
    |     15 dB          | Connect to GND via a 100kΩ resistor |
 
-_‘Shutdown/Mode’_ pins of the I²S **MAX98357A** Audio Amplifier can be used to
+_‘Shutdown/Mode’_ pina of the I²S **MAX98357A** Audio Amplifier can be used to
 put the chip in a “shutdown state”&nbsp; _-or_ to set which I²S Audio channel
-is connected to the speaker through the pipeline.&nbsp; By default,&nbsp; the
-Audio Amplifier will output a _(L+R)/2_ stereo mix to _mono_ output.&nbsp;
+is connected to the speaker through the pipeline.&nbsp;  By default,&nbsp; the
+Audio Amplifier will output a _(L+R)/2_ Stereo mix to _mono_ output.&nbsp;
 By adding a resistor,&nbsp; you can change it to output just to the Left or
 Right.&nbsp; By adding a second inexpensive, I²S **MAX98357A** Audio Amplifier,&nbsp;
 set one to _Left_,&nbsp; set the other to _Right_,&nbsp; you can get true
 stereo sound.
+
+   | MAX98357A Audio channel | SD pin configuration  |
+   |------------------------:|-----------------------|
+   |  No output              | 0 VDC, connect to GND |
+   |  Stereo Average         | 0.16 - 0.77 VDC       |
+   |  Right  Channel         | 0.77 - 1.4  VDC       |
+   |  Left   Channel         | 1.4 VDC or Higher     |
 <hr><br/>
 
-## MAX98357A I²S Audio Amp/Speaker sample program:
+## MAX98357A I²S Audio Amp/Speaker sample programs:
+
+**Download:**&nbsp; [MAX98357-I2S-Amp-quickTest.ino &nbsp; (440Hz sine wave)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-quickTest/MAX98357-I2S-Amp-quickTest.ino)
+```C++
+/* MAX98357-I2S-Amp-quickTest.ino          (440Hz sine wave)
+ * https://www.kincony.com/forum/showthread.php?tid=6898
+ *
+ * Requires a MAX98357A I²S Audio Amplifier/Speaker.
+ * ESP32-S3 1.54in TFT Expansion Board with Speaker
+ *
+ * DO NOT use the old I²S I2S.h library:     #include <I2S.h>
+ *
+ * ESP-IDF replacement ESP32-S3 I²S library: #include <driver/i2s.h>
+ *
+ * On the ESP32-S3, equivalent functionality for I²S communication
+ * is provided by the Espressif ESP-IDF I²S driver: “<driver/i2s.h>”
+ *
+ * This is the new standard way to interface with the I²S peripherals
+ * on the ESP32-S3.
+ *
+ * In summary, when working with I²S on the ESP32-S3, you will use the
+ * ESP-IDF I²S driver, “<driver/i2s.h>” and its associated functions
+ * rather than the standalone I2S.h header file. You can refer to the
+ * Espressif ESP-IDF documentation for detailed information & examples.
+ *
+ * https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/i2s.html
+ *
+ * Inter-IC Sound (I²S)
+ * ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+ * I2S (Inter-IC Sound) is a synchronous serial communication protocol
+ * usually used for transmitting audio data between two digital audio
+ * devices. Used to communicate ‘PCM Audio Data’ between integrated
+ * circuits in an electronic device.
+ *
+ * ESP32-S3 contains two I²S peripheral(s). These peripherals can be
+ * configured to input and output sample data via the I²S driver.
+ *
+ * An I²S bus that communicates in “Standard” and “TDM mode”,
+ * consists of the following lines:
+ *
+ *     MCLK: Master Clock line. It is an ‘optional’ signal depending
+ *           on the slave side, mainly used for offering a reference
+ *           clock to the I²S slave device.
+ *     BCLK: Bit clock line. Every tick of the BCLK stands for one
+ *           data bit on Data pin. The ‘slot’ bit width configured
+ *           in “i2s_std_slot_config_t::slot_bit_width” is equal to
+ *           the number of BCLK ticks, which means there will be:
+ *           8/16/24/32 BCLK ticks in one ‘slot’.
+ *  LRCK/WS: Left/Right Clock -or Word Select Clock. For non-PDM
+ *           mode, its frequency is equal to the “sample rate”,
+ *           e.g. the number of sampled data in one second per slot.
+ * DIN/DOUT: Serial Data Input/Output line. Data will loopback
+ *           internally if DIN and DOUT are set to the same GPIO.
+ *
+ * An I²S bus that communicates in “PDM” mode,
+ * consists of the following lines:
+ *
+ *      CLK: PDM Clock line.
+ * DIN/DOUT: Serial Data Input/Output line.
+ *
+ * Wiring:
+ * ¯¯¯¯¯¯¯
+ * MAX98357 I²S Amp                 ESP32-S3-WROOM-1
+ * 1. DIN  (Serial Data In/Out) --> GPIO7
+ * 2. BCLK (Bit Clock)          --> GPIO15
+ * 3. LRC  (Left Right Clock)   --> GPIO16
+ * 4. GAIN                      --> Connect to GND (12 dB gain)
+ * 5. SD   (L/R Channel Select) --> Connect to GND (select Left)
+ * 6. GND                       --> GND
+ * 7. VIN  (Power)              --> 3V3
+ *
+ * External Speaker interface: (+ —)
+ * Audio+  Connect to Speaker Positive (usually Red wire)
+ * Audio-  Connect to Speaker Negative
+ */
+
+/*******************************************************************
+Type-C USB Data cable plugged into Left-side ESP32-S3 USB-OTG port.
+                                   ¯¯¯¯¯¯¯¯¯          ¯¯¯¯¯¯¯
+Arduino IDE > Tools                                  [CONFIGURATION]
+                   Board: "ESP32S3 Dev Module"
+         USB CDC On Boot: "Enabled"  **Cable plugged into Left USB**
+           CPU Frequency: "240MHz (WiFi)"                 ¯¯¯¯
+         USB DFU On Boot: "Disabled"
+              Flash Mode: "QIO 80MHz"
+              Flash Size: "16MB 128Mb"  【or】
+              Flash Size: "8MB 64Mb"    ...check your board!
+USB Firmware MSC On Boot: "Disabled"
+        Partition Scheme: "16M Flash (2MB APP/12.5MB FATFS)"  【or】
+        Partition Scheme: "8MB with spiffs (3MB APP/1.5MB SPIFFS)"
+                   PSRAM: "OPI PSRAM"
+             Upload Mode: "UART0/Hardware CDC"
+            Upload Speed: "115200"
+                USB Mode: "Hardware CDC and JTAG"
+*******************************************************************/
+
+#include <Arduino.h>            // Include required libraries
+#include <driver/i2s.h>         // Include newer ESP-IDF I²S driver
+#include <math.h>
+                                // MAX98357A I²S Audio Amp pins
+#define I2S_DOUT      7         // data_out   "
+#define I2S_BLCK     15         // bck        "
+#define I2S_LRC      16         // ws         "
+
+#define I2S_PORT I2S_NUM_0      // I²S Port/Processor number
+
+const int sampleRate  = 44100;  // Sample Rate and wave parameters
+const float Frequency = 440.0;  // sine wave Frequency (A4 note)
+const int Amplitude   = 3000;   // Amplitude of the sine wave
+
+void i2s_install() {            // Setup I²S Port config for TX only
+  const i2s_config_t i2s_config = {
+    .mode                 = i2s_mode_t(I2S_MODE_MASTER | I2S_MODE_TX),
+    .sample_rate          = sampleRate,
+    .bits_per_sample      = i2s_bits_per_sample_t(16),
+    .channel_format       = I2S_CHANNEL_FMT_ONLY_LEFT,
+    .communication_format = i2s_comm_format_t(I2S_COMM_FORMAT_STAND_I2S),
+    .intr_alloc_flags     = 0,
+    .dma_buf_count        = 8,
+    .dma_buf_len          = 64,
+    .use_apll             = false
+  };
+
+  i2s_driver_install(I2S_PORT, &i2s_config, 0, NULL);
+}
+
+void i2s_setpin() {   // I²S pin configuration for Output (Audio Amp)
+  const i2s_pin_config_t pin_config = { // MAX98357A I²S pins
+    .bck_io_num   = I2S_BCLK,           // Bit Clock line
+    .ws_io_num    = I2S_LRC,            // Word Select|Left/Right Channel
+    .data_out_num = I2S_DOUT,           // Serial Data line, Data Out
+    .data_in_num  = I2S_PIN_NO_CHANGE
+  };
+
+  i2s_set_pin(I2S_PORT, &pin_config);
+}
+
+void setup() {
+  Serial.begin(115200);             // Initialize the Serial Monitor
+  while(!Serial);                   // Wait for Serial Port to open
+  Serial.println("Generating sine wave on the MAX98357A amplifier");
+
+  i2s_install();                    // Set up I²S for Transmit only
+  i2s_setpin();                     // Set up the MAX98357A Amp
+  i2s_start(I2S_PORT);
+  Serial.println("MAX98357A I²S driver installed.");
+  delay(500);
+}
+
+void loop() { // Quick Test: Send a 440Hz sine wave to the MAX98357A
+  int16_t buffer[64];               // Buffer to hold the Audio data
+
+  // Generate the 440Hz sine wave and write it to the I²S buffer
+  for(int i=0; i < 64; i++) {
+    float sample = sinf(2.0f * M_PI * Frequency * i / sampleRate);
+    buffer[i] = (int16_t)(sample * Amplitude);
+  }
+
+  // Send the sine wave in the buffer to the MAX98357A I²S amplifier
+  size_t bytesWritten;
+  i2s_write(I2S_PORT, &buffer, sizeof(buffer), &bytesWritten, portMAX_DELAY);
+
+  //i2s_stop(I2S_PORT);             // Stop the MAX98357A I²S driver
+}
+```
+<br/>
 
 **Download:**&nbsp; [MAX98357-I2S-Amp-SD-Music-Player.ino &nbsp; (I²S Music Player)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-SD-Music-Player/MAX98357-I2S-Amp-SD-Music-Player.ino)
 ```C++
@@ -713,7 +895,7 @@ stereo sound.
  * 1. DIN  (Digital Signal In)  --> GPIO7
  * 2. BCLK (Bit Clock)          --> GPIO15
  * 3. LRC  (Left Right Clock)   --> GPIO16
- * 4. GAIN                      --> Connect to GND (9 dB gain)
+ * 4. GAIN                      --> Connect to GND (12dB Gain)
  * 5. SD   (L/R Channel Select) --> Connect to VIN (0Ω = Left)
  * 6. GND                       --> GND
  * 7. VIN  (Power)              --> 3V3
