@@ -136,10 +136,10 @@ void i2s_setpin() {   // I²S pin configuration for Output (Audio Amp)
 void setup() {
   Serial.begin(115200);             // Initialize the Serial Monitor
   while(!Serial);                   // Wait for Serial Port to open
-  
+
   // NOTE: You will not hear the 440Hz Sine Wave tone until
   //       you open the Serial Monitor!
-  
+
   Serial.println("Send 440Hz Sine Waves to the MAX98357A Amplifier/Speaker");
 
   i2s_install();                    // Set up I²S for Transmit only
@@ -166,9 +166,9 @@ void loop() {
 }
 
 /*******************************************************************
-Sketch uses 344038 bytes (16%) of program storage space. 
+Sketch uses 344038 bytes (16%) of program storage space.
   Maximum is 2097152 bytes.
-Global variables use 21164 bytes (6%) of dynamic memory, 
+Global variables use 21164 bytes (6%) of dynamic memory,
   leaving 306516 bytes for local variables. Maximum is 327680 bytes.
 esptool.py v4.8.1
 Serial port COM8
