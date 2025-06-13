@@ -1,5 +1,5 @@
 /* MAX98357-I2S-Amp-quickTest.ino
- *      Quick Test: Send a 440Hz Sine Wave to the MAX98357A/Speaker.
+ *      Quick Test: Send 440Hz Sine Waves to the MAX98357A/Speaker.
  *      https://www.kincony.com/forum/showthread.php?tid=6898
  *
  * Requires a MAX98357A I²S Audio Amplifier/Speaker.
