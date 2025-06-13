@@ -1,49 +1,48 @@
 /* MAX98357-I2S-Amp-quickTest.ino
- * https://www.kincony.com/forum/showthread.php?tid=6898
+ *      Quick Test: Send a 440Hz Sine Wave to the MAX98357A/Speaker.
+ *      https://www.kincony.com/forum/showthread.php?tid=6898
  *
  * Requires a MAX98357A I²S Audio Amplifier/Speaker.
  * ESP32-S3 1.54in TFT Expansion Board with Speaker
  *
- * DO NOT use the old I²S I2S.h library:   #include <I2S.h>
- *
- * ESP32-S3 replacement I²S I2S.h driver:  #include <driver/i2s.h>
- *
+ * DO NOT use the old I²S I2S.h library with an ESP32-S3: ‘<I2S.h>’
+ * ¯¯¯¯¯¯
  * On the ESP32-S3, equivalent functionality for I²S communication
  * is provided by the Espressif ESP-IDF I²S driver: “<driver/i2s.h>”
- *
- * This is the new standard way to interface with the I²S peripherals
- * on the ESP32-S3.
- *
- * In summary, when working with I²S on the ESP32-S3, you will use the
- * ESP-IDF I²S driver, “<driver/i2s.h>” and its associated functions
- * rather than the standalone I2S.h header file. You can refer to the
- * Espressif ESP-IDF documentation for detailed information & examples.
+ * NOTE the Uppercase/lowercase difference, this is important.
+ * ¯¯¯¯
+ * This is a new standard way to interface with the I²S peripherals
+ * on the ESP32-S3. When working with I²S on the ESP32-S3, you can
+ * use the new ESP-IDF I²S driver, <driver/i2s.h> and its associated
+ * functions rather than the standalone I2S.h header file. You can
+ * refer to Espressif ESP-IDF documentation for detailed information
+ * and examples here:
  *
  * https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/i2s.html
  *
  * Inter-IC Sound (I²S)
  * ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
- * I2S (Inter-IC Sound) is a synchronous serial communication protocol
- * usually used for transmitting audio data between two digital audio
- * devices. Used to communicate ‘PCM Audio Data’ between integrated
- * circuits in an electronic device.
+ * I²S (Inter-IC Sound) is a synchronous serial bus communication
+ * protocol, usually used for transmitting Audio data between two
+ * Digital Audio devices. I²S is used to communicate ‘PCM Audio Data’
+ * between integrated circuits in an electronic device.
  *
- * ESP32-S3 contains two I²S peripheral(s). These peripherals can be
- * configured to input and output sample data via the I²S driver.
+ * The ESP32-S3 contains two I²S Peripherals. These peripherals can
+ * be configured to input and output sample data via the I²S driver.
  *
  * An I²S bus that communicates in “Standard” and “TDM mode”,
  * consists of the following lines:
  *
  *     MCLK: Master Clock line. It is an ‘optional’ signal depending
- *           on the slave side, mainly used for offering a reference
- *           clock to the I²S slave device.
- *     BCLK: Bit clock line. Every tick of the BCLK stands for one
+ *           on the slave side. It is mainly used for offering a
+ *           reference clock to the I²S slave device.
+ *     BCLK: Bit Clock line. Every tick of the BCLK stands for one
  *           data bit on Data pin. The ‘slot’ bit width configured
  *           in “i2s_std_slot_config_t::slot_bit_width” is equal to
  *           the number of BCLK ticks, which means there will be:
  *           8/16/24/32 BCLK ticks in one ‘slot’.
- *  LRCK/WS: Left/Right Clock -or Word Select Clock. For non-PDM
- *           mode, its frequency is equal to the “sample rate”,
+ *   LRC/WS: Left/Right Clock -or Word Select Clock. For non-PDM
+ *           mode, its’ frequency is equal to the “sample Rate”,
  *           e.g. the number of sampled data in one second per slot.
  * DIN/DOUT: Serial Data Input/Output line. Data will loopback
  *           internally if DIN and DOUT are set to the same GPIO.
@@ -68,6 +67,9 @@
  * External Speaker interface: (+ —)
  * Audio+  Connect to Speaker Positive (usually Red wire)
  * Audio-  Connect to Speaker Negative
+ *
+ * NOTE: You will not hear the 440Hz Sine Wave tone until
+ * ¯¯¯¯¯ you open the “Serial Monitor”!
  */
 
 /*******************************************************************
@@ -95,14 +97,14 @@ USB Firmware MSC On Boot: "Disabled"
 #include <math.h>
                                 // MAX98357A I²S Audio Amp pins
 #define I2S_DOUT      7         // data_out   "
-#define I2S_BLCK     15         // bck        "
+#define I2S_BCLK     15         // bck        "
 #define I2S_LRC      16         // ws         "
 
-#define I2S_PORT I2S_NUM_0      // I²S Port/Processor number
+#define I2S_PORT I2S_NUM_0      // I²S Port/Peripheral number
 
-const int sampleRate  = 44100;  // Sample Rate and wave parameters
-const float Frequency = 440.0;  // sine wave Frequency (A4 note)
-const int Amplitude   = 3000;   // Amplitude of the sine wave
+const int sampleRate  = 44100;  // Sample Rate and Wave parameters
+const float Frequency = 440.0;  // Sine Wave Frequency (A4 note)
+const int Amplitude   = 3000;   // Amplitude of the Sine Wave
 
 void i2s_install() {            // Setup I²S Port config for TX only
   const i2s_config_t i2s_config = {
@@ -134,27 +136,90 @@ void i2s_setpin() {   // I²S pin configuration for Output (Audio Amp)
 void setup() {
   Serial.begin(115200);             // Initialize the Serial Monitor
   while(!Serial);                   // Wait for Serial Port to open
-  Serial.println("Generating sine wave on the MAX98357A amplifier");
+  
+  // NOTE: You will not hear the 440Hz Sine Wave tone until
+  //       you open the Serial Monitor!
+  
+  Serial.println("Send 440Hz Sine Waves to the MAX98357A Amplifier/Speaker");
 
-  i2s_install();                    // Set up I²S for TX
-  i2s_setpin();                     // Set up MAX98357A
+  i2s_install();                    // Set up I²S for Transmit only
+  i2s_setpin();                     // Set up MAX98357A Audio Amp
   i2s_start(I2S_PORT);
   Serial.println("MAX98357A I²S driver installed.");
   delay(500);
 }
 
-void loop() { // Quick Test: Send a 440Hz sine wave to the MAX98357A
+void loop() {
   int16_t buffer[64];               // Buffer to hold the Audio data
 
-  // Generate the 440Hz sine wave and write it to the I²S buffer
+  // Generate a 440Hz Sine Wave and write it to the I²S buffer
   for(int i=0; i < 64; i++) {
     float sample = sinf(2.0f * M_PI * Frequency * i / sampleRate);
     buffer[i] = (int16_t)(sample * Amplitude);
   }
 
-  // Send the sine wave in the buffer to the MAX98357A I²S amplifier
+  // Send the Sine Wave in the buffer to the MAX98357A I²S Audio Amplifier
   size_t bytesWritten;
   i2s_write(I2S_PORT, &buffer, sizeof(buffer), &bytesWritten, portMAX_DELAY);
 
   //i2s_stop(I2S_PORT);             // Stop the MAX98357A I²S driver
 }
+
+/*******************************************************************
+Sketch uses 344038 bytes (16%) of program storage space. 
+  Maximum is 2097152 bytes.
+Global variables use 21164 bytes (6%) of dynamic memory, 
+  leaving 306516 bytes for local variables. Maximum is 327680 bytes.
+esptool.py v4.8.1
+Serial port COM8
+Connecting...
+Chip is ESP32-S3 (QFN56) (revision v0.2)
+Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
+Crystal is 40MHz
+MAC: 30:ed:a0:bb:73:9c
+Uploading stub...
+Running stub...
+Stub running...
+Configuring flash size...
+Flash will be erased from 0x00000000 to 0x00004fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+Flash will be erased from 0x0000e000 to 0x0000ffff...
+Flash will be erased from 0x00010000 to 0x00064fff...
+Compressed 20208 bytes to 13058...
+Writing at 0x00000000... (100 %)
+Wrote 20208 bytes (13058 compressed) at 0x00000000 in 0.4 seconds (effective 458.7 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 143...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (143 compressed) at 0x00008000 in 0.1 seconds (effective 460.0 kbit/s)...
+Hash of data verified.
+Compressed 8192 bytes to 47...
+Writing at 0x0000e000... (100 %)
+Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds (effective 624.4 kbit/s)...
+Hash of data verified.
+Compressed 344176 bytes to 186452...
+Writing at 0x00010000... (8 %)
+Writing at 0x0001c405... (16 %)
+Writing at 0x000295c3... (25 %)
+Writing at 0x0002efcd... (33 %)
+Writing at 0x00034994... (41 %)
+Writing at 0x0003a11b... (50 %)
+Writing at 0x0003f90d... (58 %)
+Writing at 0x00045469... (66 %)
+Writing at 0x0004b1d5... (75 %)
+Writing at 0x000549fc... (83 %)
+Writing at 0x0005b9a3... (91 %)
+Writing at 0x0006199a... (100 %)
+Wrote 344176 bytes (186452 compressed) at 0x00010000 in 3.1 seconds (effective 875.6 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting with RTC WDT...
+
+--------------------------------------------------------------------
+Serial Monitor:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+01:31:08.758 -> Send 440Hz Sine Waves to the MAX98357A Amplifier/Speaker
+01:31:08.758 -> MAX98357A I²S driver installed.
+
+*******************************************************************/
