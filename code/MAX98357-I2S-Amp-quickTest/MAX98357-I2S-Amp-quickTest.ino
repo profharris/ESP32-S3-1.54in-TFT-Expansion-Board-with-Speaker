@@ -8,7 +8,7 @@
  * DO NOT use the old I²S I2S.h library with an ESP32-S3: ‘<I2S.h>’
  * ¯¯¯¯¯¯
  * On the ESP32-S3, equivalent functionality for I²S communication
- * is provided by the Espressif ESP-IDF I²S driver: “<driver/i2s.h>”
+ * is provided by the Espressif ESP-IDF I²S library: “<driver/i2s.h>”
  * NOTE the Uppercase/lowercase difference, this is important.
  * ¯¯¯¯
  * This is a new standard way to interface with the I²S peripherals
@@ -68,8 +68,8 @@
  * Audio+  Connect to Speaker Positive (usually Red wire)
  * Audio-  Connect to Speaker Negative
  *
- * NOTE: You will not hear the 440Hz Sine Wave tone until
- * ¯¯¯¯¯ you open the “Serial Monitor”!
+ * NOTE:  You will not hear the 440Hz Sine Wave tone until
+ * ¯¯¯¯¯  you open the “Serial Monitor”!
  */
 
 /*******************************************************************
@@ -82,7 +82,7 @@ Arduino IDE > Tools                                  [CONFIGURATION]
          USB DFU On Boot: "Disabled"
               Flash Mode: "QIO 80MHz"
               Flash Size: "16MB 128Mb"  【or】
-              Flash Size: "8MB 64Mb"    ...check your board!
+              Flash Size: "8MB 64Mb"     ...check your board!
 USB Firmware MSC On Boot: "Disabled"
         Partition Scheme: "16M Flash (2MB APP/12.5MB FATFS)"  【or】
         Partition Scheme: "8MB with spiffs (3MB APP/1.5MB SPIFFS)"
@@ -93,7 +93,7 @@ USB Firmware MSC On Boot: "Disabled"
 *******************************************************************/
 
 #include <Arduino.h>            // Include required libraries
-#include <driver/i2s.h>         // Include newer ESP-IDF I²S driver
+#include <driver/i2s.h>         // Include newer ESP-IDF I²S library
 #include <math.h>
                                 // MAX98357A I²S Audio Amp pins
 #define I2S_DOUT      7         // data_out   "
@@ -137,8 +137,8 @@ void setup() {
   Serial.begin(115200);             // Initialize the Serial Monitor
   while(!Serial);                   // Wait for Serial Port to open
 
-  // NOTE: You will not hear the 440Hz Sine Wave tone until
-  //       you open the Serial Monitor!
+  // NOTE:  You will not hear the 440Hz Sine Wave tone until
+  //        you open the Serial Monitor!
 
   Serial.println("Send 440Hz Sine Waves to the MAX98357A Amplifier/Speaker");
 
@@ -161,6 +161,13 @@ void loop() {
   // Send the Sine Wave in the buffer to the MAX98357A I²S Audio Amplifier
   size_t bytesWritten;
   i2s_write(I2S_PORT, &buffer, sizeof(buffer), &bytesWritten, portMAX_DELAY);
+
+  // SPECIAL NOTE: To stop the 440Hz Sine Wave tone, unplug the USB
+  //               Data cable, --or better yet-, press and hold the
+  //               [BOOT] button, press then release the [RESET]
+  //               button, now release the [BOOT] button...
+  //               This puts your ESP32-S3 into “Bootloader Mode”,
+  //               waiting to be flashed with new firmware.
 
   //i2s_stop(I2S_PORT);             // Stop the MAX98357A I²S driver
 }
