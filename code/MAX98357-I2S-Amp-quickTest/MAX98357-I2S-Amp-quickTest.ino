@@ -2,15 +2,24 @@
  *      Quick Test: Send 440Hz Sine Waves to the MAX98357A/Speaker.
  *      https://www.kincony.com/forum/showthread.php?tid=6898
  *
- * Requires a MAX98357A I²S Audio Amplifier/Speaker.
+ * Requires a MAX98357A I²S Audio Amplifier/Speaker
  * ESP32-S3 1.54in TFT Expansion Board with Speaker
  *
- * DO NOT use the old I²S I2S.h library with an ESP32-S3: ‘<I2S.h>’
- * ¯¯¯¯¯¯
- * On the ESP32-S3, equivalent functionality for I²S communication
- * is provided by the Espressif ESP-IDF I²S library: “<driver/i2s.h>”
- * NOTE the Uppercase/lowercase difference, this is important.
- * ¯¯¯¯
+ * NOTE¹:  You will NOT hear the 440Hz Sine Wave tone until
+ * ¯¯¯¯¯¯  you open the Serial Monitor!
+ *
+ * NOTE²:  To stop the 440Hz Sine Wave tone, unplug the USB Data 
+ * ¯¯¯¯¯¯  cable, --or better yet, press and hold the [BOOT] button, 
+ *         press then release the [RESET] button, now release the 
+ *         [BOOT] button... This puts your ESP32-S3 into “Bootloader
+ *         Mode”, waiting to be flashed with new firmware.
+ *
+ * NOTE³:  DO NOT use the old ‘<I2S.h>’ library with an ESP32-S3.
+ * ¯¯¯¯¯¯  On the ESP32-S3, equivalent functionality for I²S 
+ *         communication is provided by the Espressif ESP-IDF I²S 
+ *         library: “<driver/i2s.h>”. NOTE the Uppercase/lowercase 
+ *         difference, this is important.
+ * 
  * This is a new standard way to interface with the I²S peripherals
  * on the ESP32-S3. When working with I²S on the ESP32-S3, you can
  * use the new ESP-IDF I²S driver, <driver/i2s.h> and its associated
@@ -55,21 +64,18 @@
  *
  * Wiring:
  * ¯¯¯¯¯¯¯
- * MAX98357 I²S Amp                 ESP32-S3-WROOM-1
+ * MAX98357 I²S Audio Amp           ESP32-S3-WROOM-1
  * 1. DIN  (Serial Data In/Out) --> GPIO7
  * 2. BCLK (Bit Clock)          --> GPIO15
  * 3. LRC  (Left Right Clock)   --> GPIO16
- * 4. GAIN                      --> Connect to GND (12 dB gain)
+ * 4. GAIN                      --> Connect to GND (12 dB Gain)
  * 5. SD   (L/R Channel Select) --> Connect to GND (select Left)
  * 6. GND                       --> GND
  * 7. VIN  (Power)              --> 3V3
  *
- * External Speaker interface: (+ —)
- * Audio+  Connect to Speaker Positive (usually Red wire)
- * Audio-  Connect to Speaker Negative
- *
- * NOTE:  You will not hear the 440Hz Sine Wave tone until
- * ¯¯¯¯¯  you open the “Serial Monitor”!
+ *    External Speaker Interface: (⧾ ⧿)
+ *    Audio⧾  Connect to Speaker Positive (usually Red wire)
+ *    Audio⧿  Connect to Speaker Negative
  */
 
 /*******************************************************************
@@ -138,7 +144,7 @@ void setup() {
   while(!Serial);                   // Wait for Serial Port to open
 
   // NOTE:  You will not hear the 440Hz Sine Wave tone until
-  //        you open the Serial Monitor!
+  // ¯¯¯¯¯  you open the Serial Monitor!
 
   Serial.println("Send 440Hz Sine Waves to the MAX98357A Amplifier/Speaker");
 
@@ -163,7 +169,7 @@ void loop() {
   i2s_write(I2S_PORT, &buffer, sizeof(buffer), &bytesWritten, portMAX_DELAY);
 
   // SPECIAL NOTE: To stop the 440Hz Sine Wave tone, unplug the USB
-  //               Data cable, --or better yet-, press and hold the
+  // ¯¯¯¯¯¯¯¯¯¯¯¯¯ Data cable, --or better yet-, press and hold the
   //               [BOOT] button, press then release the [RESET]
   //               button, now release the [BOOT] button...
   //               This puts your ESP32-S3 into “Bootloader Mode”,
@@ -194,15 +200,18 @@ Flash will be erased from 0x0000e000 to 0x0000ffff...
 Flash will be erased from 0x00010000 to 0x00064fff...
 Compressed 20208 bytes to 13058...
 Writing at 0x00000000... (100 %)
-Wrote 20208 bytes (13058 compressed) at 0x00000000 in 0.4 seconds (effective 458.7 kbit/s)...
+Wrote 20208 bytes (13058 compressed) at 0x00000000 in 0.4 seconds 
+  (effective 458.7 kbit/s)...
 Hash of data verified.
 Compressed 3072 bytes to 143...
 Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (143 compressed) at 0x00008000 in 0.1 seconds (effective 460.0 kbit/s)...
+Wrote 3072 bytes (143 compressed) at 0x00008000 in 0.1 seconds 
+  (effective 460.0 kbit/s)...
 Hash of data verified.
 Compressed 8192 bytes to 47...
 Writing at 0x0000e000... (100 %)
-Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds (effective 624.4 kbit/s)...
+Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds 
+  (effective 624.4 kbit/s)...
 Hash of data verified.
 Compressed 344176 bytes to 186452...
 Writing at 0x00010000... (8 %)
@@ -217,7 +226,8 @@ Writing at 0x0004b1d5... (75 %)
 Writing at 0x000549fc... (83 %)
 Writing at 0x0005b9a3... (91 %)
 Writing at 0x0006199a... (100 %)
-Wrote 344176 bytes (186452 compressed) at 0x00010000 in 3.1 seconds (effective 875.6 kbit/s)...
+Wrote 344176 bytes (186452 compressed) at 0x00010000 in 3.1 seconds 
+  (effective 875.6 kbit/s)...
 Hash of data verified.
 
 Leaving...
