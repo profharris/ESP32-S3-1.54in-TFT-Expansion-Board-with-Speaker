@@ -1,4 +1,5 @@
-# ESP32-S3 1.54in TFT Expansion Board with Speaker <br/>_(with I²S INMP441 Microphone, & I²S MAX98357A Audio Amplifier)_
+# ESP32-S3 1.54in TFT Expansion Board with Speaker
+## _(with I²S INMP441 Microphone, & I²S MAX98357A Audio Amplifier)_
 
 ***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/07/2025*<br/>
 [GitHub Pages](https://pages.github.com/)<br/>
@@ -49,7 +50,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
 ### Quick Wiring Guide:
 
- 1. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***ST7789 1.54” 240×240 Display:***
+ 1. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***ST7789 1.54” 240×240 TFT Display:***
 
  | ESP32-S3 Dev Board | ST7789 1.54” 240×240 TFT   |
  |-------------------:|----------------------------|
@@ -63,6 +64,7 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
  |     GPIO42         | 8. BLK BackLight      (BL) |
 
  > [LCD 1.54in 240RGB×240 IPS TFT (ST7789) Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/LCD%201.54in%20240RGB×240%20IPS%20TFT%20(ST7789)%20Wiring%20Diagram.png)
+<br/>
 
  2. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S INMP441 Microphone:***
 
@@ -76,10 +78,11 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 |     GND             | 6. GND                    |
 
 The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
-   > LEFT – connect L/R to GND.<br/>
+   > LEFT &nbsp;– connect L/R to GND.<br/>
    > RIGHT – connect L/R to VDD.
 
 > [INMP441 I²S MEMS Mic Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/INMP441%20I%C2%B2S%20MEMS%20Mic%20Wiring%20Diagram.png)
+<br/>
 
  3. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S MAX98357A Amplifier/Speaker:***
 
@@ -97,22 +100,24 @@ The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
 |    Audio -         | Speaker Negative  (-)           |
 
 > [MAX98357A I²S Amp Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I²S%20Amp%20Wiring%20Diagram.png)
+<br/>
 
  4. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***SPI microSD_Card:***
 
 | ESP32-S3 Dev Board | SPI microSD_Card pins  |
 |-------------------:|------------------------|
 |     3V3            | 1. 3V3  (Power)        |
-|     GPIO10         | 2. CS   (Chip Select)  |
-|     GPIO11         | 3. MOSI (SPI SDI)      |
-|     GPIO12         | 4. CLK  (SPI Clock)    |
-|     GPIO13         | 5. MISO (SPI SDO)      |
+|     GPIO10         | 2. CS   <br/>(Chip Select)  |
+|     GPIO11         | 3. MOSI <br/>(SPI SDI)      |
+|     GPIO12         | 4. CLK  <br/>(SPI Clock)    |
+|     GPIO13         | 5. MISO <br/>(SPI SDO)      |
 |     GND            | 6. GND                 |
 
-> **NOTE¹:**&nbsp; Micro SD Card (less than 2G), Micro SDHC Card (less than 32G).
+> **NOTE¹:**&nbsp; Micro SD Card (size: less than 2G), Micro SDHC Card (size: less than 32G).
+<br/>
 
  5. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and an I²C interface & OLED Display:<br/>
-    (STEMMA/Qwiic I²C interface)
+    (STEMMA-Qt/Qwiic I²C interface)
 
 | ESP32-S3 Dev Board | I²C 0.96" 128×64 OLED  | Qwiic Wire Color |
 |-------------------:|------------------------|------------------|
@@ -121,7 +126,11 @@ The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
 |     GPIO8          | 4. SDA I²C Data  (SDA) | Blue             |
 |     GPIO9          | 3. SCL I²C Clock (SCL) | Yellow           |
 
-> **NOTE²:**&nbsp; There are hundreds of STEMMA/Qwiic I²C sensors availiable.
+> **NOTE²:**&nbsp; There are hundreds of STEMMA-Qt/Qwiic I²C sensors availiable.<br/>
+> [Introducing Qwiic / Stemma-Qt](https://learn.adafruit.com/introducing-adafruit-stemma-qt)<br/>
+> [Adafruit Stemma-QT/Qwiic I²C sensors & devices](https://www.adafruit.com/category/1018)<br/>
+> [SparkFun Stemma-QT/Qwiic I²C sensors & devices](https://www.sparkfun.com/catalogsearch/result/?q=Qwiic)
+<br/>
 
  6. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and additional Buttons:<br/>
     _(Most ESP32-S3 Dev Boards have two Button on-board,&nbsp; **RESET** and **BOOT**)_
