@@ -1,7 +1,7 @@
 # ESP32-S3 1.54in TFT Expansion Board with Speaker
-## _(with I²S INMP441 Microphone, & I²S MAX98357A Audio Amplifier)_
+## _(with&nbsp; I²S INMP441 Microphone, &&nbsp; I²S MAX98357A Audio Amplifier)_
 
-***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/07/2025*<br/>
+***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/15/2025*<br/>
 [GitHub Pages](https://pages.github.com/)<br/>
 <br/>
 
@@ -9,7 +9,7 @@
 > https://docs.keyestudio.com/projects/ESP32S3_LCD154/en/latest/LCD154/LCD154.html <br/>
 > Ask anything, get answers on the go! This project can be a portable,
 > low-power AI assistant that works in real-time using just a single
-> ESP32-S3, a mic, and a speaker. It can listens to your voice, processes
+> ESP32-S3, a Mic, Amp, & a Speaker. It can listens to your voice, processes
 > your questions through Google’s Gemini AI API, and responds with an
 > answer via tech-to-speech.
 
@@ -96,8 +96,8 @@ The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
 |    GPIO15          | 6. BCLK Bit Clock               |
 |    GPIO16          | 7. LRC  Left Right Clock        |
 |                    |                                 |
-|    Audio +         | Speaker Positive  (+)           |
-|    Audio -         | Speaker Negative  (-)           |
+|    Audio ⧾         | Speaker Positive  (⧾)           |
+|    Audio ⧿         | Speaker Negative  (⧿)           |
 
 > [MAX98357A I²S Amp Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I²S%20Amp%20Wiring%20Diagram.png)
 <br/>
@@ -182,8 +182,8 @@ I²C SCL        G9  15|o ¨ ¨  |CP2102| ¨   o|30 G45     (TFT RST)  G40  DC
 SPI SS/CS      G10 16|o ¨¨   '''''''' ¨   ¤|29 G48 RGB LED        G45  RST
 SPI MOSI       G11 17|o BOOT .......  RST o|28 G47    (TFT MOSI)  G47  MOSI
 SPI SCK        G12 18|o ‹•›  '''''''  ‹•› o|27 G21    (TFT SCLK)  G21  SCLK
-SPI MISO       G13 19|o                   ø|26 G20 A19 USB_D-
-A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D+     I²C -ALT-
+SPI MISO       G13 19|o                   ø|26 G20 A19 USB_D⧿
+A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D⧾     I²C -ALT-
                5V0 21|o | USB |T T| USB | o|24 GND                —————————
                GND 22|o |  C  |G L|  C  | o|23 GND                1. *  GND
                      '——'ESP32'———'UART0'——'                      2. *  3V3
@@ -242,8 +242,8 @@ Configuration:
         6. RST    GPIO45    TFT Reset       (RST)
         7. VDD    3V3       Positive Power  (3.3V)
         8. GND    GND       System Ground   (GND)
-        9. A      3V3       BackLight LED Anode   (+)
-       10. K      GPIO42    BackLight LED Cathode (-) (BL)
+        9. A      3V3       BackLight LED Anode   (⧾)
+       10. K      GPIO42    BackLight LED Cathode (⧿) (BL)
 
         TFT LCD   ESP32-S3
          8-Pin    Pin       Function/Description
@@ -595,7 +595,7 @@ _to be continued..._
 
 ### MAX98357A I²S Audio Amplifier/Speaker &nbsp; ***verified***
 
-So, there’s no DAC on the ESP32-S3.&nbsp; You would think this would be a bit of a downer
+There is no DAC on the ESP32-S3.&nbsp; You would think this would be a bit of a downer
 if you want to get Audio out and use an Audio Amplifier like the **MAX98357A**.
 
 But it’s actually surprisingly easy to output ***Pulse Density Modulated*** Audio using
@@ -605,10 +605,10 @@ recovers the Audio signal by low pass filtering it with an RC filter.
 The **MAX98357A** is a digital Audio Amplifier that also uses the **I²S** interface to receive
 Audio data.&nbsp; It can be used in various applications,&nbsp; such as speakers,&nbsp;
 walkie-talkies,&nbsp; and voice recognition devices.&nbsp; The **MAX98357A** can also be
-used to play music files directly from an SD_card.
+used to play music files directly from an SD/microSD_card.
 
- 1. &nbsp;I²S 3W Audio Amp ( **MAX98357A** )
- 2. &nbsp;7-Pin \+ 2,&nbsp; I²S MAX98357A Audio Amplifier/Speaker configuration:
+ 1. &nbsp;I²S 3W Audio Amplifier/Speaker ( **MAX98357A** )
+ 2. &nbsp;7-Pin ⧾ 2,&nbsp; I²S MAX98357A Audio Amplifier/Speaker configuration:
 
 | ESP32-S3 Dev Board | MAX98357A I²S Audio Amplifier/Speaker         |
 |-------------------:|-----------------------------------------------|
@@ -678,7 +678,7 @@ or other wiring.
    |      3 dB          | Connect to VIN via a 100kΩ resistor |
    |      6 dB          | Directly connect to VIN             |
    |      9 dB          | Unconnected (floating)              |
-   |     12 dB          | Directly connect to GND             |
+   |     12 dB          | Directly connect to GND ✓           |
    |     15 dB          | Connect to GND via a 100kΩ resistor |
 
 The _‘Shutdown/Mode’_ pin of the I²S **MAX98357A** Audio Amplifier&nbsp; can be used
@@ -695,7 +695,7 @@ Stereo sound.
    | MAX98357A Audio channel | SD pin configuration  |
    |------------------------:|-----------------------|
    |  No output              | 0 VDC, connect to GND |
-   |  Stereo Average         | 0.16 - 0.77 VDC       |
+   |  Stereo Average ✓       | 0.16 - 0.77 VDC       |
    |  Right  Channel         | 0.77 - 1.4  VDC       |
    |  Left   Channel         | 1.4 VDC or Higher     |
 <hr><br/>
@@ -745,7 +745,7 @@ Stereo sound.
  * The ESP32-S3 contains two I²S Peripherals. These peripherals can
  * be configured to input and output sample data via the I²S driver.
  *
- * An I²S bus that communicates in “Standard” and “TDM mode”,
+ * An I²S bus that communicates in “Standard” and/or “TDM mode”,
  * consists of the following lines:
  *
  *     MCLK: Master Clock line. It is an ‘optional’ signal depending
@@ -849,7 +849,7 @@ void setup() {
   Serial.begin(115200);             // Initialize the Serial Monitor
   while(!Serial);                   // Wait for Serial Port to open
 
-  // NOTE:  You will not hear the 440Hz Sine Wave tone until
+  // NOTE:  You will NOT hear the 440Hz Sine Wave tone, until
   // ¯¯¯¯¯  you open the Serial Monitor!
 
   Serial.println("Send 440Hz Sine Waves to the MAX98357A Amplifier/Speaker");
