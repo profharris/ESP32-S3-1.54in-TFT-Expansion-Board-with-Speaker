@@ -107,17 +107,17 @@ The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
 | ESP32-S3 Dev Board | SPI microSD_Card pins  |
 |-------------------:|------------------------|
 |     3V3            | 1. 3V3  (Power)        |
-|     GPIO10         | 2. CS   <br/>(Chip Select)  |
-|     GPIO11         | 3. MOSI <br/>(SPI SDI)      |
-|     GPIO12         | 4. CLK  <br/>(SPI Clock)    |
-|     GPIO13         | 5. MISO <br/>(SPI SDO)      |
+|     GPIO10         | 2. CS   &nbsp;&nbsp;(Chip Select)  |
+|     GPIO11         | 3. MOSI &nbsp;(SPI SDI)      |
+|     GPIO12         | 4. CLK  &nbsp;&nbsp;(SPI Clock)    |
+|     GPIO13         | 5. MISO &nbsp;(SPI SDO)      |
 |     GND            | 6. GND                 |
 
 > **NOTE¹:**&nbsp; Micro SD Card (size: less than 2G), Micro SDHC Card (size: less than 32G).
 <br/>
 
  5. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and an I²C interface & OLED Display:<br/>
-    (STEMMA-Qt/Qwiic I²C interface)
+    (STEMMA-Qt/Qwiic I²C &nbsp;interface)
 
 | ESP32-S3 Dev Board | I²C 0.96" 128×64 OLED  | Qwiic Wire Color |
 |-------------------:|------------------------|------------------|
@@ -128,7 +128,7 @@ The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
 
 > **NOTE²:**&nbsp; There are hundreds of STEMMA-Qt/Qwiic I²C sensors availiable.<br/>
 > [Introducing Qwiic / Stemma-Qt](https://learn.adafruit.com/introducing-adafruit-stemma-qt)<br/>
-> [Adafruit Stemma-QT/Qwiic I²C sensors & devices](https://www.adafruit.com/category/1018)<br/>
+> [Adafruit&nbsp; Stemma-QT/Qwiic I²C sensors & devices](https://www.adafruit.com/category/1018)<br/>
 > [SparkFun Stemma-QT/Qwiic I²C sensors & devices](https://www.sparkfun.com/catalogsearch/result/?q=Qwiic)
 <br/>
 
@@ -137,9 +137,9 @@ The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
 
 | ESP32-S3 Dev Board | Buttons                                       |
 |-------------------:|-----------------------------------------------|
-|     GPIO0          | **BOOT Button**. Can also be used as a<br/>“Wake/Interrupt” button. (connected to GND) |
-|     GPIO39         | **Volume Up**. (shorts to GND), Short press<br/>Increases volume, Long press for Max volume. |
-|     GPIO38         | **Volume Dn**. (shorts to GND), Short press<br/>Reduces volume, Long press Mutes.            |
+|     GPIO0          | **BOOT Button**.&nbsp; Can also be used as a<br/>“Wake/Interrupt” button. (connected to GND) |
+|     GPIO39         | **Volume Up**.&nbsp; (shorts to GND), Short press<br/>Increases volume, Long press for Max volume. |
+|     GPIO38         | **Volume Dn**.&nbsp; (shorts to GND), Short press<br/>Reduces volume, Long press Mutes.            |
 
 > **NOTE³:**&nbsp; The [WeAct Studio ESP32-S3-A/B Core](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WeAct%20Studio%20ESP32-S3-AB%20Core%20(44-pins).jpg)
 > Dev Board already has a third button, at GPIO45 _(TFT Reset)_.
@@ -546,6 +546,7 @@ Serial Monitor:
 Watch the visual “Audio Waveforms” in the Serial Plotter window.
 ----------------------------------------------------------------- */
 ```
+
 <br/>
 
 ### What is the difference between an “**Omnidirectional**” microphone and a “**Unidirectional**” microphone?
@@ -891,6 +892,93 @@ Serial Monitor:
 01:31:08.758 -> MAX98357A I²S driver installed.
 
 *******************************************************************/
+```
+<br/>
+
+**Download:**&nbsp; [MAX98357-I2S-stream-from-Flash.ino &nbsp; _(Stream the “Star Wars” intro)_](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-stream-from-Flash/MAX98357-I2S-stream-from-Flash.ino)<br/>
+**Download:**&nbsp; [StarWars30.h &nbsp; _(“Star Wars” intro)_](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-stream-from-Flash/StarWars30.h)
+```C++
+/* MAX98357-I2S-stream-from-Flash.ino
+ * Requires a MAX98357A I²S Audio Amplifier/Speaker
+ * ESP32-S3 1.54in TFT Expansion Board with Speaker
+ *
+ *      Stream a file from Flash Memory and send it to the I²S bus:
+ *
+ *      Uses Arduino AudioTools library
+ *      https://github.com/pschatzmann/arduino-audio-tools
+ *
+ * Requires a music file in the same directory:  “StarWars30.h”
+ *
+ * Wiring:
+ * ¯¯¯¯¯¯¯
+ * MAX98357A I²S Amp (7-pins)       ESP32-S3-WROOM-1
+ * 1. DIN  (Serial Data In/Out) --> GPIO7
+ * 2. BCLK (Bit Clock)          --> GPIO15
+ * 3. LRC  (Left Right Clock)   --> GPIO16
+ * 4. GAIN                      --> Connect to GND (12 dB gain)
+ * 5. SD   (L/R Channel Select) --> Connect to GND (select Left)
+ * 6. GND                       --> GND
+ * 7. VIN  (Power)              --> 3V3
+ *
+ * External Speaker interface: (+ —)
+ * Audio+  Connect to Speaker Positive (usually Red wire)
+ * Audio-  Connect to Speaker Negative
+ */
+
+/*******************************************************************
+Type-C USB Data cable plugged into Left-side ESP32-S3 USB-OTG port.
+                                   ¯¯¯¯¯¯¯¯¯          ¯¯¯¯¯¯¯
+Arduino IDE > Tools                                  [CONFIGURATION]
+                   Board: "ESP32S3 Dev Module"
+         USB CDC On Boot: "Enabled"  **Cable plugged into Left USB**
+           CPU Frequency: "240MHz (WiFi)"                 ¯¯¯¯
+         USB DFU On Boot: "Disabled"
+              Flash Mode: "QIO 80MHz"
+              Flash Size: "16MB 128Mb"
+USB Firmware MSC On Boot: "Disabled"
+        Partition Scheme: "16M Flash (3MB APP/9.9MB FATFS)"
+                   PSRAM: "OPI PSRAM"
+             Upload Mode: "UART0/Hardware CDC"
+            Upload Speed: "115200"
+                USB Mode: "Hardware CDC and JTAG"
+*******************************************************************/
+ 
+#include "AudioTools.h"             // Arduino Audio Tools library
+#include "StarWars30.h"
+
+uint8_t  channels                   =     2;
+uint16_t sample_rate                = 22050;
+uint8_t  bits_per_sample            =    16;
+
+uint8_t  pin_bck                    =    15;  // MAX98357A BCLK 
+uint8_t  pin_ws                     =    16;  // MAX98357A WS/LRC
+uint8_t  pin_data                   =     7;  // MAX98357A DIN/DOUT
+
+// Make sure “StarWars30.h” is in the same directory as this sketch
+MemoryStream music(StarWars30_raw, StarWars30_raw_len);
+I2SStream i2s;                      // Output(Stream) to I²S
+StreamCopy copier(i2s, music);      // Copy music to I²S bus
+
+void setup(){
+  Serial.begin(115200);             // Initialize the Serial Monitor
+  while(!Serial);                   // Wait for Serial Port to open
+
+  auto config            = i2s.defaultConfig(TX_MODE);
+  config.sample_rate     = sample_rate;
+  config.channels        = channels;
+  config.bits_per_sample = bits_per_sample;
+  config.pin_bck         = pin_bck;  // MAX98357A Bit Clock
+  config.pin_ws          = pin_ws;   // MAX98357A Left/Right Clock
+  config.pin_data        = pin_data; // MAX98357A Serial Data In/Out
+  i2s.begin(config);
+
+  music.begin();
+}
+
+void loop() {
+    copier.copy();
+    // Listen to the “Star Wars” intro...
+}
 ```
 <br/>
 
