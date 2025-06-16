@@ -99,7 +99,7 @@ The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
 |    Audio ⧾         | Speaker Positive  (⧾)           |
 |    Audio ⧿         | Speaker Negative  (⧿)           |
 
-> [MAX98357A I²S Amp Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I²S%20Amp%20Wiring%20Diagram.png)
+> [MAX98357A I²S Audio Amp Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I²S%20Amp%20Wiring%20Diagram.png)
 <br/>
 
  4. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***SPI microSD_Card:***
@@ -192,7 +192,7 @@ MAX98357A I²S Audio Amp                            LED_BUILTIN    4. G2 SCL
 ```
 #### ESP32-S3 Pins Summary:
 0…18 GPIO,&nbsp; 19…20 D+/D-,&nbsp; 21 GPIO,&nbsp;
-22…25 Do Not Exist,&nbsp; 26…32 QSPI ƒlash,&nbsp; 33…34 Missing,&nbsp;
+22…25 Do Not Exist,&nbsp; 26…32 QSPI ƒlash,<br/> 33…34 Missing,&nbsp;
 35…42 GPIO,&nbsp; 43…44 TX/RX,&nbsp; 45…48 GPIO<br/>
 &nbsp; &nbsp; _pins_arduino.h_ ***~*** **ESP32-S3-DevKitC-1**
 <hr><br/>
@@ -546,7 +546,7 @@ Serial Monitor:
 Watch the visual “Audio Waveforms” in the Serial Plotter window.
 ----------------------------------------------------------------- */
 ```
-
+![“Audio Waveforms” in the Serial Plotter window](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/Serial-Plotter.png)
 <br/>
 
 ### What is the difference between an “**Omnidirectional**” microphone and a “**Unidirectional**” microphone?
@@ -1105,6 +1105,249 @@ void setup() {
 
 void loop() {
   audio.loop();                         // Play the .mp3 file in a loop
+}
+```
+<hr><br/>
+
+### 【7】 _(optional)_ SPI Micro SD/SDHC Card Reader/Writer 
+
+![Micro SD/SDHC Card Reader/Writer](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/microSD_Card-1.jpg)
+![Micro SD/SDHC Card Reader/Writer Breakout Boards](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/SD_Breakout_boards.jpg)
+
+### SPI Micro SD/SDHC Card Reader/Writer
+
+#### SPI SD/SDHC Card Specifications:
+```
+                Voltage: 4.5V~5.5V DC
+                Current: 0.2~200mA
+Communication Interface: Standard SPI
+Interface Voltage Level: 3.3V or 5V
+      Control Interface: (3V3, CS, MOSI, CLK, MISO, GND)
+  Applicable card types: Micro SD Card   (size: less than  2G)
+                         Micro SDHC Card (size: less than 32G)
+```
+
+The microSD Card Adapter is a microSD Card reader/writer module. through
+a common filesystem, and the SPI interface driver, you can easily read 
+and write files to/from the TF microSD card.
+
+### Formatting the SPI SD_card
+
+The first step when using the SD_card module is formatting the SD_card as 
+FAT16 or FAT32.&nbsp; Follow the instructions below.
+
+ 1. To format the SD_card,&nbsp; insert it in your computer.&nbsp; Go to ‘My Computer’ and 
+    _right click_ on the SD_card.&nbsp; Select “Format” as shown in figure below.
+    
+    ![Format SD_card-1]()
+    
+ 2. A new window pops up.&nbsp; Select “FAT32”,&nbsp; press [Start] to initialize 
+    the formatting process and follow the onscreen instructions.
+    
+    ![Format SD_card-2]()
+
+### Wiring up the SPI SD_card
+
+  | ESP32-S3 Dev Board | SPI microSD_Card pins  |
+  |-------------------:|------------------------|
+  |     3V3            | 1. 3V3  (Power)        |
+  |     GPIO10         | 2. CS   &nbsp;&nbsp;(Chip Select)  |
+  |     GPIO11         | 3. MOSI &nbsp;(SPI SDI)      |
+  |     GPIO12         | 4. CLK  &nbsp;&nbsp;(SPI Clock)    |
+  |     GPIO13         | 5. MISO &nbsp;(SPI SDO)      |
+  |     GND            | 6. GND                 |
+
+You can quickly test your SD_Card wiring by running the _built-in_
+“CardInfo” sketch in the Arduino IDE. Go to:
+
+&nbsp; &nbsp; &nbsp; **File> Examples > SD > CardInfo**
+
+If everything is working properly,&nbsp; you’ll see a similar message 
+on the Serial Monitor:
+
+```
+    Initializing SD Card... Wiring is correct and a card is present
+    
+    Card type: SDHC
+    
+    Volume type is: FAT32”
+    
+    Volume size  (bytes): 2629828608
+    Volume size (Kbytes): 2568192
+    Volume size (Mbytes): 2508
+    
+```
+
+### Testing the SPI SD_card - sample program
+
+Insert the formatted SD_card in the SD_card module.&nbsp; The “**SD**” 
+library provides useful functions to easily write to and read from the 
+SD_card.&nbsp; Run the following sketch to test Read and write to the SD_card.
+
+**Download:**&nbsp; [SPI_SD_card-Test.ino &nbsp; (SD_card test)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/GFX_ST7789_colorGraphicsDemo/GFX_ST7789_colorGraphicsDemo.ino)
+```C++
+/* SPI_SD_card-Test.ino
+ * Requires an SPI microSD Card reader/writer
+ * ESP32-S3 1.54in TFT Expansion Board with Speaker
+ *
+ * SD_card test
+ *
+ * This example shows how use the utility libraries on which the “SD”
+ * library is based in order to get info about your SD card. Very 
+ * useful for testing a card when you're not sure whether its working 
+ * properly or not.
+ *
+ * Wiring:
+ *
+ *  | ESP32-S3 Dev Board | SPI microSD_Card pins  |
+ *  |-------------------:|------------------------|
+ *  |     3V3            | 1. 3V3  (Power)        |
+ *  |     GPIO10         | 2. CS   (Chip Select)  |
+ *  |     GPIO11         | 3. MISO (SPI SDO)      |
+ *  |     GPIO12         | 4. MOSI (SPI SDI)      |
+ *  |     GPIO13         | 5. CLK  (SPI Clock)    |
+ *  |     GND            | 6. GND                 | 
+ */
+ 
+#include <SPI.h>        // Arduino SPI library
+#include <SD.h>         // Arduino SD Card library
+
+Sd2Card  card;
+SdVolume volume;
+SdFile   root;
+File     myFile;
+
+const int chipSelect = 10;
+
+// List Files
+void printDIR(File dir, int numTabs) {
+  while(true) {
+    File entry = dir.openNextFile();
+    if(!entry) { // no more files
+      break;
+    }
+    for(uint8_t i=0; i < numTabs; i++) {
+      Serial.print('\t');
+    }
+    Serial.print(entry.name());
+    if(entry.isDirectory()) {
+      Serial.println("/");
+      printDIR(entry, numTabs + 1);
+    } else { // files have sizes, directories do not
+      Serial.print("\t\t");
+      Serial.println(entry.size(), DEC);
+    }
+    entry.close();
+  }
+}
+
+void setup() {
+  Serial.begin(15200);              // Serial Monitor
+  while(!Serial);                   // Wait for Serial Port to open
+
+  Serial.print("\nInitializing SD_card...");
+
+  if(!card.init(SPI_HALF_SPEED, chipSelect)) {
+    Serial.println("initialization failed. Things to check:");
+    Serial.println("* is a card inserted?");
+    Serial.println("* is your wiring correct?");
+    while(1);
+  } else {
+    Serial.println("Wiring is correct and a card is present.");
+  }
+
+  Serial.println();
+  Serial.print("Card type:         ");
+  switch(card.type()) {
+    case SD_CARD_TYPE_SD1:
+      Serial.println("SD1");
+      break;
+    case SD_CARD_TYPE_SD2:
+      Serial.println("SD2");
+      break;
+    case SD_CARD_TYPE_SDHC:
+      Serial.println("SDHC");
+      break;
+    default:
+      Serial.println("Unknown");
+  }
+
+  if(!volume.init(card)) {
+    Serial.println("Could not find FAT16/FAT32 partition.");
+    Serial.println("Make sure you've formatted the card.");
+    while (1);
+  }
+
+  Serial.print("Clusters:          "); 
+  Serial.println(volume.clusterCount());
+  Serial.print("Blocks x Cluster:  "); 
+  Serial.println(volume.blocksPerCluster());
+  Serial.print("Total Blocks:      "); 
+  Serial.println(volume.blocksPerCluster() * volume.clusterCount());
+  Serial.println();
+
+  uint32_t volumesize;
+  Serial.print("Volume type is:    FAT");
+  Serial.println(volume.fatType(), DEC);
+
+  volumesize = volume.blocksPerCluster();   // Clusters are collections of Blocks
+  volumesize *= volume.clusterCount();      // We'll have a lot of Clusters
+  volumesize /= 2;                          // SD_card Blocks are always 512 bytes
+  Serial.print("Volume size (Kb):  ");      //  (2 Blocks are 1KB)
+  Serial.println(volumesize);
+  Serial.print("Volume size (Mb):  ");
+  volumesize /= 1024;
+  Serial.println(volumesize);
+  Serial.print("Volume size (Gb):  ");
+  Serial.println((float)volumesize / 1024.0);
+  
+  Serial.println("initialization done.");
+
+  // Test for existing file "example.txt"
+  if(SD.exists("example.txt")) {
+    Serial.println("example.txt exists.");
+  } else {
+    Serial.println("example.txt doesn't exist.");
+  }
+
+  // Open a new file and immediately close it:
+  Serial.println("Creating example.txt...");
+  myFile = SD.open("example.txt", FILE_WRITE);
+  myFile.close();
+
+  // Check to see if the file exists:
+  if (SD.exists("example.txt")) {
+    Serial.println("example.txt exists.");
+  } else {
+    Serial.println("example.txt doesn't exist.");
+  }
+
+  // Delete the file:
+  Serial.println("Removing example.txt...");
+  SD.remove("example.txt");
+  if (SD.exists("example.txt")) {
+    Serial.println("example.txt exists.");
+  } else {
+    Serial.println("example.txt doesn't exist.");
+  }
+
+  // Directory listing of existing files
+  Serial.println("\nFiles found on the SD_card (Name, Date and Size in bytes): ");
+  root.openRoot(volume);
+
+  // List all Files in the SD_Card with Date and Size
+  root.ls(LS_R | LS_DATE | LS_SIZE);
+  root.close();
+
+  // List Files using printDIR() function
+  Serial.println();
+  root = SD.open("/");
+  printDIR(root, 0);
+
+  Serial.println("done!");
+}
+
+void loop() {
 }
 ```
 <hr><br/>
