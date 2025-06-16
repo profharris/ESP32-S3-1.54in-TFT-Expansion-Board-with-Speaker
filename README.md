@@ -942,7 +942,7 @@ USB Firmware MSC On Boot: "Disabled"
             Upload Speed: "115200"
                 USB Mode: "Hardware CDC and JTAG"
 *******************************************************************/
- 
+
 #include "AudioTools.h"             // Arduino Audio Tools library
 #include "StarWars30.h"
 
@@ -950,7 +950,7 @@ uint8_t  channels                   =     2;
 uint16_t sample_rate                = 22050;
 uint8_t  bits_per_sample            =    16;
 
-uint8_t  pin_bck                    =    15;  // MAX98357A BCLK 
+uint8_t  pin_bck                    =    15;  // MAX98357A BCLK
 uint8_t  pin_ws                     =    16;  // MAX98357A WS/LRC
 uint8_t  pin_data                   =     7;  // MAX98357A DIN/DOUT
 
@@ -1109,7 +1109,7 @@ void loop() {
 ```
 <hr><br/>
 
-### 【7】 _(optional)_ SPI Micro SD/SDHC Card Reader/Writer 
+### 【7】 _(optional)_ SPI Micro SD/SDHC Card Reader/Writer
 
 ![Micro SD/SDHC Card Reader/Writer Breakout Boards](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/SD_Breakout_boards.jpg)
 
@@ -1127,23 +1127,42 @@ Interface Voltage Level: 3.3V or 5V
 ```
 
 The microSD Card Adapter is a microSD Card reader/writer module. through
-a common filesystem, and the SPI interface driver, you can easily read 
+a common filesystem, and the SPI interface driver, you can easily read
 and write files to/from the TF microSD card.
+
+#### SD_Card Communication Interfaces – SPI vs SDIO
+
+When using a microSD Card in your projects,&nbsp; you have _two_ main ways to interface:&nbsp;
+**SPI** (Serial Peripheral Interface)&nbsp; and **SDIO** (Secure Digital Input Output).&nbsp;
+Each option has different features in terms of speed,&nbsp; how complex it is to set up,&nbsp;
+and what it’s typically used for.
+
+**SDIO** &nbsp;is much faster and is what you’ll find in mobile phones,&nbsp; digital cameras,&nbsp;
+and other devices that need high performance.&nbsp; However, it’s also more complicated
+and often requires signing special agreements with manufacturers,&nbsp; which makes it
+hard for hobbyists to access.&nbsp; Because of these challenges,&nbsp; you rarely see
+**SDIO** interface code available for DIY projects.
+
+**SPI**, &nbsp;on the other hand,&nbsp; is what you’ll find in almost all SD_card modules
+made for hobby projects.&nbsp; While it doesn’t work as fast as **SDIO** &nbsp;and uses
+more processing power,&nbsp; you can easily set it up with any microcontroller.&nbsp;
+This simplicity makes **SPI** the popular choice for most of us working on DIY
+electronics projects.
 
 ### Formatting the SPI SD_card
 
-The first step when using the SD_card module is formatting the SD_card as 
+The first step when using the SD_card module is formatting the SD_card as
 FAT16 or FAT32.&nbsp; Follow the instructions below.
 
- 1. To format the SD_card,&nbsp; insert it in your computer.&nbsp; Go to ‘My Computer’ and 
+ 1. To format the SD_card,&nbsp; insert it in your computer.&nbsp; Go to ‘My Computer’ and
     _right click_ on the SD_card.&nbsp; Select “Format” as shown in figure below.
-    
-    ![Format SD_card-1]()
-    
- 2. A new window pops up.&nbsp; Select “FAT32”,&nbsp; press [Start] to initialize 
+
+    ![Format SD_card-1](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/format-SD-card-1.png)
+
+ 2. A new window pops up.&nbsp; Select “FAT32”,&nbsp; press [Start] to initialize
     the formatting process and follow the onscreen instructions.
-    
-    ![Format SD_card-2]()
+
+    ![Format SD_card-2](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/format-SD-card-2.png)
 
 ### Wiring up the SPI SD_card
 
@@ -1161,26 +1180,26 @@ You can quickly test your SD_Card wiring by running the _built-in_
 
 &nbsp; &nbsp; &nbsp; **File> Examples > SD > CardInfo**
 
-If everything is working properly,&nbsp; you’ll see a similar message 
+If everything is working properly,&nbsp; you’ll see a similar message
 on the Serial Monitor:
 
 ```
     Initializing SD Card... Wiring is correct and a card is present
-    
+
     Card type: SDHC
-    
+
     Volume type is: FAT32”
-    
+
     Volume size  (bytes): 2629828608
     Volume size (Kbytes): 2568192
     Volume size (Mbytes): 2508
-    
+
 ```
 
 ### Testing the SPI SD_card - sample program
 
-Insert the formatted SD_card in the SD_card module.&nbsp; The “**SD**” 
-library provides useful functions to easily write to and read from the 
+Insert the formatted SD_card in the SD_card module.&nbsp; The “**SD**”
+library provides useful functions to easily write to and read from the
 SD_card.&nbsp; Run the following sketch to test Read and write to the SD_card.
 
 **Download:**&nbsp; [SPI_SD_card-Test.ino &nbsp; (SD_card test)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/GFX_ST7789_colorGraphicsDemo/GFX_ST7789_colorGraphicsDemo.ino)
@@ -1192,8 +1211,8 @@ SD_card.&nbsp; Run the following sketch to test Read and write to the SD_card.
  * SD_card test
  *
  * This example shows how use the utility libraries on which the “SD”
- * library is based in order to get info about your SD card. Very 
- * useful for testing a card when you're not sure whether its working 
+ * library is based in order to get info about your SD card. Very
+ * useful for testing a card when you're not sure whether its working
  * properly or not.
  *
  * Wiring:
@@ -1205,9 +1224,9 @@ SD_card.&nbsp; Run the following sketch to test Read and write to the SD_card.
  *  |     GPIO11         | 3. MISO (SPI SDO)      |
  *  |     GPIO12         | 4. MOSI (SPI SDI)      |
  *  |     GPIO13         | 5. CLK  (SPI Clock)    |
- *  |     GND            | 6. GND                 | 
+ *  |     GND            | 6. GND                 |
  */
- 
+
 #include <SPI.h>        // Arduino SPI library
 #include <SD.h>         // Arduino SD Card library
 
@@ -1277,11 +1296,11 @@ void setup() {
     while (1);
   }
 
-  Serial.print("Clusters:          "); 
+  Serial.print("Clusters:          ");
   Serial.println(volume.clusterCount());
-  Serial.print("Blocks x Cluster:  "); 
+  Serial.print("Blocks x Cluster:  ");
   Serial.println(volume.blocksPerCluster());
-  Serial.print("Total Blocks:      "); 
+  Serial.print("Total Blocks:      ");
   Serial.println(volume.blocksPerCluster() * volume.clusterCount());
   Serial.println();
 
@@ -1299,7 +1318,7 @@ void setup() {
   Serial.println(volumesize);
   Serial.print("Volume size (Gb):  ");
   Serial.println((float)volumesize / 1024.0);
-  
+
   Serial.println("initialization done.");
 
   // Test for existing file "example.txt"
