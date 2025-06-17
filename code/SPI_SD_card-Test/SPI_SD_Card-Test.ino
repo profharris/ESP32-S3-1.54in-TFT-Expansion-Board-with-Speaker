@@ -1,4 +1,4 @@
-/* SPI_SD_card-Test.ino
+/* SPI_SD_Card-Test.ino
  * Requires an SPI microSD Card reader/writer
  * ESP32-S3 1.54in TFT Expansion Board with Speaker
  *
