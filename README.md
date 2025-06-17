@@ -9,12 +9,13 @@
 > https://docs.keyestudio.com/projects/ESP32S3_LCD154/en/latest/LCD154/LCD154.html <br/>
 > Ask anything, get answers on the go! This project can be a portable,
 > low-power AI assistant that works in real-time using just a single
-> ESP32-S3, a Mic, Amp, & a Speaker. It can listens to your voice, processes
+> ESP32-S3, a Mic, Audio Amp, & a Speaker. It can listens to your voice, processes
 > your questions through Google’s Gemini AI API, and responds with an
 > answer via tech-to-speech.
 
 ESP32-S3 1.54in TFT Expansion Board with Speaker
-![ESP32-S3 1.54in TFT Expansion Board with Speaker](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-1.jpg)
+![ESP32-S3 1.54in TFT Expansion Board with Speaker](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-1.jpg)<br/>
+![ESP32-S3 1.54in TFT Expansion Board with Speaker - interfaces](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-5.2.jpg)
 
 
 ## Compatible Development boards:&nbsp; &nbsp; _(8 and counting...)_
