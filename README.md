@@ -157,7 +157,7 @@ Almost _{...extra pins top and bottom}_ the same pinout as the<br/>
 ESP32-S3-WROOM (CAM), &nbsp;and&nbsp; ESP32-S3-GOOUUU-CAM, etc.
 
 ![ESP32-S3 1.54in TFT Expansion Board with Speaker - header pins](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%201.54in%20TFT%20Expansion%20Board%20with%20Speaker-1.2.jpg)
-
+<!--
 ```
                ESP32-S3 1.54in TFT Expansion Board with Speaker
 Xtensa® 32-bit         ESP32-S3-DevKitC-1     ESP32-S3-WROOM-1 N16R8
@@ -191,6 +191,50 @@ A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D⧾     I²C -ALT-
                      '——'ESP32'———'UART0'——'                      2. *  3V3
   INMP441 I²S Mic                              G48 RGB_BUILTIN,   3. G1 SDA
 MAX98357A I²S Audio Amp                            LED_BUILTIN    4. G2 SCL
+``` -->
+```
+——————————————————————————————————————————————————————————————————— ————————————
+YD-ESP32-S3 (ESP32-S3-WROOM-1 Dev)  (44-Pin)    ESP32-S3 Dev Module   I²C QWIIC
+                                                                    ————————————
+Xtensa® 32-bit         ESP32-S3-DevKit-C-1  ESP32-S3-WROOM-1 N16R8  1   *   GND
+dual-core LX7               YD-ESP32-S3                             2   *   3V3
+240MHz,  512KB SRAM       _______________   NO CAMERA MODULE        3 GPIO8 SDA
+8MB ƒlash, 2MB PSRAM     |  ___   _   __¯|  NO SD-CARD              4 GPIO9 SCL
+WiFi 802.11 b/g/n        | | | |_| |_|   |  GPIO_ = Strapping Pins
+BLE®5                 .——| ' '           |——.                       ————————————
+               3V3   1|o:|ESP32S3-WROOM-1|:o|44 GND                 Hardware SPI
+               3V3   2|o:|               |:¤|43 IO43 [U0TXD›   LED] microSD_Card
+[RESET/RST   ] EN    3|o:| .··. . F© Œ Æ |:¤|42 IO44 [U0RXD‹   LED] ————————————
+[I²S Mic WS  ] IO4   4|o:| WiFi ß   ____ |:o|41 IO1  [A0          ] GPIO10 CS
+[I²S Mic SCK ] IO5   5|o:|         |QRCD||:o|40 IO2  [A1          ] GPIO11 MOSI
+[I²S Mic SD  ] IO6   6|o:| ° N16R8 |____||:o|39 IO42 [SPI TFT BL  ] GPIO12 SCK
+[I²S Amp DIN ] IO7   7|o:'———————————————':o|38 IO41 [SPI TFT CS  ] GPIO13 MISO
+[I²S Amp BCLK] IO15  8|o:                 :o|37 IO40 [SPI TFT DC  ]
+[I²S Amp LRC ] IO16  9|o  :: ‡‡‡    · RST  o|36 IO39 [   Volume UP] ————————————
+[A16         ] IO17 10|o  ¨¨|¯¯¯¬   : [Ø]  o|35 IO38 [   Volume DN] 1.54in  TFT
+[A17         ] IO18 11|o  ¨¨|LDO[]  : BOOT •|34 IO37 [PSRAM      •] 240×240 IPS
+[A7  I²C SDA ] IO8  12|o  ¨¨|___- ¬¬  [Ø]  •|33 IO36 [PSRAM      •] ————————————
+[A2          ] IO3_ 13|o  ·  ‡‡‡  ¨¨       •|32 IO35 [PSRAM      •] GPIO42 BL
+[IN ONLY     ] IO46_14|o      RGB   P T R  o|31 IO0_ [BOOT      OK] GPIO41 CS
+[A8  I²C SCL ] IO9  15|o  RGB CTRL  R X X  o|30 IO45_[SPI TFT RST ] GPIO40 DC
+[A9  SPI CS  ] IO10 16|o  [¤]  ¥    ¤ ¤ ¤  ¤|29 IO48 [RGB WS2812¤ ] GPIO45 RST
+[A10 SPI MOSI] IO11 17|o           ··· ___ o|28 IO47 [SPI TFT MOSI] GPIO47 MOSI
+[A11 SPI SCK ] IO12 18|oIN-OUT ‡‡‡ :::|343|o|27 IO21 [SPI TFT SCLK] GPIO21 SCLK
+[A12 SPI MISO] IO13 19|o ¥            |___|ø|26 IO20 [A19       D⧾]
+[A13         ] IO14 20|o  _____ O T _____  ø|25 IO19 [A18       D⧿] ————————————
+[      IN-OUT]  5V0 21|o | USB |T T| USB | o|24 GND                 INMP441 Mic
+                GND 22|o |  C  |G L|  C  | o|23 GND                 ————————————
+                      '——'ESP32'———'UART0'——'                       GPIO4  WS
+                                                IO48 RGB_BUILTIN,   GPIO5  SCK
+Red PWR LED, Green TX LED, Blue RX LED               LED_BUILTIN    GPIO6  SD
+
+ 1.  INMP441  I²S Microphone            3. 1.54in 240×240 TFT       ————————————
+ 2. MAX98357A I²S Audio Amp/Speaker     4. SPI microSD_Card          MAX98357A
+                                                                      I²S Amp
+ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist, ————————————
+26…32 QSPI ƒlash, 33…34 N/A, 35…42 GPIO, 43…44 TX/RX, 45…48 GPIO.   GPIO7  DIN
+ pins_arduino.h ~ ESP32-S3-DevKitC-1                                GPIO15 BCLK
+——————————————————————————————————————————————————————————————————— GPIO16 LRC
 ```
 #### ESP32-S3 Pins Summary:
 0…18 GPIO,&nbsp; 19…20 D+/D-,&nbsp; 21 GPIO,&nbsp;
