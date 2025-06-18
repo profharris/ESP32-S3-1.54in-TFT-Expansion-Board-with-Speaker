@@ -78,9 +78,10 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
  |     3V3             | 5. VDD (Power)            |
  |     GND             | 6. GND                    |
 
-The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
-   > LEFT &nbsp;– connect L/R to GND.<br/>
-   > RIGHT – connect L/R to VDD.
+   > [!TIP]
+   > The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
+   >> LEFT &nbsp;– connect L/R to GND.<br/>
+   >> RIGHT – connect L/R to VDD.
 
 > [INMP441 I²S MEMS Mic Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/INMP441%20I%C2%B2S%20MEMS%20Mic%20Wiring%20Diagram.png)
 <br/>
@@ -114,7 +115,9 @@ The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
  |     GPIO13         | 5. MISO &nbsp;(SPI SDO)      |
  |     GND            | 6. GND                 |
 
-> **NOTE¹:**&nbsp; Micro SD_Card (size: less than 2G), Micro SDHC Card (size: less than 32G).<br/>
+> [!NOTE]
+> Micro SD_Card (size: less than 2G), Micro SDHC Card (size: less than 32G).
+
 > [SPI microSD_Card Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/microSD_Card%20Wiring%20Diagram.jpg)
 <br/>
 
@@ -128,7 +131,8 @@ The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
  |     GPIO8          | 4. SDA I²C Data  (SDA) | Blue             |
  |     GPIO9          | 3. SCL I²C Clock (SCL) | Yellow           |
 
-> **NOTE²:**&nbsp; There are hundreds of STEMMA-Qt/Qwiic I²C sensors availiable.<br/>
+> [!NOTE]
+> There are hundreds of STEMMA-Qt/Qwiic I²C sensors availiable.<br/>
 > [Introducing Qwiic / Stemma-Qt](https://learn.adafruit.com/introducing-adafruit-stemma-qt)<br/>
 > [Adafruit&nbsp; Stemma-QT/Qwiic I²C sensors & devices](https://www.adafruit.com/category/1018)<br/>
 > [SparkFun Stemma-QT/Qwiic I²C sensors & devices](https://www.sparkfun.com/catalogsearch/result/?q=Qwiic)
@@ -143,9 +147,10 @@ The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
  |     GPIO39         | **Volume Up**.&nbsp; (shorts to GND), Short press<br/>Increases volume, Long press for Max volume. |
  |     GPIO38         | **Volume Dn**.&nbsp; (shorts to GND), Short press<br/>Reduces volume, Long press Mutes.            |
 
-> **NOTE³:**&nbsp; The [WeAct Studio ESP32-S3-A/B Core](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WeAct%20Studio%20ESP32-S3-AB%20Core%20(44-pins).jpg)
+> [!NOTE]
+> The [WeAct Studio ESP32-S3-A/B Core](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WeAct%20Studio%20ESP32-S3-AB%20Core%20(44-pins).jpg)
 > Dev Board already has a third button, at GPIO45 _(TFT Reset)_.
->
+
 > [Expansion Board with Speaker - Buttons Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/ESP32-S3%20Expansion%20Board%20with%20Speaker%20Buttons%20Wiring%20Diagram.png)
 <hr><br/>
 
@@ -1260,9 +1265,10 @@ _built-in_ “File” class are as follows:
  8. **file.close()**:&nbsp; This method Closes the file and ensures any data
     Written to it is physically saved in the SD/Micro SD card.
 
-**NOTE:**&nbsp; that until the ‘**file.close()**’ method is called,&nbsp; data
-Written to a file is not saved.&nbsp; Therefore, a file must be Closed after Writing
-data to it.&nbsp; Otherwise,&nbsp; the logged data will be lost.
+> [!NOTE]
+> Until the ‘**file.close()**’ method is called,&nbsp; data Written to 
+> a file is not saved.&nbsp; Therefore, a file must be Closed after Writing
+> data to it.&nbsp; Otherwise,&nbsp; the logged data will be lost.
 
 [SD Card Experiments with Arduino](https://dronebotworkshop.com/sd-card-arduino/)
 
