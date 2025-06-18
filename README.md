@@ -1163,7 +1163,7 @@ void loop() {
 
 ### 【7】 _(optional)_ SPI Micro SD/SDHC Card Reader/Writer
 
-&nbsp; &nbsp; &nbsp; ![Micro SD/SDHC Card Reader/Writer](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/microSD_Card.jpg)
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ![Micro SD/SDHC Card Reader/Writer](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/microSD_Card.jpg)
 
 ### SPI Micro SD/SDHC Card Reader/Writer
 
