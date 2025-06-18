@@ -659,13 +659,13 @@ used to play music files directly from an SD/microSD_card.
 
  | ESP32-S3 Dev Board | MAX98357A I²S Audio Amplifier/Speaker         |
  |-------------------:|-----------------------------------------------|
- |     GPIO7          | 1. DIN  &nbsp;Digital Signal In               |
- |     GPIO15         | 2. BCLK &nbsp;Bit Clock                       |
- |     GPIO16         | 3. LRC  &nbsp;Left Right Clock                |
+ |     3V3            | 1. VIN                                        |
+ |     GND            | 2. GND                                        |
+ |     VIN &nbsp;(0Ω=Left)   | 3. SD &nbsp;&nbsp;(L/R Channel Select) |
  |     GND &nbsp;(12dB Gain) | 4. GAIN &nbsp;(Signal Amp)             |
- |     VIN &nbsp;(0Ω=Left)   | 5. SD &nbsp;&nbsp;(L/R Channel Select) |
- |     GND            | 6. GND                                        |
- |     3V3            | 7. VIN                                        |
+ |     GPIO7          | 5. DIN  &nbsp;Digital Signal In               |
+ |     GPIO15         | 6. BCLK &nbsp;Bit Clock                       |
+ |     GPIO16         | 7. LRC  &nbsp;Left Right Clock                |
  |                    |                                               |
  |     Audio ⧾        | Speaker Positive  &nbsp;(⧾)                   |
  |     Audio ⧿        | Speaker Negative  &nbsp;(⧿)                   |
@@ -752,11 +752,12 @@ Stereo sound.
 **Download:**&nbsp; [MAX98357-I2S-Amp-quickTest.ino &nbsp; (440Hz sine wave)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-quickTest/MAX98357-I2S-Amp-quickTest.ino)
 ```C++
 /* MAX98357-I2S-Amp-quickTest.ino
+ * ESP32-S3 1.54in TFT Expansion Board with Speaker
+ *
  *      Quick Test: Send 440Hz Sine Waves to the MAX98357A/Speaker.
  *      https://www.kincony.com/forum/showthread.php?tid=6898
  *
  * Requires a MAX98357A I²S Audio Amplifier/Speaker
- * ESP32-S3 1.54in TFT Expansion Board with Speaker
  *
  * NOTE¹:  You will NOT hear the 440Hz Sine Wave tone until
  * ¯¯¯¯¯¯  you open the Serial Monitor!
@@ -1222,31 +1223,31 @@ into five different storage classes:
 
 #### The “SD” library & “File” class
 
-SD and Micro SD_Card readers use the built-in “SD library” _(SD.h)_,&nbsp; as both modules 
-use the “**SPI interface**” for data communications.&nbsp; The library also supports FAT16 
-and FAT32 filesystems on SD/Micro SD_Cards,&nbsp; but the file names must be in 8.3 format. 
+SD and Micro SD_Card readers use the built-in “SD library” _(SD.h)_,&nbsp; as both modules
+use the “**SPI interface**” for data communications.&nbsp; The library also supports FAT16
+and FAT32 filesystems on SD/Micro SD_Cards,&nbsp; but the file names must be in 8.3 format.
 
-Only one period is allowed,&nbsp; although the filenames can include ‘PATHs’ separated by 
+Only one period is allowed,&nbsp; although the filenames can include ‘PATHs’ separated by
 forward slashes.&nbsp; The library provides the following methods to work with SD/Micro SD cards.
 
- 1. **SD.begin()**:&nbsp; This method initializes the SD/Micro SD card.&nbsp; 
+ 1. **SD.begin()**:&nbsp; This method initializes the SD/Micro SD card.&nbsp;
     It takes the pin connected to the `SS`/`CS` pin of the reader as a parameter.
- 2. **SD.exists()**:&nbsp; This method tests the Existence of a file or directory 
+ 2. **SD.exists()**:&nbsp; This method tests the Existence of a file or directory
     on the SD/Micro SD card.&nbsp; It takes the `filename` as a parameter.
- 3. **SD.mkdir()**:&nbsp; This method Creates a `directory` on the SD/Micro SD card.&nbsp; 
+ 3. **SD.mkdir()**:&nbsp; This method Creates a `directory` on the SD/Micro SD card.&nbsp;
     It takes the `filename`,&nbsp; including the `path`,&nbsp; as a parameter.
- 4. **SD.rmdir()**:&nbsp; This method Removes a Directory from the SD/Micro SD card.&nbsp; 
+ 4. **SD.rmdir()**:&nbsp; This method Removes a Directory from the SD/Micro SD card.&nbsp;
     It takes the `filename`, including the `path`, as a parameter.
- 5. **SD.open()**:&nbsp; This method opens a file for Reading or Writing.&nbsp; 
-    It takes two parameters `filename` and `mode`.&nbsp; The `mode` determines if 
-    the file has to be Read or Written.&nbsp; The file will open in `Read mode` by 
-    default if the `mode` is not specified.&nbsp; If the file is opened for Writing,&nbsp; 
+ 5. **SD.open()**:&nbsp; This method opens a file for Reading or Writing.&nbsp;
+    It takes two parameters `filename` and `mode`.&nbsp; The `mode` determines if
+    the file has to be Read or Written.&nbsp; The file will open in `Read mode` by
+    default if the `mode` is not specified.&nbsp; If the file is opened for Writing,&nbsp;
     f it does not already exist,&nbsp; it will be Created by the specified `filename` and `path`.
- 6. **SD.remove()**:&nbsp; This method Removes a file from SD/Micro SD card.&nbsp; It 
+ 6. **SD.remove()**:&nbsp; This method Removes a file from SD/Micro SD card.&nbsp; It
     takes the `filename`, including the `path`, as a parameter.
 
-Many methods of the built-in “File”/Filesystem class are also used while Reading 
-from or Writing to SD/Micro SD cards.&nbsp; Some of the useful techniques of the 
+Many methods of the built-in “File”/Filesystem class are also used while Reading
+from or Writing to SD/Micro SD cards.&nbsp; Some of the useful techniques of the
 _built-in_ “File” class are as follows:
 
  1. **file.name()**:&nbsp; This method returns the `filename`.
@@ -1256,11 +1257,11 @@ _built-in_ “File” class are as follows:
  5. **file.size()**:&nbsp; This method returns the Size of the file in bytes.
  6. **file.print()**:&nbsp; This method Prints data to the file.
  7. **file.println()**:&nbsp; This method Prints data to the file followed by a carriage return and newline.
- 8. **file.close()**:&nbsp; This method Closes the file and ensures any data 
+ 8. **file.close()**:&nbsp; This method Closes the file and ensures any data
     Written to it is physically saved in the SD/Micro SD card.
 
-**NOTE:**&nbsp; that until the ‘**file.close()**’ method is called,&nbsp; data 
-Written to a file is not saved.&nbsp; Therefore, a file must be Closed after Writing 
+**NOTE:**&nbsp; that until the ‘**file.close()**’ method is called,&nbsp; data
+Written to a file is not saved.&nbsp; Therefore, a file must be Closed after Writing
 data to it.&nbsp; Otherwise,&nbsp; the logged data will be lost.
 
 [SD Card Experiments with Arduino](https://dronebotworkshop.com/sd-card-arduino/)
@@ -1285,9 +1286,9 @@ FAT16 or FAT32.&nbsp; Follow the instructions below.
   | ESP32-S3 Dev Board | SPI microSD_Card pins  |
   |-------------------:|------------------------|
   |     3V3            | 1. 3V3  (Power)        |
-  |     GPIO10         | 2. CS   &nbsp;&nbsp;(Chip Select)  |
+  |     GPIO10         | 2. CS   &nbsp;&nbsp;(Chip Select) |
   |     GPIO11         | 3. MOSI &nbsp;(SPI SDI)      |
-  |     GPIO12         | 4. CLK  &nbsp;&nbsp;(SPI Clock)    |
+  |     GPIO12         | 4. CLK  &nbsp;&nbsp;(SPI Clock)   |
   |     GPIO13         | 5. MISO &nbsp;(SPI SDO)      |
   |     GND            | 6. GND                 |
 
@@ -1606,12 +1607,12 @@ void loop() {
  *  Pins: TFT LCD             Pins: ESP32-S3-WROOM-1
  *  1. GND  GND               GND
  *  2. VCC  3V3               3V3
- *  3. BLK  BackLight         GPIO42  TFT_BL
- *  4. CS   Chip Select       GPIO41  TFT_CS
- *  5. DC   Data/Command      GPIO40  TFT_DC
- *  6. RES  TFT Reset         GPIO45  TFT_RST
- *  7. SDA  SPI Data (MOSI)   GPIO47  TFT_MOSI
- *  8. SCL  SPI Clock         GPIO21  TFT_SCLK
+ *  3. SCL  SPI Clock         GPIO21  TFT_SCLK
+ *  4. SDA  SPI Data (MOSI)   GPIO47  TFT_MOSI
+ *  5. RES  TFT Reset         GPIO45  TFT_RST
+ *  6. DC   Data/Command      GPIO40  TFT_DC
+ *  7. CS   Chip Select       GPIO41  TFT_CS
+ *  8. BLK  BackLight         GPIO42  TFT_BL
  *
  *     -1   SPI MISO (N/C)
  */
