@@ -1162,10 +1162,12 @@ void loop() {
 <hr><br/>
 
 ### 【7】 _(optional)_ SPI Micro SD/SDHC Card Reader/Writer
-![Micro SD/SDHC Card Reader/Writer](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/microSD_Card.jpg)<br/>
-![Micro SD/SDHC Card Reader/Writer Breakout Boards](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/SD_Breakout_boards.jpg)
+
+&nbsp; &nbsp; &nbsp; ![Micro SD/SDHC Card Reader/Writer](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/microSD_Card.jpg)
 
 ### SPI Micro SD/SDHC Card Reader/Writer
+
+![Micro SD/SDHC Card Reader/Writer Breakout Boards](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/SD_Breakout_boards.jpg)
 
 #### SPI SD/SDHC Card Specifications:
 ```
