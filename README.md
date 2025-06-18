@@ -663,7 +663,7 @@ used to play music files directly from an SD/microSD_card.
  |     GPIO15         | 2. BCLK &nbsp;Bit Clock                       |
  |     GPIO16         | 3. LRC  &nbsp;Left Right Clock                |
  |     GND &nbsp;(12dB Gain) | 4. GAIN &nbsp;(Signal Amp)             |
- |     VDD &nbsp;(0Ω=Left)   | 5. SD &nbsp;&nbsp;(L/R Channel Select) |
+ |     VIN &nbsp;(0Ω=Left)   | 5. SD &nbsp;&nbsp;(L/R Channel Select) |
  |     GND            | 6. GND                                        |
  |     3V3            | 7. VIN                                        |
  |                    |                                               |
@@ -725,7 +725,7 @@ or other wiring.
    |      3 dB          | Connect to VIN via a 100kΩ resistor |
    |      6 dB          | Directly connect to VIN             |
    |      9 dB          | Unconnected (floating)              |
-   |     12 dB          | Directly connect to GND ✓           |
+   |     12 dB          | Directly connect to GND  ✓          |
    |     15 dB          | Connect to GND via a 100kΩ resistor |
 
 The _‘Shutdown/Mode’_ pin of the I²S **MAX98357A** Audio Amplifier&nbsp; can be used
@@ -742,7 +742,7 @@ Stereo sound.
    | MAX98357A Audio channel | SD pin configuration  |
    |------------------------:|-----------------------|
    |  No output              | 0 VDC, connect to GND |
-   |  Stereo Average ✓       | 0.16 - 0.77 VDC       |
+   |  Stereo Average  ✓      | 0.16 - 0.77 VDC       |
    |  Right  Channel         | 0.77 - 1.4  VDC       |
    |  Left   Channel         | 1.4 VDC or Higher     |
 <hr><br/>
@@ -818,13 +818,13 @@ Stereo sound.
  * Wiring:
  * ¯¯¯¯¯¯¯
  * MAX98357 I²S Audio Amp           ESP32-S3-WROOM-1
- * 1. DIN  (Serial Data In/Out) --> GPIO7
- * 2. BCLK (Bit Clock)          --> GPIO15
- * 3. LRC  (Left Right Clock)   --> GPIO16
+ * 1. VIN  (Power)              --> 3V3
+ * 2. GND                       --> GND
+ * 3. SD   (L/R Channel Select) --> Connect to VIN (0Ω = Left)
  * 4. GAIN                      --> Connect to GND (12 dB Gain)
- * 5. SD   (L/R Channel Select) --> Connect to GND (select Left)
- * 6. GND                       --> GND
- * 7. VIN  (Power)              --> 3V3
+ * 5. DIN  (Serial Data In/Out) --> GPIO7
+ * 6. BCLK (Bit Clock)          --> GPIO15
+ * 7. LRC  (Left Right Clock)   --> GPIO16
  *
  *    External Speaker Interface: (⧾ ⧿)
  *    Audio⧾  Connect to Speaker Positive (usually Red wire)
@@ -958,13 +958,13 @@ Serial Monitor:
  * Wiring:
  * ¯¯¯¯¯¯¯
  * MAX98357A I²S Amp (7-pins)       ESP32-S3-WROOM-1
- * 1. DIN  (Serial Data In/Out) --> GPIO7
- * 2. BCLK (Bit Clock)          --> GPIO15
- * 3. LRC  (Left Right Clock)   --> GPIO16
- * 4. GAIN                      --> Connect to GND (12 dB gain)
- * 5. SD   (L/R Channel Select) --> Connect to GND (select Left)
- * 6. GND                       --> GND
- * 7. VIN  (Power)              --> 3V3
+ * 1. VIN  (Power)              --> 3V3
+ * 2. GND                       --> GND
+ * 3. SD   (L/R Channel Select) --> Connect to VIN (0Ω = Left)
+ * 4. GAIN                      --> Connect to GND (12 dB Gain)
+ * 5. DIN  (Serial Data In/Out) --> GPIO7
+ * 6. BCLK (Bit Clock)          --> GPIO15
+ * 7. LRC  (Left Right Clock)   --> GPIO16
  *
  * External Speaker interface: (+ —)
  * Audio+  Connect to Speaker Positive (usually Red wire)
@@ -1065,13 +1065,13 @@ void loop() {
  * Project Wiring:
  * ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
  * MAX98357A I²S Amp                ESP32-S3-WROOM-1
- * 1. DIN  (Digital Signal In)  --> GPIO7
- * 2. BCLK (Bit Clock)          --> GPIO15
- * 3. LRC  (Left Right Clock)   --> GPIO16
- * 4. GAIN                      --> Connect to GND (12dB Gain)
- * 5. SD   (L/R Channel Select) --> Connect to VIN (0Ω = Left)
- * 6. GND                       --> GND
- * 7. VIN  (Power)              --> 3V3
+ * 1. VIN  (Power)              --> 3V3
+ * 2. GND                       --> GND
+ * 3. SD   (L/R Channel Select) --> Connect to VIN (0Ω = Left)
+ * 4. GAIN                      --> Connect to GND (12 dB Gain)
+ * 5. DIN  (Serial Data In/Out) --> GPIO7
+ * 6. BCLK (Bit Clock)          --> GPIO15
+ * 7. LRC  (Left Right Clock)   --> GPIO16
  *
  *    External Speaker interface: (⧾ ⧿)
  *
@@ -1309,14 +1309,14 @@ SD_card.&nbsp; Run the following sketch to demo SD_Card filesystem functions.
  *
  * Wiring:
  *
- *  | ESP32-S3 Dev Board | SPI microSD_Card pins  |
- *  |-------------------:|------------------------|
- *  |     3V3            | 1. 3V3  (Power)        |
- *  |     GPIO10         | 2. CS   (Chip Select)  |
- *  |     GPIO11         | 4. MOSI (SPI SDI)      |
- *  |     GPIO13         | 5. CLK  (SPI Clock)    |
- *  |     GPIO12         | 3. MISO (SPI SDO)      |
- *  |     GND            | 6. GND                 |
+ *  | ESP32-S3 Dev Board | SPI microSD_Card pins |
+ *  |-------------------:|-----------------------|
+ *  |     3V3            | 1. 3V3  (Power)       |
+ *  |     GPIO10         | 2. CS   (Chip Select) |
+ *  |     GPIO11         | 4. MOSI (SPI SDI)     |
+ *  |     GPIO12         | 5. CLK  (SPI Clock)   |
+ *  |     GPIO13         | 3. MISO (SPI SDO)     |
+ *  |     GND            | 6. GND                |
  */
 
 #include <Arduino.h>                    // Arduino master library
@@ -1325,9 +1325,9 @@ SD_card.&nbsp; Run the following sketch to demo SD_Card filesystem functions.
 #include <SD.h>                         // SD Card library
 
 #define SD_CS   10                      // SPI MicroSD_Card Pins
-#define SD_MISO 11
-#define SD_MOSI 12
-#define SD_SCLK 13
+#define SD_MOSI 11
+#define SD_SCLK 12
+#define SD_MISO 13
 
 Sd2Card  card;                          // Required for sdfatlib
 SdVolume volume;
@@ -1563,12 +1563,12 @@ void loop() {
  *  Pins: TFT LCD             Pins: ESP32-S3-WROOM-1
  *  1. GND  GND               GND
  *  2. VCC  3V3               3V3
- *  3. SCL  SPI Clock         GPIO21  TFT_SCLK
- *  4. SDA  SPI Data (MOSI)   GPIO47  TFT_MOSI
- *  5. RES  TFT Reset         GPIO45  TFT_RST
- *  6. RS   Data/Command      GPIO40  TFT_DC
- *  7. CS   Chip Select       GPIO41  TFT_CS
- *  8. BLK  BackLight         GPIO42  TFT_BL
+ *  3. BLK  BackLight         GPIO42  TFT_BL
+ *  4. CS   Chip Select       GPIO41  TFT_CS
+ *  5. DC   Data/Command      GPIO40  TFT_DC
+ *  6. RES  TFT Reset         GPIO45  TFT_RST
+ *  7. SDA  SPI Data (MOSI)   GPIO47  TFT_MOSI
+ *  8. SCL  SPI Clock         GPIO21  TFT_SCLK
  *
  *     -1   SPI MISO (N/C)
  */
