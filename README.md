@@ -114,7 +114,8 @@ The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
  |     GPIO13         | 5. MISO &nbsp;(SPI SDO)      |
  |     GND            | 6. GND                 |
 
-> **NOTE¹:**&nbsp; Micro SD Card (size: less than 2G), Micro SDHC Card (size: less than 32G).
+> **NOTE¹:**&nbsp; Micro SD_Card (size: less than 2G), Micro SDHC Card (size: less than 32G).<br/>
+> [SPI microSD_Card Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/microSD_Card%20Wiring%20Diagram.jpg)
 <br/>
 
  5. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and an I²C interface & OLED Display:<br/>
