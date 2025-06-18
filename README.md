@@ -1203,22 +1203,65 @@ There are actually three sizes of SD_cards:
 The miniSD_Card was never that popular and hasn’t been produced since 2008
 so modern devices make use of either standard SD_Cards or microSD_Cards.
 
-There are also a number of designations on SD_Cards such as “SDXC”, SDUC”,
-“UHS-I”, “Class 10” etc.&nbsp; This can get a bit confusing when trying to choose an SD_Card.&nbsp;
+There are also a number of designations on SD_Cards such as “SDXC”,&nbsp; SDUC”,&nbsp;
+“UHS-I”,&nbsp; “Class 10”&nbsp; etc.&nbsp; This can get a bit confusing when trying to choose an SD_Card.&nbsp;
 SD_Cards have evolved to use different file systems,&nbsp; different speeds,&nbsp; and different
 connection methods than the original 1999 design.&nbsp; These differences are designated
 into five different storage classes:
 
- 1. **SD** or **SDSC** – Standard Capacity SD_cards.&nbsp; These use the FAT32 filesystem
-    and can store up to 2GB of data.&nbsp;  Older cards used the FAT16 file system.
- 2. **SDHC** – These are High Capacity cards.&nbsp; They also use the FAT32 filesystem
+ 1. **SD** or **SDSC** &nbsp;– Standard Capacity SD_cards.&nbsp; These use the FAT32 filesystem
+    and can store up to 2GB of data.&nbsp; Older cards used the FAT16 file system.
+ 2. **SDHC** &nbsp;– These are High Capacity cards.&nbsp; They also use the FAT32 filesystem
     and can store from 2GB to 32GB of data.
- 3. **SDXC** – These are Extended Capacity cards.&nbsp; They use the exFAT filesystem
+ 3. **SDXC** &nbsp;– These are Extended Capacity cards.&nbsp; They use the exFAT filesystem
     and have capacities from 32GB to 2TB.
- 4. **SDUC** – These are Ultra Capacity cards.&nbsp; They have capacities from 2TB
+ 4. **SDUC** &nbsp;– These are Ultra Capacity cards.&nbsp; They have capacities from 2TB
     to a whopping 128TB.
- 5. **SDIO** – This is a standard that combines memory cards with Bluetooth and other
-    wireless networking standards, allowing the cards to be read remotely.
+ 5. **SDIO** &nbsp;– This is a standard that combines memory cards with Bluetooth and other
+    wireless networking standards,&nbsp; allowing the cards to be read remotely.
+
+#### The “SD” library & “File” class
+
+SD and Micro SD_Card readers use the built-in “SD library” _(SD.h)_,&nbsp; as both modules 
+use the “**SPI interface**” for data communications.&nbsp; The library also supports FAT16 
+and FAT32 filesystems on SD/Micro SD_Cards,&nbsp; but the file names must be in 8.3 format. 
+
+Only one period is allowed,&nbsp; although the filenames can include ‘PATHs’ separated by 
+forward slashes.&nbsp; The library provides the following methods to work with SD/Micro SD cards.
+
+ 1. **SD.begin()**:&nbsp; This method initializes the SD/Micro SD card.&nbsp; 
+    It takes the pin connected to the `SS`/`CS` pin of the reader as a parameter.
+ 2. **SD.exists()**:&nbsp; This method tests the Existence of a file or directory 
+    on the SD/Micro SD card.&nbsp; It takes the `filename` as a parameter.
+ 3. **SD.mkdir()**:&nbsp; This method Creates a `directory` on the SD/Micro SD card.&nbsp; 
+    It takes the `filename`,&nbsp; including the `path`,&nbsp; as a parameter.
+ 4. **SD.rmdir()**:&nbsp; This method Removes a Directory from the SD/Micro SD card.&nbsp; 
+    It takes the `filename`, including the `path`, as a parameter.
+ 5. **SD.open()**:&nbsp; This method opens a file for Reading or Writing.&nbsp; 
+    It takes two parameters `filename` and `mode`.&nbsp; The `mode` determines if 
+    the file has to be Read or Written.&nbsp; The file will open in `Read mode` by 
+    default if the `mode` is not specified.&nbsp; If the file is opened for Writing,&nbsp; 
+    f it does not already exist,&nbsp; it will be Created by the specified `filename` and `path`.
+ 6. **SD.remove()**:&nbsp; This method Removes a file from SD/Micro SD card.&nbsp; It 
+    takes the `filename`, including the `path`, as a parameter.
+
+Many methods of the built-in “File”/Filesystem class are also used while Reading 
+from or Writing to SD/Micro SD cards.&nbsp; Some of the useful techniques of the 
+_built-in_ “File” class are as follows:
+
+ 1. **file.name()**:&nbsp; This method returns the `filename`.
+ 2. **file.available()**:&nbsp; This method checks if a file with given `filename` exists.
+ 3. **file.read()**:&nbsp; This method Reads the contents of the file.
+ 4. **file.write()**:&nbsp; This method Writes data to the file.
+ 5. **file.size()**:&nbsp; This method returns the Size of the file in bytes.
+ 6. **file.print()**:&nbsp; This method Prints data to the file.
+ 7. **file.println()**:&nbsp; This method Prints data to the file followed by a carriage return and newline.
+ 8. **file.close()**:&nbsp; This method Closes the file and ensures any data 
+    Written to it is physically saved in the SD/Micro SD card.
+
+**NOTE:**&nbsp; that until the ‘**file.close()**’ method is called,&nbsp; data 
+Written to a file is not saved.&nbsp; Therefore, a file must be Closed after Writing 
+data to it.&nbsp; Otherwise,&nbsp; the logged data will be lost.
 
 [SD Card Experiments with Arduino](https://dronebotworkshop.com/sd-card-arduino/)
 
