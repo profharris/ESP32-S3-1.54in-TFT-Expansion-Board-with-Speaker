@@ -53,30 +53,30 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
  1. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***ST7789 1.54” 240×240 TFT Display:***
 
- | ESP32-S3 Dev Board | ST7789 1.54” 240×240 TFT   |
- |-------------------:|----------------------------|
- |     GND            | 1. GND                     |
- |     3V3            | 2. VDD (Power)             |
- |     GPIO21         | 3. SCL SPI Clock    (SCLK) |
- |     GPIO47         | 4. SDA SPI Data     (MOSI) |
- |     GPIO45         | 5. RES TFT Reset     (RST) |
- |     GPIO40         | 6. RS  Data/Command   (DC) |
- |     GPIO41         | 7. CS  Chip Select    (CS) |
- |     GPIO42         | 8. BLK BackLight      (BL) |
+  | ESP32-S3 Dev Board | ST7789 1.54” 240×240 TFT   |
+  |-------------------:|----------------------------|
+  |     GND            | 1. GND                     |
+  |     3V3            | 2. VDD (Power)             |
+  |     GPIO21         | 3. SCL SPI Clock    (SCLK) |
+  |     GPIO47         | 4. SDA SPI Data     (MOSI) |
+  |     GPIO45         | 5. RES TFT Reset     (RST) |
+  |     GPIO40         | 6. RS  Data/Command   (DC) |
+  |     GPIO41         | 7. CS  Chip Select    (CS) |
+  |     GPIO42         | 8. BLK BackLight      (BL) |
 
  > [LCD 1.54in 240RGB×240 IPS TFT (ST7789) Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/LCD%201.54in%20240RGB×240%20IPS%20TFT%20(ST7789)%20Wiring%20Diagram.png)
 <br/>
 
  2. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S INMP441 Microphone:***
 
- | ESP32-S3 Dev Board  | I²S INMP441 Microphone    |
- |--------------------:|---------------------------|
- |     GND  (LOW=Left) | 1. L/R Left/Right Channel |
- |     GPIO4           | 2. WS  Data Select        |
- |     GPIO5           | 3. SCK Data Clock         |
- |     GPIO6           | 4. SD  Data Out           |
- |     3V3             | 5. VDD (Power)            |
- |     GND             | 6. GND                    |
+  | ESP32-S3 Dev Board  | I²S INMP441 Microphone    |
+  |--------------------:|---------------------------|
+  |     GND  (LOW=Left) | 1. L/R Left/Right Channel |
+  |     GPIO4           | 2. WS  Word/Data Select   |
+  |     GPIO5           | 3. SCK Serial Data Clock  |
+  |     GPIO6           | 4. SD  Serial Data Out    |
+  |     3V3             | 5. VDD (Power)            |
+  |     GND             | 6. GND                    |
 
    > [!TIP]
    > The `L/R pin` &nbsp;(Left/Right) Channel Selection works as follows:<br/>
@@ -88,32 +88,32 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
  3. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S MAX98357A Amplifier/Speaker:***
 
- | ESP32-S3 Dev Board | I²S MAX98357A Amplifier/Speaker |
- |-------------------:|---------------------------------|
- |    3V3             | 1. VIN                          |
- |    GND             | 2. GND                          |
- |    VIN (0Ω = Left) | 3. SD (L/R Channel Select)      |
- |    GND (12dB Gain) | 4. GAIN (Signal Amp)            |
- |    GPIO7           | 5. DIN  Digital Signal In       |
- |    GPIO15          | 6. BCLK Bit Clock               |
- |    GPIO16          | 7. LRC  Left Right Clock        |
- |                    |                                 |
- |    Audio ⧾         | Speaker Positive  (⧾)           |
- |    Audio ⧿         | Speaker Negative  (⧿)           |
+  | ESP32-S3 Dev Board | I²S MAX98357A Amplifier/Speaker |
+  |-------------------:|---------------------------------|
+  |    3V3             | 1. VIN                          |
+  |    GND             | 2. GND                          |
+  |    VIN (0Ω = Left) | 3. SD   (L/R Channel Select)    |
+  |    GND (12dB Gain) | 4. GAIN (Signal Amp)            |
+  |    GPIO7           | 5. DIN  Digital Signal In       |
+  |    GPIO15          | 6. BCLK Bit Clock               |
+  |    GPIO16          | 7. LRC  Left Right Clock        |
+  |                    |                                 |
+  |    Audio ⧾         | Speaker Positive  (⧾)           |
+  |    Audio ⧿         | Speaker Negative  (⧿)           |
 
 > [MAX98357A I²S Audio Amp Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I²S%20Amp%20Wiring%20Diagram.png)
 <br/>
 
  4. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***SPI microSD_Card:***
 
- | ESP32-S3 Dev Board | SPI microSD_Card pins  |
- |-------------------:|------------------------|
- |     3V3            | 1. 3V3  (Power)        |
- |     GPIO10         | 2. CS   &nbsp;&nbsp;(Chip Select)  |
- |     GPIO11         | 3. MOSI &nbsp;(SPI SDI)      |
- |     GPIO12         | 4. CLK  &nbsp;&nbsp;(SPI Clock)    |
- |     GPIO13         | 5. MISO &nbsp;(SPI SDO)      |
- |     GND            | 6. GND                 |
+  | ESP32-S3 Dev Board | SPI microSD_Card pins  |
+  |-------------------:|------------------------|
+  |     3V3            | 1. 3V3  (Power)        |
+  |     GPIO10         | 2. CS   &nbsp;&nbsp;(Chip Select)  |
+  |     GPIO11         | 3. MOSI &nbsp;(SPI SDI)      |
+  |     GPIO12         | 4. CLK  &nbsp;&nbsp;(SPI Clock)    |
+  |     GPIO13         | 5. MISO &nbsp;(SPI SDO)      |
+  |     GND            | 6. GND                 |
 
 > [!NOTE]
 > Micro SD_Card (size: less than 2G), Micro SDHC Card (size: less than 32G).
@@ -124,12 +124,12 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
  5. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and an I²C interface & OLED Display:<br/>
     (STEMMA-Qt/Qwiic I²C &nbsp;interface)
 
- | ESP32-S3 Dev Board | I²C 0.96" 128×64 OLED  | Qwiic Wire Color |
- |-------------------:|------------------------|------------------|
- |     GND            | 1. GND                 | Black            |
- |     3V3            | 2. VDD (Power)         | Red              |
- |     GPIO8          | 4. SDA I²C Data  (SDA) | Blue             |
- |     GPIO9          | 3. SCL I²C Clock (SCL) | Yellow           |
+  | ESP32-S3 Dev Board | I²C 0.96" 128×64 OLED  | Qwiic Wire Color |
+  |-------------------:|------------------------|:----------------:|
+  |     GND            | 1. GND                 | Black            |
+  |     3V3            | 2. VDD (Power)         | Red              |
+  |     GPIO8          | 4. SDA I²C Data  (SDA) | Blue             |
+  |     GPIO9          | 3. SCL I²C Clock (SCL) | Yellow           |
 
 > [!NOTE]
 > There are hundreds of STEMMA-Qt/Qwiic I²C sensors availiable.<br/>
@@ -141,11 +141,11 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
  6. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and additional Buttons:<br/>
     _(Most ESP32-S3 Dev Boards have two Button on-board,&nbsp; **RESET** and **BOOT**)_
 
- | ESP32-S3 Dev Board | Buttons                                       |
- |-------------------:|-----------------------------------------------|
- |     GPIO0          | **BOOT Button**.&nbsp; Can also be used as a<br/>“Wake/Interrupt” button. (connected to GND) |
- |     GPIO39         | **Volume Up**.&nbsp; (shorts to GND), Short press<br/>Increases volume, Long press for Max volume. |
- |     GPIO38         | **Volume Dn**.&nbsp; (shorts to GND), Short press<br/>Reduces volume, Long press Mutes.            |
+  | ESP32-S3 Dev Board | Buttons                                       |
+  |-------------------:|-----------------------------------------------|
+  |     GPIO0          | **BOOT Button**.&nbsp; Can also be used as a<br/>“Wake/Interrupt” button. (connected to GND) |
+  |     GPIO39         | **Volume Up**.&nbsp; (shorts to GND), Short press<br/>Increases volume, Long press for Max volume. |
+  |     GPIO38         | **Volume Dn**.&nbsp; (shorts to GND), Short press<br/>Reduces volume, Long press Mutes.            |
 
 > [!NOTE]
 > The [WeAct Studio ESP32-S3-A/B Core](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/3.%20WeAct%20Studio%20ESP32-S3-AB%20Core%20(44-pins).jpg)
@@ -233,13 +233,14 @@ BLE®5                 .——| ' '           |——.                       —
                                                 IO48 RGB_BUILTIN,   GPIO5  SCK
 Red PWR LED, Green TX LED, Blue RX LED               LED_BUILTIN    GPIO6  SD
 
- 1.  INMP441  I²S Microphone            3. 1.54in 240×240 TFT       ————————————
- 2. MAX98357A I²S Audio Amp/Speaker     4. SPI microSD_Card          MAX98357A
-                                                                      I²S Amp
-ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist, ————————————
-26…32 QSPI ƒlash, 33…34 N/A, 35…42 GPIO, 43…44 TX/RX, 45…48 GPIO.   GPIO7  DIN
- pins_arduino.h ~ ESP32-S3-DevKitC-1                                GPIO15 BCLK
-——————————————————————————————————————————————————————————————————— GPIO16 LRC
+ 1. I²S INMP441  Microphone             4. SPI 1.54in 240×240 TFT   ————————————
+ 2. I²S MAX98357A Audio Amp/Speaker     5. SPI microSD_Card          MAX98357A
+ 3. I²C Qwiic/Stemma-Qt interface                                     I²S Amp
+                                                                    ————————————
+ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist, GPIO7  DIN
+26…32 QSPI ƒlash, 33…34 N/A, 35…42 GPIO, 43…44 TX/RX, 45…48 GPIO.   GPIO15 BCLK
+ pins_arduino.h ~ ESP32-S3-DevKitC-1                                GPIO16 LRC
+————————————————————————————————————————————————————————————————————————————————
 ```
 #### ESP32-S3 Pins Summary:
 0…18 GPIO,&nbsp; 19…20 D+/D-,&nbsp; 21 GPIO,&nbsp;
@@ -380,9 +381,9 @@ LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program at the end.
   | ESP32-S3 Dev Board  | I²S INMP441 Microphone    |
   |--------------------:|---------------------------|
   |     GND  (LOW=Left) | 1. L/R Left/Right Channel |
-  |     GPIO4           | 2. WS  Data Select        |
-  |     GPIO5           | 3. SCK Data Clock         |
-  |     GPIO6           | 4. SD  Data Out           |
+  |     GPIO4           | 2. WS  Word/Data Select   |
+  |     GPIO5           | 3. SCK Serial Data Clock  |
+  |     GPIO6           | 4. SD  Serial Data Out    |
   |     3V3             | 5. VDD (Power)            |
   |     GND             | 6. GND                    |
 <br/>
@@ -442,6 +443,17 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
  *
  * Sound with ESP32 – I²S Protocol
  * https://dronebotworkshop.com/esp32-i2s/
+ *
+ *  Wiring:
+ *  ¯¯¯¯¯¯¯
+ *  | ESP32-S3 Dev Board  | I²S INMP441 Microphone    |
+ *  |--------------------:|---------------------------|
+ *  |     GND  (LOW=Left) | 1. L/R Left/Right Channel |
+ *  |     GPIO4           | 2. WS  Word/Data Select   |
+ *  |     GPIO5           | 3. SCK Serial Data Clock  |
+ *  |     GPIO6           | 4. SD  Serial Data Out    |
+ *  |     3V3             | 5. VDD (Power)            |
+ *  |     GND             | 6. GND                    |
  */
 
 /*******************************************************************
@@ -465,6 +477,8 @@ USB Firmware MSC On Boot: "Disabled"
 *******************************************************************/
 
 /* -----------------------------------------------------------------
+    PROGRAMMING LOGIC:
+
  1. We start this sketch by including the ESP32-S3 I²S driver.
  2. We then define the connections to our INMP441 I²S Microphone. If
     you wish you can rewire the microphone & change the code here.
@@ -505,9 +519,10 @@ USB Firmware MSC On Boot: "Disabled"
 ----------------------------------------------------------------- */
 #include <driver/i2s.h>                 // Include the I²S driver
 
-#define I2S_WS     4                    // Pins: INMP441 I²S Mic
-#define I2S_SCK    5
-#define I2S_SD     6
+                                        // Pins: INMP441 I²S Mic
+#define I2S_WS     4                    // WS  - Word/Data Select
+#define I2S_SCK    5                    // SCK - Serial Data Clock
+#define I2S_SD     6                    // SD  - Serial Data Out
 
 #define I2S_PORT I2S_NUM_0              // Use I²S Port/Processor 0
 
@@ -1268,7 +1283,7 @@ _built-in_ “File” class are as follows:
     Written to it is physically saved in the SD/Micro SD card.
 
 > [!NOTE]
-> Until the ‘**file.close()**’ method is called,&nbsp; data Written to 
+> Until the ‘**file.close()**’ method is called,&nbsp; data Written to
 > a file is not saved.&nbsp; Therefore, a file must be Closed after Writing
 > data to it.&nbsp; Otherwise,&nbsp; the logged data will be lost.
 
