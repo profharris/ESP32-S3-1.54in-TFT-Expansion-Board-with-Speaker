@@ -35,20 +35,20 @@
  *  |     3V3            | 1. 3V3  (Power)        |
  *  |     GPIO10         | 2. CS   (Chip Select)  |
  *  |     GPIO11         | 4. MOSI (SPI SDI)      |
- *  |     GPIO13         | 5. CLK  (SPI Clock)    |
- *  |     GPIO12         | 3. MISO (SPI SDO)      |
+ *  |     GPIO12         | 5. CLK  (SPI Clock)    |
+ *  |     GPIO13         | 3. MISO (SPI SDO)      |
  *  |     GND            | 6. GND                 | 
  */
 
 #include <Arduino.h>                    // Arduino master library
 #include <FS.h>                         // File System library
 #include <SPI.h>                        // SPI library
-#include <SD.h>                         // SD Card library
+#include <SD.h>                         // SD_Card library
 
 #define SD_CS   10                      // SPI MicroSD_Card Pins
-#define SD_MISO 11
-#define SD_MOSI 12
-#define SD_SCLK 13
+#define SD_MISO 11                      // ESP32-S3 SPI2 Defaults
+#define SD_SCLK 12
+#define SD_MOSI 13
 
 Sd2Card  card;                          // Required for sdfatlib
 SdVolume volume;
