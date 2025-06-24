@@ -53,18 +53,18 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 
  1. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***ST7789 1.54” 240×240 TFT Display:***
 
-  | ESP32-S3 Dev Board | ST7789 1.54” 240×240 TFT   |
-  |-------------------:|----------------------------|
-  |     GND            | 1. GND                     |
-  |     3V3            | 2. VDD (Power)             |
-  |     GPIO21         | 3. SCL SPI Clock    (SCLK) |
-  |     GPIO47         | 4. SDA SPI Data     (MOSI) |
-  |     GPIO45         | 5. RES TFT Reset     (RST) |
-  |     GPIO40         | 6. RS  Data/Command   (DC) |
-  |     GPIO41         | 7. CS  Chip Select    (CS) |
-  |     GPIO42         | 8. BLK BackLight      (BL) |
+  | ESP32-S3 Dev Board | SPI ST7789 1.54” 240×240 TFT |
+  |-------------------:|------------------------------|
+  |     GND            | 1. GND                       |
+  |     3V3            | 2. VDD (Power)               |
+  |     GPIO21         | 3. SCL SPI Clock      (SCLK) |
+  |     GPIO47         | 4. SDA SPI Data       (MOSI) |
+  |     GPIO45         | 5. RES TFT Reset       (RST) |
+  |     GPIO40         | 6. RS  Data/Command     (DC) |
+  |     GPIO41         | 7. CS  Chip Select      (CS) |
+  |     GPIO42         | 8. BLK BackLight        (BL) |
 
- > [LCD 1.54in 240RGB×240 IPS TFT (ST7789) Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/LCD%201.54in%20240RGB×240%20IPS%20TFT%20(ST7789)%20Wiring%20Diagram.png)
+ > [SPI LCD 1.54in 240RGB×240 IPS TFT (ST7789) Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/LCD%201.54in%20240RGB×240%20IPS%20TFT%20(ST7789)%20Wiring%20Diagram.png)
 <br/>
 
  2. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S INMP441 Microphone:***
@@ -1336,13 +1336,15 @@ on the Serial Monitor:
 
 ```
 
-### SPI SD_Card Demo - sample program
+### SPI SD_Card Demos - sample programs
 
 Insert the formatted SD_card in the SD_card module.&nbsp; The “**SD**”
 library provides useful functions to easily Write, Read, and manage files from the
-SD_card.&nbsp; Run the following sketch to demo SD_Card filesystem functions.
+SD_card.&nbsp; Run the following sketches to demo SD_Card capabilities.
 
-**Download:**&nbsp; [SPI_SD_Card-Demo.ino &nbsp; (SD_card Filesystem Demo)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/SPI_SD_Card-Demo/SPI_SD_Card-Demo.ino)
+**Download:**&nbsp; [1. SPI_SD_Card-Test.ino &nbsp; (SD_card Quick Test)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/SPI_SD_Card-Test/SPI_SD_Card-Test.ino)
+**Download:**&nbsp; [2. SPI_SD_Card-data_log.ino (SD_card Data Logging Demo)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/SPI_SD_Card-data_log/SPI_SD_Card-data_log.ino)
+**Download:**&nbsp; [3. SPI_SD_Card-Demo.ino &nbsp; (SD_card Filesystem Demo)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/SPI_SD_Card-Demo/SPI_SD_Card-Demo.ino)
 ```C++
 /* SPI_SD_Card-Demo.ino
  * Requires an SPI microSD_Card reader/writer
