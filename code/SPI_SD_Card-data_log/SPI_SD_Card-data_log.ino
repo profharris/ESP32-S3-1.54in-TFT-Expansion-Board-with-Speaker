@@ -47,7 +47,7 @@ USB Firmware MSC On Boot: "Disabled"
 #define SD_MISO 13
 
 // SD_Card Filename to use for data_log (8.3 short names required)
-const char filename[] = "data_log.txt";
+const String filename = "/data_log.txt";
 // File object to represent the SD_Card file
 File myFile;
 
@@ -70,14 +70,16 @@ void loop() {
 }
 
 void Check_and_Create_data_log() {
-  Serial.print("Initializing SD_Card... ");
+  Serial.print("SD_Card: Initializing... ");
   /* Check if the SD_Card exist or not */
   if(!SD.begin(SD_CS)) {            // SPI SD_Card Chip Select
     Serial.println("Initialization Failed!");
     while(1); // Don't do anything more:
+  } else {
+    Serial.println("Initialization done.");
   }
-  Serial.println("Initialization done.");
-
+  
+  Serial.print("SD_CARD: ");
   Serial.print(filename);
   if(SD.exists(filename))
     Serial.println(" exists.");
@@ -88,10 +90,11 @@ void Check_and_Create_data_log() {
      will Create a new data_log file on the SD_Card */
   Serial.print("SD_CARD: Creating ");
   Serial.println(filename);
-  myFile = SD.open(filename, FILE_WRITE);
+  myFile = SD.open(filename);
   myFile.close();
 
   /* Now Check again if the data_log exists on the SD_Card */
+  Serial.print("SD_CARD: ");
   Serial.print(filename);
   if(SD.exists(filename))
     Serial.println(" exists.");
@@ -142,9 +145,16 @@ void Read_data_log() {
 /*******************************************************************
 Serial Monitor:
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-04:04:14.348 -> Initializing SD_Card...Initialization done.
-04:04:14.348 -> data_log.txt doesn't exist!
-04:04:14.348 -> Creating data_log.txt...
+17:40:34.172 -> SD_Card: Initializing... Initialization done.
+17:40:34.172 -> SD_CARD: /data_log.txt doesn't exists.
+17:40:34.172 -> SD_CARD: Creating /data_log.txt
+17:40:34.172 -> SD_CARD: /data_log.txt exists.
+17:40:34.192 -> SD_CARD: Writing to /data_log.txt
+17:40:34.192 -> Done.
+17:40:34.192 -> SD_CARD: Reading from /data_log.txt
+17:40:34.192 -> Testing 1, 2, 3...
+17:40:34.192 -> 
+17:40:34.192 -> Done.
 
 --------------------------------------------------------------------
 Output:
