@@ -14,7 +14,8 @@
  * controller. Learn more about the ESP32 SD/SDIO/MMC driver here:
  * https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/storage/sdmmc.html
  *
- * This sketch will use the SPI SD library and demo these functions:
+ * This sketch will use the SPI SD library and Demo these functions:
+ * https://docs.arduino.cc/libraries/sd/
  * 1. listDir   (dir)
  * 2. createDir (mkdir)
  * 3. removeDir (rmdir)
@@ -195,7 +196,7 @@ void testFileIO(fs::FS &fs, const char *path) {
       len -= toRead;
     }
     end = millis() - start;
-    Serial.printf("%u bytes Read in %u ms\n", flen, end);
+    Serial.printf("%u bytes Read    in %u ms\n", flen, end);
     file.close();
   } else {
     Serial.println("Failed to Open file for Reading!");
@@ -220,7 +221,7 @@ void setup() {
   Serial.begin(15200);              // Serial Monitor
   while(!Serial);                   // Wait for Serial Port to open
 
-  // Initialize SPI bus SD_Card
+  // Initialize SPI bus and deactivate SD_Card Chip Select
   SPI.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
   pinMode(SD_CS,      OUTPUT);      // SPI SD_Card Chip Select
   digitalWrite(SD_CS, HIGH);        // Active LOW!
@@ -272,42 +273,48 @@ void loop() {
 /*******************************************************************
 Serial Monitor:
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-00:51:06.063 -> SD_Card Type: SDHC
-00:51:06.063 -> SD_Card Size: 59645MB
-00:51:06.063 -> Listing Directory: /
-00:51:06.063 ->   FILE: test.txt  SIZE: 1048576
-00:51:06.063 ->   FILE: foo.txt  SIZE: 14
-00:51:06.183 ->   DIR : System Volume Information
-00:51:06.183 ->   FILE: .dbxignore  SIZE: 545
-00:51:06.183 ->   FILE: .dropbox.external.fileid  SIZE: 26
-00:51:06.063 -> Creating Dir: /mydir
-00:51:06.183 -> Dir created.
-00:51:06.183 -> Removing Dir: /mydir
-00:51:06.183 -> Dir removed.
-00:51:06.183 -> Listing Directory: /
-00:51:06.183 ->   FILE: test.txt  SIZE: 1048576
-00:51:06.183 ->   FILE: foo.txt  SIZE: 14
-00:51:06.183 ->   DIR : System Volume Information
-00:51:06.183 -> Listing Directory: System Volume Information
-00:51:06.183 -> Failed to open Directory!
-00:51:06.183 ->   FILE: .dbxignore  SIZE: 545
-00:51:06.183 ->   FILE: .dropbox.external.fileid  SIZE: 26
-00:51:06.183 -> Writing file: /hello.txt
-00:51:06.183 -> File Written.
-00:51:06.183 -> Appending to file: /hello.txt
-00:51:06.183 -> Message Appended.
-00:51:06.183 -> Reading file: /hello.txt
-00:51:06.183 -> Read from file: Hello, World!
-00:51:06.183 -> Deleting file: /foo.txt
-00:51:06.183 -> File Deleted.
-00:51:06.183 -> Renaming file /hello.txt to /foo.txt
-00:51:06.183 -> File Renamed.
-00:51:06.183 -> Reading file: /foo.txt
-00:51:06.183 -> Read from file: Hello, World!
-00:51:08.527 -> 1048576 bytes Read in 2371 ms
-00:51:11.102 -> 1048576 bytes Written in 2473 ms
-00:51:11.102 -> Total space: 59629MB
-00:51:11.102 ->  Used space: 1MB
+15:55:13.946 -> SD_Card Type: SDHC
+15:55:13.946 -> SD_Card Size: 59645MB
+15:55:13.946 -> Listing Directory: /
+15:55:13.946 ->   FILE: foo.txt  SIZE: 14
+15:55:13.946 ->   DIR : System Volume Information
+15:55:13.946 ->   FILE: .dbxignore  SIZE: 545
+15:55:13.946 ->   FILE: .dropbox.external.fileid  SIZE: 26
+15:55:13.946 ->   FILE: .dropbox.device  SIZE: 56
+15:55:13.946 -> Creating Dir: /mydir
+15:55:14.390 -> Dir created.
+15:55:14.390 -> Listing Directory: /
+15:55:14.390 ->   DIR : mydir
+15:55:14.390 ->   FILE: foo.txt  SIZE: 14
+15:55:14.390 ->   DIR : System Volume Information
+15:55:14.390 ->   FILE: .dbxignore  SIZE: 545
+15:55:14.390 ->   FILE: .dropbox.external.fileid  SIZE: 26
+15:55:14.390 ->   FILE: .dropbox.device  SIZE: 56
+15:55:14.390 -> Removing Dir: /mydir
+15:55:14.390 -> Dir removed.
+15:55:14.390 -> Listing Directory: /
+15:55:14.390 ->   FILE: foo.txt  SIZE: 14
+15:55:14.390 ->   DIR : System Volume Information
+15:55:14.390 -> Failed to open Directory!
+15:55:14.390 ->   FILE: .dbxignore  SIZE: 545
+15:55:14.390 ->   FILE: .dropbox.external.fileid  SIZE: 26
+15:55:14.390 ->   FILE: .dropbox.device  SIZE: 56
+15:55:14.390 -> Writing file: /hello.txt
+15:55:14.390 -> File Written.
+15:55:14.390 -> Appending to file: /hello.txt
+15:55:14.390 -> Message Appended.
+15:55:14.390 -> Reading file: /hello.txt
+15:55:14.390 -> Read from file: Hello, World!
+15:55:14.390 -> Deleting file: /foo.txt
+15:55:14.390 -> File Deleted.
+15:55:14.390 -> Renaming file /hello.txt to /foo.txt
+15:55:14.390 -> File Renamed.
+15:55:14.390 -> Reading file: /foo.txt
+15:55:14.390 -> Read from file: Hello, World!
+15:55:14.527 -> 1048576 bytes Read    in 2371 ms
+15:55:16.697 -> 1048576 bytes Written in 2474 ms
+15:55:16.697 -> Total space: 59629MB
+15:55:16.697 ->  Used space: 1MB
 
 --------------------------------------------------------------------
 Output:
@@ -319,8 +326,8 @@ Global variables use 21892 bytes (6%) of dynamic memory,
          Maximum is 327680 bytes.
 esptool.py v4.8.1
 Serial port COM8
-
 Connecting...
+
 Chip is ESP32-S3 (QFN56) (revision v0.2)
 Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
 Crystal is 40MHz
@@ -338,35 +345,35 @@ Flash will be erased from 0x00010000 to 0x0006efff...
 Compressed 20208 bytes to 13058...
 Writing at 0x00000000... (100 %)
 Wrote 20208 bytes (13058 compressed) at 0x00000000 in 0.4 seconds 
- (effective 437.8 kbit/s)...
+  (effective 428.7 kbit/s)...
 Hash of data verified.
 Compressed 3072 bytes to 144...
 Writing at 0x00008000... (100 %)
 Wrote 3072 bytes (144 compressed) at 0x00008000 in 0.1 seconds 
- (effective 445.2 kbit/s)...
+  (effective 440.4 kbit/s)...
 Hash of data verified.
 Compressed 8192 bytes to 47...
 Writing at 0x0000e000... (100 %)
 Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds 
- (effective 619.6 kbit/s)...
+  (effective 618.4 kbit/s)...
 Hash of data verified.
-Compressed 386016 bytes to 216048...
+Compressed 386016 bytes to 216047...
 Writing at 0x00010000... (7 %)
-Writing at 0x0001b459... (14 %)
+Writing at 0x0001b455... (14 %)
 Writing at 0x000297e1... (21 %)
-Writing at 0x0002ef23... (28 %)
+Writing at 0x0002ef24... (28 %)
 Writing at 0x00034d7b... (35 %)
-Writing at 0x0003ac3c... (42 %)
+Writing at 0x0003ac3d... (42 %)
 Writing at 0x0004041b... (50 %)
-Writing at 0x00045ee1... (57 %)
+Writing at 0x00045ee7... (57 %)
 Writing at 0x0004ae5e... (64 %)
-Writing at 0x000508e8... (71 %)
-Writing at 0x00056f4d... (78 %)
-Writing at 0x00061376... (85 %)
-Writing at 0x00066df2... (92 %)
-Writing at 0x0006cee5... (100 %)
-Wrote 386016 bytes (216048 compressed) at 0x00010000 in 3.8 seconds 
- (effective 817.8 kbit/s)...
+Writing at 0x000508e9... (71 %)
+Writing at 0x00056f4f... (78 %)
+Writing at 0x00061377... (85 %)
+Writing at 0x00066df3... (92 %)
+Writing at 0x0006cee6... (100 %)
+Wrote 386016 bytes (216047 compressed) at 0x00010000 in 3.9 seconds 
+  (effective 801.7 kbit/s)...
 Hash of data verified.
 
 Leaving...
