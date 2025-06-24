@@ -1342,8 +1342,8 @@ Insert the formatted SD_card in the SD_card module.&nbsp; The “**SD**”
 library provides useful functions to easily Write, Read, and manage files from the
 SD_card.&nbsp; Run the following sketches to demo SD_Card capabilities.
 
-**Download:**&nbsp; [1. SPI_SD_Card-Test.ino &nbsp; (SD_card Quick Test)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/SPI_SD_Card-Test/SPI_SD_Card-Test.ino)
-**Download:**&nbsp; [2. SPI_SD_Card-data_log.ino (SD_card Data Logging Demo)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/SPI_SD_Card-data_log/SPI_SD_Card-data_log.ino)
+**Download:**&nbsp; [1. SPI_SD_Card-Test.ino &nbsp; (SD_card Quick Test)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/SPI_SD_Card-Test/SPI_SD_Card-Test.ino)<br/>
+**Download:**&nbsp; [2. SPI_SD_Card-data_log.ino (SD_card Data Logging Demo)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/SPI_SD_Card-data_log/SPI_SD_Card-data_log.ino)<br/>
 **Download:**&nbsp; [3. SPI_SD_Card-Demo.ino &nbsp; (SD_card Filesystem Demo)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/SPI_SD_Card-Demo/SPI_SD_Card-Demo.ino)
 ```C++
 /* SPI_SD_Card-Demo.ino
