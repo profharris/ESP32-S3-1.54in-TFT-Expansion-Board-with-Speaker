@@ -65,6 +65,8 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
   |     GPIO42         | 8. BLK BackLight        (BL) |
 
  > [SPI LCD 1.54in 240RGB×240 IPS TFT (ST7789) Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/LCD%201.54in%20240RGB×240%20IPS%20TFT%20(ST7789)%20Wiring%20Diagram.png)
+
+>**Download:**&nbsp; [GFX_ST7789_colorGraphicsDemo.ino &nbsp; (a dozen GFX graphics demos)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/GFX_ST7789_colorGraphicsDemo/GFX_ST7789_colorGraphicsDemo.ino)
 <br/>
 
  2. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S INMP441 Microphone:***
@@ -84,6 +86,8 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
    >> RIGHT – connect L/R to VDD.
 
 > [INMP441 I²S MEMS Mic Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/INMP441%20I%C2%B2S%20MEMS%20Mic%20Wiring%20Diagram.png)
+
+>**Download:**&nbsp; [INMP441-I2S-Mic-sample.ino &nbsp; (Visual “Audio Waveforms”)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/INMP441-I2S-Mic-sample/INMP441-I2S-Mic-sample.ino)
 <br/>
 
  3. Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***I²S MAX98357A Amplifier/Speaker:***
@@ -102,6 +106,13 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
   |    Audio ⧿         | Speaker Negative  (⧿)           |
 
 > [MAX98357A I²S Audio Amp Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/MAX98357A%20I²S%20Amp%20Wiring%20Diagram.png)
+
+>**Download:**&nbsp; [1. MAX98357-I2S-Amp-quickTest.ino &nbsp; (440Hz sine wave)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-quickTest/MAX98357-I2S-Amp-quickTest.ino)<br/>
+>**Download:**&nbsp; [2. MAX98357-I2S-stream-from-Flash.ino &nbsp; _(Stream the “Star Wars” intro)_](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-stream-from-Flash/MAX98357-I2S-stream-from-Flash.ino)<br/>
+>**Download:**&nbsp; [&nbsp; &nbsp; StarWars30.h &nbsp; _(“Star Wars” intro)_](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-stream-from-Flash/StarWars30.h)<br/>
+>**Download:**&nbsp; [3. MAX98357-I2S-stream-from-PROGMEM.ino &nbsp; _(Stream the “Star Wars” intro)_](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-stream-from-Flash/MAX98357-I2S-stream-from-Flash.ino)<br/>
+>**Download:**&nbsp; [&nbsp; &nbsp; soundsample.h &nbsp; _(static)_](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-stream-from-Flash/StarWars30.h)<br/>
+>**Download:**&nbsp; [4. MAX98357-I2S-Amp-SD-Music-Player.ino &nbsp; (MP3 Music Player)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-SD-Music-Player/MAX98357-I2S-Amp-SD-Music-Player.ino)<br/>
 <br/>
 
  4. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***SPI microSD_Card:***
