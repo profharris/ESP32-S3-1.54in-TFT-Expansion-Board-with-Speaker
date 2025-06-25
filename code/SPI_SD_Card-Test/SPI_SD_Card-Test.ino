@@ -74,9 +74,9 @@ USB Firmware MSC On Boot: "Disabled"
 #define SD_SCK  12
 #define SD_MISO 13
 
-// Filename on SD_Card to use for testing (8.3 short names required)
-const char filename[] = "TESTFILE.TXT";
-// File object to represent file
+// Path & Filename on SD_Card used for testing (8.3 short names required)
+String filename = "/TestFile.txt";
+// File object to represent file on SD_Card
 File   myFile;
                                     // --Test Data--
 int    myInt = -40;                 // Celsius = Fahrenheit
@@ -105,23 +105,37 @@ void setup() {
   // Delete the old file, if it exist...
   // NOTE: Remember the SD library uses short 8.3 names for files.
 
-  // Create a new file by Opening the SD_Card file for Writing
+  Serial.println("Open SD_Card file for Writing:");
   myFile = SD.open(filename, FILE_WRITE);
 
   if(myFile) {
+    Serial.print("SD_CARD: Writing to ");
+    Serial.println(filename);
+    Serial.println("This is a test file:");
     myFile.println("This is a test file:");
+    Serial.println(myInt);
     myFile.println(myInt);          // Write Int variable to SD_Card
+    Serial.println(myFloat);
     myFile.println(myFloat);        // Write Float variable to SD_Card
+    Serial.println(myString);
     myFile.println(myString);       // Write String variable to SD_Card
+    Serial.println(myCharArray);
     myFile.println(myCharArray);    // Write Char Array to SD_Card
+    Serial.write(myByteArray, 10);
     myFile.write(myByteArray, 10);  // Write Byte Array to SD_Card
+    Serial.println("");
     myFile.println("");             // Write a blank line to SD_Card
 
     for(int i=0; i < 10; i++) {
+      Serial.write(myByteArray[i]);
       myFile.write(myByteArray[i]); // Write Byte Array elements to SD_Card
-      if(i < 9) myFile.print(",");  // Write a comma, to SD_Card
+      if(i < 9) {
+        Serial.print(",");
+        myFile.print(",");          // Write a comma, to SD_Card
+      }
     }
-    myFile.println("");             // Write a blank line to SD_Card
+    Serial.println("\n");
+    myFile.println("\n");           // Write a blank line to SD_Card
     myFile.close();                 // Close the SD_Card file
   } else {
     Serial.print(F("SD_Card: Error opening "));
@@ -129,14 +143,15 @@ void setup() {
     Serial.println(F(" to Write!"));
   }
 
-  // Open SD_Card file for Reading
+  Serial.println("Open SD_Card file for Reading:");
   myFile = SD.open(filename, FILE_READ);
   if(myFile) {
+    Serial.print("SD_CARD: Reading from ");
+    Serial.println(filename);
     while(myFile.available()) {
-      char ch = myFile.read();      // Read characters one by one,
-      Serial.println(F(ch));        // Print to the Serial Monitor.
-    }
-    Serial.println(F(""));          // Print a blank line
+      Serial.write(myFile.read());  // Read characters one by one,
+    }                               // Print to the Serial Monitor.
+    Serial.println("\n");           // Print a blank line
     myFile.close();                 // Close the SD_Card file
   } else {
     Serial.print(F("SD_Card: Error Opening "));
@@ -152,13 +167,30 @@ void loop() {
 /*******************************************************************
 Serial Monitor:
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-15:36:22.037 -> ESP-ROM:esp32s3-20210327
-15:43:02.290 -> SD_CARD INITIALIZED.
-15:43:02.290 -> --------------------
-16:43:03.332 -> SD_Card: Error Opening TESTFILE.TXT to Write!
-16:43:03.332 -> SD_Card: Error Opening TESTFILE.TXT to Read!
+18:40:58.598 -> ESP-ROM:esp32s3-20210327
 
-
+19:37:41.909 -> SD_CARD INITIALIZED.
+19:37:41.909 -> --------------------
+19:37:41.909 -> Open SD_Card file for Writing:
+19:37:41.909 -> SD_CARD: Writing to /TestFile.txt
+19:37:41.909 -> This is a test file:
+19:37:41.909 -> -40
+19:37:41.909 -> 12.70
+19:37:41.909 -> Hello, World!
+19:37:41.909 -> Prof. Michael P. Harris CNE, CCNA, CCAI
+19:37:41.909 -> 0123456789
+19:37:41.909 -> 0,1,2,3,4,5,6,7,8,9
+19:37:41.909 ->
+19:37:41.909 -> Open SD_Card file for Reading:
+19:37:41.909 -> SD_CARD: Reading from /TestFile.txt
+19:37:41.909 -> This is a test file:
+19:37:41.909 -> -40
+19:37:41.909 -> 12.70
+19:37:41.909 -> Hello, World!
+19:37:41.909 -> Prof. Michael P. Harris CNE, CCNA, CCAI
+19:37:41.909 -> 0123456789
+19:37:41.909 -> 0,1,2,3,4,5,6,7,8,9
+19:37:41.909 ->
 
 --------------------------------------------------------------------
 Output:
