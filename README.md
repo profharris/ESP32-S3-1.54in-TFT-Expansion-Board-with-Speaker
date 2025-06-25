@@ -1,7 +1,7 @@
 # ESP32-S3 1.54in TFT Expansion Board with Speaker
 ## _(with&nbsp; I²S INMP441 Microphone, &&nbsp; I²S MAX98357A Audio Amplifier)_
 
-***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/18/2025*<br/>
+***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/24/2025*<br/>
 [GitHub Pages](https://pages.github.com/)<br/>
 <br/>
 
@@ -119,6 +119,10 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 > Micro SD_Card (size: less than 2G), Micro SDHC Card (size: less than 32G).
 
 > [SPI microSD_Card Wiring Diagram](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/microSD_Card%20Wiring%20Diagram.jpg)
+
+>**Download:**&nbsp; [1. SPI_SD_Card-Test.ino &nbsp; (SD_card Quick Test)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/SPI_SD_Card-Test/SPI_SD_Card-Test.ino)<br/>
+>**Download:**&nbsp; [2. SPI_SD_Card-data_log.ino (SD_card Data Logging Demo)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/SPI_SD_Card-data_log/SPI_SD_Card-data_log.ino)<br/>
+>**Download:**&nbsp; [3. SPI_SD_Card-Demo.ino &nbsp; (SD_card Filesystem Demo)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/SPI_SD_Card-Demo/SPI_SD_Card-Demo.ino)
 <br/>
 
  5. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and an I²C interface & OLED Display:<br/>
