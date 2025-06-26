@@ -112,7 +112,8 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   CAM SD RGB L
 >**Download:**&nbsp; [&nbsp; &nbsp; StarWars30.h &nbsp; _(“Star Wars” intro)_](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-stream-from-Flash/StarWars30.h)<br/>
 >**Download:**&nbsp; [3. MAX98357-I2S-stream-from-PROGMEM.ino &nbsp; _(Stream the “Star Wars” intro)_](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-stream-from-Flash/MAX98357-I2S-stream-from-Flash.ino)<br/>
 >**Download:**&nbsp; [&nbsp; &nbsp; soundsample.h &nbsp; _(static)_](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-stream-from-Flash/StarWars30.h)<br/>
->**Download:**&nbsp; [4. MAX98357-I2S-Amp-SD-Music-Player.ino &nbsp; (MP3 Music Player)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-SD-Music-Player/MAX98357-I2S-Amp-SD-Music-Player.ino)<br/>
+>**Download:**&nbsp; [4. ESP32-S3_SD_I2S-MP3Player.ino &nbsp; (I²S MP3 Player)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/ESP32-S3_SD_I2S-MP3Player/ESP32-S3_SD_I2S-MP3Player.ino)<br/>
+>**Download:**&nbsp; [&nbsp; &nbsp; Olsen-Banden.mp3 &nbsp;  ESP32-S3_SD_I2S-MP3Player ](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/ESP32-S3_SD_I2S-MP3Player/Olsen-Banden.mp3)
 <br/>
 
  4. _(Optional)_&nbsp; Wiring between ESP32-S3-WROOM-1 Development Board and the &nbsp; ***SPI microSD_Card:***
@@ -1222,6 +1223,8 @@ void audio_lasthost(const char *info) { // Stream URL played
 /*******************************************************************
 Serial Monitor:
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+00:54:38.702 -> ESP-ROM:esp32s3-20210327
+
 23:58:11.403 -> Info        audioI2S Version 3.3.0
 23:58:11.403 -> Info        PSRAM found, inputBufferSize: 630773 bytes
 23:58:11.403 -> Info        buffers freed, free Heap: 259376 bytes
