@@ -231,22 +231,22 @@ BLE®5                 .——| ' '           |——.                       —
 [I²S Amp DIN ] IO7   7|o:'———————————————':o|38 IO41 [SPI TFT CS  ] GPIO13 MISO
 [I²S Amp BCLK] IO15  8|o:                 :o|37 IO40 [SPI TFT DC  ]
 [I²S Amp LRC ] IO16  9|o  :: ‡‡‡    · RST  o|36 IO39 [   Volume UP] ————————————
-[A16         ] IO17 10|o  ¨¨|¯¯¯¬   : [Ø]  o|35 IO38 [   Volume DN] 1.54in  TFT
-[A17         ] IO18 11|o  ¨¨|LDO[]  : BOOT •|34 IO37 [PSRAM      •] 240×240 IPS
-[A7  I²C SDA ] IO8  12|o  ¨¨|___- ¬¬  [Ø]  •|33 IO36 [PSRAM      •] ————————————
-[A2          ] IO3_ 13|o  ·  ‡‡‡  ¨¨       •|32 IO35 [PSRAM      •] GPIO42 BL
+[A16         ] IO17 10|o  ¨¨|¯¯¯¬   : [◙]  o|35 IO38 [   Volume DN] 1.54in  TFT
+[A17         ] IO18 11|o  ¨¨|LDO[]  : BOOT ●|34 IO37 [PSRAM      ●] 240×240 IPS
+[A7  I²C SDA ] IO8  12|o  ¨¨|___- ¬¬  [◙]  ●|33 IO36 [PSRAM      ●] ————————————
+[A2          ] IO3_ 13|o  ·  ‡‡‡  ¨¨       ●|32 IO35 [PSRAM      ●] GPIO42 BL
 [IN ONLY     ] IO46_14|o      RGB   P T R  o|31 IO0_ [BOOT      OK] GPIO41 CS
 [A8  I²C SCL ] IO9  15|o  RGB CTRL  R X X  o|30 IO45_[SPI TFT RST ] GPIO40 DC
-[A9  SPI CS  ] IO10 16|o  [¤]  ¥    ¤ ¤ ¤  ¤|29 IO48 [RGB WS2812¤ ] GPIO45 RST
+[A9  SPI CS  ] IO10 16|o  [҉]  Ө    ҉ ҉ ҉  ¤|29 IO48 [RGB WS2812¤ ] GPIO45 RST
 [A10 SPI MOSI] IO11 17|o           ··· ___ o|28 IO47 [SPI TFT MOSI] GPIO47 MOSI
 [A11 SPI SCK ] IO12 18|oIN-OUT ‡‡‡ :::|343|o|27 IO21 [SPI TFT SCLK] GPIO21 SCLK
-[A12 SPI MISO] IO13 19|o ¥            |___|ø|26 IO20 [A19       D⧾]
+[A12 SPI MISO] IO13 19|o Ө            |___|ø|26 IO20 [A19       D⧾]
 [A13         ] IO14 20|o  _____ O T _____  ø|25 IO19 [A18       D⧿] ————————————
 [      IN-OUT]  5V0 21|o | USB |T T| USB | o|24 GND                 INMP441 Mic
                 GND 22|o |  C  |G L|  C  | o|23 GND                 ————————————
                       '——'ESP32'———'UART0'——'                       GPIO4  WS
                                                 IO48 RGB_BUILTIN,   GPIO5  SCK
-Red PWR LED, Green TX LED, Blue RX LED               LED_BUILTIN    GPIO6  SD
+🟥Red PWR LED, 🟩Green TX LED, 🟦Blue RX LED        LED_BUILTIN    GPIO6  SD
 
  1. I²S INMP441  Microphone             4. SPI 1.54in 240×240 TFT   ————————————
  2. I²S MAX98357A Audio Amp/Speaker     5. SPI microSD_Card          MAX98357A
@@ -1062,14 +1062,22 @@ void loop() {
     // Listen to the “Star Wars” intro...
 }
 ```
-<br/>
+<br/><hr>
 
-**Download:**&nbsp; [MAX98357-I2S-Amp-SD-Music-Player.ino &nbsp; (I²S Music Player)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/MAX98357-I2S-Amp-SD-Music-Player/MAX98357-I2S-Amp-SD-Music-Player.ino)
+**Download:**&nbsp; [ESP32-S3_SD_I2S-MP3Player.ino &nbsp; (I²S MP3 Player)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/ESP32-S3_SD_I2S-MP3Player/ESP32-S3_SD_I2S-MP3Player.ino)<br/>
+**Download:**&nbsp; [Olsen-Banden.mp3 &nbsp;  ESP32-S3_SD_I2S-MP3Player ](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/ESP32-S3_SD_I2S-MP3Player/Olsen-Banden.mp3)
 ```C++
-/* MAX98357-I2S-Amp-SD-Music-Player.ino     (MP3 Music Player)
- * Requires a MAX98357A I²S Audio Amplifier/Speaker.
- * Requires an SPI microSD Card reader/writer to hold the MP3 files.
+/* ESP32-S3_SD_I2S-MP3Player.ino     (MP3 Music Player)
+ * Requires a MAX98357 I²S Amplifier/Speaker
+ * Requires a SPI microSD_Card Reader
  * ESP32-S3 1.54in TFT Expansion Board with Speaker
+ *
+ * Play MP3 file from a microSD card
+ * Uses ESP32-audioI2S Library:
+ *      https://github.com/schreibfaul1/ESP32-audioI2S
+ *
+ * NOTE¹:  You will NOT hear the MP3 file playing
+ * ¯¯¯¯¯¯  until you open the Serial Monitor!!!
  *
  * The MAX98357A (3 Watt Audio Amplifier with DAC), connectes three
  * lines (DOUT, BLCK, and LRC) to the I²S bus. The I²S output frequency
@@ -1078,116 +1086,184 @@ void loop() {
  * two MAX98357A are necessary. Using “AudioI2S” you can play MP3s,
  * Icy-streams, GoogleTTS, OpenAIspeech, and more.
  *
- * This sketch is a simple ESP32-S3 microSD_Card I²S MP3 Music Player:
- *
- * Play your MP3 files directly from one of two types of microSD Cards:
- *      1. Micro SD_Card   (size up to 2GB)
- *      2. Micro SDHC_Card (size up to 32G)
- *
- *  Uses a MAX98357A I²S Amplifier.
- *  Uses the ESP32-audioI2S Library:
- *      https://github.com/schreibfaul1/ESP32-audioI2S
- *
- * Using the MAX98357A I²S Audio Amplifier and Speaker:
- *
- *   The sound source will be an .mp3 file that is stored on your
- *   microSD_Card.  This is an extremely basic MP3 player, for
- *   practical use you would need to code a system for navigating
- *   the microSD_Card, to play more than one selection.  This sketch
- *   is just to illustrate how to use the MAX98357A I²S Audio Amplifier,
- *   as well as a library that makes working with I²S Audio apps a
- *   bit easier.
- *
- * Project Wiring:
- * ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
- * MAX98357A I²S Amp                ESP32-S3-WROOM-1
- * 1. VIN  (Power)              --> 3V3
- * 2. GND                       --> GND
- * 3. SD   (L/R Channel Select) --> Connect to VIN (0Ω = Left)
- * 4. GAIN                      --> Connect to GND (12 dB Gain)
- * 5. DIN  (Serial Data In/Out) --> GPIO7
- * 6. BCLK (Bit Clock)          --> GPIO15
- * 7. LRC  (Left Right Clock)   --> GPIO16
- *
- *    External Speaker interface: (⧾ ⧿)
- *
- *    Audio⧾  Connect to Speaker Positive (usually a Red wire)
- *    Audio⧿  Connect to Speaker Negative
- *
- * microSD Card                     ESP32-S3-WROOM-1
- * 1. 3V3  (Power)              --> 3V3
- * 2. CS   (Chip Select)        --> GPIO10
- * 3. MOSI (SPI SDI)            --> GPIO11
- * 4. CLK  (SPI Clock)          --> GPIO12
- * 5. MISO (SPI SDO)            --> GPIO13
- * 6. GND                       --> GND
- *
- * Sound with ESP32 – I²S Protocol
+ * DroneBot Workshop 2022
  * https://dronebotworkshop.com/esp32-i2s/
+ *
+ * Wiring:
+ * ¯¯¯¯¯¯¯
+ *  | ESP32-S3 Dev Board | I²S MAX98357A Amplifier/Speaker |
+ *  |-------------------:|---------------------------------|
+ *  |    3V3             | 1. VIN                          |
+ *  |    GND             | 2. GND                          |
+ *  |    VIN (0Ω = Left) | 3. SD   (L/R Channel Select)    |
+ *  |    GND (12dB Gain) | 4. GAIN (Signal Amp)            |
+ *  |    GPIO7           | 5. DIN  Digital Signal In       |
+ *  |    GPIO15          | 6. BCLK Bit Clock               |
+ *  |    GPIO16          | 7. LRC  Left Right Clock        |
+ *  |                    |                                 |
+ *  |    Audio ⧾         | Speaker Positive  (+)           |
+ *  |    Audio ⧿         | Speaker Negative  (-)           |
+ *
+ *
+ *  | ESP32-S3 Dev Board | SPI microSD_Card Pins           |
+ *  |-------------------:|---------------------------------|
+ *  |     3V3            | 1. 3V3  (Power)                 |
+ *  |     GPIO10         | 2. CS   (Chip Select)           |
+ *  |     GPIO11         | 4. MOSI (SPI SDI)               |
+ *  |     GPIO12         | 5. SCK  (SPI Clock)             |
+ *  |     GPIO13         | 3. MISO (SPI SDO)               |
+ *  |     GND            | 6. GND                          |
  */
 
 /*******************************************************************
-Type-C USB Data cable. Plug into the Left-side ESP32-S3 USB-OTG port
-                                     ¯¯¯¯¯¯¯¯¯          ¯¯¯¯¯¯¯
+Type-C USB Data cable plugged into Left-side ESP32-S3 USB-OTG port.
+                                   ¯¯¯¯¯¯¯¯¯          ¯¯¯¯¯¯¯
 Arduino IDE > Tools                                  [CONFIGURATION]
                    Board: "ESP32S3 Dev Module"
          USB CDC On Boot: "Enabled"  **Cable plugged into Left USB**
            CPU Frequency: "240MHz (WiFi)"                 ¯¯¯¯
          USB DFU On Boot: "Disabled"
               Flash Mode: "QIO 80MHz"
-              Flash Size: "16MB 128Mb"  【or】
-              Flash Size: "8MB 64Mb"    ...check your board!
+              Flash Size: "16MB 128Mb"
 USB Firmware MSC On Boot: "Disabled"
-        Partition Scheme: "16M Flash (2MB APP/12.5MB FATFS)"  【or】
-        Partition Scheme: "8MB with spiffs (3MB APP/1.5MB SPIFFS)"
+        Partition Scheme: "16M Flash (3MB APP/9.9MB FATFS)"
                    PSRAM: "OPI PSRAM"
              Upload Mode: "UART0/Hardware CDC"
             Upload Speed: "115200"
                 USB Mode: "Hardware CDC and JTAG"
 *******************************************************************/
 
-#include "Arduino.h"                // Include required libraries
-#include "Audio.h"                  // ESP32-audioI2S library
-#include "SD.h"                     // SD_Card and µSD_Card library
-#include "FS.h"
-                                    // microSD_Card pins
-#define SD_CS         10            // microSD_Card Chip Select
-#define SPI_MOSI      11            // SPI Data In  (SDI)
-#define SPI_SCK       12            // SPI Clock    (CLK)
-#define SPI_MISO      13            // SPI Data Out (SDO)
+#include <FS.h>                     // File System library
+#include <SPI.h>                    // SPI library
+#include <SD.h>                     // SD Card library
+#include "Audio.h"                  // ESP32-audioI2S Library
 
-                                    // MAX98357 I²S Amp pins
-#define I2S_DOUT       7            // MAX98357 I²S Amp pins (DIN)
-#define I2S_BCLK      15            //      "
-#define I2S_LRC       16            //      "
+#define SD_CS       10              // SPI microSD_Card Pins
+#define SD_MOSI     11              // ESP32-S3 Default Pins
+#define SD_SCK      12
+#define SD_MISO     13
+                                    // MAX98357A I²S Audio Amp pins
+#define I2S_DOUT     7              // Data_Out
+#define I2S_BCLK    15              // Bit_Clock
+#define I2S_LRC     16              // WS/Left_Right_Clock
+#define I2S_MCLK     0              // not used
 
-Audio audio;                        // ESP32-audioI2S Audio object
+// SD_Card Filename, MP3 Music File (8.3 short names required)
+const char* filename = "/OlsenBan.mp3";
+//            Artist: Bjarne Liller - Olsen Banden
+//          Bit Rate: 142 kbps
+//          Channels: 2 (stereo)
+// Audio Sample Rate: 44.100 kHz
+//         File size: 321 kB
+
+Audio audio;                        // Create ESP32-audioI2S Audio object
 
 void setup() {
-  Serial.begin(115200);             // Initialize Serial Monitor
+  Serial.begin(15200);              // Serial Monitor
   while(!Serial);                   // Wait for Serial Port to open
+/*
+ * NOTE:  You will NOT hear the MP3 file playing
+ * ¯¯¯¯¯  until you open the Serial Monitor!!!
+ */
 
-  pinMode(SD_CS,      OUTPUT);      // Set microSD_Card CS as OUTPUT
-  digitalWrite(SD_CS, HIGH);        // Disable (Active LOW)
+  // Initialize SPI bus and deactivate SD_Card Chip Select
+  pinMode(SD_CS,      OUTPUT);      // SPI SD_Card Chip Select
+  digitalWrite(SD_CS, HIGH);        // Active LOW!
+  SPI.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
+  SPI.setFrequency(1000000);
 
-  SPI.begin(SPI_SCK, SPI_MISO, SPI_MOSI); // Initialize the SPI bus
-
-  if(!SD.begin(SD_CS)) {            // Start the microSD_Card
+  if(!SD.begin(SD_CS)) {            // SPI SD_Card Chip Select
     Serial.println("Error accessing microSD_Card!");
-    while(true);
+    while(true); // Don't do anything more:
   }
 
-  // Setup the MAX98357 I²S Amplifier & Volume control
+  // Setup MAX98357A I²S Audio Amp
   audio.setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT);
-  audio.setVolume(5);                   // Set Volume
+  audio.setVolume(12);              // Range: 0..21
 
-  // Open your .mp3 music file from the microSD_Card
-  audio.connecttoFS(SD,"/MYMUSIC.mp3"); // Change to name of chosen
-}                                       // .mp3 file on microSD_Card
+  audio.connecttoFS(SD, filename);  // Open SD_Card MP3 music file
+//audio.connecttoFS(SD, "test.wav");
+//audio.connecttohost("http://mp3.ffh.de/radioffh/hqlivestream.mp3"); // 128k mp3
+}
 
 void loop() {
-  audio.loop();                         // Play the .mp3 file in a loop
+    audio.loop();                   // Play SD_Card MP3 music file
 }
+
+// Optional bits...
+void audio_info(const char *info) {     // Description
+    Serial.print("Info        "); Serial.println(info);
+}
+void audio_id3data(const char *info) {  // ID3 metadata
+    Serial.print("ID3data     ");Serial.println(info);
+}
+void audio_eof_mp3(const char *info) {  // End-Of-File
+    Serial.print("EOF_mp3     ");Serial.println(info);
+}
+void audio_showstation(const char *info) { // Station
+    Serial.print("Station     ");Serial.println(info);
+}
+void audio_showstreamtitle(const char *info) { // Stream Title
+    Serial.print("streamTitle ");Serial.println(info);
+}
+void audio_bitrate(const char *info) {  // Bit Rate
+    Serial.print("Bitrate     ");Serial.println(info);
+}
+void audio_commercial(const char *info) { // duration in sec
+    Serial.print("Commercial  ");Serial.println(info);
+}
+void audio_icyurl(const char *info) {   // URL homepage
+    Serial.print("icyURL      ");Serial.println(info);
+}
+void audio_lasthost(const char *info) { // Stream URL played
+    Serial.print("lastHost    ");Serial.println(info);
+}
+
+/*******************************************************************
+Serial Monitor:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+23:58:11.403 -> Info        audioI2S Version 3.3.0
+23:58:11.403 -> Info        PSRAM found, inputBufferSize: 630773 bytes
+23:58:11.403 -> Info        buffers freed, free Heap: 259376 bytes
+23:58:11.436 -> Info        Reading file: "/OlsenBan.mp3"
+23:58:11.436 -> Info        MP3Decoder has been initialized,
+                              free Heap: 254748 bytes, free stack 5700 DWORDs
+23:58:12.167 -> Info        Content-Length: 328963
+23:58:12.167 -> Info        ID3 framesSize: 265
+23:58:12.167 -> Info        ID3 version: 2.4
+23:58:12.167 -> Info        ID3 extended header
+23:58:12.167 -> ID3data     Year: 2014
+23:58:12.167 -> ID3data     Album: Olsen-Banden
+23:58:12.167 -> ID3data     Artist: Bjarne Liller - Olsen Banden (Titelmusik der Olsenbande)
+23:58:12.167 -> Info        Audio-Length: 328698
+23:58:12.167 -> Info        stream ready
+23:58:12.167 -> Info        syncword found at pos 0
+23:58:12.167 -> Info        MPEG-2.5, Layer I
+23:58:12.167 -> Info        Channels: 2
+23:58:12.167 -> Info        SampBitsPerSample: 16
+23:58:12.167 -> Info        BitRate: 128000
+23:58:30.499 -> Info        Closing audio file "OlsenBan.mp3"
+23:58:30.499 -> EOF_mp3     OlsenBan.mp3
+23:58:30.499 -> Info        End of file "OlsenBan.mp3"
+
+--------------------------------------------------------------------
+Output:
+¯¯¯¯¯¯¯
+Sketch uses 1511178 bytes (48%) of program storage space.
+ Maximum is 3145728 bytes.
+Global variables use 63884 bytes (19%) of dynamic memory,
+            leaving 263796 bytes for local variables.
+         Maximum is 327680 bytes.
+esptool.py v4.8.1
+Serial port COM8
+Connecting...
+
+Chip is ESP32-S3 (QFN56) (revision v0.2)
+Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
+Crystal is 40MHz
+MAC: 30:ed:a0:bb:73:9c
+
+*******************************************************************/
 ```
 <hr><br/>
 
@@ -1682,10 +1758,10 @@ Serial Monitor:
 --------------------------------------------------------------------
 Output:
 ¯¯¯¯¯¯¯
-Sketch uses 385878 bytes (12%) of program storage space. 
+Sketch uses 385878 bytes (12%) of program storage space.
 Maximum is 3145728 bytes.
-Global variables use 21892 bytes (6%) of dynamic memory, 
-            leaving 305788 bytes for local variables. 
+Global variables use 21892 bytes (6%) of dynamic memory,
+            leaving 305788 bytes for local variables.
          Maximum is 327680 bytes.
 esptool.py v4.8.1
 Serial port COM8
@@ -1707,17 +1783,17 @@ Flash will be erased from 0x0000e000 to 0x0000ffff...
 Flash will be erased from 0x00010000 to 0x0006efff...
 Compressed 20208 bytes to 13058...
 Writing at 0x00000000... (100 %)
-Wrote 20208 bytes (13058 compressed) at 0x00000000 in 0.4 seconds 
+Wrote 20208 bytes (13058 compressed) at 0x00000000 in 0.4 seconds
   (effective 428.7 kbit/s)...
 Hash of data verified.
 Compressed 3072 bytes to 144...
 Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (144 compressed) at 0x00008000 in 0.1 seconds 
+Wrote 3072 bytes (144 compressed) at 0x00008000 in 0.1 seconds
   (effective 440.4 kbit/s)...
 Hash of data verified.
 Compressed 8192 bytes to 47...
 Writing at 0x0000e000... (100 %)
-Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds 
+Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds
   (effective 618.4 kbit/s)...
 Hash of data verified.
 Compressed 386016 bytes to 216047...
@@ -1735,7 +1811,7 @@ Writing at 0x00056f4f... (78 %)
 Writing at 0x00061377... (85 %)
 Writing at 0x00066df3... (92 %)
 Writing at 0x0006cee6... (100 %)
-Wrote 386016 bytes (216047 compressed) at 0x00010000 in 3.9 seconds 
+Wrote 386016 bytes (216047 compressed) at 0x00010000 in 3.9 seconds
   (effective 801.7 kbit/s)...
 Hash of data verified.
 
