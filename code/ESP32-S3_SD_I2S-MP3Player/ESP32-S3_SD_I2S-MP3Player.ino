@@ -10,6 +10,13 @@
  * NOTE¹:  You will NOT hear the MP3 file playing
  * ¯¯¯¯¯¯  until you open the Serial Monitor!!!
  *
+ * The MAX98357A (3 Watt Audio Amplifier with DAC), connectes three
+ * lines (DOUT, BLCK, and LRC) to the I²S bus. The I²S output frequency
+ * is always 48kHz regardless of the input source, so Bluetooth
+ * devices can also be connected without any problems. To get stereo,
+ * two MAX98357A are necessary. Using “AudioI2S” you can play MP3s,
+ * Icy-streams, GoogleTTS, OpenAIspeech, and more.
+ *
  * DroneBot Workshop 2022
  * https://dronebotworkshop.com/esp32-i2s/
  *
@@ -74,7 +81,7 @@ USB Firmware MSC On Boot: "Disabled"
 
 // SD_Card Filename, MP3 Music File (8.3 short names required)
 const char* filename = "/OlsenBan.mp3";
-//            Artest: Bjarne Liller - Olsen Banden
+//            Artist: Bjarne Liller - Olsen Banden
 //          Bit Rate: 142 kbps
 //          Channels: 2 (stereo)
 // Audio Sample Rate: 44.100 kHz
