@@ -167,7 +167,6 @@ void i2s_install() {            // Setup I²S Port config for TX only
     .dma_buf_len          = 64,
     .use_apll             = false
   };
-
   i2s_driver_install(I2S_PORT, &i2s_config, 0, NULL);
 }
 
@@ -178,7 +177,6 @@ void i2s_setpin() {   // I²S pin configuration for Output (Audio Amp)
     .data_out_num = I2S_DOUT,           // Serial Data line, Data Out
     .data_in_num  = I2S_PIN_NO_CHANGE
   };
-
   i2s_set_pin(I2S_PORT, &pin_config);
 }
 
@@ -194,7 +192,7 @@ void setup() {
   i2s_install();                    // Set up I²S for Transmit only
   i2s_setpin();                     // Set up MAX98357A Audio Amp
   i2s_start(I2S_PORT);
-  Serial.println("MAX98357A I²S driver installed.");
+  Serial.println("MAX98357A I²S driver installed.\n");
   delay(500);
 }
 
@@ -223,55 +221,15 @@ void loop() {
 
 /*******************************************************************
 Sketch uses 344038 bytes (16%) of program storage space.
-  Maximum is 2097152 bytes.
+Maximum is 2097152 bytes.
 Global variables use 21164 bytes (6%) of dynamic memory,
-  leaving 306516 bytes for local variables. Maximum is 327680 bytes.
-esptool.py v4.8.1
-Serial port COM8
-Connecting...
+            leaving 306516 bytes for local variables. 
+         Maximum is 327680 bytes.
+
 Chip is ESP32-S3 (QFN56) (revision v0.2)
 Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
 Crystal is 40MHz
 MAC: 30:ed:a0:bb:73:9c
-Uploading stub...
-Running stub...
-Stub running...
-Configuring flash size...
-Flash will be erased from 0x00000000 to 0x00004fff...
-Flash will be erased from 0x00008000 to 0x00008fff...
-Flash will be erased from 0x0000e000 to 0x0000ffff...
-Flash will be erased from 0x00010000 to 0x00064fff...
-Compressed 20208 bytes to 13058...
-Writing at 0x00000000... (100 %)
-Wrote 20208 bytes (13058 compressed) at 0x00000000 in 0.4 seconds
-  (effective 458.7 kbit/s)...
-Hash of data verified.
-Compressed 3072 bytes to 143...
-Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (143 compressed) at 0x00008000 in 0.1 seconds
-  (effective 460.0 kbit/s)...
-Hash of data verified.
-Compressed 8192 bytes to 47...
-Writing at 0x0000e000... (100 %)
-Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds
-  (effective 624.4 kbit/s)...
-Hash of data verified.
-Compressed 344176 bytes to 186452...
-Writing at 0x00010000... (8 %)
-Writing at 0x0001c405... (16 %)
-Writing at 0x000295c3... (25 %)
-Writing at 0x0002efcd... (33 %)
-Writing at 0x00034994... (41 %)
-Writing at 0x0003a11b... (50 %)
-Writing at 0x0003f90d... (58 %)
-Writing at 0x00045469... (66 %)
-Writing at 0x0004b1d5... (75 %)
-Writing at 0x000549fc... (83 %)
-Writing at 0x0005b9a3... (91 %)
-Writing at 0x0006199a... (100 %)
-Wrote 344176 bytes (186452 compressed) at 0x00010000 in 3.1 seconds
-  (effective 875.6 kbit/s)...
-Hash of data verified.
 
 Leaving...
 Hard resetting with RTC WDT...
