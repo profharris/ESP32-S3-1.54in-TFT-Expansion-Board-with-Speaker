@@ -13,7 +13,6 @@
 Adafruit_NeoPixel rgb_led =
   Adafruit_NeoPixel(NUM_RGB_LEDS, RGB_LED_PIN, NEO_GRB+NEO_KHZ800);
 
-
 void setup() {
   Serial.begin(115200);         // Initialize Serial Monitor
   while(!Serial);               // wait for the Serial port to open
@@ -23,7 +22,6 @@ void setup() {
 
   rgb_led.begin();              // Initialize the NeoPixel RGB LED
   rgb_led.show();               // Initialize all Pixels to 'Off'
-
   Serial.println("Starting LED test sequence...");
 }
 
