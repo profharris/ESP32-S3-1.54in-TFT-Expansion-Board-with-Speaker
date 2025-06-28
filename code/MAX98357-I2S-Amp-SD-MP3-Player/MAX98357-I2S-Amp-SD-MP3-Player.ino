@@ -1,6 +1,7 @@
 /* MAX98357-I2S-Amp-SD-MP3-Player.ino     (I²S MP3 Player)
- * Requires a MAX98357 I²S Audio Amplifier/Speaker
  * ESP32-S3 1.54in TFT Expansion Board with Speaker
+ * Requires a MAX98357 I²S Audio Amplifier/Speaker
+ * Requires a SPI microSD_Card Reader
  *
  * The MAX98357A (3 Watt Audio Amplifier with DAC), connectes three
  * lines (DOUT, BLCK, LRC) to the I²S bus. The I²S output frequency
@@ -28,6 +29,9 @@
  *   as well as a library that makes working with I²S Audio apps a
  *   bit easier.
  *
+ * NOTE¹:  You will NOT hear the MP3 file playing
+ * ¯¯¯¯¯¯  until you open the Serial Monitor!!!
+ *
  * Wiring:
  * ¯¯¯¯¯¯¯
  *  | ESP32-S3 Dev Board | I²S MAX98357A Amplifier/Speaker |
@@ -43,6 +47,7 @@
  *  |    Audio ⧾         | Speaker Positive  (+)           |
  *  |    Audio ⧿         | Speaker Negative  (-)           |
  *
+ *
  *  | ESP32-S3 Dev Board | SPI microSD_Card Pins           |
  *  |-------------------:|---------------------------------|
  *  |     3V3            | 1. 3V3  (Power)                 |
@@ -52,7 +57,7 @@
  *  |     GPIO13         | 3. MISO (SPI SDO)               |
  *  |     GND            | 6. GND                          |
  *
- * Reference: Sound with ESP32 – I²S Protocol
+ * DroneBot Workshop 2022
  * https://dronebotworkshop.com/esp32-i2s/
  */
 
@@ -65,11 +70,9 @@ Arduino IDE > Tools                                  [CONFIGURATION]
            CPU Frequency: "240MHz (WiFi)"                 ¯¯¯¯
          USB DFU On Boot: "Disabled"
               Flash Mode: "QIO 80MHz"
-              Flash Size: "16MB 128Mb"  【or】
-              Flash Size: "8MB 64Mb"    ...check your board!
+              Flash Size: "16MB 128Mb"
 USB Firmware MSC On Boot: "Disabled"
-        Partition Scheme: "16M Flash (2MB APP/12.5MB FATFS)"  【or】
-        Partition Scheme: "8MB with spiffs (3MB APP/1.5MB SPIFFS)"
+        Partition Scheme: "16M Flash (3MB APP/9.9MB FATFS)"
                    PSRAM: "OPI PSRAM"
              Upload Mode: "UART0/Hardware CDC"
             Upload Speed: "115200"
@@ -81,59 +84,120 @@ USB Firmware MSC On Boot: "Disabled"
 #include <SD.h>                     // SD Card library
 #include "Audio.h"                  // ESP32-audioI2S Library
 
-#define SD_CS         10            // microSD_Card Chip Select
-#define SPI_MOSI      11            // SPI Data In  (SDI)
-#define SPI_SCK       12            // SPI Clock    (CLK)
-#define SPI_MISO      13            // SPI Data Out (SDO)
+#define I2S_DOUT     7              // MAX98357A I²S Data_Out
+#define I2S_BCLK    15              // MAX98357A I²S Bit_Clock
+#define I2S_LRC     16              // MAX98357A I²S WS/Left_Right_Clock
+#define I2S_MCLK     0              // not used
 
-#define I2S_DOUT       7            // MAX98357 I²S Data IN/OUT
-#define I2S_BCLK      15            // MAX98357 I²S Bit Clock
-#define I2S_LRC       16            // MAX98357 I²S Left Right Clock
+#define SD_CS       10              // microSD_Card SPI Chip Select
+#define SD_MOSI     11              // ESP32-S3 Default Pins SPI MOSI
+#define SD_SCK      12              //              "        SPI SCK
+#define SD_MISO     13              //              "        SPI MISO
 
-Audio audio;                        // ESP32-audioI2S Audio object
+// SD_Card Filename, MP3 Music File (8.3 short names required)
+const char* filename = "/OlsenBan.mp3";
+
+Audio audio;                        // Create ESP32-audioI2S Audio object
 
 void setup() {
-  Serial.begin(115200);             // Initialize Serial Monitor
+  Serial.begin(15200);              // Serial Monitor
   while(!Serial);                   // Wait for Serial Port to open
+/*
+ * NOTE:  You will NOT hear the MP3 file playing
+ * ¯¯¯¯¯  until you open the Serial Monitor!!!
+ */
 
-  pinMode(SD_CS,      OUTPUT);      // Set microSD_Card CS as OUTPUT
-  digitalWrite(SD_CS, HIGH);        // Disable (Active LOW)
+  // Initialize SPI bus and deactivate SD_Card Chip Select
+  pinMode(SD_CS,      OUTPUT);      // SPI SD_Card Chip Select
+  digitalWrite(SD_CS, HIGH);        // Active LOW!
+  SPI.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
+  SPI.setFrequency(1000000);
 
-  SPI.begin(SPI_SCK, SPI_MISO, SPI_MOSI); // Initialize the SPI bus
-
-  if(!SD.begin(SD_CS)) {            // Initialize the microSD_Card
+  if(!SD.begin(SD_CS)) {            // SPI SD_Card Chip Select
     Serial.println("Error accessing microSD_Card!");
-    while(true);
+    while(true); // Don't do anything more:
   }
- 
-  // Determine what type of MicroSD card is mounted
-  uint8_t cardType = SD.cardType();
- 
-  if(cardType == CARD_NONE) {
-    Serial.println("No MicroSD card inserted!");
-    return;
-  }
-  Serial.print("MicroSD Card Type: "); // Print card type
-  if(cardType == CARD_MMC) {
-    Serial.println("MMC");
-  } else if(cardType == CARD_SD) {
-    Serial.println("SDSC");
-  } else if(cardType == CARD_SDHC) {
-    Serial.println("SDHC");
-  } else {
-    Serial.println("UNKNOWN");
-  }
-  sd_status = true;                 // MicroSD is good, set status
-  
 
-  // Setup the MAX98357 I²S Amplifier & Volume control
+  // Setup MAX98357A I²S Audio Amp using ESP32-audioI2S library
   audio.setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT);
-  audio.setVolume(5);                   // Set Volume
-
-  // Open your .mp3 music file from the microSD_Card
-  audio.connecttoFS(SD,"/MYMUSIC.mp3"); // Change to name of chosen
-}                                       // .mp3 file on microSD_Card
+  audio.setVolume(12);              // Range: 0..21
+  audio.connecttoFS(SD, filename);  // Open SD_Card MP3 music file
+}
 
 void loop() {
-  audio.loop();
+    audio.loop();                   // Play SD_Card MP3 music file
 }
+
+// ESP32-audioI2S Optional bits...
+void audio_info(const char *info) {     // Description
+    Serial.print("Info        "); Serial.println(info);
+}
+void audio_id3data(const char *info) {  // ID3 metadata
+    Serial.print("ID3data     ");Serial.println(info);
+}
+void audio_eof_mp3(const char *info) {  // End-Of-File
+    Serial.print("EOF_mp3     ");Serial.println(info);
+}
+void audio_showstation(const char *info) { // Station
+    Serial.print("Station     ");Serial.println(info);
+}
+void audio_showstreamtitle(const char *info) { // Stream Title
+    Serial.print("streamTitle ");Serial.println(info);
+}
+void audio_bitrate(const char *info) {  // Bit Rate
+    Serial.print("Bitrate     ");Serial.println(info);
+}
+void audio_commercial(const char *info) { // Duration in sec
+    Serial.print("Commercial  ");Serial.println(info);
+}
+void audio_icyurl(const char *info) {   // URL homepage
+    Serial.print("icyURL      ");Serial.println(info);
+}
+void audio_lasthost(const char *info) { // Stream URL played
+    Serial.print("lastHost    ");Serial.println(info);
+}
+
+/*******************************************************************
+Serial Monitor:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+23:58:11.403 -> Info        audioI2S Version 3.3.0
+23:58:11.403 -> Info        PSRAM found, inputBufferSize: 630773 bytes
+23:58:11.403 -> Info        buffers freed, free Heap: 259376 bytes
+23:58:11.436 -> Info        Reading file: "/OlsenBan.mp3"
+23:58:11.436 -> Info        MP3Decoder has been initialized,
+                              free Heap: 254748 bytes, free stack 5700 DWORDs
+23:58:12.167 -> Info        Content-Length: 328963
+23:58:12.167 -> Info        ID3 framesSize: 265
+23:58:12.167 -> Info        ID3 version: 2.4
+23:58:12.167 -> Info        ID3 extended header
+23:58:12.167 -> ID3data     Year: 2014
+23:58:12.167 -> ID3data     Album: Olsen-Banden
+23:58:12.167 -> ID3data     Artist: Bjarne Liller - Olsen Banden (Titelmusik der Olsenbande)
+23:58:12.167 -> Info        Audio-Length: 328698
+23:58:12.167 -> Info        stream ready
+23:58:12.167 -> Info        syncword found at pos 0
+23:58:12.167 -> Info        MPEG-2.5, Layer I
+23:58:12.167 -> Info        Channels: 2
+23:58:12.167 -> Info        SampBitsPerSample: 16
+23:58:12.167 -> Info        BitRate: 128000
+23:58:30.499 -> Info        Closing audio file "OlsenBan.mp3"
+23:58:30.499 -> EOF_mp3     OlsenBan.mp3
+23:58:30.499 -> Info        End of file "OlsenBan.mp3"
+
+--------------------------------------------------------------------
+Output:
+¯¯¯¯¯¯¯
+Sketch uses 1511178 bytes (48%) of program storage space.
+ Maximum is 3145728 bytes.
+Global variables use 63884 bytes (19%) of dynamic memory,
+            leaving 263796 bytes for local variables.
+         Maximum is 327680 bytes.
+
+Chip is ESP32-S3 (QFN56) (revision v0.2)
+Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
+Crystal is 40MHz
+MAC: 30:ed:a0:bb:73:9c
+
+Leaving...
+Hard resetting with RTC WDT...
+*******************************************************************/
