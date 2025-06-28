@@ -1,9 +1,23 @@
 /* INMP441-I2S-Mic-sample.ino           (Visual “Audio Waveforms”)
- * Requires an INMP441 I²S Microphone
  * ESP32-S3 1.54in TFT Expansion Board with Speaker
+ * Requires an INMP441 I²S Microphone
  *
  * 1. Sample the sound from an INMP441 I²S Microphone, then
  * 2. Show the “Audio Waveforms” on the Arduino IDE Serial Plotter.
+ *             ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯                    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+ * The ESP32-AudioI2S Library can be found on GitHub:
+ *      https://github.com/schreibfaul1/ESP32-audioI2S
+ *
+ * Wiring:
+ * ¯¯¯¯¯¯¯
+ *   | ESP32-S3 Dev Board  | I²S INMP441 Microphone    |
+ *   |--------------------:|---------------------------|
+ *   |     GND             | 1. GND                    |
+ *   |     3V3             | 2. VDD (Power)            |
+ *   |     GPIO4           | 5. WS  Word/Data Select   |
+ *   |     GPIO5           | 6. SCK Serial Data Clock  |
+ *   |     GPIO6           | 3. SD  Serial Data Out    |
+ *   |     GND  (LOW=Left) | 4. L/R Left/Right Channel |
  *
  * Sound with ESP32 – I²S Protocol  
  * https://dronebotworkshop.com/esp32-i2s/
@@ -29,6 +43,8 @@ USB Firmware MSC On Boot: "Disabled"
                 USB Mode: "Hardware CDC and JTAG"
 *******************************************************************/
 /* -----------------------------------------------------------------
+ Programming Logic:
+ ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
  1. We start this sketch by including the ESP32 I²S driver.
  2. We then define the connections to our INMP441 I²S Microphone. If
     you wish you can rewire the microphone & change the code here.
@@ -53,7 +69,7 @@ USB Firmware MSC On Boot: "Disabled"
     the Serial Plotter.
 
     Testing the INMP441 I²S Microphone:   (Visual “Audio Waveforms”)
-    
+                                                   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
     Hook everything up and load the sketch. 0pen the Serial Monitor
     AND the Serial Plotter. --Have a little fun, sing your favorite
     little song into the INMP441 Mic. The INMP441 is very sinsitive,
@@ -64,21 +80,21 @@ USB Firmware MSC On Boot: "Disabled"
     in the Serial Plotter window, and the digital data output in the
     Serial Monitor, that the INMP441 Microphone is picking up. You 
     can adjust the “sensitivity” by altering the ‘rangeLimit’ 
-    variable at the top of loop().
+    variable at the top of loop().                ¯¯¯¯¯¯¯¯¯¯
 
 ----------------------------------------------------------------- */
-#include <driver/i2s.h>                 // Include the I²S driver
+#include <driver/i2s.h>                 // Include the new I²S driver
 
 #define I2S_WS     4                    // Pins: INMP441 I²S Mic
-#define I2S_SCK    5
-#define I2S_SD     6
+#define I2S_SCK    5                    //          "
+#define I2S_SD     6                    //          "
 
 #define I2S_PORT I2S_NUM_0              // Use I²S Processor 0
 
 #define bufferLen 64                    // Input buffer length
 int16_t sBuffer[bufferLen];             // I²S Serial Input buffer
 
-void I2S_install() {                    // I²S Processor config
+void I2S_install() {                    // Set I²S Processor config
   const i2s_config_t I2S_config = {
     .mode = i2s_mode_t(I2S_MODE_MASTER | I2S_MODE_RX),
     .sample_rate          = 44100,
@@ -90,30 +106,31 @@ void I2S_install() {                    // I²S Processor config
     .dma_buf_len          = bufferLen,
     .use_apll             = false
   };
-
   i2s_driver_install(I2S_PORT, &I2S_config, 0, NULL);
 }
 
-void I2S_setPin() {                     // Set I²S pin configuration
+void I2S_setPin() {                     // Set I²S Pin configuration
   const i2s_pin_config_t pin_config = {
     .bck_io_num   = I2S_SCK,
     .ws_io_num    = I2S_WS,
     .data_out_num = -1,
     .data_in_num  = I2S_SD
   };
-
   i2s_set_pin(I2S_PORT, &pin_config);
 }
 
 void setup() {
-  Serial.begin(115200);                 // Initialize the Serial Monitor
-  while(!Serial);                       // Wait for Serial Port to open
-  Serial.println(" ");
+  Serial.begin(115200);             // Initialize the Serial Monitor
+  while(!Serial);                   // Wait for Serial Port to open
+  
+  Serial.println("INMP441 I²S Mic - Visual Audio Waveforms");
+  Serial.println("To see Audio Waveforms, open the Serial Plotter");
+  Serial.println("");
   delay(1000);
 
-  I2S_install();                        // Set up INMP441 I²S Mic
-  I2S_setPin();
-  i2s_start(I2S_PORT);
+  I2S_install();                    // Set up the INMP441 I²S Mic
+  I2S_setPin();                     //              "
+  i2s_start(I2S_PORT);              //              "
   delay(500);
 }
 
@@ -138,7 +155,7 @@ void loop() {
       for(int16_t i=0; i < samplesRead; ++i) {
         mean += (sBuffer[i]);
       }
-      mean /= samplesRead;             // Average the Data reading.
+      mean /= samplesRead;             // Average the Data readings.
       Serial.println(mean);            // Print the raw data to the
     }                                  // Serial Monitor, and show 
   }                                    // the “Audio Waveforms” in
@@ -146,7 +163,7 @@ void loop() {
 
 /*******************************************************************
 Sketch uses 340830 bytes (16%) of program storage space. 
- aximum is 2097152 bytes.
+Maximum is 2097152 bytes.
 Global variables use 21292 bytes (6%) of dynamic memory, 
             leaving 306388 bytes for local variables. 
          Maximum is 327680 bytes.
@@ -155,13 +172,16 @@ Chip is ESP32-S3 (QFN56) (revision v0.2)
 Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
 Crystal is 40MHz
 MAC: 30:ed:a0:bb:73:9c
-
+...
 Leaving...
 Hard resetting with RTC WDT...
 
 --------------------------------------------------------------------
 Serial Monitor:
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+12:21:21.300 -> INMP441 I²S Mic - Visual Audio Waveforms
+12:21:21.300 -> To see Audio Waveforms, open the Serial Plotter
+12:21:21.300 -> 
 12:21:21.301 -> -3000 3000 16.00
 12:21:21.301 -> -3000 3000 -2.87
 12:21:21.301 -> -3000 3000 23.12
