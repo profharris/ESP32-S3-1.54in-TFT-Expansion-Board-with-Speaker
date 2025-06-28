@@ -216,7 +216,6 @@ void setup() {
     Serial.println("SD_Card Mount Failed!");
     return;
   }
-
   uint8_t cardType = SD.cardType();
   if(cardType == CARD_NONE) {
     Serial.println("No SD_Card attached!");
@@ -252,7 +251,7 @@ void setup() {
   Serial.printf(" Used space: %lluMB\n", SD.usedBytes()  / (1024 * 1024));
 }
 
-void loop()
+void loop() {}
 
 /*******************************************************************
 Serial Monitor:
@@ -304,58 +303,12 @@ Maximum is 3145728 bytes.
 Global variables use 21908 bytes (6%) of dynamic memory,
             leaving 305772 bytes for local variables.
          Maximum is 327680 bytes.
-esptool.py v4.8.1
-Serial port COM8
-Connecting...
 
 Chip is ESP32-S3 (QFN56) (revision v0.2)
 Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
 Crystal is 40MHz
 MAC: 30:ed:a0:bb:73:9c
-
-Uploading stub...
-Running stub...
-Stub running...
-
-Configuring flash size...
-Flash will be erased from 0x00000000 to 0x00004fff...
-Flash will be erased from 0x00008000 to 0x00008fff...
-Flash will be erased from 0x0000e000 to 0x0000ffff...
-Flash will be erased from 0x00010000 to 0x0006efff...
-Compressed 20208 bytes to 13058...
-Writing at 0x00000000... (100 %)
-Wrote 20208 bytes (13058 compressed) at 0x00000000 in 0.4 seconds
-  (effective 434.2 kbit/s)...
-Hash of data verified.
-Compressed 3072 bytes to 144...
-Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (144 compressed) at 0x00008000 in 0.1 seconds
-  (effective 388.8 kbit/s)...
-Hash of data verified.
-Compressed 8192 bytes to 47...
-Writing at 0x0000e000... (100 %)
-Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds
-  (effective 616.7 kbit/s)...
-Hash of data verified.
-Compressed 386096 bytes to 216127...
-Writing at 0x00010000... (7 %)
-Writing at 0x0001b450... (14 %)
-Writing at 0x000297c4... (21 %)
-Writing at 0x0002ef07... (28 %)
-Writing at 0x00034d6b... (35 %)
-Writing at 0x0003ac34... (42 %)
-Writing at 0x000403fb... (50 %)
-Writing at 0x00045ed8... (57 %)
-Writing at 0x0004ae46... (64 %)
-Writing at 0x000508c3... (71 %)
-Writing at 0x00056f3b... (78 %)
-Writing at 0x00061319... (85 %)
-Writing at 0x00066dc0... (92 %)
-Writing at 0x0006cec8... (100 %)
-Wrote 386096 bytes (216127 compressed) at 0x00010000 in 3.7 seconds
-  (effective 827.0 kbit/s)...
-Hash of data verified.
-
+...
 Leaving...
 Hard resetting with RTC WDT...
 *******************************************************************/
