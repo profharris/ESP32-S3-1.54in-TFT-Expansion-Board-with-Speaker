@@ -444,15 +444,6 @@ Hard resetting via RTS pin...
 Serial Monitor:
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 18:23:31.333 -> ESP-ROM:esp32s3-20210327
-18:23:31.333 -> Build:Mar 27 2021
-18:23:31.333 -> rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
-18:23:31.333 -> SPIWP:0xee
-18:23:31.333 -> mode:DIO, clock div:1
-18:23:31.333 -> load:0x3fce2820,len:0x118c
-18:23:31.333 -> load:0x403c8700,len:0x4
-18:23:31.333 -> load:0x403c8704,len:0xc20
-18:23:31.333 -> load:0x403cb700,len:0x30e0
-18:23:31.333 -> entry 0x403c88b8
 18:23:33.637 -> 
 18:23:33.637 -> ...ST7789V Screen Initialized
 18:23:33.637 -> Hello! a dozen ST7789 GFX color Graphics Demos:
