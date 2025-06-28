@@ -1,14 +1,14 @@
 /* SPI_SD_Card-data_log.ino
- * Requires an SPI microSD Card reader/writer
  * ESP32-S3 1.54in TFT Expansion Board with Speaker
+ * Requires an SPI microSD Card reader/writer
  *
  * ESP32-S3 Handling “data_log” Files with a microSD_Card Module
- * 1. Check_and_Create_data_log()
- * 2. Write_data_log()
- * 3. Read_data_log()
+ *     1. Check_and_Create_data_log()
+ *     2. Write_data_log()
+ *     3. Read_data_log()
  *
  * Wiring:
- *
+ * ¯¯¯¯¯¯¯
  *  | ESP32-S3 Dev Board | SPI microSD_Card pins  |
  *  |-------------------:|------------------------|
  *  |     3V3            | 1. 3V3  (Power)        |
@@ -164,58 +164,12 @@ Maximum is 3145728 bytes.
 Global variables use 21404 bytes (6%) of dynamic memory,
             leaving 306276 bytes for local variables.
          Maximum is 327680 bytes.
-esptool.py v4.8.1
-Serial port COM8
-Connecting...
 
 Chip is ESP32-S3 (QFN56) (revision v0.2)
 Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
 Crystal is 40MHz
 MAC: 30:ed:a0:bb:73:9c
-
-Uploading stub...
-Running stub...
-Stub running...
-
-Configuring flash size...
-Flash will be erased from 0x00000000 to 0x00004fff...
-Flash will be erased from 0x00008000 to 0x00008fff...
-Flash will be erased from 0x0000e000 to 0x0000ffff...
-Flash will be erased from 0x00010000 to 0x0006dfff...
-Compressed 20208 bytes to 13058...
-Writing at 0x00000000... (100 %)
-Wrote 20208 bytes (13058 compressed) at 0x00000000 in 0.4 seconds
-  (effective 440.6 kbit/s)...
-Hash of data verified.
-Compressed 3072 bytes to 144...
-Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (144 compressed) at 0x00008000 in 0.1 seconds
-  (effective 467.2 kbit/s)...
-Hash of data verified.
-Compressed 8192 bytes to 47...
-Writing at 0x0000e000... (100 %)
-Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds
-  (effective 621.3 kbit/s)...
-Hash of data verified.
-Compressed 382848 bytes to 214163...
-Writing at 0x00010000... (7 %)
-Writing at 0x0001b4c9... (14 %)
-Writing at 0x000296e5... (21 %)
-Writing at 0x0002ee8b... (28 %)
-Writing at 0x00034b45... (35 %)
-Writing at 0x0003a9c9... (42 %)
-Writing at 0x0004017c... (50 %)
-Writing at 0x00045c55... (57 %)
-Writing at 0x0004abf9... (64 %)
-Writing at 0x00050696... (71 %)
-Writing at 0x000572e3... (78 %)
-Writing at 0x0006124c... (85 %)
-Writing at 0x00066bcf... (92 %)
-Writing at 0x0006d14d... (100 %)
-Wrote 382848 bytes (214163 compressed) at 0x00010000 in 3.7 seconds
-  (effective 827.2 kbit/s)...
-Hash of data verified.
-
+...
 Leaving...
 Hard resetting with RTC WDT...
 *******************************************************************/
