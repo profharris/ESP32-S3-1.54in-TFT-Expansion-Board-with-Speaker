@@ -173,9 +173,9 @@ void i2s_install() {            // Setup I²S Port config for TX only
 void i2s_setpin() {   // I²S pin configuration for Output (Audio Amp)
   const i2s_pin_config_t pin_config = { // MAX98357A I²S pins
     .bck_io_num   = I2S_BCLK,           // Bit Clock line
-    .ws_io_num    = I2S_LRC,            // Word Select|Left/Right Channel
+    .ws_io_num    = I2S_LRC,            // Word Select|Left Right Clock
     .data_out_num = I2S_DOUT,           // Serial Data line, Data Out
-    .data_in_num  = I2S_PIN_NO_CHANGE
+    .data_in_num  = I2S_PIN_NO_CHANGE   // not used
   };
   i2s_set_pin(I2S_PORT, &pin_config);
 }
