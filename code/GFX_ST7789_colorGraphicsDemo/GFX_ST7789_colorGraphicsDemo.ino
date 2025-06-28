@@ -123,7 +123,6 @@ When you have Tools > USB CDC On Boot > Enabled
 
 Adafruit_ST7789 tft=Adafruit_ST7789(TFT_CS, TFT_DC, TFT_MOSI,
                                     TFT_SCLK, TFT_RST);
-
 float pi = 3.1415926;
 
 void setup(void) {
@@ -150,7 +149,6 @@ void setup(void) {
   Serial.print(F("Start time: ")); Serial.println(time, DEC);
   delay(1000);
 
-
   // Demo 1. two large blocks of text in two sizes
   tft.setTextSize(1);               // TextSize (1..3) 1=5×8 pixels
   tft.fillScreen(ST77XX_BLACK);     // clear the screen
@@ -173,7 +171,6 @@ void setup(void) {
                "aliquet ultrices massa eu hendrerit. Ut sed nisi "
                "lorem. In vestibulum purus a tortor imperdiet posuere.",
                ST77XX_CYAN); delay(2000);
-
 
   // Demo 2. A single Pixel centered on the display
   tft.fillScreen(ST77XX_BLACK);     // clear the screen
@@ -225,10 +222,8 @@ void setup(void) {
   tft.print(millis()/1000);
   tft.setTextColor(ST77XX_WHITE);
   tft.print(" seconds.\n"); delay(1500);
-
   Serial.println("Done.\n"); delay(2000);
 }
-
 
 void loop() {
   tft.invertDisplay(true);
@@ -236,7 +231,6 @@ void loop() {
   tft.invertDisplay(false);
   delay(1000);
 }
-
 
 void testDrawText(char *text, uint16_t color) {
   tft.setCursor(0,0);
@@ -436,55 +430,11 @@ Sketch uses 369854 bytes (28%) of program storage space.
   Maximum is 1310720 bytes.
 Global variables use 22100 bytes (6%) of dynamic memory, 
   leaving 305580 bytes for local variables. Maximum is 327680 bytes.
-esptool.py v4.8.1
-Serial port COM9
-Connecting....
+
 Chip is ESP32-S3 (QFN56) (revision v0.2)
 Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
 Crystal is 40MHz
 MAC: 30:ed:a0:bb:73:9c
-Uploading stub...
-Running stub...
-Stub running...
-Changing baud rate to 921600
-Changed.
-Configuring flash size...
-Flash will be erased from 0x00000000 to 0x00004fff...
-Flash will be erased from 0x00008000 to 0x00008fff...
-Flash will be erased from 0x0000e000 to 0x0000ffff...
-Flash will be erased from 0x00010000 to 0x0006afff...
-Compressed 20208 bytes to 13057...
-Writing at 0x00000000... (100 %)
-Wrote 20208 bytes (13057 compressed) at 0x00000000 in 0.4 seconds 
-  (effective 362.1 kbit/s)...
-Hash of data verified.
-Compressed 3072 bytes to 146...
-Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (146 compressed) at 0x00008000 in 0.1 seconds 
-  (effective 437.7 kbit/s)...
-Hash of data verified.
-Compressed 8192 bytes to 47...
-Writing at 0x0000e000... (100 %)
-Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds 
-  (effective 642.5 kbit/s)...
-Hash of data verified.
-Compressed 370000 bytes to 201913...
-Writing at 0x00010000... (7 %)
-Writing at 0x0001ba78... (15 %)
-Writing at 0x0002a3ea... (23 %)
-Writing at 0x0002fb6c... (30 %)
-Writing at 0x000355b0... (38 %)
-Writing at 0x0003b2b6... (46 %)
-Writing at 0x00040b1f... (53 %)
-Writing at 0x0004629a... (61 %)
-Writing at 0x0004bea2... (69 %)
-Writing at 0x00051878... (76 %)
-Writing at 0x0005c676... (84 %)
-Writing at 0x00062414... (92 %)
-Writing at 0x00068488... (100 %)
-Wrote 370000 bytes (201913 compressed) at 0x00010000 in 3.9 seconds 
-  (effective 759.8 kbit/s)...
-Hash of data verified.
 
 Leaving...
 Hard resetting via RTS pin...
