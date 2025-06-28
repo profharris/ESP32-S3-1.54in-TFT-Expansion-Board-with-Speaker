@@ -15,7 +15,7 @@
  * https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/storage/sdmmc.html
  *
  * This sketch will use the SPI SD library and Demo these functions:
- * https://docs.arduino.cc/libraries/sd/
+ * https://docs.arduino.cc/libraries/sd/                  ¯¯¯¯¯¯¯¯¯¯
  *     1. listDir   (dir)
  *     2. createDir (mkdir)
  *     3. removeDir (rmdir)
@@ -30,7 +30,7 @@
  * This sketch can be found at: Examples > SD(esp32) > SD_Test
  *
  * Wiring:
- *
+ * ¯¯¯¯¯¯¯
  *  | ESP32-S3 Dev Board | SPI microSD_Card pins  |
  *  |-------------------:|------------------------|
  *  |     3V3            | 1. 3V3  (Power)        |
