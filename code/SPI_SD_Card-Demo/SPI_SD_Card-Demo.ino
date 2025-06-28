@@ -16,14 +16,14 @@
  *
  * This sketch will use the SPI SD library and Demo these functions:
  * https://docs.arduino.cc/libraries/sd/
- * 1. listDir   (dir)
- * 2. createDir (mkdir)
- * 3. removeDir (rmdir)
- * 4. readFile
- * 5. writeFile
- * 6. appendFile
- * 7. renameFile
- * 8. deleteFile
+ *     1. listDir   (dir)
+ *     2. createDir (mkdir)
+ *     3. removeDir (rmdir)
+ *     4. readFile
+ *     5. writeFile
+ *     6. appendFile
+ *     7. renameFile
+ *     8. deleteFile
  *
  * Complete project details at:
  * https://RandomNerdTutorials.com/esp32-microsd-card-arduino/
@@ -65,8 +65,8 @@ USB Firmware MSC On Boot: "Disabled"
 
 #define SD_CS   10                      // SPI microSD_Card Pins
 #define SD_MOSI 11                      // ESP32-S3 Default Pins
-#define SD_SCK  12
-#define SD_MISO 13
+#define SD_SCK  12                      //        "
+#define SD_MISO 13                      //        "
 
 void listDir(fs::FS &fs, const char * dirname, uint8_t levels) {
   Serial.printf("Listing Directory: %s\n", dirname);
@@ -235,7 +235,6 @@ void setup() {
     Serial.println("No SD_Card attached!");
     return;
   }
-
   Serial.print("SD_Card Type: ");
   if(cardType == CARD_MMC) {
     Serial.println("MMC");
@@ -329,7 +328,7 @@ Chip is ESP32-S3 (QFN56) (revision v0.2)
 Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
 Crystal is 40MHz
 MAC: 30:ed:a0:bb:73:9c
-
+...
 Leaving...
 Hard resetting with RTC WDT...
 *******************************************************************/
