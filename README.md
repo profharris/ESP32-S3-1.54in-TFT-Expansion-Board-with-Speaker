@@ -1,7 +1,7 @@
 # ESP32-S3 1.54in TFT Expansion Board with Speaker
 ## _(with&nbsp; I²S INMP441 Microphone, &&nbsp; I²S MAX98357A Audio Amplifier)_
 
-***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/24/2025*<br/>
+***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/28/2025*<br/>
 [GitHub Pages](https://pages.github.com/)<br/>
 <br/>
 
