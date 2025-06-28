@@ -115,95 +115,19 @@ void loop() {
 }
 
 /*******************************************************************
-Warning:
-¯¯¯¯¯¯¯¯
- 1. Warning: #warning "This set of I2S APIs has been deprecated,
-    please include 'driver/i2s_std.h', 'driver/i2s_pdm.h' or 'driver/i2s_tdm.h'
-    instead. if you want to keep using the old APIs and ignore this warning,
-    you can enable 'Suppress legacy driver deprecated warning' option under
-    'I2S Configuration' menu in Kconfig" [-Wcpp]
-
-    27 | #warning "This set of I2S APIs has been deprecated, \
-       |  ^~~~~~~
-
+Output:
+¯¯¯¯¯¯¯
 Sketch uses 735826 bytes (23%) of program storage space. 
 Maximum is 3145728 bytes.
 Global variables use 21252 bytes (6%) of dynamic memory, 
             leaving 306428 bytes for local variables. 
          Maximum is 327680 bytes.
-esptool.py v4.8.1
-Serial port COM8
-Connecting...
 
 Chip is ESP32-S3 (QFN56) (revision v0.2)
 Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
 Crystal is 40MHz
 MAC: 30:ed:a0:bb:73:9c
-
-Uploading stub...
-Running stub...
-Stub running...
-
-Configuring flash size...
-Flash will be erased from 0x00000000 to 0x00004fff...
-Flash will be erased from 0x00008000 to 0x00008fff...
-Flash will be erased from 0x0000e000 to 0x0000ffff...
-Flash will be erased from 0x00010000 to 0x000c3fff...
-Compressed 20208 bytes to 13058...
-Writing at 0x00000000... (100 %)
-Wrote 20208 bytes (13058 compressed) at 0x00000000 in 0.4 seconds 
-  (effective 427.5 kbit/s)...
-Hash of data verified.
-Compressed 3072 bytes to 144...
-Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (144 compressed) at 0x00008000 in 0.1 seconds 
-  (effective 434.9 kbit/s)...
-Hash of data verified.
-Compressed 8192 bytes to 47...
-Writing at 0x0000e000... (100 %)
-Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds 
-  (effective 691.0 kbit/s)...
-Hash of data verified.
-Compressed 735968 bytes to 569055...
-Writing at 0x00010000... (2 %)
-Writing at 0x0001af9e... (5 %)
-Writing at 0x0001ef00... (8 %)
-Writing at 0x00023049... (11 %)
-Writing at 0x000271ea... (14 %)
-Writing at 0x0002b3b6... (17 %)
-Writing at 0x0002f59c... (20 %)
-Writing at 0x00033886... (22 %)
-Writing at 0x00037a55... (25 %)
-Writing at 0x0003bb64... (28 %)
-Writing at 0x0003fce6... (31 %)
-Writing at 0x00043f1a... (34 %)
-Writing at 0x00048108... (37 %)
-Writing at 0x0004c31c... (40 %)
-Writing at 0x0005083a... (42 %)
-Writing at 0x00054925... (45 %)
-Writing at 0x000589e1... (48 %)
-Writing at 0x0005ca9a... (51 %)
-Writing at 0x00060c6f... (54 %)
-Writing at 0x00064e4c... (57 %)
-Writing at 0x00069241... (60 %)
-Writing at 0x0006d659... (62 %)
-Writing at 0x00071783... (65 %)
-Writing at 0x000758e7... (68 %)
-Writing at 0x000799f0... (71 %)
-Writing at 0x000865ac... (74 %)
-Writing at 0x0008c86b... (77 %)
-Writing at 0x0009242a... (80 %)
-Writing at 0x00097d61... (82 %)
-Writing at 0x0009d43c... (85 %)
-Writing at 0x000a2eb4... (88 %)
-Writing at 0x000a8a3b... (91 %)
-Writing at 0x000af760... (94 %)
-Writing at 0x000b93a7... (97 %)
-Writing at 0x000bf158... (100 %)
-Wrote 735968 bytes (569055 compressed) at 0x00010000 in 6.8 seconds 
-  (effective 861.0 kbit/s)...
-Hash of data verified.
-
+...
 Leaving...
 Hard resetting with RTC WDT...
 
