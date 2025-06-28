@@ -28,7 +28,7 @@ WiFi/BLE®5         .——| | |           |——.
 [A16    ] GPIO17 10|o  ¨¨|¯¯¯¬   : [Ø]  o|35 GPIO38    [       ]
 [A17    ] GPIO18 11|o  ¨¨|LDO[]  : BOOT •|34 GPIO37    [PSRAM •]
 [A7  SDA] GPIO8  12|o  ¨¨|___- ¬¬  [Ø]  •|33 GPIO36    [PSRAM •]
-[A2   T3] GPIO3_ 13|o  ·  ‡‡‡  ¨¨P       •|32 GPIO35    [PSRAM •]
+[A2   T3] GPIO3_ 13|o  ·  ‡‡‡  ¨¨P      •|32 GPIO35    [PSRAM •]
 [IN ONLY] GPIO46_14|o      RGB   w T R  o|31 GPIO0_    [BOOT   ]
 [A8  SCL] GPIO9  15|o  RGB CTRL  R X X  o|30 GPIO45_   [   VSPI]
 [A9  T10] GPIO10 16|o +[¤]  ¥    ¤ ¤ ¤  ¤|29 GPIO48 RGB[WS2812*]
@@ -128,57 +128,16 @@ NOTE: We are initializing GPIO43 TX_LED and GPIO44 RX_LED pinMode()
 
 /*******************************************************************
 Sketch uses 329966 bytes (25%) of program storage space.
-  Maximum is 1310720 bytes.
+Maximum is 1310720 bytes.
 Global variables use 21020 bytes (6%) of dynamic memory,
-  leaving 306660 bytes for local variables. Maximum is 327680 bytes.
-esptool.py v4.8.1
-Serial port COM9
-Connecting....
+            leaving 306660 bytes for local variables. 
+         Maximum is 327680 bytes.
+
 Chip is ESP32-S3 (QFN56) (revision v0.2)
 Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
 Crystal is 40MHz
 MAC: 30:ed:a0:bb:73:9c
-Uploading stub...
-Running stub...
-Stub running...
-Changing baud rate to 921600
-Changed.
-Configuring flash size...
-Flash will be erased from 0x00000000 to 0x00004fff...
-Flash will be erased from 0x00008000 to 0x00008fff...
-Flash will be erased from 0x0000e000 to 0x0000ffff...
-Flash will be erased from 0x00010000 to 0x00060fff...
-Compressed 20208 bytes to 13058...
-Writing at 0x00000000... (100 %)
-Wrote 20208 bytes (13058 compressed) at 0x00000000 in 0.4 seconds
-  (effective 361.3 kbit/s)...
-Hash of data verified.
-Compressed 3072 bytes to 146...
-Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (146 compressed) at 0x00008000 in 0.1 seconds
-  (effective 463.1 kbit/s)...
-Hash of data verified.
-Compressed 8192 bytes to 47...
-Writing at 0x0000e000... (100 %)
-Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds
-  (effective 637.6 kbit/s)...
-Hash of data verified.
-Compressed 330112 bytes to 178685...
-Writing at 0x00010000... (9 %)
-Writing at 0x0001c168... (18 %)
-Writing at 0x00028d0b... (27 %)
-Writing at 0x0002e585... (36 %)
-Writing at 0x00033f37... (45 %)
-Writing at 0x000396af... (54 %)
-Writing at 0x0003ee0f... (63 %)
-Writing at 0x00044862... (72 %)
-Writing at 0x0004a384... (81 %)
-Writing at 0x000550fe... (90 %)
-Writing at 0x0005aee0... (100 %)
-Wrote 330112 bytes (178685 compressed) at 0x00010000 in 3.4 seconds
-  (effective 787.0 kbit/s)...
-Hash of data verified.
-
+...
 Leaving...
 Hard resetting via RTS pin...
 
@@ -186,10 +145,6 @@ Hard resetting via RTS pin...
 Serial Monitor:
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 ESP-ROM:esp32s3-20210327
-Build:Mar 27 2021
-rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
-SPIWP:0xee
-mode:DIO, clock div:1
 
 YD-ESP32-S3 (ESP32-S3-WROOM-1 Dev)
 Blink the Green TX_LED and Blue RX_LED
