@@ -59,13 +59,13 @@
  *  |     GPIO13         | 3. MISO (SPI SDO)               |
  *  |     GND            | 6. GND                          |
  *
- *  OPTIONAL: (SDIO 3-wire interface)
+ *  OPTIONAL: (SDIO SD_MMC microSD_Card 3-wire interface)
  *  | ESP32-S3 Dev Board | SDIO SD_MMC microSD_Card Pins |
  *  |-------------------:|-------------------------------|
  *  |     GPIO38         | 1. SD_CMD      (SDIO Command) |
  *  |     GPIO39         | 2. SD_MMC_CLK  (SDIO Clock)   |
  *  |     GPIO40         | 3. SD_MMC_D0   (SDIO Data0)   |
-  */
+ */
 
 /*******************************************************************
 Type-C USB Data cable plugged into Left-side ESP32-S3 USB-OTG port.
