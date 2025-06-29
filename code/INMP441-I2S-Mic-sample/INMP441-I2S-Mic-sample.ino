@@ -83,18 +83,18 @@ USB Firmware MSC On Boot: "Disabled"
     variable at the top of loop().                ¯¯¯¯¯¯¯¯¯¯
 
 ----------------------------------------------------------------- */
-#include <driver/i2s.h>                 // Include the new I²S driver
+#include <driver/i2s.h>             // Include the new I²S driver
 
-#define I2S_WS     4                    // Pins: INMP441 I²S Mic
-#define I2S_SCK    5                    //          "
-#define I2S_SD     6                    //          "
+#define I2S_WS     4                // Pins: INMP441 I²S Mic
+#define I2S_SCK    5                //          "
+#define I2S_SD     6                //          "
 
-#define I2S_PORT I2S_NUM_0              // Use I²S Processor 0
+#define I2S_PORT I2S_NUM_0          // Use I²S Processor 0
 
-#define bufferLen 64                    // Input buffer length
-int16_t sBuffer[bufferLen];             // I²S Serial Input buffer
+#define bufferLen 64                // Input buffer length
+int16_t sBuffer[bufferLen];         // I²S Serial Input buffer
 
-void I2S_install() {                    // Set I²S Processor config
+void I2S_install() {                // Set I²S Processor config
   const i2s_config_t I2S_config = {
     .mode = i2s_mode_t(I2S_MODE_MASTER | I2S_MODE_RX),
     .sample_rate          = 44100,
@@ -109,7 +109,7 @@ void I2S_install() {                    // Set I²S Processor config
   i2s_driver_install(I2S_PORT, &I2S_config, 0, NULL);
 }
 
-void I2S_setPin() {                     // Set I²S Pin configuration
+void I2S_setPin() {                 // Set I²S Pin configuration
   const i2s_pin_config_t pin_config = {
     .bck_io_num   = I2S_SCK,
     .ws_io_num    = I2S_WS,
@@ -155,11 +155,11 @@ void loop() {
       for(int16_t i=0; i < samplesRead; ++i) {
         mean += (sBuffer[i]);
       }
-      mean /= samplesRead;             // Average the Data readings.
-      Serial.println(mean);            // Print the raw data to the
-    }                                  // Serial Monitor, and show 
-  }                                    // the “Audio Waveforms” in
-}                                      // the Serial Plotter window.
+      mean /= samplesRead;          // Average the Data readings.
+      Serial.println(mean);         // Print the raw data to the
+    }                               // Serial Monitor, and show 
+  }                                 // the “Audio Waveforms” in
+}                                   // the Serial Plotter window.
 
 /*******************************************************************
 Sketch uses 340830 bytes (16%) of program storage space. 
