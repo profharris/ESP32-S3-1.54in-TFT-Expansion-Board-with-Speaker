@@ -142,21 +142,21 @@ header exposed for access to the Development Board GPIO pins.
  12. 1× Battery Power On/Off switch
 
 ### Vertical Jumper wires: (23)
- 1. Black   5-space jumper  (GND)                   IEEE Color Codes
- 2. Black   3-space jumper x2                       0 - BlacK    K
- 3. Black   7-space jumper                          1 - BrowN    N
- 4. Black   9-space jumper                          2 - Red      R
-                                                    3 - Orange   O
- 5. Orange  4-space jumper  (3V3 VCC)               4 - Yellow   Y
- 6. Orange  5-space jumper                          5 - Green    G
- 7. Orange  3-space jumper x3                       6 - Blue     B
- 8. Orange  9-space jumper                          7 - Violet   V
- 9. Orange 14-space jumper                          8 - GrEy     E
-                                                    9 - White    W
+ 1. Black   5-space jumper  (GND)
+ 2. Black   3-space jumper x2
+ 3. Black   7-space jumper
+ 4. Black   9-space jumper
+
+ 5. Orange  4-space jumper  (3V3 VCC)
+ 6. Orange  5-space jumper
+ 7. Orange  3-space jumper x3
+ 8. Orange  9-space jumper
+ 9. Orange 14-space jumper
+
 10. Yellow  4-space jumper  INMP441 WS  IO4
-                                                        Cyan     C
-11. Green   4-space jumper  INMP441 SCK IO5             Magenta  M
-12. Green   7-space jumper  TFT RST     IO45            Pink     P
+
+11. Green   4-space jumper  INMP441 SCK IO5
+12. Green   7-space jumper  TFT RST     IO45
 
 13. Blue    5-space jumper  INMP441 SD  IO6
 14. Blue    3-space jumper  I²C SDA     IO3
@@ -169,6 +169,26 @@ header exposed for access to the Development Board GPIO pins.
 
 18. White   4-space jumper  OK Button   IO0
 19  White   8-space horizontal jumpers  IO38 & IO39
+<hr/>
+
+#### IEEE Color Codes
+
+  | Digit | Color   | Code |
+  |:-----:|:--------|:----:|
+  |  0    | BlacK   |  K   |
+  |  1    | BrowN   |  N   |
+  |  2    | Red     |  R   |
+  |  3    | Orange  |  O   |
+  |  4    | Yellow  |  Y   |
+  |  5    | Green   |  G   |
+  |  6    | Blue    |  B   |
+  |  7    | Violet  |  V   |
+  |  8    | GrEy    |  E   |
+  |  9    | White   |  W   |
+  |       |         |      |
+  |       | Cyan    |  C   |
+  |       | Magenta |  M   |
+  |       | Pink    |  P   |
 <hr><br/>
 
 ### Stripboard Veroboard spacing (Left-side)
@@ -364,4 +384,4 @@ USB D-   IO19  25þþ X   |
 
 ## 【4】 Testing and coding Examples:
 
-————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————
