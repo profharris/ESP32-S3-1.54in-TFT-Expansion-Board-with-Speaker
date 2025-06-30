@@ -1,5 +1,5 @@
 # AI Chatbot Cyber Deck
-https://docs.keyestudio.com/projects/ESP32S3_LCD154/en/latest/LCD154/LCD154.html
+https://docs.keyestudio.com/projects/ESP32S3_LCD154/en/latest/LCD154/LCD154.html<br/>
 https://github.com/78/xiaozhi-esp32
 
 ### Design follows inspirations from:
