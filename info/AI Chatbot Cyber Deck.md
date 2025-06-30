@@ -155,13 +155,13 @@ header exposed for access to the Development Board GPIO pins.
 
 ### Vertical Jumper wires: (23)
  1. Black   5-space jumper  (⏚GND)
- 2. Black   3-space jumper x2
+ 2. Black   3-space jumper _x2_
  3. Black   7-space jumper
  4. Black   9-space jumper
 
  5. Orange  4-space jumper  (3V3 VCC)
  6. Orange  5-space jumper
- 7. Orange  3-space jumper x3
+ 7. Orange  3-space jumper _x3_
  8. Orange  9-space jumper
  9. Orange 14-space jumper
 
@@ -180,7 +180,7 @@ header exposed for access to the Development Board GPIO pins.
 17. Brown   8-space jumper  TFT SCL     IO21
 
 18. White   4-space jumper  OK Button   IO0 
-19. White   8-space horizontal jumpers  IO38 & IO39
+19. White   8-space horizontal jumpers  IO38 & IO39 _x2_
 <hr/>
 
 #### IEEE Color Codes
