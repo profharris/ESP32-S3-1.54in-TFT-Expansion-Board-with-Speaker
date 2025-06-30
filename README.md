@@ -1,7 +1,7 @@
 # ESP32-S3 1.54in TFT Expansion Board with Speaker
 ## _(with&nbsp; I²S INMP441 Microphone, &&nbsp; I²S MAX98357A Audio Amplifier)_
 
-***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/28/2025*<br/>
+***A WORK IN PROGRESS*** &nbsp; &nbsp; Prof. Michael P. Harris &nbsp; &nbsp; *06/30/2025*<br/>
 [GitHub Pages](https://pages.github.com/)<br/>
 <br/>
 
@@ -224,21 +224,21 @@ dual-core LX7               YD-ESP32-S3                             2   *   3V3
 WiFi 802.11 b/g/n        | | | |_| |_|   |  GPIO_ = Strapping Pins
 BLE®5                 .——| ' '           |——.                       ————————————
                3V3   1|o:|ESP32S3-WROOM-1|:o|44 GND                 Hardware SPI
-               3V3   2|o:|               |:¤|43 IO43 [U0TXD›   LED] microSD_Card
-[RESET/RST   ] EN    3|o:| .··. . F© Œ Æ |:¤|42 IO44 [U0RXD‹   LED] ————————————
+               3V3   2|o:|               |:¤|43 IO43 [U0TXD›  ҉LED] microSD_Card
+[RESET/RST   ] EN    3|o:| .··. . F© Œ Æ |:¤|42 IO44 [U0RXD‹  ҉LED] ————————————
 [I²S Mic WS  ] IO4   4|o:| WiFi ß   ____ |:o|41 IO1  [A0          ] GPIO10 CS
 [I²S Mic SCK ] IO5   5|o:|         |QRCD||:o|40 IO2  [A1          ] GPIO11 MOSI
 [I²S Mic SD  ] IO6   6|o:| ° N16R8 |____||:o|39 IO42 [SPI TFT BL  ] GPIO12 SCK
 [I²S Amp DIN ] IO7   7|o:'———————————————':o|38 IO41 [SPI TFT CS  ] GPIO13 MISO
 [I²S Amp BCLK] IO15  8|o:                 :o|37 IO40 [SPI TFT DC  ]
-[I²S Amp LRC ] IO16  9|o  :: ‡‡‡    · RST  o|36 IO39 [   Volume UP] ————————————
-[A16         ] IO17 10|o  ¨¨|¯¯¯¬   : [◙]  o|35 IO38 [   Volume DN] 1.54in  TFT
+[I²S Amp LRC ] IO16  9|o  :: ‡‡‡    · RST  o|36 IO39 [   Volume ⏶] ————————————
+[A16         ] IO17 10|o  ¨¨|¯¯¯¬   : [◙]  o|35 IO38 [   Volume ⏷] 1.54in  TFT
 [A17         ] IO18 11|o  ¨¨|LDO[]  : BOOT ●|34 IO37 [PSRAM      ●] 240×240 IPS
 [A7  I²C SDA ] IO8  12|o  ¨¨|___- ¬¬  [◙]  ●|33 IO36 [PSRAM      ●] ————————————
 [A2          ] IO3_ 13|o  ·  ‡‡‡  ¨¨       ●|32 IO35 [PSRAM      ●] GPIO42 BL
 [IN ONLY     ] IO46_14|o      RGB   P T R  o|31 IO0_ [BOOT      OK] GPIO41 CS
 [A8  I²C SCL ] IO9  15|o  RGB CTRL  R X X  o|30 IO45_[SPI TFT RST ] GPIO40 DC
-[A9  SPI CS  ] IO10 16|o  [҉]  Ө    ҉ ҉ ҉  ¤|29 IO48 [RGB WS2812¤ ] GPIO45 RST
+[A9  SPI CS  ] IO10 16|o  [҉]  Ө    ҉ ҉ ҉  ¤|29 IO48 [RGB ҉WS2812҉] GPIO45 RST
 [A10 SPI MOSI] IO11 17|o           ··· ___ o|28 IO47 [SPI TFT MOSI] GPIO47 MOSI
 [A11 SPI SCK ] IO12 18|oIN-OUT ‡‡‡ :::|343|o|27 IO21 [SPI TFT SCLK] GPIO21 SCLK
 [A12 SPI MISO] IO13 19|o Ө            |___|ø|26 IO20 [A19       D⧾]
@@ -251,7 +251,7 @@ BLE®5                 .——| ' '           |——.                       —
 
  1. I²S INMP441  Microphone             4. SPI 1.54in 240×240 TFT   ————————————
  2. I²S MAX98357A Audio Amp/Speaker     5. SPI microSD_Card          MAX98357A
- 3. I²C Qwiic/Stemma-Qt interface                                     I²S Amp
+ 3. I²C Qwiic/Stemma-Qt interface       6. Buttons: VOL⏶,VOL⏷,OK    I²S Amp
                                                                     ————————————
 ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist, GPIO7  DIN
 26…32 QSPI ƒlash, 33…34 N/A, 35…42 GPIO, 43…44 TX/RX, 45…48 GPIO.   GPIO15 BCLK
@@ -421,6 +421,27 @@ LCD 1.54in 240×240 color IPS TFT (ST7789V2) sample program at the end.
 ***I²S*** is a protocol for transferring Digital Audio.&nbsp; The audio quality
 can range from telephone-grade to ultra-high fidelity,&nbsp; and you can have
 one or two channels.
+
+I²C works with digital PCM data, using any resolution and sample rate.  It
+can be used to route the sound from source to destination, through various
+signal processors and equalizers in some cases.
+
+The I²S protocol manages PCM data on a bus that consists of at least the
+following three connection lines:
+
+ 1. SCK – The Serial Clock Line, sometimes referred to as the “Bit Clock line”.
+ 2. WS/LRC – Word Select, which selects between the Left and Right audio channels.
+ 3. SD – Serial Data, the PCM audio data.
+
+The quality of the audio signal determines the Serial Clock rate, and is
+determined with the following formula:
+
+> **Clock Frequency** = Sample-Rate x Bits-Per-Channel x Number-of-Channels
+
+The ESP32-S3 has two I²S peripherals, I2S0, and I2S1. Each one can be configured
+as a Controller or Target, and each one can be an audio Transmitter or Receiver.
+Each I²S controller can operate in half-duplex communication mode. Thus, the two
+ontrollers can be combined to establish full-duplex communication.
 
 The I²S **INMP441** is a high performance, low power, digital output,&nbsp;
 _“omnidirectional”_ **MEMS microphone** with a _‘bottom port’_.&nbsp; The complete
@@ -971,7 +992,7 @@ void loop() {
 /*******************************************************************
 Serial Monitor:
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-01:31:08.758 -> Send 440Hz Sine Waves to the MAX98357A Amplifier/Speaker
+01:31:08.758 -> Send 440Hz Sine Waves to the MAX98357A Amp/Speaker
 01:31:08.758 -> MAX98357A I²S driver installed.
 
 *******************************************************************/
@@ -1257,15 +1278,12 @@ Sketch uses 1511178 bytes (48%) of program storage space.
 Global variables use 63884 bytes (19%) of dynamic memory,
             leaving 263796 bytes for local variables.
          Maximum is 327680 bytes.
-esptool.py v4.8.1
-Serial port COM8
-Connecting...
 
 Chip is ESP32-S3 (QFN56) (revision v0.2)
 Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
 Crystal is 40MHz
 MAC: 30:ed:a0:bb:73:9c
-
+...
 *******************************************************************/
 ```
 <hr><br/>
@@ -1774,50 +1792,7 @@ Chip is ESP32-S3 (QFN56) (revision v0.2)
 Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
 Crystal is 40MHz
 MAC: 30:ed:a0:bb:73:9c
-
-Uploading stub...
-Running stub...
-Stub running...
-
-Configuring flash size...
-Flash will be erased from 0x00000000 to 0x00004fff...
-Flash will be erased from 0x00008000 to 0x00008fff...
-Flash will be erased from 0x0000e000 to 0x0000ffff...
-Flash will be erased from 0x00010000 to 0x0006efff...
-Compressed 20208 bytes to 13058...
-Writing at 0x00000000... (100 %)
-Wrote 20208 bytes (13058 compressed) at 0x00000000 in 0.4 seconds
-  (effective 428.7 kbit/s)...
-Hash of data verified.
-Compressed 3072 bytes to 144...
-Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (144 compressed) at 0x00008000 in 0.1 seconds
-  (effective 440.4 kbit/s)...
-Hash of data verified.
-Compressed 8192 bytes to 47...
-Writing at 0x0000e000... (100 %)
-Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds
-  (effective 618.4 kbit/s)...
-Hash of data verified.
-Compressed 386016 bytes to 216047...
-Writing at 0x00010000... (7 %)
-Writing at 0x0001b455... (14 %)
-Writing at 0x000297e1... (21 %)
-Writing at 0x0002ef24... (28 %)
-Writing at 0x00034d7b... (35 %)
-Writing at 0x0003ac3d... (42 %)
-Writing at 0x0004041b... (50 %)
-Writing at 0x00045ee7... (57 %)
-Writing at 0x0004ae5e... (64 %)
-Writing at 0x000508e9... (71 %)
-Writing at 0x00056f4f... (78 %)
-Writing at 0x00061377... (85 %)
-Writing at 0x00066df3... (92 %)
-Writing at 0x0006cee6... (100 %)
-Wrote 386016 bytes (216047 compressed) at 0x00010000 in 3.9 seconds
-  (effective 801.7 kbit/s)...
-Hash of data verified.
-
+...
 Leaving...
 Hard resetting with RTC WDT...
 *******************************************************************/
@@ -1867,32 +1842,32 @@ Dual-core LX7               (44-pins)
 Dual-core LX7            _______________
  16MB Flash             |  ___   _   __¯|         NO CAMERA MODULE
   8MB PSRAM             | | | |_| |_|   |         NO SD-CARD
- 512K SRAM           .——| | |           |——.
-               3V3  1|o:|   Espressif   |:•|44 GND                Hardware
-               3V3  2|o:|ESP32S3-WROOM-1|:•|43 G43 TX›            SPI2 HSPI
-[RST]          ENT  3|o:|               |:•|42 G44 RX‹            —————————
-A3  (Mic WS)   G4   4|o:| Œ Æ   N16R8   |:o|41 G1  A0             G10 SS/CS
-A4  (Mic SCK)  G5   5|o:| .··. .   ____ |:o|40 G2  A1             G11 MOSI
-A5  (Mic SD)   G6   6|o:| WiFi ß  |QRCD||:o|39 G42     (TFT BL)   G12 SCK
-A6  (Amp DIN)  G7   7|o:| °   F©  |____||:o|38 G41     (TFT CS)   G13 MISO
-A14 (Amp BCLK) G15  8|o:'———————————————':o|37 G40     (TFT DC)
-A15 (Amp LRC)  G16  9|o ·. ¨¨|¯¯¯¬        o|36 G39                Software
-A16            G17 10|o ¯  ¨¨|LDO[]   PWR o|35 G38                SPI -ALT-
-A17            G18 11|o ¯  ¨¨|___-     ¤  o|34 G37 PSRAM          —————————
-I²C SDA        G8  12|o RGB     ¬ ¬       o|33 G36 PSRAM           -1  MISO
-A2             G3  13|o ‹¤›IO48 ¨ ¨       o|32 G35 PSRAM          G42  BL
-LOG            G46 14|o      ........ ·   o|31 G0  [BOOT]         G41  CS
-I²C SCL        G9  15|o ¨ ¨  |CP2102| ¨   o|30 G45     (TFT RST)  G40  DC
-SPI SS/CS      G10 16|o ¨¨   '''''''' ¨   ¤|29 G48 RGB LED        G45  RST
-SPI MOSI       G11 17|o BOOT .......  RST o|28 G47    (TFT MOSI)  G47  MOSI
-SPI SCK        G12 18|o ‹•›  '''''''  ‹•› o|27 G21    (TFT SCLK)  G21  SCLK
-SPI MISO       G13 19|o                   ø|26 G20 A19 USB_D-
-A13            G14 20|o  _____ O T _____  ø|25 G19 A20 USB_D+     I²C -ALT-
-               5V0 21|o | USB |T T| USB | o|24 GND                —————————
-               GND 22|o |  C  |G L|  C  | o|23 GND                1. *  GND
+ 512K SRAM           .——| | |           |——.                      Hardware
+               3V3  1|o:|   Espressif   |:•|44 GND                SPI2 HSPI
+               3V3  2|o:|ESP32S3-WROOM-1|:●|43 G43 TX›             SD_Card
+[RST]          ENT  3|o:|               |:●|42 G44 RX‹            —————————
+A3  (Mic WS)   G4   4|●:| Œ Æ   N16R8   |:o|41 G1  A0             G10 SS/CS
+A4  (Mic SCK)  G5   5|●:| .··. .   ____ |:o|40 G2  A1             G11 MOSI
+A5  (Mic SD)   G6   6|●:| WiFi ß  |QRCD||:●|39 G42      (TFT BL)  G12 SCK
+A6  (Amp DIN)  G7   7|●:| °   F©  |____||:●|38 G41      (TFT CS)  G13 MISO
+A14 (Amp BCLK) G15  8|●:'———————————————':●|37 G40      (TFT DC)
+A15 (Amp LRC)  G16  9|● ·. ¨¨|¯¯¯¬        o|36 G39    (Volume ▲)  Software
+A16            G17 10|o ¯  ¨¨|LDO[]   PWR o|35 G38    (Volume ▼)  SPI (TFT)
+A17            G18 11|o ¯  ¨¨|___-     ҉  ◌|34 G37 PSRAM          —————————
+I²C SDA (Qwiic)G8  12|o RGB     ¬ ¬       ◌|33 G36 PSRAM           -1  MISO
+A2             G3  13|o ‹҉›IO48 ¨ ¨       ◌|32 G35 PSRAM          G42  BL
+LOG            G46 14|o      ........ ·   o|31 G0  [BOOT]   (OK)  G41  CS
+I²C SCL (Qwiic)G9  15|o ¨ ¨  |CP2102| ¨   ●|30 G45     (TFT RST)  G40  DC
+SPI SD SS/CS   G10 16|o ¨¨   '''''''' ¨   ¤|29 G48 RGB LED        G45  RST
+SPI SD MOSI    G11 17|o BOOT .......  RST ●|28 G47    (TFT MOSI)  G47  MOSI
+SPI SD SCK     G12 18|o ‹◙›  '''''''  ‹◙› ●|27 G21    (TFT SCLK)  G21  SCLK
+SPI SD MISO    G13 19|o                   ø|26 G20 A19    USB_D-
+A13            G14 20|o  _____ O T _____  ø|25 G19 A20    USB_D+  I²C Qwiic
+               5V0 21|o | USB |T T| USB | •|24 GND                —————————
+               GND 22|• |  C  |G L|  C  | •|23 GND                1. *  GND
                      '——'ESP32'———'UART0'——'                      2. *  3V3
-  INMP441 I²S Mic                              G48 RGB_BUILTIN,   3. G1 SDA
-MAX98357A I²S Audio Amp                            LED_BUILTIN    4. G2 SCL
+  INMP441 I²S Mic                              G48 RGB_BUILTIN,   3. G8 SDA
+MAX98357A I²S Audio Amp                            LED_BUILTIN    4. G9 SCL
 
 **************************************************************************/
 
@@ -1965,7 +1940,7 @@ void setup(void) {
 
   tft.init(TFT_HEIGHT, TFT_WIDTH);  // Init ST7789V2 240×320 TFT LCD
   tft.fillScreen(ST77XX_BLACK);     // clear the screen
-  Serial.println(F("\n...ST7789V2 Screen Initialized"));
+  Serial.println(F("\n...TFT ST7789V2 Screen Initialized"));
 
   // SPI speed defaults to SPI_DEFAULT_FREQ defined in the library,
   // you can override it here. Note that the speed allowable depends
@@ -2259,7 +2234,9 @@ void tftPrintTest() {
   tft.println("\n Printing in HEX!");
   tft.println(" ");
 }
-
+```
+## Adafruit GFX Graphics library ➔ Quick Function Summary:
+```
 /*******************************************************************
 Adafruit_GFX Graphics library -=- Quick Function Summary:
 Parameters are assumed to be ‘int16_t’ unless otherwise specified.
@@ -2317,4 +2294,4 @@ drawRGBBitmap((x,y, uint8_t [*]bitmap[], w,h);
 byteSwap(void);
 *******************************************************************/
 ```
-<hr>
+<hr><br/>
