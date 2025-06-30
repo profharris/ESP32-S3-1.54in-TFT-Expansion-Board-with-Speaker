@@ -7,53 +7,16 @@ https://github.com/78/xiaozhi-esp32
  2. XIAOZHI AI Voice Chatbox ESP32-S3-N16R8
  3. Xiao Zhi AI Chatbot Breadboard DIY Kit
 
-## 【1】 ESP32-S3-WROOM-1 Design Guide:
-```
-——————————————————————————————————————————————————————————————————— ————————————
-YD-ESP32-S3 (ESP32-S3-WROOM-1 Dev)  (44-Pin)    ESP32-S3 Dev Module   I²C QWIIC
-                                                                    ————————————
-Xtensa® 32-bit         ESP32-S3-DevKit-C-1  ESP32-S3-WROOM-1 N16R8  1   *   GND
-dual-core LX7               YD-ESP32-S3                             2   *   3V3
-240MHz,  512KB SRAM       _______________   NO CAMERA MODULE        3 GPIO8 SDA
-8MB ƒlash, 2MB PSRAM     |  ___   _   __¯|  NO SD-CARD              4 GPIO9 SCL
-WiFi 802.11 b/g/n        | | | |_| |_|   |  GPIO_ = Strapping Pins
-BLE®5                 .——| ' '           |——.                       ————————————
-               3V3   1|o:|ESP32S3-WROOM-1|:o|44 ⏚GND                Hardware SPI
-               3V3   2|o:|               |:¤|43 IO43 [U0TXD›  ҉LED] microSD_Card
-[RESET/RST   ] EN    3|o:| .··. . F© Œ Æ |:¤|42 IO44 [U0RXD‹  ҉LED] ————————————
-[I²S Mic WS  ] IO4   4|o:| WiFi ß   ____ |:o|41 IO1  [A0          ] GPIO10 CS
-[I²S Mic SCK ] IO5   5|o:|         |QRCD||:o|40 IO2  [A1          ] GPIO11 MOSI
-[I²S Mic SD  ] IO6   6|o:| ° N16R8 |____||:o|39 IO42 [SPI TFT BL  ] GPIO12 SCK
-[I²S Amp DIN ] IO7   7|o:'———————————————':o|38 IO41 [SPI TFT CS  ] GPIO13 MISO
-[I²S Amp BCLK] IO15  8|o:                 :o|37 IO40 [SPI TFT DC  ]
-[I²S Amp LRC ] IO16  9|o  :: ‡‡‡    · RST  o|36 IO39 [   Volume ⏶] ————————————
-[A16         ] IO17 10|o  ¨¨|¯¯¯¬   : [◙]  o|35 IO38 [   Volume ⏷] 1.54in  TFT
-[A17         ] IO18 11|o  ¨¨|LDO[]  : BOOT ●|34 IO37 [PSRAM      ●] 240×240 IPS
-[A7  I²C SDA ] IO8  12|o  ¨¨|___- ¬¬  [◙]  ●|33 IO36 [PSRAM      ●] ————————————
-[A2          ] IO3_ 13|o  ·  ‡‡‡  ¨¨       ●|32 IO35 [PSRAM      ●] GPIO42 BL
-[IN ONLY     ] IO46_14|o            P T R  o|31 IO0_ [BOOT   OK ⏴] GPIO41 CS
-[A8  I²C SCL ] IO9  15|o  RGB RGB   R X X  o|30 IO45_[SPI TFT RST ] GPIO40 DC
-[A9  SPI CS  ] IO10 16|o  [҉]  ⯼    ҉ ҉ ҉  ¤⏐29 IO48 [RGB ҉WS2812҉] GPIO45 RST
-[A10 SPI MOSI] IO11 17|o           ··· ___ o|28 IO47 [SPI TFT MOSI] GPIO47 MOSI
-[A11 SPI SCK ] IO12 18|oIN-OUT ‡‡‡ :::|343|o|27 IO21 [SPI TFT SCLK] GPIO21 SCLK
-[A12 SPI MISO] IO13 19|o ⯼            |___|ø⏐26 IO20 [A19       D⧾]
-[A13         ] IO14 20|o  _____ O T _____  ø|25 IO19 [A18       D⧿] ————————————
-[      IN-OUT]  5V0 21|o | USB |T T| USB | o|24 ⏚GND                INMP441 Mic
-                GND 22|o |  C  |G L|  C  | o|23 ⏚GND                ————————————
-                      '——'ESP32'———'UART0'——'                       GPIO4  WS
-                                                IO48 RGB_BUILTIN,   GPIO5  SCK
-🟥Red PWR LED, 🟩Green TX LED, 🟦Blue RX LED        LED_BUILTIN    GPIO6  SD
+### On-board Peripherals:
+ 1. SPI (software) ***ST7789 1.54” 240×240 TFT Display:***
+ 2. SPI (hardware) ***SPI microSD_Card Reader/Writer:***
+ 3. I²S ***INMP441 Microphone:***
+ 4. I²S ***MAX98357A Amplifier/Speaker:***
+ 5. I²C ***Stemma-Qt/Qwiic 2-port I²C interface:***
+ 6. Buttons [Volume ⏶], [Volume ⏷], [OK ⏴]
+ 7. WS2812 NeoPixel ***RGB LED*** (RGB_BUILTIN)
 
- 1. I²S INMP441  Microphone             4. SPI 1.54in 240×240 TFT   ————————————
- 2. I²S MAX98357A Audio Amp/Speaker     5. SPI microSD_Card          MAX98357A
- 3. I²C Qwiic/Stemma-Qt interface       6. [Push Buttons] ◙           I²S Amp
-                                                                    ————————————
-ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist, GPIO7  DIN
-26…32 QSPI ƒlash, 33…34 N/A, 35…42 GPIO, 43…44 TX/RX, 45…48 GPIO.   GPIO15 BCLK
- pins_arduino.h ~ ESP32-S3-DevKitC-1                                GPIO16 LRC
-————————————————————————————————————————————————————————————————————————————————
-```
-### Compatible Development Boards:
+### MCU Development Board (ESP32-S3-WROOM-1):
 
 #### Espressif ESP-S3-DevKitC-1 — &nbsp;44-pins, 22-pin Headers
 ```
@@ -74,6 +37,55 @@ ESP32-S3-WROOM-1 “pin-compliant” Development boards:     Pins   RGB LEDs
 ><br/>
 > [5. FREENOVE ESP32-S3-WROOM-Lite](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/images/8.%20FREENOVE%20ESP32-S3-WROOM-Lite%20(40-pins).jpg)
 <hr><br/>
+
+
+## 【1】 MCU ESP32-S3-WROOM-1 Design Guide:
+```
+————————————————————————————————————————————————————————————————————    ————————————
+YD-ESP32-S3 (ESP32-S3-WROOM-1 Dev)  (44-Pin)    ESP32-S3 Dev Module       I²C QWIIC
+                                                                        ————————————
+Xtensa® 32-bit         ESP32-S3-DevKit-C-1  ESP32-S3-WROOM-1 N16R8      1   *   GND
+dual-core LX7               YD-ESP32-S3                                 2   *   3V3
+240MHz,   512KB SRAM      _______________   NO CAMERA MODULE            3 GPIO8 SDA
+16MB ƒlash, 8MB PSRAM    |  ___   _   __¯|  NO SD-CARD                  4 GPIO9 SCL
+WiFi 802.11 b/g/n        | | | |_| |_|   |  GPIO_ = Strapping Pins
+BLE®5                 .——| ' '           |——.                           ————————————
+               3V3   1|o:|ESP32S3-WROOM-1|:o|44 ⏚GND                    Hardware SPI
+               3V3   2|o:|               |:¤|43 IO43 [U0TXD›  ҉LED]     microSD_Card
+[RESET/RST   ] EN    3|o:| .··. . F© Œ Æ |:¤|42 IO44 [U0RXD‹  ҉LED]     ————————————
+[I²S Mic WS  ] IO4   4|o:| WiFi ß   ____ |:o|41 IO1  [A0          ]     GPIO10 CS
+[I²S Mic SCK ] IO5   5|o:|         |QRCD||:o|40 IO2  [A1          ]     GPIO11 MOSI
+[I²S Mic SD  ] IO6   6|o:| ° N16R8 |____||:o|39 IO42 [SPI TFT BL  ]     GPIO12 SCK
+[I²S Amp DIN ] IO7   7|o:'———————————————':o|38 IO41 [SPI TFT CS  ]     GPIO13 MISO
+[I²S Amp BCLK] IO15  8|o:                 :o|37 IO40 [SPI TFT DC  ]
+[I²S Amp LRC ] IO16  9|o  :: ‡‡‡    · RST  o|36 IO39 [   Volume ⏶]     ————————————
+[A16         ] IO17 10|o  ¨¨|¯¯¯¬   : [◙]  o|35 IO38 [   Volume ⏷]     SPI 1.54in
+[A17         ] IO18 11|o  ¨¨|LDO[]  : BOOT ●|34 IO37 [PSRAM      ●]     240×240 TFT
+[A7  I²C SDA ] IO8  12|o  ¨¨|___- ¬¬  [◙]  ●|33 IO36 [PSRAM      ●]     ————————————
+[A2          ] IO3_ 13|o  ·  ‡‡‡  ¨¨       ●|32 IO35 [PSRAM      ●]     GPIO42 BL
+[IN ONLY     ] IO46_14|o            P T R  o|31 IO0_ [BOOT   OK ⏴]     GPIO41 CS
+[A8  I²C SCL ] IO9  15|o  RGB RGB   R X X  o|30 IO45_[SPI TFT RST ]     GPIO40 DC
+[A9  SPI CS  ] IO10 16|o  [҉]  ⯼    ҉ ҉ ҉  ¤⏐29 IO48 [RGB ҉WS2812҉]     GPIO45 RST
+[A10 SPI MOSI] IO11 17|o           ··· ___ o|28 IO47 [SPI TFT MOSI]     GPIO47 MOSI
+[A11 SPI SCK ] IO12 18|oIN-OUT ‡‡‡ :::|343|o|27 IO21 [SPI TFT SCLK]     GPIO21 SCLK
+[A12 SPI MISO] IO13 19|o ⯼            |___|ø⏐26 IO20 [A19       D⧾]
+[A13         ] IO14 20|o  _____ O T _____  ø|25 IO19 [A18       D⧿]     ————————————
+[      IN-OUT]  5V0 21|o | USB |T T| USB | o|24 ⏚GND                    INMP441 Mic
+                GND 22|o |  C  |G L|  C  | o|23 ⏚GND                    ————————————
+                      '——'ESP32'———'UART0'——'                           GPIO4  WS
+                                                IO48 RGB_BUILTIN,       GPIO5  SCK
+🟥Red PWR LED, 🟩Green TX LED, 🟦Blue RX LED        LED_BUILTIN        GPIO6  SD
+
+ 1. I²S INMP441  Microphone             4. SPI 1.54in 240×240 TFT       ————————————
+ 2. I²S MAX98357A Audio Amp/Speaker     5. SPI microSD_Card             I²S MAX98357
+ 3. I²C Qwiic/Stemma-Qt interface       6. [Push Buttons] ◙             Amp/Speaker
+                                                                        ————————————
+ESP32-S3 Pins: 0…18 GPIO, 19…20 D+/D-, 21 GPIO, 22…25 Do Not Exist,     GPIO7  DIN
+26…32 QSPI ƒlash, 33…34 N/A, 35…42 GPIO, 43…44 TX/RX, 45…48 GPIO.       GPIO15 BCLK
+ pins_arduino.h ~ ESP32-S3-DevKitC-1                                    GPIO16 LRC
+————————————————————————————————————————————————————————————————————    ————————————
+```
+<br/><hr>
 
 ## 【2】 Vero-Stripboard Layout and Design:
 
@@ -96,7 +108,7 @@ Veroboard,&nbsp; are for the _Button pins_ GPIO38 and GPIO39 to connect
 around ‘cuts’ made to the Veroboard,&nbsp; for the _LCD 1.54in 240RGB×240_
 8-pin header.&nbsp; These Horzontal connect wires are denoted by ‘»’ and
 ‘«’ in the Veroboard Right-side diagram below.
-¦µ×÷±¡¿¸‚„…ƒ¬–—·•‹›«»¨¯´ˆ˜‘’“”¹²³ª°®™©¢çÇÒÓÔÕÖØÞþðòóôõöø¤§†‡ÎÏßíìîïÐ
+¦µ×÷±¡¿¸‚„…ƒ¬–—·•‹›«»¨¯´ˆ˜‘’“”¹²³ª°®™©¢çÇÒÓÔÕÖØÞ⩇ðòóôõöø¤§†‡ÎÏßíìîïÐ
 
 The 6.5×14.5cm Vero-Stripboard is 56 _2.54mm spaced holes_ horizontally
 and 24 _2.54mm spaced holes_ vertically.&nbsp; The 44-pin **ESP32-S3-WROOM-1**
@@ -122,14 +134,14 @@ header exposed for access to the Development Board GPIO pins.
   2. SPI LCD 1.54in 240RGB×240 IPS TFT (ST7789)
   3. SPI microSD_Card Reader/Writer
   4. I²S INMP441 MEMS Mic
-  5. I²S MAX98357A Amp
+  5. I²S MAX98357A Amp/Speaker
   6. 3W 4Ω Speaker
-  6. I²C Quiic/Stemma-Qt dual-port interface
-  7. I²C Quiic/Stemma-Qt sensors as needed
+  7. I²C Quiic/Stemma-Qt dual-port interface
+  8. I²C Quiic/Stemma-Qt sensors as desired
 
 ### Build Components:
   1. 1× Stripboard Veroboard (6.5×14.5cm) 56×24 2.54mm holes
-  2. 2×  3-pin IPX Male headers Black  GND headers
+  2. 2×  3-pin IPX Male headers Black  ⏚GND headers
   3. 1×  3-pin IPX Male headers Red    5V0 headers
   4. 1×  3-pin IPX Male headers Orange 3V3 Headers
   5. 2×  3-pin IPX Female headers      INMP441 I²S Mic
@@ -142,7 +154,7 @@ header exposed for access to the Development Board GPIO pins.
  12. 1× Battery Power On/Off switch
 
 ### Vertical Jumper wires: (23)
- 1. Black   5-space jumper  (GND)
+ 1. Black   5-space jumper  (⏚GND)
  2. Black   3-space jumper x2
  3. Black   7-space jumper
  4. Black   9-space jumper
@@ -194,35 +206,36 @@ header exposed for access to the Development Board GPIO pins.
 ### Stripboard Veroboard spacing (Left-side)
 --------------------------------------------------------------------
 ```
-Column:         1111111111222222222
-       1234567890123456789012345678 ESP32-S3-WROOM-1
+Column:          1111111111222222222                    24-pins High
+Number: 1234567890123456789012345678 ESP32-S3-WROOM-1
 --------------------------------------------------------------------
-      3V3 •••    •   INMP441      •  <--3V3 •Orange•   INMP441
-      GND •••  • |   ¦o  o¦       |  <--GND •Black• L/R¦o  o¦GND
-               | | X•¦o Xo¦   þþþ1|  3V3             WS¦o  o¦VIN
-       .-------|-| X|¦o•Xo¦•X þþþ2•  3V3            SCK¦o  o¦SD
-       ¦Ѻ VIN  |o•• |  |   |X þþþ3.  EN
-       ¦  GND  •o•|X•  |   |  þþþ4.  IO4   I²S INMP441  WS   •Yellow•
-       ¦+ SD   •o|•   X•   |  þþþ5.  IO5   I²S INMP441  SCK  •Green•
-       ¦◘ GAIN |o••       X•  þþþ6.  IO6   I²S INMP441  SD   •Blue•
-       ¦◘ DIN  |o |           þþþ7.  IO7   I²S MAX98357 DIN
-       ¦– BCLK |o |           þþþ8.  IO15  I²S MAX98357 BCLK
-       ¦Ѻ LRC  |o |           þþþ9.  IO16  I²S MAX98357 LRC
-       ¯¯¯¯¯¯¯¯|¯ | .----.    þþþ10. IO17
-      MAX98357 |  | ¦I²C ¦    þþþ11. IO18
-               |  ••¦ oX•¦GND þþþ12. IO8   I²C SDA •Blue•
-       microSD • • |¦ oX|¦3V3 þþþ13. IO3
-         .-------| |¦Xo •¦SDAXþþþ14. IO46
-         ¦3V3   o• |¦Xo  ¦SCL þþþ15. IO9   I²C SCL •Yellow•
-      .--¦CS   Xo  |¦    ¦    þþþ16. IO10  SPI microSD  CS   •Orange•
-      ¦S ¦MOSI Xo  |¯¯¯¯¯¯    þþþ17. IO11  SPI microSD  MOSI •Yellow•
-      ¦D ¦SCK  Xo  |          þþþ18. IO12  SPI microSD  SCK  •Green•
-      \--¦MISO Xo  |          þþþ19. IO13  SPI microSD  MISO •Blue•
-         ¦GND   o• •X         þþþ20. IO14
-         ¯¯¯¯¯¯¯¯|  5V0 •••   þþþ21. 5V0   •Red•
-                 •  GND •••   þþþ22. GND   •Black•
-                11111111112222222
-       12345678901234567890123456
+01     3V3 •••    •   INMP441     •   <--3V3  •Orange•  <--INMP441
+02     GND •••  • |   ¦o  o¦  Pins|   <--GND⏚ •Black•   L/R¦o  o¦GND
+03              | | X•¦o Xo¦   ⩇⩇⩇|1. 3V3                WS¦o  o¦VIN
+04      .-------|-| X|¦o•Xo¦•X ⩇⩇⩇•2. 3V3               SCK¦o  o¦SD
+05      ¦Ѻ VIN  |o•• |  |   |X ⩇⩇⩇ 3.  EN
+06      ¦  GND  •o•|X•  |   |  ⩇⩇⩇ 4. IO4   I²S INMP441  WS   •Yellow•
+07      ¦+ SD   •o|•   X•   |  ⩇⩇⩇ 5. IO5   I²S INMP441  SCK  •Green•
+08      ¦◘ GAIN |o••       X•  ⩇⩇⩇ 6. IO6   I²S INMP441  SD   •Blue•
+09      ¦◘ DIN  |o |           ⩇⩇⩇ 7. IO7   I²S MAX98357 DIN
+10      ¦– BCLK |o |           ⩇⩇⩇ 8. IO15  I²S MAX98357 BCLK
+11      ¦Ѻ LRC  |o |           ⩇⩇⩇ 9. IO16  I²S MAX98357 LRC
+12      ¯¯¯¯¯¯¯¯|¯ | .----.    ⩇⩇⩇10. IO17
+13     MAX98357 |  | ¦I²C ¦    ⩇⩇⩇11. IO18
+14              |  ••¦ oX•¦GND ⩇⩇⩇12. IO8   I²C SDA •Blue•
+15      microSD • • |¦ oX|¦3V3 ⩇⩇⩇13. IO3
+16        .-------| |¦Xo •¦SDAΧ⩇⩇⩇14. IO46
+17        ¦3V3   o• |¦Xo  ¦SCL ⩇⩇⩇15. IO9   I²C SCL •Yellow•
+18     .--¦CS    o  |¦    ¦    ⩇⩇⩇16. IO10  SPI microSD  CS   •Orange•
+19     ¦S ¦MOSI  o  |¯¯¯¯¯¯    ⩇⩇⩇17. IO11  SPI microSD  MOSI •Yellow•
+20     ¦D ¦SCK   o  |          ⩇⩇⩇18. IO12  SPI microSD  SCK  •Green•
+21     \--¦MISO  o  |          ⩇⩇⩇19. IO13  SPI microSD  MISO •Blue•
+22        ¦GND   o• •X         ⩇⩇⩇20. IO14
+23        ¯¯¯¯¯¯¯¯|  5V0 •••   ⩇⩇⩇21. 5V0   •Red•
+24                •  GND •••   ⩇⩇⩇22. ⏚GND  •Black•
+--------------------------------------------------------------------
+Column:          1111111111222222222
+Number: 1234567890123456789012345678
 ————————————————————————————————————————————————————————————————————
 ```
 <br/>
@@ -230,33 +243,36 @@ Column:         1111111111222222222
 ### Stripboard Veroboard spacing (Right-side)
 --------------------------------------------------------------------
 ```
-Column:          3333344444444445555555
-                 5678901234567890123456
+Column:             3333344444444445555555              24-pins High
+Number:             5678901234567890123456
 --------------------------------------------------------------------
-3V3-->  ESP32-S3-WROOM  •  •Orange•
-GND-->         Pins     |
-         GND   44þþ     |               »  « Horzontal connect wires
-U0TXD    IO43  43þþ     |                    for pins IO39 & IO38
-U0RXD    IO44  42þþ     |LCD 1.54in          on bottom of Veroboard
-         IO1   41þþ     |240RGB×240
-         IO2   40þþ    -|-----------.
-TFT BL   IO42  39þþ    o|X TFT BL   ¦
-TFT CS   IO41  38þþ    o|X TFT CS   ¦      Buttons:
-TFT DC   IO40  37þþ    o|X TFT DC   ¦
-Vol UP   IO39  36þþ» X•o|X TFT RST «¦  [Ø] Volume UP
-Vol DN   IO38  35þþ»X•|o|X TFT SDA «¦•                 •Grey•
-PSRAM    IO37  34þþX•||o|X TFT SCL  ¦|•[Ø] OK
-PSRAM    IO36  33þþX|||o•X VCC      ¦||
-PSRAM    IO35  32þþX|||o•X GND      ¦•|[Ø] Volume DN
-BOOT     IO0   31þþ |||¯|¯¯¯¯¯¯¯¯¯¯¯¯ •                •White•
-TFT RST  IO45  30þþ ||•X| •Green•
-WS2812   IO48  29þþ ||  |
-TFT MOSI IO47  28þþ |•X | •Purple•
-TFT SCLK IO21  27þþ •X  | •Brown•
-USB D+   IO20  26þþ X   |
-USB D-   IO19  25þþ X   |
-         GND   24þþ     •  •Black•
-         GND   23þþ
+01  3V3-->  ESP32-S3-WROOM •  •Orange•
+02 ⏚GND-->       Pins      ⏐
+03          GND  44.⩇⩇     |               »  « Horzontal connect wires
+04 U0TXD    IO43 43.⩇⩇     |                    for pins IO39 & IO38
+05 U0RXD    IO44 42.⩇⩇     |LCD 1.54in          on bottom of Veroboard
+06          IO1  41.⩇⩇     |240RGB×240
+07          IO2  40.⩇⩇    -|-----------.
+08 TFT BL   IO42 39.⩇⩇    o|X TFT BL   ¦
+09 TFT CS   IO41 38.⩇⩇    o|X TFT CS   ¦      Buttons:
+10 TFT DC   IO40 37.⩇⩇    o|X TFT DC   ¦
+11 Vol UP   IO39 36.⩇⩇» X•o|X TFT RST «¦  [Ø] Volume UP
+12 Vol DN   IO38 35.⩇⩇»X•|o|X TFT SDA «¦•                 •Grey•
+13 PSRAM    IO37 34.⩇⩇X•||o|X TFT SCL  ¦|•[Ø] OK
+14 PSRAM    IO36 33.⩇⩇X|||o•X VCC      ¦||
+15 PSRAM    IO35 32.⩇⩇X|||o•X GND      ¦•|[Ø] Volume DN
+16 BOOT     IO0  31.⩇⩇ |||¯|¯¯¯¯¯¯¯¯¯¯¯¯ •                •White•
+17 TFT RST  IO45 30.⩇⩇ ||•X| •Green•
+18 WS2812   IO48 29.⩇⩇ ||  |
+19 TFT MOSI IO47 28.⩇⩇ |•X | •Purple•
+20 TFT SCLK IO21 27.⩇⩇ •X  | •Brown•
+21 USB D+   IO20 26.⩇⩇ X   |
+22 USB D-   IO19 25.⩇⩇ X   |
+23          GND  24.⩇⩇ ⏚   •  •Black•
+24          GND  23.⩇⩇ ⏚
+--------------------------------------------------------------------
+Column:             3333344444444445555555
+Number:             5678901234567890123456
 ————————————————————————————————————————————————————————————————————
 ```
 <br/><hr>
