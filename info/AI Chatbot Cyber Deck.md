@@ -179,8 +179,8 @@ header exposed for access to the Development Board GPIO pins.
 
 17. Brown   8-space jumper  TFT SCL     IO21
 
-18. White   4-space jumper  OK Button   IO0
-19  White   8-space horizontal jumpers  IO38 & IO39
+18. White   4-space jumper  OK Button   IO0 
+19. White   8-space horizontal jumpers  IO38 & IO39
 <hr/>
 
 #### IEEE Color Codes
