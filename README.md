@@ -468,9 +468,10 @@ choice for ‘near field’ applications.&nbsp; The I²S INMP441 has a flat wide
 6. High PSR (Power Supply Rejection): -75 dBFS
 <hr><br/>
 
-## INMP441 I²S Microphone sample program:
+## INMP441 I²S Microphone sample programs:
 
-**Download:**&nbsp; [INMP441-I2S-Mic-sample.ino &nbsp; (Visual “Audio Waveforms”)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/INMP441-I2S-Mic-sample/INMP441-I2S-Mic-sample.ino)
+**Download:**&nbsp; [INMP441-I2S-Mic-sample.ino &nbsp; (Visual “Audio Waveforms”)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/INMP441-I2S-Mic-sample/INMP441-I2S-Mic-sample.ino)<br/>
+**Download:**&nbsp; [INMP441-I2S-Mic-VU-Meter.ino &nbsp; (VU-Meter ‘volume graph’)](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/INMP441-I2S-Mic-VU-Meter/INMP441-I2S-Mic-VU-Meter.ino)<br/>
 ```C++
 /* INMP441-I2S-Mic-sample.ino           (Visual “Audio Waveforms”)
  * Requires an INMP441 I²S Microphone
