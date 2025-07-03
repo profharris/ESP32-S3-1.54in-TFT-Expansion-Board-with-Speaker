@@ -21,7 +21,7 @@
  *
  * Using the MAX98357 I²S Audio Amplifier and Speaker:
  *
- *   The sound source will be an MP3 file that is stored on a
+ *   The sound source will be an MP3 file that is stored on the
  *   microSD_Card.  This is an extremely basic MP3 player, for
  *   practical use you would need to make a system for navigating
  *   the microSD_Card to play more than one selection.  This sketch
@@ -29,7 +29,7 @@
  *   as well as a library that makes working with I²S Audio apps a
  *   bit easier.
  *
- * NOTE¹:  You will NOT hear the MP3 file playing
+ * NOTE¹:  You may NOT hear the MP3 file playing
  * ¯¯¯¯¯¯  until you open the Serial Monitor!!!
  *
  * Wiring:
@@ -94,7 +94,7 @@ USB Firmware MSC On Boot: "Disabled"
 #define SD_SCK      12              //              "        SPI SCK
 #define SD_MISO     13              //              "        SPI MISO
 
-// SD_Card Filename, MP3 Music File (8.3 short names required)
+// SD_Card Filename, MP3 Music File (8.3 short names may be required)
 const char* filename = "/OlsenBan.mp3";
 
 Audio audio;                        // Create ESP32-audioI2S Audio object
@@ -103,7 +103,7 @@ void setup() {
   Serial.begin(15200);              // Serial Monitor
   while(!Serial);                   // Wait for Serial Port to open
 /*
- * NOTE:  You will NOT hear the MP3 file playing
+ * NOTE:  You may NOT hear the MP3 file playing
  * ¯¯¯¯¯  until you open the Serial Monitor!!!
  */
 
@@ -178,7 +178,8 @@ Serial Monitor:
 23:58:12.167 -> Info        syncword found at pos 0
 23:58:12.167 -> Info        MPEG-2.5, Layer I
 23:58:12.167 -> Info        Channels: 2
-23:58:12.167 -> Info        SampBitsPerSample: 16
+23:58:12.167 -> Info        SampleRate: 44100
+23:58:12.167 -> Info        BitsPerSample: 16
 23:58:12.167 -> Info        BitRate: 128000
 23:58:30.499 -> Info        Closing audio file "OlsenBan.mp3"
 23:58:30.499 -> EOF_mp3     OlsenBan.mp3
