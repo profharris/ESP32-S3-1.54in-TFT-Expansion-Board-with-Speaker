@@ -54,7 +54,7 @@ Feel free to change the pins - but make sure you adjust the code to match.
 
 You should see a waveform that looks like this if you whistle (if you can't whistle - try screaming 😱).
 
-![Whistling](./images/whistling.png)
+![Whistling]([./images/whistling.png](https://github.com/profharris/ESP32-S3-1.54in-TFT-Expansion-Board-with-Speaker/blob/main/code/INMP441-I2S-Mic-test/whistling.png))
 
 Once you've got your microphone up and running, here are some projects that you might enjoy: 
 [Audio Project Playlist](https://www.youtube.com/playlist?list=PL5vDt5AALlRfGVUv2x7riDMIOX34udtKD)
