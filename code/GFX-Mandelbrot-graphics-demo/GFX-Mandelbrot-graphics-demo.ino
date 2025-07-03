@@ -2,7 +2,7 @@
  * ESP32-S3 1.54in TFT Expansion Board with Speaker
  * built-in: TFT 1.54in 240×240 ST7789 LCD Display
  *
- * Exercise the 240×240 ST7789 TFT LCD
+ * Exercise the 240×240 ST7789V2 TFT LCD
  * Based loosely on an Adafruit Mandelbrot example
  *
  * Uses the built-in user [BOOT] button (GPIO0)
