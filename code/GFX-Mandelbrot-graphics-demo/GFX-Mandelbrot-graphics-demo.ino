@@ -1,31 +1,33 @@
 /* GFX-Mandelbrot-graphics-demo.ino
  * ESP32-S3 1.54in TFT Expansion Board with Speaker
+ * built-in: TFT 1.54in 240×240 ST7789 LCD Display
  *
  * Exercise the 240×240 ST7789 TFT LCD
  * Based loosely on an Adafruit Mandelbrot example
+ *
+ * Uses the built-in user [BOOT] button (GPIO0)
  */
 
 #include <Adafruit_GFX.h>    // Adafruit GFX Core graphics library
 #include <Adafruit_ST7789.h> // Hardware-specific library for ST7789
 #include <SPI.h>             // SPI library
-//#include "XPT2046_Touchscreen.h"    // XPT2046 Touch Screen library
 
-// SPI Pinout
-#define TFT_MISO     -1      // 1.54in 240×240 ST7789 LCD pins
-#define TFT_BL       42      // BLK BackLight       ESP32-S3-WROOM-1
-#define TFT_CS       41      // CS  Chip Select       "Right-Side"
-#define TFT_DC       40      // RS  Data/Command      "Availiable"
-#define TFT_RST      45      // RES Reset                 "Pins"
-#define TFT_MOSI     47      // SDA SPI Data
-#define TFT_SCK      21      // SCL SPI Clock
-//#define TOUCH_CS    1      //     
+// SPI Pins declared for the TFT display (Right-side ESP32-S3-WROOM)
+#define TFT_BL       42      // BackLight
+#define TFT_CS       41      // SPI Chip Select
+#define TFT_DC       40      // SPI Data/Command
+#define TFT_RST      45      // SPI Reset
+#define TFT_MOSI     47      // SPI Data  (SDA)
+#define TFT_SCLK     21      // SPI Clock (SCL)
 
+// Adafruit software SPI GFX Constructor for object ‘tft’
+Adafruit_ST7789 tft=Adafruit_ST7789(TFT_CS, TFT_DC, TFT_MOSI,
+                                    TFT_SCLK, TFT_RST);
 #define TFT_WIDTH   240
 #define TFT_HEIGHT  240
 
-// Adafruit software SPI GFX Constructor for object ‘tft’
-Adafruit_ST7789 tft = Adafruit_ST7789(TFT_CS,TFT_DC,TFT_MOSI,TFT_SCLK,TFT_RST);
-//XPT2046_Touchscreen ts(TOUCH_CS);
+const int btnPin    = 0;     // User [BOOT] button GPIO0
+      int btnState  = 0;     // [BOOT] pushbutton status
 
 const int16_t
   bits        =  12,    // Fractional resolution
@@ -38,21 +40,18 @@ float
   rangeReal   =  3.0,   // Image coverage in complex plane
   rangeImag   =  3.0;
 
-boolean istouched = false;
-
 
 void setup() {
   Serial.begin(115200);          // Initialize Serial communication
   while(!Serial);                // Wait for the Serial port to open
-  
-  Serial.println("GFX Mandelbrot demo");
-  //Serial.println("Tap screen to increase zoom");
+  pinMode(btnPin, INPUT);        // Initialize the [BOOT] pushbutton
 
-  tft.begin();                   // Init TFT LCD screen
-  tft.setRotation(1);            // TFT LCD Landscape orientation
-  tft.fillScreen(ST77XX_BLACK);  // Clear the screen
-//  ts.begin();                    // Init Touch Screen controller
-//  ts.setRotation(3);             // Match Touch Screen orientation
+  Serial.println("GFX Mandelbrot demo");
+  Serial.println("Press [BOOT] button to increase zoom.");
+
+  tft.init(TFT_HEIGHT, TFT_WIDTH);  // Init ST7789V2 240×320 TFT LCD
+  tft.setRotation(3);               // TFT LCD Landscape orientation
+  tft.fillScreen(ST77XX_BLACK);     // Clear the screen
 }
 
 void loop() {
@@ -80,7 +79,9 @@ void loop() {
         a  = posReal + a2 - b2;
       }
       tft.drawPixel(x,y, (n * 29)<<8 | (n * 67));
-      // Change the 29 and/or 67 to affect colors...
+      /*
+       * Change the 29 and/or 67 to affect colors...
+       */
       posReal += incReal;
     }
     posImag -= incImag;
@@ -96,26 +97,49 @@ void loop() {
   tft.print("Pass Complete: ");
   tft.println(rangeReal);
 
-  while(istouched == false) { // When drawing complete, wait for Touch
-    //istouched = ts.touched();
-    delay(2000);
-    istouched = true;
+  // Wait 2 seconds for a [BOOT] button Press, to Zoom in Mandelbrot
+  int32_t btnTimer = millis()+2000; // 2 second [BOOT] Button timer
+  btnState = digitalRead(btnPin);   // Read [BOOT] Button
+  while(millis() < btnTimer && btnState == HIGH) {
+    btnState = digitalRead(btnPin); // Read [BOOT] Button
+    delay(10);
   }
-  if(istouched) {
-    tft.fillScreen(ST77XX_BLACK); // Blank screen
-    //TS_Point p = ts.getPoint();   // Send Touch info to Serial Monitor
-    //Serial.print("Pressure = ");
-    //Serial.print(p.z);
-    //Serial.print(", x = ");
-    //Serial.print(p.x);
-    //Serial.print(", y = ");
-    //Serial.println(p.y);
-    rangeReal *= 0.90;              // Zoom in each iteration
+  if(btnState == HIGH) {           // [BOOT] button pressed for Zoom
+    tft.fillScreen(ST77XX_BLACK);  // Blank screen
+    rangeReal *= 0.90;             // Zoom amount for each iteration
     rangeImag *= 0.90;
-    istouched = false;              // Reset Touch flag
-    if(rangeReal < 1.3) {           // Reset the Zoom
+    btnState   = !btnState;        // Reset btnState flag
+    if(rangeReal < 1.3) {          // Reset Zoom if over Zoom limit
       rangeReal = 3.0;
       rangeImag = 3.0;
     }
   }
 }
+
+/*******************************************************************
+Serial Monitor:
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+04:06:17.360 -> GFX Mandelbrot demo
+04:06:17.360 -> Press [BOOT] button to increase zoom.
+04:06:30.682 -> Took 11.15 secs
+04:06:45.564 -> Took 11.17 secs
+04:06:57.277 -> Took 11.17 secs
+04:07:12.176 -> Took 11.21 secs
+
+--------------------------------------------------------------------
+OUTPUT:
+¯¯¯¯¯¯¯
+Sketch uses 366198 bytes (11%) of program storage space. 
+Maximum is 3145728 bytes.
+Global variables use 22692 bytes (6%) of dynamic memory, 
+            leaving 304988 bytes for local variables. 
+         Maximum is 327680 bytes.
+
+Chip is ESP32-S3 (QFN56) (revision v0.2)
+Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
+Crystal is 40MHz
+MAC: 30:ed:a0:bb:73:9c
+...
+Leaving...
+Hard resetting with RTC WDT...
+*******************************************************************/
